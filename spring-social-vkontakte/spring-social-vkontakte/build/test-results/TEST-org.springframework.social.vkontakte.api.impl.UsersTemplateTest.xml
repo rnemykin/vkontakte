@@ -1,0 +1,12 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="org.springframework.social.vkontakte.api.impl.UsersTemplateTest" tests="6" failures="0" errors="0" timestamp="2013-10-23T06:59:33" hostname="budkal-PC" time="0.158">
+  <properties/>
+  <testcase name="getProfiles_currentUser" classname="org.springframework.social.vkontakte.api.impl.UsersTemplateTest" time="0.031"/>
+  <testcase name="getProfile_currentUser" classname="org.springframework.social.vkontakte.api.impl.UsersTemplateTest" time="0.027"/>
+  <testcase name="getProfiles_unauthorized" classname="org.springframework.social.vkontakte.api.impl.UsersTemplateTest" time="0.02"/>
+  <testcase name="getProfile_unauthorized" classname="org.springframework.social.vkontakte.api.impl.UsersTemplateTest" time="0.024"/>
+  <testcase name="getProfiles_expiredToken" classname="org.springframework.social.vkontakte.api.impl.UsersTemplateTest" time="0.027"/>
+  <testcase name="getProfile_expiredToken" classname="org.springframework.social.vkontakte.api.impl.UsersTemplateTest" time="0.027"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
