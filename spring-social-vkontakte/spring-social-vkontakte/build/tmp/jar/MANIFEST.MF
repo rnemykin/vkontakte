@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: spring-social-vkontakte
-Implementation-Version: 1.1.0.BUILD-SNAPSHOT
-

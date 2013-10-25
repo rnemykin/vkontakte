@@ -1,9 +1,0 @@
-<?xml version="1.1" encoding="UTF-8"?>
-<testsuite name="org.springframework.social.vkontakte.api.impl.WallTemplateTest" tests="3" failures="0" errors="0" timestamp="2013-10-23T06:59:33" hostname="budkal-PC" time="0.067">
-  <properties/>
-  <testcase name="post_expiredToken" classname="org.springframework.social.vkontakte.api.impl.WallTemplateTest" time="0.025"/>
-  <testcase name="post" classname="org.springframework.social.vkontakte.api.impl.WallTemplateTest" time="0.023"/>
-  <testcase name="post_unauthorized" classname="org.springframework.social.vkontakte.api.impl.WallTemplateTest" time="0.018"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

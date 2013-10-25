@@ -1,7 +1,0 @@
-org.springframework.social.vkontakte.api
-org.springframework.social.vkontakte.api.impl
-org.springframework.social.vkontakte.api.impl.json
-org.springframework.social.vkontakte.config.annotation
-org.springframework.social.vkontakte.config.xml
-org.springframework.social.vkontakte.connect
-org.springframework.social.vkontakte.security
