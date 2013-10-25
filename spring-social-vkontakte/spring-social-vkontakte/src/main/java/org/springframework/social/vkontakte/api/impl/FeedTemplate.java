@@ -44,22 +44,18 @@ public class FeedTemplate extends AbstractVKontakteOperations implements FeedOpe
         this.restTemplate = restTemplate;
     }
 
-    @Override
     public List<NewsPost> getFeed() {
         return getFeed(null, 0, DEFAULT_NUMBER_OF_POSTS);
     }
 
-    @Override
     public List<NewsPost> getFeed(int offset, int limit) {
         return getFeed(null, offset, limit);
     }
 
-    @Override
     public List<NewsPost> getFeed(String ownerId) {
         return getFeed(ownerId, 0, DEFAULT_NUMBER_OF_POSTS);
     }
 
-    @Override
     public List<NewsPost> getFeed(String uid, int offset, int limit) {
         requireAuthorization();
         Properties props = new Properties();
@@ -87,12 +83,10 @@ public class FeedTemplate extends AbstractVKontakteOperations implements FeedOpe
         return posts;
     }
 
-    @Override
     public List<Post> searchUserFeed(String query) {
         return searchUserFeed(query, 0, DEFAULT_NUMBER_OF_POSTS);
     }
 
-    @Override
     public List<Post> searchUserFeed(String query, int offset, int limit) {
         requireAuthorization();
         Properties props = new Properties();

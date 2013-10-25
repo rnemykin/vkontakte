@@ -53,24 +53,20 @@ public class WallTemplate extends AbstractVKontakteOperations implements WallOpe
         return status.getStatus().getPostId();
     }
 
-    @Override
     public String post(String message) {
         return this.post(message, new Properties());
     }
 
-    @Override
     public String post(String message, String link) {
         Properties props = new Properties();
         props.put("attachments", link);
         return this.post(message, props);
     }
 
-    @Override
     public List<Post> getPosts() {
         return getPosts(-1, -1);
     }
 
-    @Override
     public List<Post> getPosts(int offset, int limit) {
         requireAuthorization();
         Properties props = new Properties();
@@ -86,7 +82,6 @@ public class WallTemplate extends AbstractVKontakteOperations implements WallOpe
         return deserializeArray(response, Post.class).getItems();
     }
 
-    @Override
     public Post getPost(String userId, String postId) {
         requireAuthorization();
         Properties props = new Properties();

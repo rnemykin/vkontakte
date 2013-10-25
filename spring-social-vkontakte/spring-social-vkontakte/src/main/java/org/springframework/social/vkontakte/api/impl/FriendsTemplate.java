@@ -37,7 +37,6 @@ class FriendsTemplate extends AbstractVKontakteOperations implements FriendsOper
         this.restTemplate = restTemplate;
     }
 
-    @Override
     public List<VKontakteProfile> get() {
         requireAuthorization();
         Properties props = new Properties();
@@ -51,7 +50,6 @@ class FriendsTemplate extends AbstractVKontakteOperations implements FriendsOper
         return profiles.getProfiles();
     }
 
-    @Override
     public List<VKontakteProfile> get(String userId) {
         requireAuthorization();
         Properties props = new Properties();

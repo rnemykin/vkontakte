@@ -93,22 +93,18 @@ public class VKontakteTemplate extends AbstractOAuth2ApiBinding implements VKont
         feedOperations = new FeedTemplate(getRestTemplate(), accessToken, objectMapper, isAuthorized());
     }
 
-    @Override
     public UsersOperations usersOperations() {
         return usersOperations;
     }
 
-    @Override
     public WallOperations wallOperations() {
         return wallOperations;
     }
 
-    @Override
     public FriendsOperations friendsOperations() {
         return friendsOperations;
     }
 
-    @Override
     public FeedOperations feedOperations() {
         return feedOperations;
     }

@@ -40,7 +40,6 @@ class UsersTemplate extends AbstractVKontakteOperations implements UsersOperatio
         this.uid = uid;
     }
 
-    @Override
     public List<VKontakteProfile> getProfiles(List<String> userIds) {
         requireAuthorization();
         Properties props = new Properties();
@@ -64,7 +63,6 @@ class UsersTemplate extends AbstractVKontakteOperations implements UsersOperatio
         return profiles.getProfiles();
     }
 
-    @Override
     public VKontakteProfile getProfile() {
         return getProfiles(null).get(0);
     }

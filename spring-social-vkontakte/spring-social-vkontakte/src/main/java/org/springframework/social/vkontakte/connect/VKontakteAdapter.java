@@ -28,8 +28,8 @@ import org.springframework.web.client.HttpClientErrorException;
  * @author vkolodrevskiy
  */
 public class VKontakteAdapter implements ApiAdapter<VKontakte> {
-    @Override
-	public boolean test(VKontakte vkontakte) {
+
+    public boolean test(VKontakte vkontakte) {
 		try {
 			vkontakte.usersOperations().getProfile();
 			return true;
@@ -38,7 +38,6 @@ public class VKontakteAdapter implements ApiAdapter<VKontakte> {
 		}
 	}
 
-    @Override
 	public void setConnectionValues(VKontakte vkontakte, ConnectionValues values) {
 		VKontakteProfile profile = vkontakte.usersOperations().getProfile();
 		values.setProviderUserId(profile.getUid());
@@ -47,7 +46,6 @@ public class VKontakteAdapter implements ApiAdapter<VKontakte> {
 		values.setImageUrl(profile.getPhoto());
 	}
 
-    @Override
 	public UserProfile fetchUserProfile(VKontakte vkontakte) {
 		VKontakteProfile profile = vkontakte.usersOperations().getProfile();
 		return new UserProfileBuilder()
@@ -58,7 +56,6 @@ public class VKontakteAdapter implements ApiAdapter<VKontakte> {
                 .build();
 	}
 
-    @Override
 	public void updateStatus(VKontakte vkontakte, String message) {
         // TODO: change to status api
 		vkontakte.wallOperations().post(message);
