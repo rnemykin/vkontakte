@@ -43,4 +43,6 @@ public interface VKontakte extends ApiBinding {
    	 * API for news feed operations.
    	 */
     public FeedOperations feedOperations();
+    
+    public PhotosOperations photosOperations();
 }

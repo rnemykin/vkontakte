@@ -15,16 +15,23 @@
  */
 package org.springframework.social.vkontakte.api.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
-import org.springframework.social.vkontakte.api.*;
+import org.springframework.social.vkontakte.api.FeedOperations;
+import org.springframework.social.vkontakte.api.FriendsOperations;
+import org.springframework.social.vkontakte.api.PhotosOperations;
+import org.springframework.social.vkontakte.api.UsersOperations;
+import org.springframework.social.vkontakte.api.VKontakte;
+import org.springframework.social.vkontakte.api.VKontakteErrorHandler;
+import org.springframework.social.vkontakte.api.WallOperations;
 import org.springframework.social.vkontakte.api.impl.json.VKontakteModule;
 
-import java.util.LinkedList;
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * <p>This is the central class for interacting with VKontakte.</p>
@@ -43,6 +50,7 @@ public class VKontakteTemplate extends AbstractOAuth2ApiBinding implements VKont
     private WallOperations wallOperations;
     private FriendsOperations friendsOperations;
     private FeedOperations feedOperations;
+    private PhotosOperations photosOperations;
 
     private ObjectMapper objectMapper;
 
@@ -91,6 +99,7 @@ public class VKontakteTemplate extends AbstractOAuth2ApiBinding implements VKont
         friendsOperations = new FriendsTemplate(getRestTemplate(), accessToken, objectMapper, isAuthorized());
         wallOperations = new WallTemplate(getRestTemplate(), accessToken, objectMapper, isAuthorized());
         feedOperations = new FeedTemplate(getRestTemplate(), accessToken, objectMapper, isAuthorized());
+        photosOperations = new PhotosTemplate(getRestTemplate(), accessToken, objectMapper, isAuthorized());
     }
 
     public UsersOperations usersOperations() {
@@ -107,5 +116,9 @@ public class VKontakteTemplate extends AbstractOAuth2ApiBinding implements VKont
 
     public FeedOperations feedOperations() {
         return feedOperations;
+    }
+
+    public PhotosOperations photosOperations() {
+        return photosOperations;
     }
 }
