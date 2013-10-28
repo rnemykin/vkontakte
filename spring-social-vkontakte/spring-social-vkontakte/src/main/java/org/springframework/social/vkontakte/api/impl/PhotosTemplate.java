@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import org.springframework.social.vkontakte.api.PhotosOperations;
 import org.springframework.social.vkontakte.api.UploadServer;
+import org.springframework.social.vkontakte.api.VKGenericResponse;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,8 +28,13 @@ public class PhotosTemplate extends AbstractVKontakteOperations implements Photo
         
         URI uri = makeOperationURL("photos.getUploadServer", props);
 
-        UploadServer uploadServer = restTemplate.getForObject(uri, UploadServer.class);
-        checkForError(uploadServer);
+        VKGenericResponse response = restTemplate.getForObject(uri, VKGenericResponse.class);
+        checkForError(response);
+        
+        UploadServer uploadServer = new UploadServer();
+        uploadServer.setUpload_url(response.getResponse().get("upload_url").asText());
+        uploadServer.setAid(response.getResponse().get("aid").asText());
+        uploadServer.setMid(response.getResponse().get("mid").asText());
 
         return uploadServer;
     }

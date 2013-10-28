@@ -1,6 +1,6 @@
 package org.springframework.social.vkontakte.api;
 
-public class UploadServer extends VKResponse {
+public class UploadServer extends VKGenericResponse {
     
     private String upload_url;
     

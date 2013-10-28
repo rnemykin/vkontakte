@@ -11,4 +11,8 @@
 		<put-attribute name="content" value="/WEB-INF/views/vkontakte/friends.jsp" />
 	</definition>
 
+	<definition name="vkontakte/photos" extends="page">
+		<put-attribute name="content" value="/WEB-INF/views/vkontakte/photos.jsp" />
+	</definition>
+
 </tiles-definitions>
