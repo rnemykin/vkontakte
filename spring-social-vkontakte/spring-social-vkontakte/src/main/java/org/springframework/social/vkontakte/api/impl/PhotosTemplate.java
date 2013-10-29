@@ -6,6 +6,7 @@ import java.util.Properties;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.social.vkontakte.api.PhotosOperations;
 import org.springframework.social.vkontakte.api.UploadServer;
+import org.springframework.social.vkontakte.api.UploadedPhoto;
 import org.springframework.social.vkontakte.api.VKGenericResponse;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -42,15 +43,53 @@ public class PhotosTemplate extends AbstractVKontakteOperations implements Photo
         return uploadServer;
     }
 
-    public void uploadPhoto(String url, String photoFileLocation) {
+    public UploadedPhoto uploadPhoto(String url, String photoFileLocation) {
         requireAuthorization();
         
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<String, Object>();
         params.add("file1", new FileSystemResource(photoFileLocation));
         
-        VKGenericResponse postForObject = restTemplate.postForObject(url, params, VKGenericResponse.class);
+        System.err.println(restTemplate.postForObject(url, params, String.class));
+        UploadedPhoto uploadedPhoto = restTemplate.postForObject(url, params, UploadedPhoto.class);
         
-        System.err.println(postForObject);
+        
+        return uploadedPhoto;
+    }
+
+    public String savePhoto(UploadedPhoto uploadedPhoto, String description) {
+        requireAuthorization();
+        Properties props = new Properties();
+
+        props.put("aid", uploadedPhoto.getAid());
+        props.put("server", uploadedPhoto.getServer());
+        props.put("photos_list", uploadedPhoto.getPhotos_list());
+        props.put("hash", uploadedPhoto.getHash());
+        props.put("gid", uploadedPhoto.getGid());
+        props.put("caption", description);
+        
+        URI uri = makeOperationURL("photos.save", props);
+        
+        String response = restTemplate.getForObject(uri, String.class);
+        
+        System.err.println(response);
+        
+        return response;
+    }
+
+    public String deletePhoto(String photoId, String ownerId) {
+        requireAuthorization();
+        Properties props = new Properties();
+        
+        props.put("photo_id", photoId);
+        props.put("owner_id", ownerId);
+        
+        URI uri = makeOperationURL("photos.delete", props);
+        
+        String response = restTemplate.getForObject(uri, String.class);
+        
+        System.err.println(response);
+        
+        return response;
     }
 
 }

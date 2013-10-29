@@ -85,6 +85,7 @@ public class VKontakteTemplate extends AbstractOAuth2ApiBinding implements VKont
 
                 List<MediaType> mTypes = new LinkedList<MediaType>(jsonConverter.getSupportedMediaTypes());
                 mTypes.add(new MediaType("text", "javascript", MappingJackson2HttpMessageConverter.DEFAULT_CHARSET));
+                mTypes.add(new MediaType("text", "html", MappingJackson2HttpMessageConverter.DEFAULT_CHARSET));
                 jsonConverter.setSupportedMediaTypes(mTypes);
 
                 objectMapper = new ObjectMapper();

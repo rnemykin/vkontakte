@@ -4,5 +4,9 @@ public interface PhotosOperations {
 
     UploadServer getUploadServer();
     
-    void uploadPhoto(String url, String photoFileLocation);
+    UploadedPhoto uploadPhoto(String url, String photoFileLocation);
+    
+    String savePhoto(UploadedPhoto uploadedPhoto, String description);
+    
+    String deletePhoto(String photoId, String ownerId);
 }

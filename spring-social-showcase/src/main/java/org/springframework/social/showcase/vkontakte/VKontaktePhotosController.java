@@ -21,6 +21,7 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.vkontakte.api.PhotosOperations;
 import org.springframework.social.vkontakte.api.UploadServer;
+import org.springframework.social.vkontakte.api.UploadedPhoto;
 import org.springframework.social.vkontakte.api.VKontakte;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,7 @@ public class VKontaktePhotosController {
 	private ConnectionRepository connectionRepository;
 
 	@RequestMapping(value="/vkontakte/photos", method=RequestMethod.GET)
-	public String home(Model model) {
+	public String add(Model model) {
 		Connection<VKontakte> connection = connectionRepository.findPrimaryConnection(VKontakte.class);
 		if (connection == null) {
 			return "redirect:/connect/vkontakte";
@@ -45,9 +46,28 @@ public class VKontaktePhotosController {
 		
 		model.addAttribute("uploadserver", uploadServer);
 		
-		photosOperations.uploadPhoto(uploadServer.getUpload_url(), "photoFileLocation");
+		UploadedPhoto uploadedPhoto = photosOperations.uploadPhoto(uploadServer.getUpload_url(), "src/main/resources/1.jpg");
+		photosOperations.savePhoto(uploadedPhoto, "la la la");
 		
 		return "vkontakte/photos";
+	}
+	
+	@RequestMapping(value="/vkontakte/photos/remove", method=RequestMethod.GET)
+	public String remove(Model model) {
+	    Connection<VKontakte> connection = connectionRepository.findPrimaryConnection(VKontakte.class);
+	    if (connection == null) {
+	        return "redirect:/connect/vkontakte";
+	    }
+	    
+	    PhotosOperations photosOperations = connection.getApi().photosOperations();
+	    UploadServer uploadServer = photosOperations.deletePhoto(photoId, ownerId)
+	    
+	    model.addAttribute("uploadserver", uploadServer);
+	    
+	    UploadedPhoto uploadedPhoto = photosOperations.uploadPhoto(uploadServer.getUpload_url(), "src/main/resources/1.jpg");
+	    photosOperations.savePhoto(uploadedPhoto, "la la la");
+	    
+	    return "vkontakte/photos";
 	}
 
 }
