@@ -3,9 +3,12 @@ package org.springframework.social.vkontakte.api.impl;
 import java.net.URI;
 import java.util.Properties;
 
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.social.vkontakte.api.PhotosOperations;
 import org.springframework.social.vkontakte.api.UploadServer;
 import org.springframework.social.vkontakte.api.VKGenericResponse;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,6 +40,17 @@ public class PhotosTemplate extends AbstractVKontakteOperations implements Photo
         uploadServer.setMid(response.getResponse().get("mid").asText());
 
         return uploadServer;
+    }
+
+    public void uploadPhoto(String url, String photoFileLocation) {
+        requireAuthorization();
+        
+        MultiValueMap<String, Object> params = new LinkedMultiValueMap<String, Object>();
+        params.add("file1", new FileSystemResource(photoFileLocation));
+        
+        VKGenericResponse postForObject = restTemplate.postForObject(url, params, VKGenericResponse.class);
+        
+        System.err.println(postForObject);
     }
 
 }
