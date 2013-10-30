@@ -23,12 +23,12 @@ public class PhotosTemplate extends AbstractVKontakteOperations implements Photo
         this.restTemplate = restTemplate;
     }
     
-    public UploadServer getUploadServer() {
+    public UploadServer getUploadServer(String groupId, String albumId) {
         requireAuthorization();
         Properties props = new Properties();
 
-        props.put("album_id", "166279845");
-        props.put("group_id", "11004536");
+        props.put("album_id", albumId);
+        props.put("group_id", groupId);
         
         URI uri = makeOperationURL("photos.getUploadServer", props);
 
@@ -56,7 +56,7 @@ public class PhotosTemplate extends AbstractVKontakteOperations implements Photo
         return uploadedPhoto;
     }
 
-    public String savePhoto(UploadedPhoto uploadedPhoto, String description) {
+    public VKGenericResponse savePhoto(UploadedPhoto uploadedPhoto, String description) {
         requireAuthorization();
         Properties props = new Properties();
 
@@ -69,9 +69,7 @@ public class PhotosTemplate extends AbstractVKontakteOperations implements Photo
         
         URI uri = makeOperationURL("photos.save", props);
         
-        String response = restTemplate.getForObject(uri, String.class);
-        
-        System.err.println(response);
+        VKGenericResponse response = restTemplate.getForObject(uri, VKGenericResponse.class);
         
         return response;
     }

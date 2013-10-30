@@ -30,11 +30,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class VKontaktePhotosController {
+    
+    private static final String GROUP_ID = "11004536"; 
+    private static final String ALBUM_ID = "166279845";
+    private static final String COMMENT = "демисезонное полупальто Selected, размер 50, цена 890р, р-н Заречье (Комсомольская)";
 	
 	@Inject
 	private ConnectionRepository connectionRepository;
+	
+	private static String photoId;
 
-	@RequestMapping(value="/vkontakte/photos", method=RequestMethod.GET)
+	@RequestMapping(value="/vkontakte/photos/add", method=RequestMethod.GET)
 	public String add(Model model) {
 		Connection<VKontakte> connection = connectionRepository.findPrimaryConnection(VKontakte.class);
 		if (connection == null) {
@@ -42,12 +48,13 @@ public class VKontaktePhotosController {
 		}
 		
 		PhotosOperations photosOperations = connection.getApi().photosOperations();
-		UploadServer uploadServer = photosOperations.getUploadServer();
+		UploadServer uploadServer = photosOperations.getUploadServer(GROUP_ID, ALBUM_ID);
 		
 		model.addAttribute("uploadserver", uploadServer);
 		
 		UploadedPhoto uploadedPhoto = photosOperations.uploadPhoto(uploadServer.getUpload_url(), "src/main/resources/1.jpg");
-		photosOperations.savePhoto(uploadedPhoto, "la la la");
+		
+		photosOperations.savePhoto(uploadedPhoto, COMMENT);
 		
 		return "vkontakte/photos";
 	}
@@ -60,12 +67,9 @@ public class VKontaktePhotosController {
 	    }
 	    
 	    PhotosOperations photosOperations = connection.getApi().photosOperations();
-	    UploadServer uploadServer = photosOperations.deletePhoto(photoId, ownerId)
+	    String response = photosOperations.deletePhoto(photoId, GROUP_ID);
 	    
-	    model.addAttribute("uploadserver", uploadServer);
-	    
-	    UploadedPhoto uploadedPhoto = photosOperations.uploadPhoto(uploadServer.getUpload_url(), "src/main/resources/1.jpg");
-	    photosOperations.savePhoto(uploadedPhoto, "la la la");
+	    System.err.println(response);
 	    
 	    return "vkontakte/photos";
 	}

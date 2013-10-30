@@ -38,6 +38,7 @@
     <ul class="menu">
         <li><a href="<c:url value="/vkontakte"/>">User Profile</a></li>
         <li><a href="<c:url value="/vkontakte/friends"/>">Friends</a></li>
-        <li><a href="<c:url value="/vkontakte/photos"/>">Photos</a></li>
+        <li><a href="<c:url value="/vkontakte/photos/add"/>">Photos add</a></li>
+        <li><a href="<c:url value="/vkontakte/photos/delete"/>">Photos delete</a></li>
     </ul>
 </social:connected>
