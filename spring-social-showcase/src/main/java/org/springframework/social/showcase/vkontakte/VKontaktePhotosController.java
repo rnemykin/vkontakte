@@ -22,11 +22,14 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.vkontakte.api.PhotosOperations;
 import org.springframework.social.vkontakte.api.UploadServer;
 import org.springframework.social.vkontakte.api.UploadedPhoto;
+import org.springframework.social.vkontakte.api.VKGenericResponse;
 import org.springframework.social.vkontakte.api.VKontakte;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 @Controller
 public class VKontaktePhotosController {
@@ -54,13 +57,15 @@ public class VKontaktePhotosController {
 		
 		UploadedPhoto uploadedPhoto = photosOperations.uploadPhoto(uploadServer.getUpload_url(), "src/main/resources/1.jpg");
 		
-		photosOperations.savePhoto(uploadedPhoto, COMMENT);
+		VKGenericResponse response = photosOperations.savePhoto(uploadedPhoto, COMMENT);
+		JsonNode jsonNode = response.getResponse();
+		photoId = jsonNode.get(0).get("pid").asText();
 		
 		return "vkontakte/photos";
 	}
 	
-	@RequestMapping(value="/vkontakte/photos/remove", method=RequestMethod.GET)
-	public String remove(Model model) {
+	@RequestMapping(value="/vkontakte/photos/delete", method=RequestMethod.GET)
+	public String delete(Model model) {
 	    Connection<VKontakte> connection = connectionRepository.findPrimaryConnection(VKontakte.class);
 	    if (connection == null) {
 	        return "redirect:/connect/vkontakte";
