@@ -15,12 +15,10 @@
  */
 package org.springframework.social.vkontakte.api.impl;
 
-import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
@@ -87,7 +85,7 @@ public class VKontakteTemplate extends AbstractOAuth2ApiBinding implements VKont
 
                 List<MediaType> mTypes = new LinkedList<MediaType>(jsonConverter.getSupportedMediaTypes());
                 mTypes.add(new MediaType("text", "javascript", MappingJackson2HttpMessageConverter.DEFAULT_CHARSET));
-                //mTypes.add(new MediaType("text", "html", MappingJackson2HttpMessageConverter.DEFAULT_CHARSET));
+                mTypes.add(new MediaType("text", "html", MappingJackson2HttpMessageConverter.DEFAULT_CHARSET));
                 jsonConverter.setSupportedMediaTypes(mTypes);
 
                 objectMapper = new ObjectMapper();
@@ -103,15 +101,6 @@ public class VKontakteTemplate extends AbstractOAuth2ApiBinding implements VKont
         wallOperations = new WallTemplate(getRestTemplate(), accessToken, objectMapper, isAuthorized());
         feedOperations = new FeedTemplate(getRestTemplate(), accessToken, objectMapper, isAuthorized());
         photosOperations = new PhotosTemplate(getRestTemplate(), accessToken, objectMapper, isAuthorized());
-    }
-    
-    @Override
-    protected FormHttpMessageConverter getFormMessageConverter() {
-        FormHttpMessageConverter formMessageConverter = super.getFormMessageConverter();
-        List<MediaType> mTypes = new LinkedList<MediaType>(formMessageConverter.getSupportedMediaTypes());
-        mTypes.add(new MediaType("text", "html", Charset.forName("UTF-8")));
-        formMessageConverter.setSupportedMediaTypes(mTypes);
-        return formMessageConverter;
     }
 
     public UsersOperations usersOperations() {
