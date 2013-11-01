@@ -41,7 +41,7 @@ class AbstractVKontakteOperations {
     private final static String VK_REST_URL = "https://api.vk.com/method/";
 
     private final boolean isAuthorized;
-    private final String accessToken;
+    protected String accessToken;
     protected final ObjectMapper objectMapper;
 
     public AbstractVKontakteOperations(boolean isAuthorized, String accessToken, ObjectMapper objectMapper) {
