@@ -33,7 +33,7 @@ public class PhotoManager {
 
     public void publish() {
         deleteAll();
-        
+
         List<PhotoData> photoDataList = photoDataReader.read();
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
 
@@ -44,8 +44,8 @@ public class PhotoManager {
 
             log.info(String.format("Got upload URL '%s'", uploadUrl));
 
-            UploadedPhoto uploadedPhoto = photosTemplate.uploadPhoto(uploadUrl,
-                    "src/main/resources/" + photoData.getFileLocation());
+            UploadedPhoto uploadedPhoto = photosTemplate.uploadPhoto(uploadUrl, "src/main/resources/photos/"
+                    + photoData.getFileLocation());
 
             log.info(String.format("Got uploadedPhoto '%s'", uploadedPhoto));
 
@@ -69,7 +69,7 @@ public class PhotoManager {
 
             log.info(String.format("Deleting a photo id['%s'],  group['%s']", photoId, groupId));
 
-            photosTemplate.deletePhoto(photoId, "-"+groupId);
+            photosTemplate.deletePhoto(photoId, "-" + groupId);
         }
     }
 }
