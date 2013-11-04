@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <appender name="scheduled-application" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${com.sun.aas.instanceRoot}/logs/scheduled.log</file>
+		
+        <encoder>
+            <pattern>%d{dd.MM.yyyy HH:mm:ss,SSS} [%thread] %p [%c] - %m %n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${com.sun.aas.instanceRoot}/logs/scheduled.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>5</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50MB</maxFileSize>
+        </triggeringPolicy>
+
+    </appender>
+    
+    <logger name="org.quartz" level="debug" additivity="false">
+        <appender-ref ref="scheduled-application"/>
+    </logger>
+    
+    <logger name="com.abudko.scheduled" level="info" additivity="false">
+        <appender-ref ref="scheduled-application"/>
+    </logger>
+
+    <!-- Root logger -->
+    <root level="WARN">
+        <appender-ref ref="scheduled-application"/>
+    </root>
+
+</configuration>

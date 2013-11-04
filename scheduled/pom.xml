@@ -1,0 +1,329 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.abudko</groupId>
+	<artifactId>scheduled</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>scheduled</name>
+
+	<scm>
+		<connection>scm:git:git@github.com/alexbud/vkontakte.git</connection>
+		<developerConnection>scm:git:git@github.com/alexbud/vkontakte.git</developerConnection>
+		<url>https://github.com/alexbud/vkontakte</url>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<build.version>${project.version}-r${buildNumber}-${timestamp}</build.version>
+		<spring.framework.version>3.2.2.RELEASE</spring.framework.version>
+		<spring-support.version>2.0.8</spring-support.version>
+		<spring-social.version>1.0.3.RELEASE</spring-social.version>
+		<spring-social-vkontakte.version>1.1.1.RELEASE</spring-social-vkontakte.version>
+		<junit.version>4.10</junit.version>
+		<mockito.version>1.8.4</mockito.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<logback.version>1.0.11</logback.version>
+		<quartz.version>2.1.6</quartz.version>
+		<javacsv.version>2.0</javacsv.version>
+		<jackson.version>1.9.13</jackson.version>
+		<httpclient.version>4.2.5</httpclient.version>
+		<jstl.version>1.2</jstl.version>
+		<jetty.version>9.0.3.v20130506</jetty.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>version.jsp</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<testSource>1.7</testSource>
+					<testTarget>1.7</testTarget>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>buildnumber</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+					<timestampFormat>{0,date,yyyy-MM-dd:HH:mm:ss}</timestampFormat>
+					<shortRevisionLength>7</shortRevisionLength>
+					<revisionOnScmFailure>unknownbuild</revisionOnScmFailure>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.glassfish.maven.plugin</groupId>
+				<artifactId>maven-glassfish-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<glassfishDirectory>c:\glassfish3\glassfish</glassfishDirectory>
+					<user>admin</user>
+					<adminUser>admin</adminUser>
+					<passwordFile>c:\glassfish3\glassfish\domains\domain1\config\local-password</passwordFile>
+					<autoCreate>true</autoCreate>
+					<debug>true</debug>
+					<echo>false</echo>
+					<terse>true</terse>
+					<skip>true</skip>
+					<domain>
+						<name>domain1</name>
+						<adminPort>4848</adminPort>
+						<httpPort>8088</httpPort>
+						<httpsPort>8181</httpsPort>
+						<reuse>false</reuse>
+					</domain>
+					<components>
+						<component>
+							<name>${project.artifactId}-${project.version}</name>
+							<artifact>${project.build.directory}/${project.artifactId}-${project.version}.war</artifact>
+						</component>
+					</components>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/src/test/java
+				</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+			<testResource>
+				<directory>${project.basedir}/src/test/resources
+				</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</testResource>
+		</testResources>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-maven-release</id>
+			<name>Spring Maven Release Repository</name>
+			<url>http://maven.springframework.org/release</url>
+		</repository>
+		<repository>
+			<id>spring-maven-milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</repository>
+		<repository>
+			<id>repository.jboss.org</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.org/maven2</url>
+		</repository>
+		<repository>
+			<id>sourceforge</id>
+			<url>http://oss.sonatype.org/content/repositories/sourceforge-releases</url>
+		</repository>
+		<repository>
+			<id>maven.java.net</id>
+			<name>Java.net Maven2 Repository</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>JBOSS</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.org/nexus/content/repositories/releases/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.framework.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.framework.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-webmvc</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${quartz.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>hamcrest-core</artifactId>
+					<groupId>org.hamcrest</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.javacsv</groupId>
+			<artifactId>javacsv</artifactId>
+			<version>${javacsv.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<!-- JETTY TEST DEPENDENCIES -->
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>${jetty.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>javax.el</artifactId>
+			<version>2.2.3</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty.orbit</groupId>
+			<artifactId>javax.servlet.jsp</artifactId>
+			<version>2.2.0.v201112011158</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty.orbit</groupId>
+			<artifactId>org.apache.jasper.glassfish</artifactId>
+			<version>2.2.2.v201112011158</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+</project>
