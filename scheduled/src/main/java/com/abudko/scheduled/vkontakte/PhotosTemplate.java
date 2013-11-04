@@ -1,17 +1,15 @@
 package com.abudko.scheduled.vkontakte;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.Map;
 import java.util.Properties;
 
 import org.codehaus.jackson.JsonNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -21,6 +19,11 @@ import org.springframework.web.client.RestTemplate;
 public class PhotosTemplate implements PhotosOperations {
 
     private final static String VK_REST_URL = "https://api.vk.com/method/";
+
+    private Logger log = LoggerFactory.getLogger(getClass());
+    
+    @Value("#{tokenProperties['token']}")
+    private String token; 
 
     @Autowired
     private RestTemplate restTemplate;
@@ -33,7 +36,9 @@ public class PhotosTemplate implements PhotosOperations {
 
         URI uri = makeOperationURL("photos.getUploadServer", props);
 
-        JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
+        JsonNode response = restTemplate.getForObject(uri, JsonNode.class).get("response");
+        
+        log.info(String.format("photos.getUploadServer, response '%s'", response));
 
         return response.get("upload_url").asText();
     }
@@ -59,7 +64,9 @@ public class PhotosTemplate implements PhotosOperations {
 
         URI uri = makeOperationURL("photos.save", props);
 
-        JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
+        JsonNode response = restTemplate.getForObject(uri, JsonNode.class).get("response");
+        
+        log.info(String.format("photos.save, response '%s'", response));
 
         return response.get(0).get("pid").asText();
     }
@@ -74,34 +81,14 @@ public class PhotosTemplate implements PhotosOperations {
 
         String response = restTemplate.getForObject(uri, String.class);
 
+        log.info(String.format("photos.delete, response '%s'", response));
+        
         return response;
-    }
-
-    private String readToken() {
-        String token = null;
-        Resource tokenFile = new ClassPathResource("token.txt");
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new InputStreamReader(tokenFile.getInputStream()));
-            token = br.readLine();
-        } catch (IOException e) {
-            System.err.println("IOException");
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-
-                }
-            }
-        }
-
-        return token;
     }
 
     protected URI makeOperationURL(String method, Properties params) {
         URIBuilder uri = URIBuilder.fromUri(VK_REST_URL + method);
-        uri.queryParam("access_token", readToken());
+        uri.queryParam("access_token", token);
         for (Map.Entry<Object, Object> objectObjectEntry : params.entrySet()) {
             uri.queryParam(objectObjectEntry.getKey().toString(), objectObjectEntry.getValue().toString());
         }

@@ -13,7 +13,7 @@ public class CsvPhotoDataReaderTest {
 
     @Before
     public void setup() {
-        reader = new CsvPhotoDataReader(new ClassPathResource("data.csv"));
+        reader = new CsvPhotoDataReader(new ClassPathResource("/csv/unit-test-data.csv"));
     }
 
     @Test
@@ -33,11 +33,11 @@ public class CsvPhotoDataReaderTest {
     
     @Test
     public void testReadDescription() {
-        assertTrue(reader.read().get(0).getDescription().length() > 30);
+        assertTrue(reader.read().get(0).getDescription().length() > 60);
     }
     
     @Test
     public void testReadSeveralRows() {
-        assertTrue(reader.read().get(2).getDescription().length() > 30);
+        assertTrue(reader.read().get(2).getDescription().length() > 60);
     }
 }

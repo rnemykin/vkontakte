@@ -6,7 +6,12 @@
 	
 	<bean id="csvPhotoDataReader"
 		class="com.abudko.scheduled.csv.CsvPhotoDataReader">
-		<constructor-arg value="data.csv" />
+		<constructor-arg value="classpath:/csv/data.csv" />
+	</bean>
+	
+	<bean id="csvPhotoDataLogger"
+		class="com.abudko.scheduled.csv.CsvPhotoDataLogger">
+		<constructor-arg value="classpath:/csv/photos-test.csv" />
 	</bean>
 	
 	<bean id="scanScheduler" class="com.abudko.scheduled.ScanScheduler" />

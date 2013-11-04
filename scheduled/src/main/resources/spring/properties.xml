@@ -9,6 +9,10 @@
 		<property name="location" value="classpath:/properties/scheduled.properties" />
 		<property name="singleton" value="true" />
 	</bean>
-
+	
+	<bean id="tokenProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:/token.properties" />
+		<property name="singleton" value="true"/>
+	</bean>
 
 </beans>

@@ -14,7 +14,7 @@ import com.csvreader.CsvReader;
 
 public class CsvPhotoDataReader implements PhotoDataReader {
 
-    private static final char SEPARATOR = ',';
+    private static final char SEPARATOR = '\'';
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
