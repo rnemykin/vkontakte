@@ -9,12 +9,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
 public class PhotoManagerTest {
-    
+
     @Autowired
     private PhotoManager photoManager;
 
     @Test
-    public void testPublish() {
+    public void testPublish() throws InterruptedException {
         photoManager.publish();
     }
 }

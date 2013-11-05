@@ -31,36 +31,39 @@ public class PhotoManager {
     @Autowired
     private PhotosTemplate photosTemplate;
 
-    public void publish() {
-        try {
-            deleteAll();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void publish() throws InterruptedException {
+        deleteAll();
 
         List<PhotoData> photoDataList = photoDataReader.read();
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
 
-        for (PhotoData photoData : photoDataList) {
-            log.info(String.format("Publishing photo '%s'", photoData));
+        try {
+            for (PhotoData photoData : photoDataList) {
+                log.info(String.format("Publishing photo '%s'", photoData));
 
-            String uploadUrl = photosTemplate.getUploadServer(photoData.getGroupId(), photoData.getAlbumId());
+                String uploadUrl = photosTemplate.getUploadServer(photoData.getGroupId(), photoData.getAlbumId());
 
-            log.info(String.format("Got upload URL '%s'", uploadUrl));
+                log.info(String.format("Got upload URL '%s'", uploadUrl));
 
-            UploadedPhoto uploadedPhoto = photosTemplate.uploadPhoto(uploadUrl, "src/main/resources/photos/"
-                    + photoData.getFileLocation());
+                UploadedPhoto uploadedPhoto = photosTemplate.uploadPhoto(uploadUrl,
+                        "/photos/" + photoData.getFileLocation());
 
-            log.info(String.format("Got uploadedPhoto '%s'", uploadedPhoto));
+                log.info(String.format("Got uploadedPhoto '%s'", uploadedPhoto));
 
-            String photoId = photosTemplate.savePhoto(uploadedPhoto, photoData.getDescription());
+                Thread.sleep(1000);
+                
+                String photoId = photosTemplate.savePhoto(uploadedPhoto, photoData.getDescription());
 
-            log.info(String.format("Saved photo id '%s'", photoId));
+                log.info(String.format("Saved photo id '%s'", photoId));
 
-            photoIdGroupIdMap.put(photoId, photoData.getGroupId());
+                photoIdGroupIdMap.put(photoId, photoData.getGroupId());
+            }
+        } catch (Throwable e) {
+            log.error("Exception happened while publishing a photo", e);
+            throw e;
+        } finally {
+            photoDataLogger.dump(photoIdGroupIdMap);
         }
-
-        photoDataLogger.dump(photoIdGroupIdMap);
     }
 
     private void deleteAll() throws InterruptedException {
@@ -80,7 +83,8 @@ public class PhotoManager {
                 Thread.sleep(1000);
                 photosTemplate.deletePhoto(photoId, "-" + groupId);
             } else {
-                log.info(String.format("Can't delete a photo id['%s'],  group['%s'] because it has comments", photoId, groupId));
+                log.info(String.format("Can't delete a photo id['%s'],  group['%s'] because it has comments", photoId,
+                        groupId));
             }
         }
     }

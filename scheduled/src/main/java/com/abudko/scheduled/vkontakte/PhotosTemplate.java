@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -36,16 +37,16 @@ public class PhotosTemplate implements PhotosOperations {
 
         URI uri = makeOperationURL("photos.getUploadServer", props);
 
-        JsonNode response = restTemplate.getForObject(uri, JsonNode.class).get("response");
+        JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
 
         log.info(String.format("photos.getUploadServer, response '%s'", response));
 
-        return response.get("upload_url").asText();
+        return response.get("response").get("upload_url").asText();
     }
 
     public UploadedPhoto uploadPhoto(String url, String photoFileLocation) {
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<String, Object>();
-        params.add("file1", new FileSystemResource(photoFileLocation));
+        params.add("file1", new ClassPathResource(photoFileLocation));
 
         UploadedPhoto uploadedPhoto = restTemplate.postForObject(url, params, UploadedPhoto.class);
 
@@ -64,11 +65,11 @@ public class PhotosTemplate implements PhotosOperations {
 
         URI uri = makeOperationURL("photos.save", props);
 
-        JsonNode response = restTemplate.getForObject(uri, JsonNode.class).get("response");
+        JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
 
         log.info(String.format("photos.save, response '%s'", response));
 
-        return response.get(0).get("pid").asText();
+        return response.get("response").get(0).get("pid").asText();
     }
 
     public String deletePhoto(String photoId, String ownerId) {
@@ -104,9 +105,11 @@ public class PhotosTemplate implements PhotosOperations {
 
         URI uri = makeOperationURL("photos.getComments", props);
 
-        JsonNode response = restTemplate.getForObject(uri, JsonNode.class).get("response");
+        JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
 
         log.info(String.format("photos.getComments, response '%s'", response));
+        
+        response = response.get("response");
 
         if (response == null) {
             return 0;
