@@ -32,7 +32,11 @@ public class PhotoManager {
     private PhotosTemplate photosTemplate;
 
     public void publish() {
-        deleteAll();
+        try {
+            deleteAll();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         List<PhotoData> photoDataList = photoDataReader.read();
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
@@ -59,7 +63,7 @@ public class PhotoManager {
         photoDataLogger.dump(photoIdGroupIdMap);
     }
 
-    private void deleteAll() {
+    private void deleteAll() throws InterruptedException {
         Map<String, String> map = photoDataLogger.read();
         Set<Entry<String, String>> entrySet = map.entrySet();
 
@@ -67,9 +71,17 @@ public class PhotoManager {
             String photoId = entry.getKey();
             String groupId = entry.getValue();
 
-            log.info(String.format("Deleting a photo id['%s'],  group['%s']", photoId, groupId));
+            int comments = photosTemplate.getCommentsCount(photoId, "-" + groupId);
 
-            photosTemplate.deletePhoto(photoId, "-" + groupId);
+            log.info(String
+                    .format("Deleting a photo id['%s'],  group['%s'], comments '%d'", photoId, groupId, comments));
+
+            if (comments == 0) {
+                Thread.sleep(1000);
+                photosTemplate.deletePhoto(photoId, "-" + groupId);
+            } else {
+                log.info(String.format("Can't delete a photo id['%s'],  group['%s'] because it has comments", photoId, groupId));
+            }
         }
     }
 }

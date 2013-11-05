@@ -9,4 +9,6 @@ public interface PhotosOperations {
     String savePhoto(UploadedPhoto uploadedPhoto, String description);
     
     String deletePhoto(String photoId, String ownerId);
+    
+    int getCommentsCount(String photoId, String ownerId);
 }

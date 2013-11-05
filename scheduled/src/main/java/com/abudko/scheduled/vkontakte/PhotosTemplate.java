@@ -21,9 +21,9 @@ public class PhotosTemplate implements PhotosOperations {
     private final static String VK_REST_URL = "https://api.vk.com/method/";
 
     private Logger log = LoggerFactory.getLogger(getClass());
-    
+
     @Value("#{tokenProperties['token']}")
-    private String token; 
+    private String token;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -37,7 +37,7 @@ public class PhotosTemplate implements PhotosOperations {
         URI uri = makeOperationURL("photos.getUploadServer", props);
 
         JsonNode response = restTemplate.getForObject(uri, JsonNode.class).get("response");
-        
+
         log.info(String.format("photos.getUploadServer, response '%s'", response));
 
         return response.get("upload_url").asText();
@@ -65,7 +65,7 @@ public class PhotosTemplate implements PhotosOperations {
         URI uri = makeOperationURL("photos.save", props);
 
         JsonNode response = restTemplate.getForObject(uri, JsonNode.class).get("response");
-        
+
         log.info(String.format("photos.save, response '%s'", response));
 
         return response.get(0).get("pid").asText();
@@ -82,7 +82,7 @@ public class PhotosTemplate implements PhotosOperations {
         String response = restTemplate.getForObject(uri, String.class);
 
         log.info(String.format("photos.delete, response '%s'", response));
-        
+
         return response;
     }
 
@@ -93,5 +93,29 @@ public class PhotosTemplate implements PhotosOperations {
             uri.queryParam(objectObjectEntry.getKey().toString(), objectObjectEntry.getValue().toString());
         }
         return uri.build();
+    }
+
+    @Override
+    public int getCommentsCount(String photoId, String ownerId) {
+        Properties props = new Properties();
+
+        props.put("photo_id", photoId);
+        props.put("owner_id", ownerId);
+
+        URI uri = makeOperationURL("photos.getComments", props);
+
+        JsonNode response = restTemplate.getForObject(uri, JsonNode.class).get("response");
+
+        log.info(String.format("photos.getComments, response '%s'", response));
+
+        if (response == null) {
+            return 0;
+        }
+        
+        if (response.get(0) != null) {
+            return response.get(0).asInt();
+        }
+        
+        return response.asInt();
     }
 }
