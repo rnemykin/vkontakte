@@ -2,7 +2,7 @@ package com.abudko.scheduled.csv;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +29,7 @@ public class CsvPhotoDataReader implements PhotoDataReader {
         CsvReader csvReader = null;
         List<PhotoData> photoDataList = new ArrayList<PhotoData>();
         try {
-            InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream());
-            csvReader = new CsvReader(inputStreamReader, SEPARATOR);
+            csvReader = new CsvReader(resource.getInputStream(), SEPARATOR, Charset.forName("UTF-8"));
             csvReader.readHeaders();
 
             while (csvReader.readRecord()) {

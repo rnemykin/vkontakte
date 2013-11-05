@@ -3,7 +3,7 @@ package com.abudko.scheduled.csv;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 import com.csvreader.CsvReader;
@@ -24,16 +25,21 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
-    private final Resource resource;
+    private final String fileLocation;
 
-    public CsvPhotoDataLogger(Resource resource) {
-        this.resource = resource;
+    public CsvPhotoDataLogger(String fileLocation) {
+        this.fileLocation = fileLocation;
     }
 
     @Override
     public void dump(Map<String, String> photoIdGroupIdMap) {
         CsvWriter csvWriter = null;
         try {
+
+            Resource resource = getResource();
+            
+            log.info(String.format("Dumping photoIds to a file [%s]", resource.getFile().getAbsolutePath()));
+
             csvWriter = new CsvWriter(new FileWriter(resource.getFile().getAbsolutePath()), SEPARATOR);
             csvWriter.writeRecord(new String[] { PHOTO_ID, GROUP_ID });
             Set<Entry<String, String>> entrySet = photoIdGroupIdMap.entrySet();
@@ -58,8 +64,13 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
         CsvReader csvReader = null;
         Map<String, String> photoIdGroupIdMap = new LinkedHashMap<String, String>();
         try {
-            InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream());
-            csvReader = new CsvReader(inputStreamReader, SEPARATOR);
+
+            Resource resource = getResource();
+            
+            log.info(String.format("Reading photoIds from a file [%s], inputstream [%s]", resource.getFile()
+                    .getAbsolutePath(), resource.getInputStream()));
+
+            csvReader = new CsvReader(resource.getInputStream(), SEPARATOR, Charset.forName("UTF-8"));
             csvReader.readHeaders();
 
             while (csvReader.readRecord()) {
@@ -76,5 +87,9 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
         }
 
         return photoIdGroupIdMap;
+    }
+    
+    private Resource getResource() {
+        return new ClassPathResource(fileLocation);
     }
 }
