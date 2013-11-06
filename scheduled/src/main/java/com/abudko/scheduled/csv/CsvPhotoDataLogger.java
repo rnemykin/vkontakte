@@ -3,6 +3,8 @@ package com.abudko.scheduled.csv;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -11,8 +13,6 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
@@ -36,11 +36,11 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
         CsvWriter csvWriter = null;
         try {
 
-            Resource resource = getResource();
-            
-            log.info(String.format("Dumping photoIds to a file [%s]", resource.getFile().getAbsolutePath()));
+            URL resource = this.getClass().getResource(fileLocation);
 
-            csvWriter = new CsvWriter(new FileWriter(resource.getFile().getAbsolutePath()), SEPARATOR);
+            log.info(String.format("Dumping photoIds to a file [%s]", resource.getPath()));
+
+            csvWriter = new CsvWriter(new FileWriter(resource.getPath()), SEPARATOR);
             csvWriter.writeRecord(new String[] { PHOTO_ID, GROUP_ID });
             Set<Entry<String, String>> entrySet = photoIdGroupIdMap.entrySet();
             for (Entry<String, String> e : entrySet) {
@@ -65,12 +65,12 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
         Map<String, String> photoIdGroupIdMap = new LinkedHashMap<String, String>();
         try {
 
-            Resource resource = getResource();
-            
-            log.info(String.format("Reading photoIds from a file [%s], inputstream [%s]", resource.getFile()
-                    .getAbsolutePath(), resource.getInputStream()));
+            URL resource = this.getClass().getResource(fileLocation);
+            InputStream stream = resource.openStream();
 
-            csvReader = new CsvReader(resource.getInputStream(), SEPARATOR, Charset.forName("UTF-8"));
+            log.info(String.format("Reading photoIds from a file [%s], inputstream [%s]", resource.getPath(), stream));
+
+            csvReader = new CsvReader(stream, SEPARATOR, Charset.forName("UTF-8"));
             csvReader.readHeaders();
 
             while (csvReader.readRecord()) {
@@ -87,9 +87,5 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
         }
 
         return photoIdGroupIdMap;
-    }
-    
-    private Resource getResource() {
-        return new ClassPathResource(fileLocation);
     }
 }
