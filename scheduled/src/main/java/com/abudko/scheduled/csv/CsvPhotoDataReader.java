@@ -35,7 +35,12 @@ public class CsvPhotoDataReader implements PhotoDataReader {
             while (csvReader.readRecord()) {
                 PhotoData photoData = new PhotoData();
 
-                photoData.setGroupId(csvReader.get("groupId"));
+                String groupId = csvReader.get("groupId");
+                if (groupId == null || groupId.contains("//")) {
+                    continue;
+                }
+                
+                photoData.setGroupId(groupId);
                 photoData.setAlbumId(csvReader.get("albumId"));
                 photoData.setFileLocation(csvReader.get("file"));
                 photoData.setDescription(csvReader.get("description"));
