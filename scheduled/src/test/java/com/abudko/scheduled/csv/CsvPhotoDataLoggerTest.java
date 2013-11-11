@@ -16,7 +16,7 @@ public class CsvPhotoDataLoggerTest {
     
     @Before
     public void setup() {
-        dataLogger = new CsvPhotoDataLogger("/csv/photos.csv");
+        dataLogger = new CsvPhotoDataLogger("classpath:/csv/photos.csv");
     }
 
     @Test

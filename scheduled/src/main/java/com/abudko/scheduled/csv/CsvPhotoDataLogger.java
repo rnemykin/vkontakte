@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
@@ -35,8 +36,7 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
     public void dump(Map<String, String> photoIdGroupIdMap) {
         CsvWriter csvWriter = null;
         try {
-
-            URL resource = this.getClass().getResource(fileLocation);
+            URL resource = getURL();
 
             log.info(String.format("Dumping photoIds to a file [%s]", resource.getPath()));
 
@@ -64,8 +64,7 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
         CsvReader csvReader = null;
         Map<String, String> photoIdGroupIdMap = new LinkedHashMap<String, String>();
         try {
-
-            URL resource = this.getClass().getResource(fileLocation);
+            URL resource = getURL();
             InputStream stream = resource.openStream();
 
             log.info(String.format("Reading photoIds from a file [%s], inputstream [%s]", resource.getPath(), stream));
@@ -87,5 +86,14 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
         }
 
         return photoIdGroupIdMap;
+    }
+    
+    private URL getURL() throws MalformedURLException {
+        if (fileLocation != null && fileLocation.contains("classpath:")) {
+            String path = fileLocation.substring(fileLocation.indexOf(":") + 1);
+            return this.getClass().getResource(path);
+        }
+        
+        return new URL(fileLocation);
     }
 }

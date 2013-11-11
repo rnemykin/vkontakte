@@ -105,8 +105,8 @@
 					</domain>
 					<components>
 						<component>
-							<name>${project.artifactId}-${project.version}</name>
-							<artifact>${project.build.directory}/${project.artifactId}-${project.version}.war</artifact>
+							<name>${project.artifactId}</name>
+							<artifact>${project.build.directory}/${project.artifactId}.war</artifact>
 						</component>
 					</components>
 				</configuration>

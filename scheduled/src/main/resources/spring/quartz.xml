@@ -11,7 +11,7 @@
 	
 	<bean id="csvPhotoDataLogger"
 		class="com.abudko.scheduled.csv.CsvPhotoDataLogger">
-		<constructor-arg value="/csv/photos-log.csv" />
+		<constructor-arg value="file:/glassfish3/glassfish/domains/domain1/lib/ext/scheduled/csv/photos-log.csv" />
 	</bean>
 	
 	<bean id="scanScheduler" class="com.abudko.scheduled.ScanScheduler" />
