@@ -39,6 +39,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
+					<warName>${project.artifactId}</warName>
 					<webResources>
 						<resource>
 							<filtering>true</filtering>
