@@ -4,9 +4,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 	
-	<bean id="hourIntervalScheduler" class="com.abudko.scheduled.jobs.csv.HourIntervalScheduler />
+	<bean id="hourIntervalScheduler" class="com.abudko.scheduled.jobs.csv.HourIntervalScheduler"/>
 
-	<bean name="scanJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	<bean name="hourIntervalJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 		<property name="name" value="hourIntervalJob"/>
         <property name="jobClass" value="com.abudko.scheduled.jobs.csv.HourIntervalJob"/>
     </bean>
