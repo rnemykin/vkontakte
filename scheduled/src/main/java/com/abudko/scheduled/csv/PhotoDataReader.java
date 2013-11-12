@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface PhotoDataReader {
 
-    List<PhotoData> read();
+    List<PhotoData> read(String csvResourcePath);
     
 }

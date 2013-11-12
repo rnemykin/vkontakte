@@ -14,10 +14,12 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
+@Component
 public class CsvPhotoDataLogger implements PhotoDataLogger {
 
     private static final String PHOTO_ID = "photoId";
@@ -26,17 +28,11 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
-    private final String fileLocation;
-
-    public CsvPhotoDataLogger(String fileLocation) {
-        this.fileLocation = fileLocation;
-    }
-
     @Override
-    public void dump(Map<String, String> photoIdGroupIdMap) {
+    public void dump(Map<String, String> photoIdGroupIdMap, String dumpFileLocation) {
         CsvWriter csvWriter = null;
         try {
-            URL resource = getURL();
+            URL resource = getURL(dumpFileLocation);
 
             log.info(String.format("Dumping photoIds to a file [%s]", resource.getPath()));
 
@@ -60,11 +56,11 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
     }
 
     @Override
-    public Map<String, String> read() {
+    public Map<String, String> read(String dumpFileLocation) {
         CsvReader csvReader = null;
         Map<String, String> photoIdGroupIdMap = new LinkedHashMap<String, String>();
         try {
-            URL resource = getURL();
+            URL resource = getURL(dumpFileLocation);
             InputStream stream = resource.openStream();
 
             log.info(String.format("Reading photoIds from a file [%s], inputstream [%s]", resource.getPath(), stream));
@@ -88,12 +84,12 @@ public class CsvPhotoDataLogger implements PhotoDataLogger {
         return photoIdGroupIdMap;
     }
     
-    private URL getURL() throws MalformedURLException {
-        if (fileLocation != null && fileLocation.contains("classpath:")) {
-            String path = fileLocation.substring(fileLocation.indexOf(":") + 1);
+    private URL getURL(String dumpFileLocation) throws MalformedURLException {
+        if (dumpFileLocation != null && dumpFileLocation.contains("classpath:")) {
+            String path = dumpFileLocation.substring(dumpFileLocation.indexOf(":") + 1);
             return this.getClass().getResource(path);
         }
         
-        return new URL(fileLocation);
+        return new URL(dumpFileLocation);
     }
 }

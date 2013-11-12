@@ -1,23 +1,31 @@
-package com.abudko.scheduled;
+package com.abudko.scheduled.jobs.csv;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
+import com.abudko.scheduled.jobs.Scheduler;
 import com.abudko.scheduled.service.PhotoManager;
 
-public class ScanScheduler {
+public class HourIntervalScheduler implements Scheduler {
 
     private Logger log = LoggerFactory.getLogger(getClass());
     
     @Autowired
     private PhotoManager photoManager;
+    
+    @Value("#{scheduledProperties['hourIntervalCsvFile']}")
+    private String csvResourcePath;
+    
+    @Value("#{scheduledProperties['hourIntervalDumpFile']}")
+    private String dumpFileLocation;
 
-    public void scheduledScan() {
+    public void schedule() {
         log.info("********* Start scheduled scanning *******");
         try {
 
-            photoManager.publish();
+            photoManager.publish(csvResourcePath, dumpFileLocation);
             
             log.info("********* End scheduled scanning *******");
 

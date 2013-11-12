@@ -7,16 +7,16 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 public class CsvPhotoDataLoggerTest {
+    
+    private static final String FILE_LOCATION = "classpath:/csv/photos.csv";
     
     private PhotoDataLogger dataLogger;
     
     @Before
     public void setup() {
-        dataLogger = new CsvPhotoDataLogger("classpath:/csv/photos.csv");
+        dataLogger = new CsvPhotoDataLogger();
     }
 
     @Test
@@ -29,9 +29,9 @@ public class CsvPhotoDataLoggerTest {
         photoIdGroupIdMap.put(key1, value1);
         photoIdGroupIdMap.put(key2, value2);
         
-        dataLogger.dump(photoIdGroupIdMap);
+        dataLogger.dump(photoIdGroupIdMap, FILE_LOCATION);
         
-        Map<String, String> map = dataLogger.read();
+        Map<String, String> map = dataLogger.read(FILE_LOCATION);
         assertEquals(value1, map.get(key1));
         assertEquals(value2, map.get(key2));
     }

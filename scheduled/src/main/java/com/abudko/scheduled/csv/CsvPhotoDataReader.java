@@ -8,28 +8,25 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.Resource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
 import com.csvreader.CsvReader;
 
+@Component
 public class CsvPhotoDataReader implements PhotoDataReader {
 
     private static final char SEPARATOR = '\'';
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
-    private final Resource resource;
-
-    public CsvPhotoDataReader(Resource csvFileResource) {
-        this.resource = csvFileResource;
-    }
-
     @Override
-    public List<PhotoData> read() {
+    public List<PhotoData> read(String csvResourcePath) {
         CsvReader csvReader = null;
         List<PhotoData> photoDataList = new ArrayList<PhotoData>();
         try {
-            csvReader = new CsvReader(resource.getInputStream(), SEPARATOR, Charset.forName("UTF-8"));
+            csvReader = new CsvReader(new ClassPathResource(csvResourcePath).getInputStream(), SEPARATOR,
+                    Charset.forName("UTF-8"));
             csvReader.readHeaders();
 
             while (csvReader.readRecord()) {
@@ -39,7 +36,7 @@ public class CsvPhotoDataReader implements PhotoDataReader {
                 if (groupId == null || groupId.contains("//")) {
                     continue;
                 }
-                
+
                 photoData.setGroupId(groupId);
                 photoData.setAlbumId(csvReader.get("albumId"));
                 photoData.setFileLocation(csvReader.get("file"));

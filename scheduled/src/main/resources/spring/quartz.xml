@@ -4,25 +4,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 	
-	<bean id="csvPhotoDataReader"
-		class="com.abudko.scheduled.csv.CsvPhotoDataReader">
-		<constructor-arg value="classpath:/csv/data.csv" />
-	</bean>
-	
-	<bean id="csvPhotoDataLogger"
-		class="com.abudko.scheduled.csv.CsvPhotoDataLogger">
-		<constructor-arg value="file:/glassfish3/glassfish/domains/domain1/lib/ext/scheduled/csv/photos-log.csv" />
-	</bean>
-	
-	<bean id="scanScheduler" class="com.abudko.scheduled.ScanScheduler" />
+	<bean id="hourIntervalScheduler" class="com.abudko.scheduled.jobs.csv.HourIntervalScheduler />
 
 	<bean name="scanJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-		<property name="name" value="scanJob"/>
-        <property name="jobClass" value="com.abudko.scheduled.ScanJob"/>
+		<property name="name" value="hourIntervalJob"/>
+        <property name="jobClass" value="com.abudko.scheduled.jobs.csv.HourIntervalJob"/>
     </bean>
 
-	<bean id="scanTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="scanJob"/>
+	<bean id="hourIntervalTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="hourIntervalJob"/>
         <property name="cronExpression" value="0 0 0/4 * * ?"/>
     </bean>
    
@@ -32,7 +22,7 @@
    		</property>
    		<property name="schedulerContextAsMap">
    			<map>
-   				<entry key="scanScheduler" value-ref="scanScheduler" />
+   				<entry key="hourIntervalScheduler" value-ref="hourIntervalScheduler" />
    			</map>
    		</property>
         <property name="quartzProperties">
@@ -52,7 +42,7 @@
         <property name="startupDelay" value="30" />
         <property name="triggers">
             <list>
-      			<ref bean="scanTrigger"/>
+      			<ref bean="hourIntervalTrigger"/>
             </list>
         </property>
     </bean>

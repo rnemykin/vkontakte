@@ -4,8 +4,8 @@ import java.util.Map;
 
 public interface PhotoDataLogger {
 
-    void dump(Map<String, String> photoIdGroupIdMap);
+    void dump(Map<String, String> photoIdGroupIdMap, String dumpFileLocation);
     
-    Map<String, String> read();
+    Map<String, String> read(String dumpFileLocation);
 
 }

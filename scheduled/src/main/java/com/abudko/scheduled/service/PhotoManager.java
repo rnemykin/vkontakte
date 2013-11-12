@@ -31,10 +31,10 @@ public class PhotoManager {
     @Autowired
     private PhotosTemplate photosTemplate;
 
-    public void publish() throws InterruptedException {
-        deleteAll();
+    public void publish(String csvResourcePath, String dumpFileLocation) throws InterruptedException {
+        deleteAll(dumpFileLocation);
 
-        List<PhotoData> photoDataList = photoDataReader.read();
+        List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
 
         try {
@@ -62,12 +62,12 @@ public class PhotoManager {
             log.error("Exception happened while publishing a photo", e);
             throw e;
         } finally {
-            photoDataLogger.dump(photoIdGroupIdMap);
+            photoDataLogger.dump(photoIdGroupIdMap, dumpFileLocation);
         }
     }
 
-    private void deleteAll() throws InterruptedException {
-        Map<String, String> map = photoDataLogger.read();
+    private void deleteAll(String dumpFileLocation) throws InterruptedException {
+        Map<String, String> map = photoDataLogger.read(dumpFileLocation);
         Set<Entry<String, String>> entrySet = map.entrySet();
 
         for (Entry<String, String> entry : entrySet) {
