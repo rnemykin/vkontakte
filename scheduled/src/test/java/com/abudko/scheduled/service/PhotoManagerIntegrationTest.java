@@ -17,11 +17,8 @@ public abstract class PhotoManagerIntegrationTest {
     @Value("#{scheduledProperties['hourIntervalCsvFile']}")
     private String csvResourcePath;
     
-    @Value("#{scheduledProperties['hourIntervalDumpFile']}")
-    private String dumpFileLocation;
-
     @Test
     public void testPublish() throws InterruptedException {
-        photoManager.publish(csvResourcePath, dumpFileLocation);
+        photoManager.publish(csvResourcePath, "classpath:/csv/photos-testlog.csv");
     }
 }

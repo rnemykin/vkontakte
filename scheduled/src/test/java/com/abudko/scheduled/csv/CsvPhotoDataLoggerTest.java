@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class CsvPhotoDataLoggerTest {
     
-    private static final String FILE_LOCATION = "classpath:/csv/photos.csv";
+    private static final String FILE_LOCATION = "classpath:/csv/photos-testlog.csv";
     
     private PhotoDataLogger dataLogger;
     
