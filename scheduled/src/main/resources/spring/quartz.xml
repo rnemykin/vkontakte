@@ -25,7 +25,7 @@
 
 	<bean id="hourIntervalTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="hourIntervalJob"/>
-        <property name="cronExpression" value="0 0/30 * * * ?"/>
+        <property name="cronExpression" value="0 0 0/4 * * ?"/>
     </bean>
     
 	<bean id="dayIntervalScheduler" class="com.abudko.scheduled.jobs.csv.DayIntervalScheduler"/>
@@ -37,7 +37,7 @@
 
 	<bean id="dayIntervalTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="dayIntervalJob"/>
-        <property name="cronExpression" value="0 0/30 * * * ?"/>
+        <property name="cronExpression" value="0 0 10 * * ?"/>
     </bean>
    
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
