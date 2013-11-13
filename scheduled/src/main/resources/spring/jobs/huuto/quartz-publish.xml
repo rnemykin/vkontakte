@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<bean id="publishScheduler" class="com.abudko.scheduled.jobs.huuto.PublishScheduler"/>
+
+	<bean name="publishJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="name" value="publishJob"/>
+        <property name="jobClass" value="com.abudko.scheduled.jobs.huuto.PublishJob"/>
+    </bean>
+
+	<bean id="publishTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="publishJob"/>
+        <property name="cronExpression" value="0 0/30 * * * ?"/>
+    </bean>
+    
+</beans>
