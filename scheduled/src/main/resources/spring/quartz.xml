@@ -8,6 +8,8 @@
     <import resource="jobs/csv/quartz-hourly.xml"/>
     <import resource="jobs/csv/quartz-daily.xml"/>
     <import resource="jobs/huuto/quartz-publish.xml"/>
+    <import resource="jobs/huuto/quartz-clean.xml"/>
+    <import resource="jobs/warm/quartz-warm.xml"/>
     
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
    		<property name="jobFactory">
@@ -20,6 +22,7 @@
    				<entry key="dayIntervalScheduler" value-ref="dayIntervalScheduler" />
    				<entry key="publishScheduler" value-ref="publishScheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
+   				<entry key="warmScheduler" value-ref="warmScheduler" />
    			</map>
    		</property>
         <property name="quartzProperties">
@@ -44,6 +47,7 @@
       			<ref bean="dayIntervalTrigger"/>
       			<!-- <ref bean="publishTrigger"/> -->
       			<!-- <ref bean="cleanTrigger"/> -->
+      			<ref bean="warmTrigger"/>
             </list>
         </property>
     </bean>
