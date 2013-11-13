@@ -9,5 +9,6 @@
 	<import resource="components.xml" />
 	<import resource="properties.xml" />
 	<import resource="quartz.xml"/>
+	<import resource="jmx.xml"/>
 
 </beans>
