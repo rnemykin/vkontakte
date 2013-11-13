@@ -31,8 +31,8 @@ public class PhotoManager {
     @Autowired
     private PhotosTemplate photosTemplate;
 
-    public void publish(String csvResourcePath, String dumpFileLocation) throws InterruptedException {
-        deleteAll(dumpFileLocation);
+    public void publish(String csvResourcePath, String dumpFileLocation, boolean group) throws InterruptedException {
+        deleteAll(dumpFileLocation, group);
 
         List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
@@ -66,7 +66,7 @@ public class PhotoManager {
         }
     }
 
-    private void deleteAll(String dumpFileLocation) throws InterruptedException {
+    private void deleteAll(String dumpFileLocation, boolean group) throws InterruptedException {
         Map<String, String> map = photoDataLogger.read(dumpFileLocation);
         Set<Entry<String, String>> entrySet = map.entrySet();
 
@@ -74,18 +74,25 @@ public class PhotoManager {
             String photoId = entry.getKey();
             String groupId = entry.getValue();
 
-            int comments = photosTemplate.getCommentsCount(photoId, "-" + groupId);
+            int comments = photosTemplate.getCommentsCount(photoId, getOwnerId(groupId, group));
 
             log.info(String
                     .format("Deleting a photo id['%s'],  group['%s'], comments '%d'", photoId, groupId, comments));
 
             if (comments == 0) {
                 Thread.sleep(1000);
-                photosTemplate.deletePhoto(photoId, "-" + groupId);
+                photosTemplate.deletePhoto(photoId, getOwnerId(groupId, group));
             } else {
                 log.info(String.format("Can't delete a photo id['%s'],  group['%s'] because it has comments", photoId,
                         groupId));
             }
         }
+    }
+    
+    private String getOwnerId(String id, boolean group) {
+        if (group) {
+            return "-" + id;
+        }
+        return id;
     }
 }
