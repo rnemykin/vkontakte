@@ -1,49 +1,28 @@
 package com.abudko.scheduled.jmx;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.stereotype.Component;
 
-import com.abudko.scheduled.service.PhotoManager;
+import com.abudko.scheduled.jobs.csv.DayIntervalScheduler;
+import com.abudko.scheduled.jobs.csv.HourIntervalScheduler;
 
 @Component
 public class ScheduledMbean {
 
-    private Logger log = LoggerFactory.getLogger(getClass());
-    
     @Autowired
-    private PhotoManager photoManager;
-    
-    @Value("#{scheduledProperties['hourIntervalCsvFile']}")
-    private String csvResourcePathHour;
-    
-    @Value("#{scheduledProperties['hourIntervalDumpFile']}")
-    private String dumpFileLocationHour;
-    
-    @Value("#{scheduledProperties['dayIntervalCsvFile']}")
-    private String csvResourcePathDay;
-    
-    @Value("#{scheduledProperties['dayIntervalDumpFile']}")
-    private String dumpFileLocationDay;
+    private HourIntervalScheduler hourIntervalScheduler;
+
+    @Autowired
+    private DayIntervalScheduler dayIntervalScheduler;
 
     @ManagedOperation
     public void startHourJob() {
-        publish(csvResourcePathHour, dumpFileLocationHour);
+        hourIntervalScheduler.schedule();
     }
     
     @ManagedOperation
     public void startDayJob() {
-        publish(csvResourcePathDay, dumpFileLocationDay);
-    }
-    
-    private void publish(String csvResourcePath, String dumpFileLocation) {
-        try {
-            photoManager.publish(csvResourcePath, dumpFileLocation);
-        } catch (Exception e) {
-            log.error("Exception happened during JMX scheduled scan: ", e);
-        }
+        dayIntervalScheduler.schedule();
     }
 }
