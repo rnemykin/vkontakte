@@ -48,7 +48,7 @@
     </logger>
     
     <logger name="com.abudko.scheduled.jobs.warm" level="info" additivity="false">
-        <appender-ref ref="reseller-warm"/>
+        <appender-ref ref="scheduled-warm"/>
     </logger>
 
     <!-- Root logger -->
