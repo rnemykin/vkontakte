@@ -7,6 +7,7 @@
     <import resource="jobs/csv/quartz-minutely.xml"/>
     <import resource="jobs/csv/quartz-hourly.xml"/>
     <import resource="jobs/csv/quartz-daily.xml"/>
+    <import resource="jobs/csv/quartz-randomly.xml"/>
     <import resource="jobs/huuto/quartz-publish.xml"/>
     <import resource="jobs/huuto/quartz-clean.xml"/>
     <import resource="jobs/warm/quartz-warm.xml"/>
@@ -20,6 +21,7 @@
    				<entry key="minuteIntervalScheduler" value-ref="minuteIntervalScheduler" />
    				<entry key="hourIntervalScheduler" value-ref="hourIntervalScheduler" />
    				<entry key="dayIntervalScheduler" value-ref="dayIntervalScheduler" />
+   				<entry key="randomlySelectedScheduler" value-ref="randomlySelectedScheduler" />
    				<entry key="publishScheduler" value-ref="publishScheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
    				<entry key="warmScheduler" value-ref="warmScheduler" />
@@ -45,6 +47,7 @@
             	<!-- <ref bean="minuteIntervalTrigger"/> -->
       			<ref bean="hourIntervalTrigger"/>
       			<ref bean="dayIntervalTrigger"/>
+      			<ref bean="randomlySelectedTrigger"/>
       			<!-- <ref bean="publishTrigger"/> -->
       			<!-- <ref bean="cleanTrigger"/> -->
       			<ref bean="warmTrigger"/>
