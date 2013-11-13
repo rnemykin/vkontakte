@@ -59,7 +59,11 @@ public class PhotosTemplate implements PhotosOperations {
         props.put("server", uploadedPhoto.getServer());
         props.put("photos_list", uploadedPhoto.getPhotos_list());
         props.put("hash", uploadedPhoto.getHash());
-        props.put("gid", uploadedPhoto.getGid());
+        
+        if (uploadedPhoto.getGid() != null) {
+            props.put("gid", uploadedPhoto.getGid());
+        }
+        
         props.put("caption", description);
 
         URI uri = makeOperationURL("photos.save", props);

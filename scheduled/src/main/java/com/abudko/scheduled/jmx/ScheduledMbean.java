@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jmx.export.annotation.ManagedOperation;
-import org.springframework.jmx.export.annotation.ManagedResource;
+import org.springframework.stereotype.Component;
 
 import com.abudko.scheduled.service.PhotoManager;
 
-@ManagedResource
+@Component
 public class ScheduledMbean {
 
     private Logger log = LoggerFactory.getLogger(getClass());
