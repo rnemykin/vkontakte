@@ -3,6 +3,7 @@ package com.abudko.scheduled.service;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public abstract class PhotoManagerIntegrationTest {
 
     @Autowired
+    @Qualifier("groupPhotoManager")
     private PhotoManager photoManager;
     
     @Value("#{scheduledProperties['hourIntervalCsvFile']}")
@@ -19,6 +21,6 @@ public abstract class PhotoManagerIntegrationTest {
     
     @Test
     public void testPublish() throws InterruptedException {
-        photoManager.publish(csvResourcePath, "classpath:/csv/photos-testlog.csv", true);
+        photoManager.publish(csvResourcePath, "classpath:/csv/photos-testlog.csv");
     }
 }

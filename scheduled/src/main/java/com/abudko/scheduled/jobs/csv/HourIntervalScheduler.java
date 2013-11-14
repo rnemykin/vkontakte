@@ -3,6 +3,7 @@ package com.abudko.scheduled.jobs.csv;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.abudko.scheduled.jobs.Scheduler;
@@ -13,6 +14,7 @@ public class HourIntervalScheduler implements Scheduler {
     private Logger log = LoggerFactory.getLogger(getClass());
     
     @Autowired
+    @Qualifier("groupPhotoManager")
     private PhotoManager photoManager;
     
     @Value("#{scheduledProperties['hourIntervalCsvFile']}")
@@ -25,7 +27,7 @@ public class HourIntervalScheduler implements Scheduler {
         log.info("********* Start scheduled scanning *******");
         try {
 
-            photoManager.publish(csvResourcePath, dumpFileLocation, false);
+            photoManager.publish(csvResourcePath, dumpFileLocation);
             
             log.info("********* End scheduled scanning *******");
 

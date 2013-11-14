@@ -52,7 +52,7 @@ public class PhotosTemplate implements PhotosOperations {
         return uploadedPhoto;
     }
 
-    public String savePhoto(UploadedPhoto uploadedPhoto, String description) {
+    public SavedPhoto savePhoto(UploadedPhoto uploadedPhoto, String description) {
         Properties props = new Properties();
 
         props.put("aid", uploadedPhoto.getAid());
@@ -72,7 +72,14 @@ public class PhotosTemplate implements PhotosOperations {
 
         log.info(String.format("photos.save, response '%s'", response));
 
-        return response.get("response").get(0).get("pid").asText();
+        String photoId = response.get("response").get(0).get("pid").asText();
+        String ownerId = response.get("response").get(0).get("owner_id").asText();
+        
+        SavedPhoto savedPhoto = new SavedPhoto();
+        savedPhoto.setPhotoId(photoId);
+        savedPhoto.setOwnerId(ownerId);
+        
+        return savedPhoto;
     }
 
     public String deletePhoto(String photoId, String ownerId) {

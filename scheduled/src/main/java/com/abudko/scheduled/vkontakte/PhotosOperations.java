@@ -6,7 +6,7 @@ public interface PhotosOperations {
     
     UploadedPhoto uploadPhoto(String url, String photoFileLocation);
     
-    String savePhoto(UploadedPhoto uploadedPhoto, String description);
+    SavedPhoto savePhoto(UploadedPhoto uploadedPhoto, String description);
     
     String deletePhoto(String photoId, String ownerId);
     
