@@ -4,6 +4,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 	
+	<bean id="csvParamMapper"
+		class="com.abudko.reseller.huuto.query.mapper.csv.CsvParamMapper">
+		<constructor-arg value="${query.params}" />
+	</bean>
+	
 	<bean id="publishScheduler" class="com.abudko.scheduled.jobs.huuto.PublishScheduler"/>
 
 	<bean name="publishJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
