@@ -33,7 +33,7 @@ public class GroupPhotoManager extends AbstractPhotoManager implements PhotoMana
             photoDataLogger.dump(photoIdGroupIdMap, dumpFileLocation);
         }
     }
-
+    
     protected String getOwnerId(String id) {
         return "-" + id;
     }

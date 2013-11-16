@@ -57,4 +57,53 @@ public class PhotoData {
         return "PhotoData [groupId=" + groupId + ", albumId=" + albumId + ", fileLocation=" + fileLocation
                 + ", description=" + description + ", photoId=" + photoId + "]";
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((albumId == null) ? 0 : albumId.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((fileLocation == null) ? 0 : fileLocation.hashCode());
+        result = prime * result + ((groupId == null) ? 0 : groupId.hashCode());
+        result = prime * result + ((photoId == null) ? 0 : photoId.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PhotoData other = (PhotoData) obj;
+        if (albumId == null) {
+            if (other.albumId != null)
+                return false;
+        } else if (!albumId.equals(other.albumId))
+            return false;
+        if (description == null) {
+            if (other.description != null)
+                return false;
+        } else if (!description.equals(other.description))
+            return false;
+        if (fileLocation == null) {
+            if (other.fileLocation != null)
+                return false;
+        } else if (!fileLocation.equals(other.fileLocation))
+            return false;
+        if (groupId == null) {
+            if (other.groupId != null)
+                return false;
+        } else if (!groupId.equals(other.groupId))
+            return false;
+        if (photoId == null) {
+            if (other.photoId != null)
+                return false;
+        } else if (!photoId.equals(other.photoId))
+            return false;
+        return true;
+    }
 }
