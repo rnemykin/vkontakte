@@ -1,5 +1,7 @@
 package com.abudko.scheduled.service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -15,10 +17,10 @@ import com.abudko.scheduled.vkontakte.PhotosTemplate;
 import com.abudko.scheduled.vkontakte.SavedPhoto;
 import com.abudko.scheduled.vkontakte.UploadedPhoto;
 
-public abstract class AbstractPhotoManager {
-    
+public abstract class AbstractPhotoManager implements PhotoManager {
+
     protected final Logger log = LoggerFactory.getLogger(getClass());
-    
+
     @Autowired
     protected PhotoDataReader photoDataReader;
 
@@ -27,7 +29,41 @@ public abstract class AbstractPhotoManager {
 
     @Autowired
     protected PhotosTemplate photosTemplate;
+
+    @Override
+    public void publish(String csvResourcePath, String dumpFileLocation, String token) throws InterruptedException {
+        if (token != null) {
+            photosTemplate.setToken(token);
+        }
+        
+        deleteAll(dumpFileLocation);
+        
+        Map<String, String> photoIdGroupIdMap = null;
+        try {
+            photoIdGroupIdMap = publishAll(csvResourcePath);
+        } catch (Throwable e) {
+            log.error("Exception happened while publishing a photo", e);
+            throw e;
+        } finally {
+            photoDataLogger.dump(photoIdGroupIdMap, dumpFileLocation);
+        }
+    }
     
+    protected Map<String, String> publishAll(String csvResourcePath) throws InterruptedException {
+        List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
+        Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
+
+        for (PhotoData photoData : photoDataList) {
+            SavedPhoto savedPhoto = publishPhoto(photoData);
+
+            log.info(String.format("Saved photo id '%s'", savedPhoto));
+
+            photoIdGroupIdMap.put(savedPhoto.getPhotoId(), savedPhoto.getOwnerId());
+        }
+
+        return photoIdGroupIdMap;
+    }
+
     protected void deleteAll(String dumpFileLocation) throws InterruptedException {
         Map<String, String> map = photoDataLogger.read(dumpFileLocation);
         Set<Entry<String, String>> entrySet = map.entrySet();
@@ -51,7 +87,7 @@ public abstract class AbstractPhotoManager {
             }
         }
     }
-    
+
     protected SavedPhoto publishPhoto(PhotoData photoData) throws InterruptedException {
         log.info(String.format("Publishing photo '%s'", photoData));
 
@@ -69,7 +105,8 @@ public abstract class AbstractPhotoManager {
 
         return savedPhoto;
     }
-    
-    protected abstract String getOwnerId(String id);
 
+    protected String getOwnerId(String id) {
+        return "-" + id;
+    }
 }

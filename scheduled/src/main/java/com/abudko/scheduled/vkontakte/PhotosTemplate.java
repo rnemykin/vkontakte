@@ -131,4 +131,12 @@ public class PhotosTemplate implements PhotosOperations {
         
         return response.asInt();
     }
+    
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

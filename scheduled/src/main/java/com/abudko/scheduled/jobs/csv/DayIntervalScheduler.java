@@ -27,7 +27,7 @@ public class DayIntervalScheduler implements Scheduler {
         log.info("********* Start scheduled scanning *******");
         try {
 
-            photoManager.publish(csvResourcePath, dumpFileLocation);
+            photoManager.publish(csvResourcePath, dumpFileLocation, null);
             
             log.info("********* End scheduled scanning *******");
 

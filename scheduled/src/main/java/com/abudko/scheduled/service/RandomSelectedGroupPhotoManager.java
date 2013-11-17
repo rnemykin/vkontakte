@@ -17,36 +17,30 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimaps;
 
 @Component
-public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager implements PhotoManager {
+public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager {
 
     private static final int RANDOM_PHOTO_COUNT = 3;
 
-    public void publish(String csvResourcePath, String dumpFileLocation) throws InterruptedException {
-        deleteAll(dumpFileLocation);
-
+    @Override
+    protected Map<String, String> publishAll(String csvResourcePath) throws InterruptedException {
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
         List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
         ImmutableListMultimap<String, PhotoData> groupIdPhotoDataMap = getGroupIdPhotoDataMap(photoDataList);
 
         ImmutableSet<String> keySet = groupIdPhotoDataMap.keySet();
-        try {
-            for (String groupId : keySet) {
-                ImmutableList<PhotoData> list = groupIdPhotoDataMap.get(groupId);
-                List<PhotoData> randomPhotoDataList = getRandomPhotos(list);
-                for (PhotoData photoData : randomPhotoDataList) {
-                    SavedPhoto savedPhoto = publishPhoto(photoData);
+        for (String groupId : keySet) {
+            ImmutableList<PhotoData> list = groupIdPhotoDataMap.get(groupId);
+            List<PhotoData> randomPhotoDataList = getRandomPhotos(list);
+            for (PhotoData photoData : randomPhotoDataList) {
+                SavedPhoto savedPhoto = publishPhoto(photoData);
 
-                    log.info(String.format("Saved photo id '%s'", savedPhoto));
+                log.info(String.format("Saved photo id '%s'", savedPhoto));
 
-                    photoIdGroupIdMap.put(savedPhoto.getPhotoId(), photoData.getGroupId());
-                }
+                photoIdGroupIdMap.put(savedPhoto.getPhotoId(), photoData.getGroupId());
             }
-        } catch (Throwable e) {
-            log.error("Exception happened while publishing a photo", e);
-            throw e;
-        } finally {
-            photoDataLogger.dump(photoIdGroupIdMap, dumpFileLocation);
         }
+
+        return photoIdGroupIdMap;
     }
 
     private ImmutableListMultimap<String, PhotoData> getGroupIdPhotoDataMap(List<PhotoData> photos) {
@@ -75,9 +69,5 @@ public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager implem
         public String apply(PhotoData photoData) {
             return photoData.getGroupId();
         }
-    }
-
-    protected String getOwnerId(String id) {
-        return "-" + id;
     }
 }

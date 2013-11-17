@@ -21,6 +21,6 @@ public abstract class PhotoManagerIntegrationTest {
     
     @Test
     public void testPublish() throws InterruptedException {
-        photoManager.publish(csvResourcePath, "classpath:/csv/photos-testlog.csv");
+        photoManager.publish(csvResourcePath, "classpath:/csv/photos-testlog.csv", null);
     }
 }
