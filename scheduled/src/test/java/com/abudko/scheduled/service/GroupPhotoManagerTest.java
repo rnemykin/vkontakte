@@ -122,6 +122,17 @@ public class GroupPhotoManagerTest extends PhotoManagerTestHelper {
     
     @Test
     public void testNoDumpWhenDUmMapIsEmpty() throws Exception {
-        
+        final String dumpFileLocation = "dumpFileLocation";
+        when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenThrow(new RuntimeException());
+
+        try {
+            photoManager.publish("csvResourcePath", dumpFileLocation, null);
+            fail("should throw an exception before");
+        }
+        catch (Exception e) {
+            // as expected
+        }
+
+        verify(photoDataLogger, times(0)).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
     }
 }

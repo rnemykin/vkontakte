@@ -47,7 +47,9 @@ public abstract class AbstractPhotoManager implements PhotoManager {
             log.error("Exception happened while publishing a photo", e);
             throw e;
         } finally {
-            photoDataLogger.dump(photoIdGroupIdMap, dumpFileLocation);
+            if (photoIdGroupIdMap.isEmpty() == false) {
+                photoDataLogger.dump(photoIdGroupIdMap, dumpFileLocation);
+            }
         }
     }
     
