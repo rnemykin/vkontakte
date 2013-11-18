@@ -59,10 +59,10 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
 
         photoManager.publish("csvResourcePath", dumpFileLocation, null);
 
-        verify(photosTemplate).getCommentsCount(photoId1, groupId1);
-        verify(photosTemplate).getCommentsCount(photoId2, groupId2);
-        verify(photosTemplate).deletePhoto(photoId1, groupId1);
-        verify(photosTemplate).deletePhoto(photoId2, groupId2);
+        verify(photosTemplate).getCommentsCount(photoId1, "-"+groupId1);
+        verify(photosTemplate).getCommentsCount(photoId2, "-"+groupId2);
+        verify(photosTemplate).deletePhoto(photoId1, "-"+groupId1);
+        verify(photosTemplate).deletePhoto(photoId2, "-"+groupId2);
     }
 
     @Test
@@ -123,15 +123,13 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
             // as expected
         }
 
-        Map<String, String> map = new HashMap<String, String>();
-        map.put(photoId, ownerId);
-        verify(photoDataLogger).dump(map, dumpFileLocation);
+        verify(photoDataLogger).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
     }
     
     @Test
     public void testNoDumpWhenDumpMapIsEmpty() throws Exception {
         final String dumpFileLocation = "dumpFileLocation";
-        when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenThrow(new RuntimeException());
+        when(photosTemplate.getUploadServer(Mockito.anyString(), Mockito.anyString())).thenThrow(new RuntimeException());
 
         try {
             photoManager.publish("csvResourcePath", dumpFileLocation, null);
