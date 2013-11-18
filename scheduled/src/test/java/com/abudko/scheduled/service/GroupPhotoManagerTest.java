@@ -121,7 +121,7 @@ public class GroupPhotoManagerTest extends PhotoManagerTestHelper {
     }
     
     @Test
-    public void testNoDumpWhenDUmMapIsEmpty() throws Exception {
+    public void testNoDumpWhenDumpMapIsEmpty() throws Exception {
         final String dumpFileLocation = "dumpFileLocation";
         when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenThrow(new RuntimeException());
 
