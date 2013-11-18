@@ -2,7 +2,6 @@ package com.abudko.scheduled.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,8 +21,7 @@ public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager {
     private static final int RANDOM_PHOTO_COUNT = 3;
 
     @Override
-    protected Map<String, String> publishAll(String csvResourcePath) throws InterruptedException {
-        Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
+    protected void publishAll(String csvResourcePath, Map<String, String> photoIdGroupIdMap) throws InterruptedException {
         List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
         ImmutableListMultimap<String, PhotoData> groupIdPhotoDataMap = getGroupIdPhotoDataMap(photoDataList);
 
@@ -39,8 +37,6 @@ public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager {
                 photoIdGroupIdMap.put(savedPhoto.getPhotoId(), photoData.getGroupId());
             }
         }
-
-        return photoIdGroupIdMap;
     }
 
     private ImmutableListMultimap<String, PhotoData> getGroupIdPhotoDataMap(List<PhotoData> photos) {

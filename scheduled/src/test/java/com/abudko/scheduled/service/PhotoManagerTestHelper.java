@@ -1,27 +1,70 @@
 package com.abudko.scheduled.service;
 
+import static org.mockito.Mockito.when;
+import static org.mockito.internal.util.reflection.Whitebox.setInternalState;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mockito.Mock;
+import org.mockito.Mockito;
+
 import com.abudko.scheduled.csv.PhotoData;
+import com.abudko.scheduled.csv.PhotoDataLogger;
+import com.abudko.scheduled.csv.PhotoDataReader;
+import com.abudko.scheduled.vkontakte.PhotosTemplate;
 
 public class PhotoManagerTestHelper {
     
     public static final String GROUPID1 = "1111111";
+    public static final String ALBUMID1 = "1";
+    public static final String ALBUMID2 = "2";
     
     public static final String GROUPID2 = "2222222";
     
-    public static List<PhotoData> getTestData() {
+    @Mock
+    protected PhotoDataReader photoDataReader;
+
+    @Mock
+    protected PhotoDataLogger photoDataLogger;
+
+    @Mock
+    protected PhotosTemplate photosTemplate;
+    
+    protected AbstractPhotoManager photoManager;
+    
+    protected List<PhotoData> testData;
+    
+    protected void setup() {
+        when(photoDataReader.read(Mockito.anyString())).thenReturn(getTestData());
+        photoManager.sleepInterval = 1;
+    }
+    
+    protected void setupMocks() {
+        setInternalState(photoManager, "photoDataReader", photoDataReader);
+        setInternalState(photoManager, "photoDataLogger", photoDataLogger);
+        setInternalState(photoManager, "photosTemplate", photosTemplate);
+    }
+    
+    protected List<PhotoData> getTestData() {
+        if (testData == null) {
+            testData = populateTestData();
+        }
+        
+        return testData;
+    }
+    
+    private List<PhotoData> populateTestData() {
         List<PhotoData> list = new ArrayList<PhotoData>();
 
         PhotoData photoData11 = new PhotoData();
         photoData11.setGroupId(GROUPID1);
-        photoData11.setAlbumId("1");
+        photoData11.setAlbumId(ALBUMID1);
         list.add(photoData11);
 
         PhotoData photoData12 = new PhotoData();
         photoData12.setGroupId(GROUPID1);
-        photoData12.setAlbumId("2");
+        photoData12.setAlbumId(ALBUMID2);
         list.add(photoData12);
 
         PhotoData photoData13 = new PhotoData();

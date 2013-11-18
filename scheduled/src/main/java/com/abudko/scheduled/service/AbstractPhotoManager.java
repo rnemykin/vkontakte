@@ -1,6 +1,5 @@
 package com.abudko.scheduled.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -18,6 +17,8 @@ import com.abudko.scheduled.vkontakte.SavedPhoto;
 import com.abudko.scheduled.vkontakte.UploadedPhoto;
 
 public abstract class AbstractPhotoManager implements PhotoManager {
+    
+    int sleepInterval = 1000;
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -40,7 +41,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         
         Map<String, String> photoIdGroupIdMap = null;
         try {
-            photoIdGroupIdMap = publishAll(csvResourcePath);
+            publishAll(csvResourcePath, photoIdGroupIdMap);
         } catch (Throwable e) {
             log.error("Exception happened while publishing a photo", e);
             throw e;
@@ -49,9 +50,8 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         }
     }
     
-    protected Map<String, String> publishAll(String csvResourcePath) throws InterruptedException {
+    protected void publishAll(String csvResourcePath, Map<String, String> photoIdGroupIdMap) throws InterruptedException {
         List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
-        Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
 
         for (PhotoData photoData : photoDataList) {
             SavedPhoto savedPhoto = publishPhoto(photoData);
@@ -60,8 +60,6 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
             photoIdGroupIdMap.put(savedPhoto.getPhotoId(), savedPhoto.getOwnerId());
         }
-
-        return photoIdGroupIdMap;
     }
 
     protected void deleteAll(String dumpFileLocation) throws InterruptedException {
@@ -79,7 +77,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
                     .format("Deleting a photo id['%s'],  group['%s'], comments '%d'", photoId, groupId, comments));
 
             if (comments == 0) {
-                Thread.sleep(1000);
+                Thread.sleep(sleepInterval);
                 photosTemplate.deletePhoto(photoId, ownerId);
             } else {
                 log.info(String.format("Can't delete a photo id['%s'],  group['%s'] because it has comments", photoId,
@@ -99,7 +97,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
         log.info(String.format("Got uploadedPhoto '%s'", uploadedPhoto));
 
-        Thread.sleep(1000);
+        Thread.sleep(sleepInterval);
 
         SavedPhoto savedPhoto = photosTemplate.savePhoto(uploadedPhoto, photoData.getDescription());
 
