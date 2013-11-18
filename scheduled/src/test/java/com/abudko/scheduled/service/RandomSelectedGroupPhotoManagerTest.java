@@ -80,21 +80,6 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
         verify(photosTemplate, times(0)).deletePhoto(photoId1, groupId1);
     }
 
-    @Test
-    public void testPublish() throws Exception {
-        final String fileLocation = "fileLocation";
-        getTestData().get(0).setFileLocation(fileLocation);
-        final String description = "description";
-        getTestData().get(0).setDescription(description);
-        final String uploadUrl = "uploadUrl";
-        when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenReturn(uploadUrl);
-        final UploadedPhoto uploadedPhoto = new UploadedPhoto();
-        when(photosTemplate.uploadPhoto(uploadUrl, "/photos/" + fileLocation)).thenReturn(uploadedPhoto);
-
-        photoManager.publish("csvResourcePath", "dumpFileLocation", null);
-
-        verify(photosTemplate).savePhoto(uploadedPhoto, description);
-    }
 
     @Test
     public void testDumpAllWhenException() throws Exception {
@@ -104,7 +89,7 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
         final String description = "description";
         getTestData().get(0).setDescription(description);
         final String uploadUrl = "uploadUrl";
-        when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenReturn(uploadUrl);
+        when(photosTemplate.getUploadServer(Mockito.eq(GROUPID1), Mockito.anyString())).thenReturn(uploadUrl);
         final UploadedPhoto uploadedPhoto = new UploadedPhoto();
         when(photosTemplate.uploadPhoto(uploadUrl, "/photos/" + fileLocation)).thenReturn(uploadedPhoto);
         SavedPhoto savedPhoto = new SavedPhoto();
@@ -113,7 +98,7 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
         final String photoId = "photoId";
         savedPhoto.setPhotoId(photoId);
         when(photosTemplate.savePhoto(uploadedPhoto, description)).thenReturn(savedPhoto);
-        when(photosTemplate.getUploadServer(GROUPID1, ALBUMID2)).thenThrow(new RuntimeException());
+        when(photosTemplate.getUploadServer(Mockito.eq(GROUPID2), Mockito.anyString())).thenThrow(new RuntimeException());
 
         try {
             photoManager.publish("csvResourcePath", dumpFileLocation, null);
@@ -140,5 +125,15 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
         }
 
         verify(photoDataLogger, times(0)).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
+    }
+    
+    @Test
+    public void testSetToken() throws Exception {
+        final String newToken = "975e29M";
+        final String dumpFileLocation = "dumpFileLocation";
+        
+        photoManager.publish("csvResourcePath", dumpFileLocation, newToken);
+        
+        verify(photosTemplate).setToken(newToken);
     }
 }
