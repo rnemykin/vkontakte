@@ -1,5 +1,6 @@
 package com.abudko.scheduled.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -39,7 +40,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         
         deleteAll(dumpFileLocation);
         
-        Map<String, String> photoIdGroupIdMap = null;
+        Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
         try {
             publishAll(csvResourcePath, photoIdGroupIdMap);
         } catch (Throwable e) {

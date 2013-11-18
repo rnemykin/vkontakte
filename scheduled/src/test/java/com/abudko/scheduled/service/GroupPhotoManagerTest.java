@@ -1,5 +1,6 @@
 package com.abudko.scheduled.service;
 
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -69,5 +70,58 @@ public class GroupPhotoManagerTest extends PhotoManagerTestHelper {
         photoManager.publish("csvResourcePath", dumpFileLocation, null);
         
         verify(photosTemplate, times(0)).deletePhoto(photoId1, "-"+groupId1);
+    }
+    
+    @Test
+    public void testPublish() throws Exception {
+        final String fileLocation = "fileLocation";
+        getTestData().get(0).setFileLocation(fileLocation);
+        final String description = "description";
+        getTestData().get(0).setDescription(description);
+        final String uploadUrl = "uploadUrl";
+        when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenReturn(uploadUrl);
+        final UploadedPhoto uploadedPhoto = new UploadedPhoto();
+        when(photosTemplate.uploadPhoto(uploadUrl, "/photos/" + fileLocation)).thenReturn(uploadedPhoto);
+
+        photoManager.publish("csvResourcePath", "dumpFileLocation", null);
+
+        verify(photosTemplate).savePhoto(uploadedPhoto, description);
+    }
+
+    @Test
+    public void testDumpAllWhenException() throws Exception {
+        final String dumpFileLocation = "dumpFileLocation";
+        final String fileLocation = "fileLocation";
+        getTestData().get(0).setFileLocation(fileLocation);
+        final String description = "description";
+        getTestData().get(0).setDescription(description);
+        final String uploadUrl = "uploadUrl";
+        when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenReturn(uploadUrl);
+        final UploadedPhoto uploadedPhoto = new UploadedPhoto();
+        when(photosTemplate.uploadPhoto(uploadUrl, "/photos/" + fileLocation)).thenReturn(uploadedPhoto);
+        SavedPhoto savedPhoto = new SavedPhoto();
+        final String ownerId = "ownerId";
+        savedPhoto.setOwnerId(ownerId);
+        final String photoId = "photoId";
+        savedPhoto.setPhotoId(photoId);
+        when(photosTemplate.savePhoto(uploadedPhoto, description)).thenReturn(savedPhoto);
+        when(photosTemplate.getUploadServer(GROUPID1, ALBUMID2)).thenThrow(new RuntimeException());
+
+        try {
+            photoManager.publish("csvResourcePath", dumpFileLocation, null);
+            fail("should throw an exception before");
+        }
+        catch (Exception e) {
+            // as expected
+        }
+
+        Map<String, String> map = new HashMap<String, String>();
+        map.put(photoId, ownerId);
+        verify(photoDataLogger).dump(map, dumpFileLocation);
+    }
+    
+    @Test
+    public void testNoDumpWhenDUmMapIsEmpty() throws Exception {
+        
     }
 }
