@@ -108,6 +108,9 @@ public abstract class AbstractPhotoManager implements PhotoManager {
     }
 
     protected String getOwnerId(String id) {
+        if (id.charAt(0) == '-') {
+            return id;
+        }
         return "-" + id;
     }
 }

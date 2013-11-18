@@ -1,5 +1,6 @@
 package com.abudko.scheduled.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -134,5 +135,17 @@ public class GroupPhotoManagerTest extends PhotoManagerTestHelper {
         }
 
         verify(photoDataLogger, times(0)).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
+    }
+    
+    @Test
+    public void testOwnerIdNoPrefix() throws Exception {
+        final String ownerId = "238623726";
+        assertEquals("-"+ownerId, photoManager.getOwnerId(ownerId));
+    }
+    
+    @Test
+    public void testOwnerIdWithPrefix() throws Exception {
+        final String ownerId = "238623726";
+        assertEquals("-"+ownerId, photoManager.getOwnerId("-"+ownerId));
     }
 }
