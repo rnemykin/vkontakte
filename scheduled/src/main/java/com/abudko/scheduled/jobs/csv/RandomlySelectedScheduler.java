@@ -23,14 +23,14 @@ public class RandomlySelectedScheduler implements Scheduler {
     @Value("#{scheduledProperties['randomlySelectedDumpFile']}")
     private String dumpFileLocation;
     
-    @Value("#{token2Properties['token']}")
-    private String token;
+    @Value("#{tokenCustomProperties['customToken']}")
+    private String customToken;
 
     public void schedule() {
         log.info("********* Start scheduled scanning *******");
         try {
 
-            photoManager.publish(csvResourcePath, dumpFileLocation, token);
+            photoManager.publish(csvResourcePath, dumpFileLocation, customToken);
             
             log.info("********* End scheduled scanning *******");
 

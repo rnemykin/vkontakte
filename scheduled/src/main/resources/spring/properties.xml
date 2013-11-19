@@ -15,7 +15,7 @@
 		<property name="singleton" value="true"/>
 	</bean>
 	
-	<bean id="token2Properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	<bean id="tokenCustomProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="location" value="classpath:/token2.properties" />
 		<property name="singleton" value="true"/>
 	</bean>
