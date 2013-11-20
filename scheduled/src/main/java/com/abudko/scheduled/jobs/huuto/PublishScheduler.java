@@ -30,8 +30,8 @@ public class PublishScheduler implements Scheduler {
     private ParamMapper searchParamMapper;
 
     @Autowired
-    @Qualifier("csvParamBuilder")
-    private ParamBuilder csvParamBuilder;
+    @Qualifier("atomParamBuilder")
+    private ParamBuilder paramBuilder;
 
     @Autowired
     @Qualifier("atomQueryListServiceImpl")
@@ -74,7 +74,7 @@ public class PublishScheduler implements Scheduler {
 
     private String getQuery(SearchParams searchParams) throws IllegalAccessException, InvocationTargetException,
             NoSuchMethodException {
-        return csvParamBuilder.buildQuery(searchParams);
+        return paramBuilder.buildQuery(searchParams);
     }
 
     private void extractItemResponse(Collection<ListResponse> queryListResponses) {
