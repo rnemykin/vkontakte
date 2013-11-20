@@ -89,7 +89,8 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         }
     }
 
-    protected SavedPhoto publishPhoto(PhotoData photoData) throws InterruptedException {
+    @Override
+    public SavedPhoto publishPhoto(PhotoData photoData) throws InterruptedException {
         log.info(String.format("Publishing photo '%s'", photoData));
 
         String uploadUrl = photosTemplate.getUploadServer(photoData.getGroupId(), photoData.getAlbumId());
