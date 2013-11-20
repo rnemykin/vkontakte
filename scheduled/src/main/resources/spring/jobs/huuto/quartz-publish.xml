@@ -6,7 +6,7 @@
 	
 	<bean id="csvParamMapper"
 		class="com.abudko.reseller.huuto.query.mapper.csv.CsvParamMapper">
-		<constructor-arg value="/csv/huuto/query.csv" />
+		<constructor-arg value="classpath:/csv/huuto/query.csv" />
 	</bean>
 	
 	<bean id="publishScheduler" class="com.abudko.scheduled.jobs.huuto.PublishScheduler"/>
