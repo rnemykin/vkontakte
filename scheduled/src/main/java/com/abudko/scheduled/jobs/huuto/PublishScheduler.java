@@ -92,6 +92,16 @@ public class PublishScheduler implements Scheduler {
         PhotoData photoData = new PhotoData();
         //photoData.setDescription(description)
         
+        ItemResponse itemResponse = listResponse.getItemResponse();
+        String newPrice = itemResponse.getNewPrice();
+        String id = itemResponse.getId();
+        String brand = listResponse.getBrand();
+        String size = listResponse.getSize();
+        
+//        {0} (размер {1})</br>цена
+//        <spring:message code="item.info" arguments="${itemOrder.itemResponse.itemInfo.brand},${itemOrder.itemResponse.itemInfo.size}" htmlEscape="false"/>
+//        <span class="label label-success">${itemOrder.itemResponse.newPrice}</span> <spring:message code="search.currency" />
+        
         return photoData;
     }
 }
