@@ -1,6 +1,7 @@
 package com.abudko.scheduled.jobs.huuto;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
 import com.abudko.reseller.huuto.query.mapper.ParamMapper;
@@ -42,6 +44,9 @@ public class PublishScheduler implements Scheduler {
     @Autowired
     @Qualifier("groupPhotoManager")
     private PhotoManager photoManager;
+    
+    @Value("#{scheduledProperties['huuto.comment']}")
+    private String commentTemplate;
 
     public void schedule() {
         log.info("********* Start scheduled scanning *******");
@@ -98,9 +103,8 @@ public class PublishScheduler implements Scheduler {
         String brand = listResponse.getBrand();
         String size = listResponse.getSize();
         
-//        {0} (размер {1})</br>цена
-//        <spring:message code="item.info" arguments="${itemOrder.itemResponse.itemInfo.brand},${itemOrder.itemResponse.itemInfo.size}" htmlEscape="false"/>
-//        <span class="label label-success">${itemOrder.itemResponse.newPrice}</span> <spring:message code="search.currency" />
+        String comment = MessageFormat.format(commentTemplate, brand, size, newPrice, id);
+        log.info(comment);
         
         return photoData;
     }
