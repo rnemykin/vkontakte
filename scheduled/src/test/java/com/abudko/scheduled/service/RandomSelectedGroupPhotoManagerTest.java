@@ -22,7 +22,7 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
 
     @Before
     public void setup() {
-        photoManager = new RandomSelectedGroupPhotoManager();
+        photoManager = new LimitedRandomSelectedGroupPhotoManager();
         super.setup();
         setupMocks();
         when(photosTemplate.savePhoto(Mockito.any(UploadedPhoto.class), Mockito.anyString())).thenReturn(

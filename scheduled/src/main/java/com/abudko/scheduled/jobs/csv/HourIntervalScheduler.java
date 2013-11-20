@@ -14,7 +14,7 @@ public class HourIntervalScheduler implements Scheduler {
     private Logger log = LoggerFactory.getLogger(getClass());
     
     @Autowired
-    @Qualifier("groupPhotoManager")
+    @Qualifier("randomSelectedGroupPhotoManager")
     private PhotoManager photoManager;
     
     @Value("#{scheduledProperties['hourIntervalCsvFile']}")

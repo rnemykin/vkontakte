@@ -44,11 +44,11 @@ public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager {
         return ImmutableListMultimap.copyOf(groupIdToPhotos);
     }
 
-    private List<PhotoData> getRandomPhotos(ImmutableList<PhotoData> list) {
+    protected List<PhotoData> getRandomPhotos(ImmutableList<PhotoData> list) {
         List<PhotoData> randomList = new ArrayList<PhotoData>();
         List<PhotoData> l = new ArrayList<>(list);
         Collections.shuffle(l);
-        final int count = l.size() > RANDOM_PHOTO_COUNT ? RANDOM_PHOTO_COUNT : l.size();
+        final int count = l.size();
         for (int i = 0; i < count; i++) {
             randomList.add(l.get(i));
         }

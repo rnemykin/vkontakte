@@ -14,7 +14,7 @@ public class RandomlySelectedScheduler implements Scheduler {
     private Logger log = LoggerFactory.getLogger(getClass());
     
     @Autowired
-    @Qualifier("randomSelectedGroupPhotoManager")
+    @Qualifier("limitedRandomSelectedGroupPhotoManager")
     private PhotoManager photoManager;
     
     @Value("#{scheduledProperties['randomlySelectedCsvFile']}")
