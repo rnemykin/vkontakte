@@ -35,11 +35,13 @@ public class AtomQueryListServiceImpl extends AbstractQueryListService {
         int page = 1;
         do {
             URI pagedURI = getPagedURI(query, page++);
+            
+            log.info(String.format("Called [%s]", pagedURI));
+            
             Feed atomXmlResponse = restTemplate.getForObject(pagedURI, Feed.class);
             Collection<ListResponse> queryPageResponses = atomXmlListParser.parse(atomXmlResponse);
             
-            String info = String.format("Called [%s], got [%d] responses", pagedURI, queryPageResponses.size());
-            log.info(info);
+            log.info(String.format("Got [%d] responses", queryPageResponses.size()));
             
             queryAllResponses.addAll(queryPageResponses);
             
