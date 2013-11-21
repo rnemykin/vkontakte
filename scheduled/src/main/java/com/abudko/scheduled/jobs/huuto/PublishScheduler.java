@@ -1,8 +1,6 @@
 package com.abudko.scheduled.jobs.huuto;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.List;
@@ -12,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 
 import com.abudko.reseller.huuto.image.ImageManipulator;
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
@@ -43,14 +42,17 @@ public class PublishScheduler implements Scheduler {
     @Autowired
     @Qualifier("atomQueryItemServiceImpl")
     private QueryItemService atomQueryItemService;
-    
+
     @Autowired
     @Qualifier("groupPhotoManager")
     private PhotoManager photoManager;
-    
+
     @Value("#{scheduledProperties['huuto.comment']}")
     private String commentTemplate;
-    
+
+    @Value("#{scheduledProperties['imageTempFile']}")
+    private String imageTempFileLocation;
+
     @Autowired
     private ImageManipulator imageManipulator;
 
@@ -67,7 +69,7 @@ public class PublishScheduler implements Scheduler {
 
                 Collection<ListResponse> queryListResponses = queryListService.search(query, searchParams);
                 extractItemResponse(queryListResponses);
-                
+
                 publishResults(queryListResponses);
             }
 
@@ -89,7 +91,7 @@ public class PublishScheduler implements Scheduler {
             queryListResponse.setItemResponse(itemResponse);
         }
     }
-    
+
     private void publishResults(Collection<ListResponse> queryResponses) throws InterruptedException {
         for (ListResponse queryResponse : queryResponses) {
             log.info(String.format("Publishing query response: %s", queryResponse.toString()));
@@ -98,32 +100,25 @@ public class PublishScheduler implements Scheduler {
             photoManager.publishPhoto(photoData);
         }
     }
-    
+
     private PhotoData convert(ListResponse listResponse) {
         ItemResponse itemResponse = listResponse.getItemResponse();
         String newPrice = itemResponse.getNewPrice();
         String id = itemResponse.getId();
         String brand = listResponse.getBrand();
         String size = listResponse.getSize();
-        
+
         final String outputFile = "temp.jpg";
-        URL url = null;
-        try {
-            url = new URL(itemResponse.getImgBaseSrc()+"-orig.jpg");
-            imageManipulator.storeImage(url, outputFile);
-        } catch (IOException e) {
-            String error = String.format("Exception while cropping image from url %s", url.toString());
-            log.error(error);
-            throw new RuntimeException(error, e);
-        }
+        String url = itemResponse.getImgBaseSrc() + "-orig.jpg";
+        imageManipulator.storeImage(url, outputFile);
 
         String description = MessageFormat.format(commentTemplate, brand, size, newPrice, id);
         PhotoData photoData = new PhotoData();
         photoData.setGroupId("60966965");
         photoData.setAlbumId("182291496");
         photoData.setDescription(description);
-        photoData.setFileLocation(outputFile);
-        
+        photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
+
         return photoData;
     }
 }

@@ -13,6 +13,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import com.abudko.scheduled.vkontakte.SavedPhoto;
 import com.abudko.scheduled.vkontakte.UploadedPhoto;
@@ -74,14 +76,14 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
 
     @Test
     public void testPublish() throws Exception {
-        final String fileLocation = "fileLocation";
-        getTestData().get(0).setFileLocation(fileLocation);
+        final Resource fileResource = new ClassPathResource("location");
+        getTestData().get(0).setFileResource(fileResource);
         final String description = "description";
         getTestData().get(0).setDescription(description);
         final String uploadUrl = "uploadUrl";
         when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenReturn(uploadUrl);
         final UploadedPhoto uploadedPhoto = new UploadedPhoto();
-        when(photosTemplate.uploadPhoto(uploadUrl, "/photos/" + fileLocation)).thenReturn(uploadedPhoto);
+        when(photosTemplate.uploadPhoto(uploadUrl, fileResource)).thenReturn(uploadedPhoto);
 
         photoManager.publish("csvResourcePath", "dumpFileLocation", null);
 
@@ -91,14 +93,14 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
     @Test
     public void testDumpAllWhenException() throws Exception {
         final String dumpFileLocation = "dumpFileLocation";
-        final String fileLocation = "fileLocation";
-        getTestData().get(0).setFileLocation(fileLocation);
+        final Resource fileResource = new ClassPathResource("location");
+        getTestData().get(0).setFileResource(fileResource);
         final String description = "description";
         getTestData().get(0).setDescription(description);
         final String uploadUrl = "uploadUrl";
         when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenReturn(uploadUrl);
         final UploadedPhoto uploadedPhoto = new UploadedPhoto();
-        when(photosTemplate.uploadPhoto(uploadUrl, "/photos/" + fileLocation)).thenReturn(uploadedPhoto);
+        when(photosTemplate.uploadPhoto(uploadUrl, fileResource)).thenReturn(uploadedPhoto);
         SavedPhoto savedPhoto = new SavedPhoto();
         final String ownerId = "ownerId";
         savedPhoto.setOwnerId(ownerId);
@@ -110,8 +112,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         try {
             photoManager.publish("csvResourcePath", dumpFileLocation, null);
             fail("should throw an exception before");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // as expected
         }
 
@@ -119,7 +120,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         map.put(photoId, ownerId);
         verify(photoDataLogger).dump(map, dumpFileLocation);
     }
-    
+
     @Test
     public void testNoDumpWhenDumpMapIsEmpty() throws Exception {
         final String dumpFileLocation = "dumpFileLocation";
@@ -128,8 +129,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         try {
             photoManager.publish("csvResourcePath", dumpFileLocation, null);
             fail("should throw an exception before");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // as expected
         }
 

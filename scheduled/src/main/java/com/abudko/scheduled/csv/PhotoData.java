@@ -57,7 +57,7 @@ public class PhotoData {
     @Override
     public String toString() {
         return "PhotoData [groupId=" + groupId + ", albumId=" + albumId + ", fileLocationResource="
-                + fileLocationResource.toString() + ", description=" + description + ", photoId=" + photoId + "]";
+                + fileLocationResource + ", description=" + description + ", photoId=" + photoId + "]";
     }
 
     @Override

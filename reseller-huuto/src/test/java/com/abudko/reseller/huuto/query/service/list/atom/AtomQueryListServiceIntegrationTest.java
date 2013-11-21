@@ -46,17 +46,17 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testDescription() throws Exception {
-        assertEquals("*UUSI* Everest talvihaalari Stadiumista,110 cm, katso kuvat!", response.getDescription());
+        assertEquals("EVEREST TOPPAHAALARI 116cm", response.getDescription());
     }
 
     @Test
     public void testCurrentPrice() throws Exception {
-        assertEquals("59.95", response.getCurrentPrice());
+        assertEquals("55.00", response.getCurrentPrice());
     }
     
     @Test
     public void testFullPrice() throws Exception {
-        assertEquals("59.95", response.getFullPrice());
+        assertEquals("55.00", response.getFullPrice());
     }
     
     @Test
@@ -66,7 +66,7 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testSize() throws Exception {
-        assertEquals("110", response.getSize());
+        assertEquals("116", response.getSize());
     }
     
     @Test
@@ -76,12 +76,12 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testItemUrl() throws Exception {
-        assertEquals("277480818", response.getItemUrl());
+        assertEquals("289307875", response.getItemUrl());
     }
     
     @Test
     public void testImgBaseSrc() throws Exception {
-        assertEquals("http://kuvat2.huuto.net/9/26/7f761541cc89f20b2230c691acdd5", response.getImgBaseSrc());
+        assertEquals("http://kuvat2.huuto.net/f/12/93de3bc4c0040d00f091962acd8e5", response.getImgBaseSrc());
     }
     
     @Test
@@ -92,7 +92,7 @@ public class AtomQueryListServiceIntegrationTest {
     private SearchParams getSearchParams() {
         SearchParams searchParams = new SearchParams();
         searchParams.setWords("TALVIHAALARI");
-        searchParams.setLocation("Helsinki");
+        searchParams.setLocation("TAMPERE");
         searchParams.setClassification("new");
         searchParams.setSellstyle("buy_now");
         searchParams.setBrand("EVEREST");

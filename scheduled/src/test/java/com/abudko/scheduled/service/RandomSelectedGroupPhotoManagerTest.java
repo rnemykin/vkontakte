@@ -13,6 +13,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import com.abudko.scheduled.vkontakte.SavedPhoto;
 import com.abudko.scheduled.vkontakte.UploadedPhoto;
@@ -59,10 +61,10 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
 
         photoManager.publish("csvResourcePath", dumpFileLocation, null);
 
-        verify(photosTemplate).getCommentsCount(photoId1, "-"+groupId1);
-        verify(photosTemplate).getCommentsCount(photoId2, "-"+groupId2);
-        verify(photosTemplate).deletePhoto(photoId1, "-"+groupId1);
-        verify(photosTemplate).deletePhoto(photoId2, "-"+groupId2);
+        verify(photosTemplate).getCommentsCount(photoId1, "-" + groupId1);
+        verify(photosTemplate).getCommentsCount(photoId2, "-" + groupId2);
+        verify(photosTemplate).deletePhoto(photoId1, "-" + groupId1);
+        verify(photosTemplate).deletePhoto(photoId2, "-" + groupId2);
     }
 
     @Test
@@ -80,60 +82,59 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
         verify(photosTemplate, times(0)).deletePhoto(photoId1, groupId1);
     }
 
-
     @Test
     public void testDumpAllWhenException() throws Exception {
         final String dumpFileLocation = "dumpFileLocation";
-        final String fileLocation = "fileLocation";
-        getTestData().get(0).setFileLocation(fileLocation);
+        final Resource fileResource = new ClassPathResource("location");
+        getTestData().get(0).setFileResource(fileResource);
         final String description = "description";
         getTestData().get(0).setDescription(description);
         final String uploadUrl = "uploadUrl";
         when(photosTemplate.getUploadServer(Mockito.eq(GROUPID1), Mockito.anyString())).thenReturn(uploadUrl);
         final UploadedPhoto uploadedPhoto = new UploadedPhoto();
-        when(photosTemplate.uploadPhoto(uploadUrl, "/photos/" + fileLocation)).thenReturn(uploadedPhoto);
+        when(photosTemplate.uploadPhoto(uploadUrl, fileResource)).thenReturn(uploadedPhoto);
         SavedPhoto savedPhoto = new SavedPhoto();
         final String ownerId = "ownerId";
         savedPhoto.setOwnerId(ownerId);
         final String photoId = "photoId";
         savedPhoto.setPhotoId(photoId);
         when(photosTemplate.savePhoto(uploadedPhoto, description)).thenReturn(savedPhoto);
-        when(photosTemplate.getUploadServer(Mockito.eq(GROUPID2), Mockito.anyString())).thenThrow(new RuntimeException());
+        when(photosTemplate.getUploadServer(Mockito.eq(GROUPID2), Mockito.anyString())).thenThrow(
+                new RuntimeException());
 
         try {
             photoManager.publish("csvResourcePath", dumpFileLocation, null);
             fail("should throw an exception before");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // as expected
         }
 
         verify(photoDataLogger).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
     }
-    
+
     @Test
     public void testNoDumpWhenDumpMapIsEmpty() throws Exception {
         final String dumpFileLocation = "dumpFileLocation";
-        when(photosTemplate.getUploadServer(Mockito.anyString(), Mockito.anyString())).thenThrow(new RuntimeException());
+        when(photosTemplate.getUploadServer(Mockito.anyString(), Mockito.anyString()))
+                .thenThrow(new RuntimeException());
 
         try {
             photoManager.publish("csvResourcePath", dumpFileLocation, null);
             fail("should throw an exception before");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // as expected
         }
 
         verify(photoDataLogger, times(0)).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
     }
-    
+
     @Test
     public void testSetToken() throws Exception {
         final String newToken = "975e29M";
         final String dumpFileLocation = "dumpFileLocation";
-        
+
         photoManager.publish("csvResourcePath", dumpFileLocation, newToken);
-        
+
         verify(photosTemplate).setToken(newToken);
     }
 }

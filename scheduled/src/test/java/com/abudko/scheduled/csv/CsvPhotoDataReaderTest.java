@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Before;
@@ -31,8 +32,8 @@ public class CsvPhotoDataReaderTest {
     }
     
     @Test
-    public void testReadFile() {
-        assertEquals("1.jpg", reader.read(FILE_LOCATION).get(0).getFileLocation());
+    public void testReadFile() throws IOException {
+        assertEquals("1.jpg", reader.read(FILE_LOCATION).get(0).getFileResource().getFile().getName());
     }
     
     @Test

@@ -7,15 +7,26 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ImageManipulator {
-    
-    public void storeImage(URL url, String outputFile) throws IOException {
-        BufferedImage image = ImageIO.read(url);
-        BufferedImage subimage = image.getSubimage(0, 0, image.getWidth(), image.getHeight() * 28 / 30);
-        File outputfile = new File(outputFile);
-        ImageIO.write(subimage, "jpg", outputfile);
-    }    
+
+    private Logger log = LoggerFactory.getLogger(getClass());
+
+    public void storeImage(String urlStr, String outputFile) {
+        try {
+            URL url = new URL(urlStr);
+            BufferedImage image = ImageIO.read(url);
+            BufferedImage subimage = image.getSubimage(0, 0, image.getWidth(), image.getHeight() * 28 / 30);
+            File outputfile = new File(outputFile);
+            ImageIO.write(subimage, "jpg", outputfile);
+        } catch (IOException e) {
+            String error = String.format("Exception while cropping image from url %s", urlStr);
+            log.error(error);
+            throw new RuntimeException(error, e);
+        }
+    }
 }

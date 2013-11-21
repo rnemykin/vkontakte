@@ -39,7 +39,7 @@ public class CsvPhotoDataReader implements PhotoDataReader {
 
                 photoData.setGroupId(groupId);
                 photoData.setAlbumId(csvReader.get("albumId"));
-                photoData.setFileLocation(csvReader.get("file"));
+                photoData.setFileResource(new ClassPathResource("/photos/" + csvReader.get("file")));
                 photoData.setDescription(csvReader.get("description"));
 
                 photoDataList.add(photoData);
