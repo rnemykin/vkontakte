@@ -1,12 +1,14 @@
 package com.abudko.scheduled.csv;
 
+import org.springframework.core.io.Resource;
+
 public class PhotoData {
 
     private String groupId;
 
     private String albumId;
 
-    private String fileLocation;
+    private Resource fileLocationResource;
 
     private String description;
 
@@ -28,12 +30,12 @@ public class PhotoData {
         this.albumId = albumId;
     }
 
-    public String getFileLocation() {
-        return fileLocation;
+    public Resource getFileResource() {
+        return fileLocationResource;
     }
 
-    public void setFileLocation(String fileLocation) {
-        this.fileLocation = fileLocation;
+    public void setFileResource(Resource fileLocationResource) {
+        this.fileLocationResource = fileLocationResource;
     }
 
     public String getDescription() {
@@ -54,8 +56,8 @@ public class PhotoData {
 
     @Override
     public String toString() {
-        return "PhotoData [groupId=" + groupId + ", albumId=" + albumId + ", fileLocation=" + fileLocation
-                + ", description=" + description + ", photoId=" + photoId + "]";
+        return "PhotoData [groupId=" + groupId + ", albumId=" + albumId + ", fileLocationResource="
+                + fileLocationResource.toString() + ", description=" + description + ", photoId=" + photoId + "]";
     }
 
     @Override
@@ -64,7 +66,7 @@ public class PhotoData {
         int result = 1;
         result = prime * result + ((albumId == null) ? 0 : albumId.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
-        result = prime * result + ((fileLocation == null) ? 0 : fileLocation.hashCode());
+        result = prime * result + ((fileLocationResource == null) ? 0 : fileLocationResource.hashCode());
         result = prime * result + ((groupId == null) ? 0 : groupId.hashCode());
         result = prime * result + ((photoId == null) ? 0 : photoId.hashCode());
         return result;
@@ -89,10 +91,10 @@ public class PhotoData {
                 return false;
         } else if (!description.equals(other.description))
             return false;
-        if (fileLocation == null) {
-            if (other.fileLocation != null)
+        if (fileLocationResource == null) {
+            if (other.fileLocationResource != null)
                 return false;
-        } else if (!fileLocation.equals(other.fileLocation))
+        } else if (!fileLocationResource.equals(other.fileLocationResource))
             return false;
         if (groupId == null) {
             if (other.groupId != null)

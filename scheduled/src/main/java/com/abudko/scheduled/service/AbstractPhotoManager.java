@@ -18,7 +18,7 @@ import com.abudko.scheduled.vkontakte.SavedPhoto;
 import com.abudko.scheduled.vkontakte.UploadedPhoto;
 
 public abstract class AbstractPhotoManager implements PhotoManager {
-    
+
     int sleepInterval = 1000;
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
@@ -37,9 +37,9 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         if (token != null) {
             photosTemplate.setToken(token);
         }
-        
+
         deleteAll(dumpFileLocation);
-        
+
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
         try {
             publishAll(csvResourcePath, photoIdGroupIdMap);
@@ -52,8 +52,9 @@ public abstract class AbstractPhotoManager implements PhotoManager {
             }
         }
     }
-    
-    protected void publishAll(String csvResourcePath, Map<String, String> photoIdGroupIdMap) throws InterruptedException {
+
+    protected void publishAll(String csvResourcePath, Map<String, String> photoIdGroupIdMap)
+            throws InterruptedException {
         List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
 
         for (PhotoData photoData : photoDataList) {
@@ -97,7 +98,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
         log.info(String.format("Got upload URL '%s'", uploadUrl));
 
-        UploadedPhoto uploadedPhoto = photosTemplate.uploadPhoto(uploadUrl, "/photos/" + photoData.getFileLocation());
+        UploadedPhoto uploadedPhoto = photosTemplate.uploadPhoto(uploadUrl, photoData.getFileResource());
 
         log.info(String.format("Got uploadedPhoto '%s'", uploadedPhoto));
 

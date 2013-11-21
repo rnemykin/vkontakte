@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -46,9 +46,9 @@ public class PhotosTemplate implements PhotosOperations {
         return response.get("response").get("upload_url").asText();
     }
 
-    public UploadedPhoto uploadPhoto(String url, String photoFileLocation) {
+    public UploadedPhoto uploadPhoto(String url, Resource photoFileResource) {
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<String, Object>();
-        params.add("file1", new ClassPathResource(photoFileLocation));
+        params.add("file1", photoFileResource);
 
         UploadedPhoto uploadedPhoto = restTemplate.postForObject(url, params, UploadedPhoto.class);
 
