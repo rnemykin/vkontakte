@@ -43,6 +43,10 @@
 				<bean class="org.springframework.http.converter.FormHttpMessageConverter" />
 				<bean
 					class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.feed.AtomFeedHttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.feed.RssChannelHttpMessageConverter" />
 				<ref bean="jsonConverter" />
 			</list>
 		</property>

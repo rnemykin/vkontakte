@@ -1,6 +1,8 @@
 package com.abudko.scheduled.jobs.huuto;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.List;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.abudko.reseller.huuto.image.ImageManipulator;
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
 import com.abudko.reseller.huuto.query.mapper.ParamMapper;
 import com.abudko.reseller.huuto.query.params.SearchParams;
@@ -47,6 +50,9 @@ public class PublishScheduler implements Scheduler {
     
     @Value("#{scheduledProperties['huuto.comment']}")
     private String commentTemplate;
+    
+    @Autowired
+    private ImageManipulator imageManipulator;
 
     public void schedule() {
         log.info("********* Start scheduled scanning *******");
@@ -94,17 +100,29 @@ public class PublishScheduler implements Scheduler {
     }
     
     private PhotoData convert(ListResponse listResponse) {
-        PhotoData photoData = new PhotoData();
-        //photoData.setDescription(description)
-        
         ItemResponse itemResponse = listResponse.getItemResponse();
         String newPrice = itemResponse.getNewPrice();
         String id = itemResponse.getId();
         String brand = listResponse.getBrand();
         String size = listResponse.getSize();
         
-        String comment = MessageFormat.format(commentTemplate, brand, size, newPrice, id);
-        log.info(comment);
+        final String outputFile = "temp.jpg";
+        URL url = null;
+        try {
+            url = new URL(itemResponse.getImgBaseSrc()+"-orig.jpg");
+            imageManipulator.storeImage(url, outputFile);
+        } catch (IOException e) {
+            String error = String.format("Exception while cropping image from url %s", url.toString());
+            log.error(error);
+            throw new RuntimeException(error, e);
+        }
+
+        String description = MessageFormat.format(commentTemplate, brand, size, newPrice, id);
+        PhotoData photoData = new PhotoData();
+        photoData.setGroupId("60966965");
+        photoData.setAlbumId("182291496");
+        photoData.setDescription(description);
+        photoData.setFileLocation(outputFile);
         
         return photoData;
     }

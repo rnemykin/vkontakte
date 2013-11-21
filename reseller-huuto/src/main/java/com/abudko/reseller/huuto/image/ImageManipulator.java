@@ -7,6 +7,9 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ImageManipulator {
     
     public void storeImage(URL url, String outputFile) throws IOException {
@@ -14,10 +17,5 @@ public class ImageManipulator {
         BufferedImage subimage = image.getSubimage(0, 0, image.getWidth(), image.getHeight() * 28 / 30);
         File outputfile = new File(outputFile);
         ImageIO.write(subimage, "jpg", outputfile);
-    }
-    
-    public void cropImage() {
-        
-    }
-
+    }    
 }
