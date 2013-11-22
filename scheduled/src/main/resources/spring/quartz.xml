@@ -48,7 +48,7 @@
       			<ref bean="hourIntervalTrigger"/>
       			<ref bean="dayIntervalTrigger"/>
       			<ref bean="randomlySelectedTrigger"/>
-      			<ref bean="publishTrigger"/>
+      			<!-- <ref bean="publishTrigger"/> -->
       			<!-- <ref bean="cleanTrigger"/> -->
       			<ref bean="warmTrigger"/>
             </list>
