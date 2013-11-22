@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.abudko.scheduled.jobs.csv.DayIntervalScheduler;
 import com.abudko.scheduled.jobs.csv.HourIntervalScheduler;
+import com.abudko.scheduled.jobs.csv.RandomlySelectedScheduler;
 
 @Component
 public class ScheduledMbean {
@@ -16,6 +17,9 @@ public class ScheduledMbean {
     @Autowired
     private DayIntervalScheduler dayIntervalScheduler;
 
+    @Autowired
+    private RandomlySelectedScheduler randomlySelectedScheduler;
+
     @ManagedOperation
     public void startHourJob() {
         hourIntervalScheduler.schedule();
@@ -24,5 +28,10 @@ public class ScheduledMbean {
     @ManagedOperation
     public void startDayJob() {
         dayIntervalScheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startRandomJob() {
+        randomlySelectedScheduler.schedule();
     }
 }
