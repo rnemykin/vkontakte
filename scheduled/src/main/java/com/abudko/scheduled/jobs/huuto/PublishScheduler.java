@@ -108,9 +108,9 @@ public class PublishScheduler implements Scheduler {
         String brand = listResponse.getBrand();
         String size = listResponse.getSize();
 
-        final String outputFile = "temp.jpg";
         String url = itemResponse.getImgBaseSrc() + "-orig.jpg";
-        imageManipulator.storeImage(url, outputFile);
+        log.info(String.format("Croping image from %s and storing in %s", url, imageTempFileLocation));
+        imageManipulator.storeImage(url, imageTempFileLocation);
 
         String description = MessageFormat.format(commentTemplate, brand, size, newPrice, id);
         PhotoData photoData = new PhotoData();

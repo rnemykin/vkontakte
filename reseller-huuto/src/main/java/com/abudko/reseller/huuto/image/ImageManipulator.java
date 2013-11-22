@@ -21,7 +21,8 @@ public class ImageManipulator {
             URL url = new URL(urlStr);
             BufferedImage image = ImageIO.read(url);
             BufferedImage subimage = image.getSubimage(0, 0, image.getWidth(), image.getHeight() * 28 / 30);
-            File outputfile = new File(outputFile);
+            URL output = new URL(outputFile);
+            File outputfile = new File(output.getFile());
             ImageIO.write(subimage, "jpg", outputfile);
         } catch (IOException e) {
             String error = String.format("Exception while cropping image from url %s", urlStr);
