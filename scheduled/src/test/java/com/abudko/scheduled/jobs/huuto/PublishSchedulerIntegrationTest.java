@@ -18,6 +18,5 @@ public abstract class PublishSchedulerIntegrationTest {
     @Test
     public void testPublish() throws IOException {
        publishScheduler.schedule();
-        //assertNotNull(new FileSystemResource("/glassfish3/glassfish/domains/domain1/lib/ext/scheduled/temp.jpg").getInputStream());
     }
 }

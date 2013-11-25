@@ -34,11 +34,11 @@ public class PublishScheduler implements Scheduler {
     private ParamMapper searchParamMapper;
 
     @Autowired
-    @Qualifier("atomParamBuilder")
+    @Qualifier("csvParamBuilder")
     private ParamBuilder paramBuilder;
 
     @Autowired
-    @Qualifier("atomQueryListServiceImpl")
+    @Qualifier("htmlQueryListServiceImpl")
     private QueryListService queryListService;
 
     @Autowired
@@ -68,6 +68,8 @@ public class PublishScheduler implements Scheduler {
             List<SearchParams> searchParamsList = searchParamMapper.getSearchParams();
 
             for (SearchParams searchParams : searchParamsList) {
+                applySearchParamsRules(searchParams);
+                
                 String query = getQuery(searchParams);
 
                 log.info(String.format("Quering search: %s", query));
@@ -84,6 +86,10 @@ public class PublishScheduler implements Scheduler {
             log.error("Exception happened during scheduled scan: ", e);
             throw new RuntimeException(e);
         }
+    }
+    
+    private void applySearchParamsRules(SearchParams searchParams) {
+        searchParams.setBrand("NO_BRAND");
     }
 
     private String getQuery(SearchParams searchParams) throws IllegalAccessException, InvocationTargetException,
@@ -103,7 +109,7 @@ public class PublishScheduler implements Scheduler {
         for (ListResponse queryResponse : queryResponses) {
             log.info(String.format("Publishing query response: %s", queryResponse.toString()));
 
-            PhotoData photoData = convert(queryResponses.iterator().next());
+            PhotoData photoData = convert(queryResponse);
             photoManager.publishPhoto(photoData);
         }
     }
