@@ -1,15 +1,17 @@
 package com.abudko.scheduled.jobs.huuto;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
-import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 
 import com.abudko.reseller.huuto.image.ImageManipulator;
@@ -50,6 +52,9 @@ public class PublishScheduler implements Scheduler {
     @Value("#{scheduledProperties['huuto.comment']}")
     private String commentTemplate;
 
+    @Autowired
+    protected ApplicationContext context;
+
     @Value("#{scheduledProperties['imageTempFile']}")
     private String imageTempFileLocation;
 
@@ -77,6 +82,7 @@ public class PublishScheduler implements Scheduler {
 
         } catch (Exception e) {
             log.error("Exception happened during scheduled scan: ", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -92,16 +98,17 @@ public class PublishScheduler implements Scheduler {
         }
     }
 
-    private void publishResults(Collection<ListResponse> queryResponses) throws InterruptedException {
+    private void publishResults(Collection<ListResponse> queryResponses) throws InterruptedException,
+            UnsupportedEncodingException {
         for (ListResponse queryResponse : queryResponses) {
             log.info(String.format("Publishing query response: %s", queryResponse.toString()));
 
-            PhotoData photoData = convert(queryResponse);
+            PhotoData photoData = convert(queryResponses.iterator().next());
             photoManager.publishPhoto(photoData);
         }
     }
 
-    private PhotoData convert(ListResponse listResponse) {
+    private PhotoData convert(ListResponse listResponse) throws UnsupportedEncodingException {
         ItemResponse itemResponse = listResponse.getItemResponse();
         String newPrice = itemResponse.getNewPrice();
         String id = itemResponse.getId();
@@ -110,13 +117,15 @@ public class PublishScheduler implements Scheduler {
 
         String url = itemResponse.getImgBaseSrc() + "-orig.jpg";
         log.info(String.format("Croping image from %s and storing in %s", url, imageTempFileLocation));
-        imageManipulator.storeImage(url, imageTempFileLocation);
+        imageManipulator.storeImage(url, "file:" + imageTempFileLocation);
 
-        String description = MessageFormat.format(commentTemplate, brand, size, newPrice, id);
+        String description = context.getMessage("huuto.comment", new Object[] { brand, size, newPrice, id },
+                Locale.getDefault());
+
         PhotoData photoData = new PhotoData();
         photoData.setGroupId("60966965");
         photoData.setAlbumId("182291496");
-        photoData.setDescription(description);
+        photoData.setDescription(new String(description.getBytes("UTF-8")));
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
 
         return photoData;

@@ -19,5 +19,17 @@
 		<property name="location" value="classpath:/token2.properties" />
 		<property name="singleton" value="true"/>
 	</bean>
+	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:/properties/message</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="useCodeAsDefaultMessage" value="true"/>
+    	<property name="fallbackToSystemLocale" value="false"/>
+	</bean>
 
 </beans>
