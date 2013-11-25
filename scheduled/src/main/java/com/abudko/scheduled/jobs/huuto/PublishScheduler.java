@@ -131,7 +131,7 @@ public class PublishScheduler implements Scheduler {
         PhotoData photoData = new PhotoData();
         photoData.setGroupId("60966965");
         photoData.setAlbumId("182291496");
-        photoData.setDescription(new String(description.getBytes("UTF-8")));
+        photoData.setDescription(description);
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
 
         return photoData;
