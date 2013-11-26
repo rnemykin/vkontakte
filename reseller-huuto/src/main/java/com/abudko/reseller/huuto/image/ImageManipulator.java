@@ -17,6 +17,8 @@ public class ImageManipulator {
     private Logger log = LoggerFactory.getLogger(getClass());
 
     public void storeImage(String urlStr, String outputFile) {
+        log.info(String.format("Croping image from %s and storing in %s", urlStr, outputFile));
+
         try {
             URL url = new URL(urlStr);
             BufferedImage image = ImageIO.read(url);
