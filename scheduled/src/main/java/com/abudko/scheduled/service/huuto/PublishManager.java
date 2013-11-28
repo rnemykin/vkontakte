@@ -14,6 +14,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.image.ImageManipulator;
+import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.abudko.scheduled.csv.PhotoData;
@@ -42,17 +43,17 @@ public class PublishManager {
     @Autowired
     private AlbumMapper albumMapper;
 
-    public void publishResults(Collection<ListResponse> queryResponses) throws InterruptedException,
+    public void publishResults(String category, Collection<ListResponse> queryResponses) throws InterruptedException,
             UnsupportedEncodingException {
         for (ListResponse queryResponse : queryResponses) {
             log.info(String.format("Publishing query response: %s", queryResponse.toString()));
 
-            PhotoData photoData = convert(queryResponse);
+            PhotoData photoData = convert(category, queryResponse);
             photoManager.publishPhoto(photoData);
         }
     }
 
-    private PhotoData convert(ListResponse listResponse) throws UnsupportedEncodingException {
+    private PhotoData convert(String category, ListResponse listResponse) throws UnsupportedEncodingException {
         ItemResponse itemResponse = listResponse.getItemResponse();
         String newPrice = itemResponse.getNewPrice();
         String id = itemResponse.getId();
@@ -67,7 +68,7 @@ public class PublishManager {
 
         PhotoData photoData = new PhotoData();
         photoData.setGroupId(AlbumMapper.GROUP_ID);
-        photoData.setAlbumId(albumMapper.getAlbumId("category", Integer.valueOf(size)));
+        photoData.setAlbumId(albumMapper.getAlbumId(category, Integer.valueOf(size)));
         photoData.setDescription(description);
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
 

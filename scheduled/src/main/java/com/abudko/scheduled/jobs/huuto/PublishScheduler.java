@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
+import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.mapper.ParamMapper;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
@@ -57,7 +58,7 @@ public class PublishScheduler implements Scheduler {
                 Collection<ListResponse> queryListResponses = queryListService.search(query, searchParams);
                 extractItemResponse(queryListResponses);
 
-                publishManager.publishResults(queryListResponses);
+                publishManager.publishResults(Category.getCategoryFromValue(searchParams.getWords()).name(), queryListResponses);
             }
 
             log.info("********* End scheduled scanning *******");

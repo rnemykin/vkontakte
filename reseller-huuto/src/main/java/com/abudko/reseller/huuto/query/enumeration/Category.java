@@ -46,4 +46,15 @@ public enum Category {
     public String[] getId() {
         return this.id;
     }
+    
+    public static Category getCategoryFromValue(String value) {
+        Category[] categories = Category.values();
+        for (Category category : categories) {
+            if (category.getValue().equals(value)) {
+                return category;
+            }
+        }
+
+        return null;
+    }
 }
