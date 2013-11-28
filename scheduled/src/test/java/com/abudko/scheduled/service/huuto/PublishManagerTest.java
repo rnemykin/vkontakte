@@ -2,11 +2,14 @@ package com.abudko.scheduled.service.huuto;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 import org.hamcrest.Matchers;
@@ -43,6 +46,37 @@ public class PublishManagerTest {
     @Before
     public void setup() {
         setField(publishManager, "imageTempFileLocation", "imageTempFileLocation");
+    }
+    
+    @Test
+    public void testPublish() throws Exception {
+        ListResponse listResponse1 = new ListResponse();
+        listResponse1.setItemResponse(new ItemResponse());
+        ListResponse listResponse2 = new ListResponse();
+        listResponse2.setItemResponse(new ItemResponse());
+        ListResponse listResponse3 = new ListResponse();
+        listResponse3.setItemResponse(new ItemResponse());
+        List<ListResponse> list = Arrays.asList(listResponse1, listResponse2, listResponse3);
+        
+        publishManager.publishResults(list);
+        
+        verify(photoManager, times(3)).publishPhoto(Mockito.any(PhotoData.class));
+    }
+    
+    @Test
+    public void testCropImage() throws Exception {
+        ListResponse listResponse = new ListResponse();
+        ItemResponse item = new ItemResponse();
+        final String imgBaseSrc = "imgBaseSrc";
+        item.setImgBaseSrc(imgBaseSrc);
+        listResponse.setItemResponse(item);
+        List<ListResponse> list = Arrays.asList(listResponse);
+        final String location = "gjyug";
+        setField(publishManager, "imageTempFileLocation", location);
+        
+        publishManager.publishResults(list);
+        
+        verify(imageManipulator).storeImage(imgBaseSrc + "-orig.jpg", "file:" + location);
     }
 
     @Test
@@ -116,5 +150,40 @@ public class PublishManagerTest {
         verify(photoManager).publishPhoto(
                 Mockito.argThat(Matchers.<PhotoData> hasProperty("description", containsString(newPrice))));
     }
-
+    
+    @Test
+    public void testGroupId() throws Exception {
+        ListResponse listResponse = new ListResponse();
+        ItemResponse itemResponse = new ItemResponse();
+        listResponse.setItemResponse(itemResponse);
+        
+        publishManager.publishResults(Arrays.asList(listResponse));
+        
+        verify(photoManager).publishPhoto(
+                Mockito.argThat(Matchers.<PhotoData> hasProperty("groupId", notNullValue())));
+    }
+    
+    @Test
+    public void testAlbumId() throws Exception {
+        ListResponse listResponse = new ListResponse();
+        ItemResponse itemResponse = new ItemResponse();
+        listResponse.setItemResponse(itemResponse);
+        
+        publishManager.publishResults(Arrays.asList(listResponse));
+        
+        verify(photoManager).publishPhoto(
+                Mockito.argThat(Matchers.<PhotoData> hasProperty("albumId", notNullValue())));
+    }
+    
+    @Test
+    public void testFileLocationResource() throws Exception {
+        ListResponse listResponse = new ListResponse();
+        ItemResponse itemResponse = new ItemResponse();
+        listResponse.setItemResponse(itemResponse);
+        
+        publishManager.publishResults(Arrays.asList(listResponse));
+        
+        verify(photoManager).publishPhoto(
+                Mockito.argThat(Matchers.<PhotoData> hasProperty("fileResource", notNullValue())));
+    }
 }

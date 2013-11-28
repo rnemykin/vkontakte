@@ -38,6 +38,9 @@ public class PublishManager {
     
     @Autowired
     private ImageManipulator imageManipulator;
+    
+    @Autowired
+    private AlbumMapper albumMapper;
 
     public void publishResults(Collection<ListResponse> queryResponses) throws InterruptedException,
             UnsupportedEncodingException {
@@ -63,8 +66,8 @@ public class PublishManager {
                 Locale.getDefault());
 
         PhotoData photoData = new PhotoData();
-        photoData.setGroupId("60966965");
-        photoData.setAlbumId("182291496");
+        photoData.setGroupId(AlbumMapper.GROUP_ID);
+        photoData.setAlbumId(albumMapper.getAlbumId("category", Integer.valueOf(size)));
         photoData.setDescription(description);
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
 
