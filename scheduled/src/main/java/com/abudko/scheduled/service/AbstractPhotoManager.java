@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.abudko.scheduled.csv.PhotoData;
 import com.abudko.scheduled.csv.PhotoDataLogger;
 import com.abudko.scheduled.csv.PhotoDataReader;
+import com.abudko.scheduled.vkontakte.Photo;
 import com.abudko.scheduled.vkontakte.PhotosTemplate;
 import com.abudko.scheduled.vkontakte.SavedPhoto;
 import com.abudko.scheduled.vkontakte.UploadedPhoto;
@@ -107,6 +108,15 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         SavedPhoto savedPhoto = photosTemplate.savePhoto(uploadedPhoto, photoData.getDescription());
 
         return savedPhoto;
+    }
+
+    @Override
+    public List<Photo> getPhotos(String ownerId, String albumId) {
+        log.info(String.format("Querying for photos descriptions, groupid '%s', albumid '%s'", ownerId, albumId));
+        
+        List<Photo> photos = photosTemplate.getPhotos(getOwnerId(ownerId), albumId);
+        
+        return photos;
     }
 
     protected String getOwnerId(String id) {

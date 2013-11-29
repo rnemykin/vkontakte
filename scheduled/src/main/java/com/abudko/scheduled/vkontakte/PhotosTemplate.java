@@ -1,6 +1,7 @@
 package com.abudko.scheduled.vkontakte;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -141,5 +142,23 @@ public class PhotosTemplate implements PhotosOperations {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @Override
+    public List<Photo> getPhotos(String ownerId, String albumId) {
+        Properties props = new Properties();
+
+        props.put("owner_id", ownerId);
+        props.put("album_id", albumId);
+
+        URI uri = makeOperationURL("photos.get", props);
+
+        JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
+
+        log.info(String.format("photos.get, response '%s'", response));
+        
+        JsonNode jsonNode = response.get("items");
+
+        return null;
     }
 }

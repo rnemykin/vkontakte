@@ -1,5 +1,7 @@
 package com.abudko.scheduled.vkontakte;
 
+import java.util.List;
+
 import org.springframework.core.io.Resource;
 
 public interface PhotosOperations {
@@ -13,4 +15,6 @@ public interface PhotosOperations {
     String deletePhoto(String photoId, String ownerId);
     
     int getCommentsCount(String photoId, String ownerId);
+    
+    List<Photo> getPhotos(String ownerId, String albumId);
 }
