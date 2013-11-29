@@ -2,7 +2,6 @@ package com.abudko.scheduled.vkontakte;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -65,11 +64,11 @@ public class PhotosTemplate implements PhotosOperations {
         props.put("server", uploadedPhoto.getServer());
         props.put("photos_list", uploadedPhoto.getPhotos_list());
         props.put("hash", uploadedPhoto.getHash());
-        
+
         if (uploadedPhoto.getGid() != null) {
             props.put("gid", uploadedPhoto.getGid());
         }
-        
+
         props.put("caption", description);
 
         URI uri = makeOperationURL("photos.save", props);
@@ -80,11 +79,11 @@ public class PhotosTemplate implements PhotosOperations {
 
         String photoId = response.get("response").get(0).get("pid").asText();
         String ownerId = response.get("response").get(0).get("owner_id").asText();
-        
+
         SavedPhoto savedPhoto = new SavedPhoto();
         savedPhoto.setPhotoId(photoId);
         savedPhoto.setOwnerId(ownerId);
-        
+
         return savedPhoto;
     }
 
@@ -124,20 +123,20 @@ public class PhotosTemplate implements PhotosOperations {
         JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
 
         log.info(String.format("photos.getComments, response '%s'", response));
-        
+
         response = response.get("response");
 
         if (response == null) {
             return 0;
         }
-        
+
         if (response.get(0) != null) {
             return response.get(0).asInt();
         }
-        
+
         return response.asInt();
     }
-    
+
     public String getToken() {
         return token;
     }
@@ -158,16 +157,18 @@ public class PhotosTemplate implements PhotosOperations {
         JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
 
         log.info(String.format("photos.get, response '%s'", response));
-        
+
         response = response.get("response");
-        
+
         List<Photo> photos = new ArrayList<Photo>();
-        for (JsonNode jsonNode : response) {
-            Photo photo = new Photo();
-            photo.setDescription(jsonNode.get("text").getTextValue());
-            photos.add(photo);
+        if (response != null) {
+            for (JsonNode jsonNode : response) {
+                Photo photo = new Photo();
+                photo.setDescription(jsonNode.get("text").getTextValue());
+                photos.add(photo);
+            }
         }
-        
+
         return photos;
     }
 }
