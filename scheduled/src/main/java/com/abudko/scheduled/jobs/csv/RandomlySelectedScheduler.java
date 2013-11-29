@@ -27,12 +27,12 @@ public class RandomlySelectedScheduler implements Scheduler {
     private String customToken;
 
     public void schedule() {
-        log.info("********* Start scheduled scanning *******");
+        log.info("********* Start RandomlySelectedScheduler *******");
         try {
 
             photoManager.publish(csvResourcePath, dumpFileLocation, customToken);
             
-            log.info("********* End scheduled scanning *******");
+            log.info("********* End RandomlySelectedScheduler *******");
 
         } catch (Exception e) {
             log.error("Exception happened during scheduled scan: ", e);

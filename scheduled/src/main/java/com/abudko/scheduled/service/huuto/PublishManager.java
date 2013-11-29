@@ -2,6 +2,7 @@ package com.abudko.scheduled.service.huuto;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -14,34 +15,37 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.image.ImageManipulator;
-import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.abudko.scheduled.csv.PhotoData;
 import com.abudko.scheduled.service.PhotoManager;
+import com.abudko.scheduled.vkontakte.Photo;
 
 @Component
 public class PublishManager {
-    
+
     private static final String COMMENT_KEY = "huuto.comment";
-    
+
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     @Qualifier("groupPhotoManager")
     private PhotoManager photoManager;
-    
+
     @Autowired
     protected ApplicationContext context;
 
     @Value("#{scheduledProperties['imageTempFile']}")
     private String imageTempFileLocation;
-    
+
     @Autowired
     private ImageManipulator imageManipulator;
-    
+
     @Autowired
     private AlbumMapper albumMapper;
+
+    @Autowired
+    private PublishManagerUtils publishManagerUtils;
 
     public void publishResults(String category, Collection<ListResponse> queryResponses) throws InterruptedException,
             UnsupportedEncodingException {
@@ -49,7 +53,13 @@ public class PublishManager {
             log.info(String.format("Publishing query response: %s", queryResponse.toString()));
 
             PhotoData photoData = convert(category, queryResponse);
-            photoManager.publishPhoto(photoData);
+
+            String id = queryResponse.getItemResponse().getId();
+            if (isPhotoPublished(id, photoData) == false) {
+                photoManager.publishPhoto(photoData);
+            } else {
+                log.info(String.format("Photo with id '%s' aleady published", id));
+            }
         }
     }
 
@@ -73,5 +83,17 @@ public class PublishManager {
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
 
         return photoData;
+    }
+
+    private boolean isPhotoPublished(String id, PhotoData photoData) {
+        List<Photo> photos = photoManager.getPhotos(photoData.getGroupId(), photoData.getAlbumId());
+        for (Photo photo : photos) {
+            String description = photo.getDescription();
+            if (id.equals(publishManagerUtils.getId(description))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

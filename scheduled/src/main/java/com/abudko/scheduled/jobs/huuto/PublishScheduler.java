@@ -50,7 +50,7 @@ public class PublishScheduler implements Scheduler {
 
             for (SearchParams searchParams : searchParamsList) {
                 applySearchParamsRules(searchParams);
-                
+
                 String query = getQuery(searchParams);
 
                 log.info(String.format("Quering search: %s", query));
@@ -58,7 +58,8 @@ public class PublishScheduler implements Scheduler {
                 Collection<ListResponse> queryListResponses = queryListService.search(query, searchParams);
                 extractItemResponse(queryListResponses);
 
-                publishManager.publishResults(Category.getCategoryFromValue(searchParams.getWords()).name(), queryListResponses);
+                publishManager.publishResults(Category.getCategoryFromValue(searchParams.getWords()).name(),
+                        queryListResponses);
             }
 
             log.info("********* End scheduled scanning *******");
@@ -68,7 +69,7 @@ public class PublishScheduler implements Scheduler {
             throw new RuntimeException(e);
         }
     }
-    
+
     private void applySearchParamsRules(SearchParams searchParams) {
         searchParams.setBrand("NO_BRAND");
     }

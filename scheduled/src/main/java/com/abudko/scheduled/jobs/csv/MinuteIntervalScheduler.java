@@ -11,12 +11,12 @@ public class MinuteIntervalScheduler implements Scheduler {
     
 
     public void schedule() {
-        log.info("********* Start scheduled scanning *******");
+        log.info("********* Start MinuteIntervalScheduler *******");
         try {
 
             // TODO
             
-            log.info("********* End scheduled scanning *******");
+            log.info("********* End MinuteIntervalScheduler *******");
 
         } catch (Exception e) {
             log.error("Exception happened during scheduled scan: ", e);

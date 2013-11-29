@@ -1,6 +1,8 @@
 package com.abudko.scheduled.vkontakte;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -157,8 +159,15 @@ public class PhotosTemplate implements PhotosOperations {
 
         log.info(String.format("photos.get, response '%s'", response));
         
-        JsonNode jsonNode = response.get("items");
-
-        return null;
+        response = response.get("response");
+        
+        List<Photo> photos = new ArrayList<Photo>();
+        for (JsonNode jsonNode : response) {
+            Photo photo = new Photo();
+            photo.setDescription(jsonNode.get("text").getTextValue());
+            photos.add(photo);
+        }
+        
+        return photos;
     }
 }

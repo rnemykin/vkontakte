@@ -24,12 +24,12 @@ public class RandomlySelectedSchedulerLimit implements Scheduler {
     private String dumpFileLocation;
     
     public void schedule() {
-        log.info("********* Start scheduled scanning *******");
+        log.info("********* Start RandomlySelectedSchedulerLimit *******");
         try {
 
             photoManager.publish(csvResourcePath, dumpFileLocation, null);
             
-            log.info("********* End scheduled scanning *******");
+            log.info("********* End RandomlySelectedSchedulerLimit *******");
 
         } catch (Exception e) {
             log.error("Exception happened during scheduled scan: ", e);
