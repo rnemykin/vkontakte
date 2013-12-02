@@ -28,5 +28,7 @@ public enum Headers {
 	
 	status,
 	
-	zipcode;
+	zipcode,
+	
+	categoryenum;
 }

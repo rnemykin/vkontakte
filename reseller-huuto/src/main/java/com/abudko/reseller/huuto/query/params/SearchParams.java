@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.Pattern;
 
+import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.validation.ValidationConstants;
 
 public class SearchParams implements Serializable {
@@ -16,6 +17,8 @@ public class SearchParams implements Serializable {
     private String biddernro;
 
     private String category;
+    
+    private String categoryenum;
 
     /**
      * condition: 0 - all, 1 - uusi, 2 - hyvä, 3 - etc
@@ -77,9 +80,17 @@ public class SearchParams implements Serializable {
     public String getCategory() {
         return category;
     }
-
+    
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getCategoryenum() {
+        return categoryenum;
+    }
+
+    public void setCategoryenum(String categoryenum) {
+        this.categoryenum = categoryenum;
     }
 
     public String getClassification() {
@@ -204,10 +215,11 @@ public class SearchParams implements Serializable {
 
     @Override
     public String toString() {
-        return "SearchParams [biddernro=" + biddernro + ", category=" + category + ", classification=" + classification
-                + ", closingtime=" + closingtime + ", addtime=" + addtime + ", words=" + words + ", location="
-                + location + ", price_max=" + price_max + ", price_min=" + price_min + ", sizeMin=" + sizeMin
-                + ", sizeMax=" + sizeMax + ", sellernro=" + sellernro + ", seller_type=" + seller_type + ", sellstyle="
-                + sellstyle + ", status=" + status + ", zipcode=" + zipcode + ", brand=" + brand + "]";
+        return "SearchParams [biddernro=" + biddernro + ", category=" + category + ", categoryenum=" + categoryenum
+                + ", classification=" + classification + ", closingtime=" + closingtime + ", addtime=" + addtime
+                + ", words=" + words + ", location=" + location + ", price_max=" + price_max + ", price_min="
+                + price_min + ", sizeMin=" + sizeMin + ", sizeMax=" + sizeMax + ", sellernro=" + sellernro
+                + ", seller_type=" + seller_type + ", sellstyle=" + sellstyle + ", status=" + status + ", zipcode="
+                + zipcode + ", brand=" + brand + "]";
     }
 }

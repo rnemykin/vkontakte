@@ -1,6 +1,7 @@
 package com.abudko.reseller.huuto.query.enumeration;
 
 
+
 public enum Category {
 
     TALVIHAALARI("talvihaalari%20OR%20toppahaalari", "Зим. комбинезоны", null),
@@ -45,16 +46,5 @@ public enum Category {
 
     public String[] getId() {
         return this.id;
-    }
-    
-    public static Category getCategoryFromValue(String value) {
-        Category[] categories = Category.values();
-        for (Category category : categories) {
-            if (category.getValue().equals(value)) {
-                return category;
-            }
-        }
-
-        return null;
     }
 }

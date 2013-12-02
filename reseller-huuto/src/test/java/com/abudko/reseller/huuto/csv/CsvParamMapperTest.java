@@ -58,6 +58,13 @@ public class CsvParamMapperTest {
     }
 
     @Test
+    public void testGetSearchParamsCategoryEnum() throws IOException {
+        SearchParams queryParams = queryParamMapper.getSearchParams().get(0);
+        
+        assertEquals("TALVIHAALARI", queryParams.getCategoryenum());
+    }
+
+    @Test
     public void testGetSearchParamsClassification() throws IOException {
         SearchParams queryParams = queryParamMapper.getSearchParams().get(0);
 
