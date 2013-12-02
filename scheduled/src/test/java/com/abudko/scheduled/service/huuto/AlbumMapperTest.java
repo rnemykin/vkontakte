@@ -39,22 +39,22 @@ public class AlbumMapperTest {
     
     @Test
     public void testLowerBorderVäli1() {
-        assertEquals(AlbumMapper.VÄLI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHAALARI.name(), 68));
+        assertEquals(AlbumMapper.VALI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHAALARI.name(), 68));
     }
     
     @Test
     public void testInsideVäli1() {
-        assertEquals(AlbumMapper.VÄLI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHAALARI.name(), 75));
+        assertEquals(AlbumMapper.VALI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHAALARI.name(), 75));
     }
     
     @Test
     public void testLowerBorderVäli2() {
-        assertEquals(AlbumMapper.VÄLI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHOUSUT.name(), 68));
+        assertEquals(AlbumMapper.VALI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHOUSUT.name(), 68));
     }
     
     @Test
     public void testInsideVäli2() {
-        assertEquals(AlbumMapper.VÄLI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHOUSUT.name(), 75));
+        assertEquals(AlbumMapper.VALI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHOUSUT.name(), 75));
     }
     
     @Test
