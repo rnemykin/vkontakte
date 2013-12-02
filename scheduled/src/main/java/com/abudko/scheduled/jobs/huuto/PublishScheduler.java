@@ -43,7 +43,7 @@ public class PublishScheduler implements Scheduler {
     private PublishManager publishManager;
 
     public void schedule() {
-        log.info("********* Start scheduled scanning *******");
+        log.info("********* Start PublishScheduler *******");
         try {
 
             List<SearchParams> searchParamsList = searchParamMapper.getSearchParams();
@@ -62,7 +62,7 @@ public class PublishScheduler implements Scheduler {
                         queryListResponses);
             }
 
-            log.info("********* End scheduled scanning *******");
+            log.info("********* End PublishScheduler *******");
 
         } catch (Exception e) {
             log.error("Exception happened during scheduled scan: ", e);

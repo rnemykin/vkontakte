@@ -31,4 +31,9 @@ public class AlbumMapperTest {
     public void testUpperBorder() {
         assertFalse(AlbumMapper.TALVI_68_86.equals(albumMapper.getAlbumId(Category.TALVIHAALARI.name(), 98)));
     }
+    
+    @Test
+    public void testGetAlbums() {
+        assertEquals(3, albumMapper.getAlbumIds(Category.TALVIHAALARI.name()).size());
+    }
 }

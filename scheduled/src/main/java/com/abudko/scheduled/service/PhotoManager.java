@@ -13,5 +13,7 @@ public interface PhotoManager {
     SavedPhoto publishPhoto(PhotoData photoData) throws InterruptedException;
     
     List<Photo> getPhotos(String groupId, String albumId);
+    
+    void deletePhoto(String photoId, String groupId) throws InterruptedException;
 
 }

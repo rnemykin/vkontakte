@@ -1,5 +1,7 @@
 package com.abudko.scheduled.service.huuto;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,14 +16,14 @@ import com.google.common.collect.TreeRangeMap;
 
 @Component
 public class AlbumMapper {
-    
+
     public static final String GROUP_ID = "60966965";
     public static final String TALVI_68_86 = "182291496";
     public static final String TALVI_92_128 = "182269995";
     public static final String TALVI_134_164 = "182328502";
-    
+
     private Map<String, RangeMap<Integer, String>> map = new HashMap<String, RangeMap<Integer, String>>();
-    
+
     @PostConstruct
     public void init() {
         RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
@@ -30,12 +32,20 @@ public class AlbumMapper {
         rangeMap.put(Range.closed(134, 164), TALVI_134_164);
         map.put(Category.TALVIHAALARI.name(), rangeMap);
     }
-    
+
     public String getAlbumId(String category, Integer size) {
         RangeMap<Integer, String> rangeMap = map.get(category);
         if (rangeMap == null) {
             return null;
         }
         return rangeMap.get(size);
+    }
+
+    public Collection<String> getAlbumIds(String category) {
+        RangeMap<Integer, String> rangeMap = map.get(category);
+        if (rangeMap == null) {
+            return new ArrayList<String>();
+        }
+        return rangeMap.asMapOfRanges().values();
     }
 }

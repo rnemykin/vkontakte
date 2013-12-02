@@ -18,9 +18,11 @@ public class AtomXmlItemParser {
     private static final String PRICE = "buyNowPrice";
     private static final String LOCATION = "city";
     private static final String CONDITION = "condition";
+    private static final String STATUS = "itemStatus";
     private static final String IMG_SRC = "image-normal";
     private static final String IMG_SUFFIX = "-m.jpg";
 
+    @SuppressWarnings("unchecked")
     public ItemResponse parse(Feed atomXmlResponse) {
         ItemResponse response = new ItemResponse();
 
@@ -34,6 +36,9 @@ public class AtomXmlItemParser {
 
         String condition = parseCondition(foreignMarkup);
         response.setCondition(condition);
+
+        String itemStatus = parseItemStatus(foreignMarkup);
+        response.setItemStatus(itemStatus);
 
         String location = parseLocation(foreignMarkup);
         response.setLocation(location);
@@ -57,11 +62,23 @@ public class AtomXmlItemParser {
         return condition;
     }
 
+    private String parseItemStatus(List<Element> foreignMarkup) {
+        String itemStatus = "";
+        
+        for (Element e : foreignMarkup) {
+            if (STATUS.equals(e.getName())) {
+                itemStatus = e.getText();
+            }
+        }
+        
+        return itemStatus;
+    }
+
     private String parseLocation(List<Element> foreignMarkup) {
         String location = "";
 
         for (Element e : foreignMarkup) {
-            List content = e.getContent();
+            List<?> content = e.getContent();
             for (Object object2 : content) {
                 if (object2 instanceof Element) {
                     Element el = (Element) object2;
@@ -80,7 +97,7 @@ public class AtomXmlItemParser {
         String fullPrice = "";
 
         for (Element e : foreignMarkup) {
-            List content = e.getContent();
+            List<?> content = e.getContent();
             for (Object object2 : content) {
                 if (object2 instanceof Element) {
                     Element el = (Element) object2;
@@ -97,7 +114,7 @@ public class AtomXmlItemParser {
 
     private String parseImgSrc(Feed atomXmlResponse) {
         String imgSrc = "";
-        List otherLinks = atomXmlResponse.getOtherLinks();
+        List<?> otherLinks = atomXmlResponse.getOtherLinks();
         for (Object object : otherLinks) {
             if (object instanceof Link) {
                 Link link = (Link) object;
@@ -115,7 +132,7 @@ public class AtomXmlItemParser {
     }
 
     private String parseSeller(Feed atomXmlResponse) {
-        List authors = atomXmlResponse.getAuthors();
+        List<?> authors = atomXmlResponse.getAuthors();
         if (authors.isEmpty() == false) {
             Person seller = (Person) atomXmlResponse.getAuthors().get(0);
             return seller.getName();

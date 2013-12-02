@@ -72,22 +72,24 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         Set<Entry<String, String>> entrySet = map.entrySet();
 
         for (Entry<String, String> entry : entrySet) {
-            String photoId = entry.getKey();
-            String groupId = entry.getValue();
+            deletePhoto(entry.getKey(), entry.getValue());
+        }
+    }
 
-            String ownerId = getOwnerId(groupId);
-            int comments = photosTemplate.getCommentsCount(photoId, ownerId);
+    @Override
+    public void deletePhoto(String photoId, String groupId) throws InterruptedException {
+        String ownerId = getOwnerId(groupId);
+        int comments = photosTemplate.getCommentsCount(photoId, ownerId);
 
-            log.info(String
-                    .format("Deleting a photo id['%s'],  group['%s'], comments '%d'", photoId, groupId, comments));
+        log.info(String
+                .format("Deleting a photo id['%s'],  group['%s'], comments '%d'", photoId, groupId, comments));
 
-            if (comments == 0) {
-                Thread.sleep(sleepInterval);
-                photosTemplate.deletePhoto(photoId, ownerId);
-            } else {
-                log.info(String.format("Can't delete a photo id['%s'],  group['%s'] because it has comments", photoId,
-                        groupId));
-            }
+        if (comments == 0) {
+            Thread.sleep(sleepInterval);
+            photosTemplate.deletePhoto(photoId, ownerId);
+        } else {
+            log.info(String.format("Can't delete a photo id['%s'],  group['%s'] because it has comments", photoId,
+                    groupId));
         }
     }
 

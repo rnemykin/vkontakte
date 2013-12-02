@@ -1,6 +1,5 @@
 package com.abudko.reseller.huuto.query.service.item;
 
-
 public class ItemResponse {
 
     private String id;
@@ -22,6 +21,8 @@ public class ItemResponse {
     private String seller;
 
     private ItemInfo itemInfo;
+
+    private String itemStatus;
 
     public String getId() {
         return id;
@@ -103,10 +104,18 @@ public class ItemResponse {
         this.itemInfo = itemInfo;
     }
 
+    public String getItemStatus() {
+        return this.itemStatus;
+    }
+    
+    public void setItemStatus(String itemStatus) {
+        this.itemStatus = itemStatus;
+    }
+
     @Override
     public String toString() {
         return "ItemResponse [id=" + id + ", location=" + location + ", hv=" + hv + ", condition=" + condition
                 + ", itemUrl=" + itemUrl + ", imgBaseSrc=" + imgBaseSrc + ", price=" + price + ", newPrice=" + newPrice
-                + ", seller=" + seller + ", itemInfo=" + itemInfo + "]";
+                + ", seller=" + seller + ", itemInfo=" + itemInfo + ", itemStatus=" + itemStatus + "]";
     }
 }
