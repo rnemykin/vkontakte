@@ -21,16 +21,29 @@ public class AlbumMapper {
     public static final String TALVI_68_86 = "182291496";
     public static final String TALVI_92_128 = "182269995";
     public static final String TALVI_134_164 = "182328502";
+    public static final String VÄLI_68_86 = "182291500";
+    public static final String VÄLI_92_128 = "182341579";
+    public static final String VÄLI_134_164 = "182341609";
 
     private Map<String, RangeMap<Integer, String>> map = new HashMap<String, RangeMap<Integer, String>>();
 
     @PostConstruct
     public void init() {
-        RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
-        rangeMap.put(Range.closed(68, 86), TALVI_68_86);
-        rangeMap.put(Range.closed(92, 128), TALVI_92_128);
-        rangeMap.put(Range.closed(134, 164), TALVI_134_164);
-        map.put(Category.TALVIHAALARI.name(), rangeMap);
+        RangeMap<Integer, String> rangeMapTalvi = TreeRangeMap.create();
+        rangeMapTalvi.put(Range.closed(68, 86), TALVI_68_86);
+        rangeMapTalvi.put(Range.closed(92, 128), TALVI_92_128);
+        rangeMapTalvi.put(Range.closed(134, 164), TALVI_134_164);
+        map.put(Category.TALVIHAALARI.name(), rangeMapTalvi);
+        map.put(Category.TALVITAKKI.name(), rangeMapTalvi);
+        map.put(Category.TALVIHOUSUT.name(), rangeMapTalvi);
+        
+        RangeMap<Integer, String> rangeMapVäli = TreeRangeMap.create();
+        rangeMapVäli.put(Range.closed(68, 86), VÄLI_68_86);
+        rangeMapVäli.put(Range.closed(92, 128), VÄLI_92_128);
+        rangeMapVäli.put(Range.closed(134, 164), VÄLI_134_164);
+        map.put(Category.VALIKAUSIHAALARI.name(), rangeMapVäli);
+        map.put(Category.VALIKAUSITAKKI.name(), rangeMapVäli);
+        map.put(Category.VALIKAUSIHOUSUT.name(), rangeMapVäli);
     }
 
     public String getAlbumId(String category, Integer size) {

@@ -114,7 +114,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
     @Override
     public List<Photo> getPhotos(String ownerId, String albumId) {
-        log.info(String.format("Querying for photos descriptions, groupid '%s', albumid '%s'", ownerId, albumId));
+        log.info(String.format("Getting photos: groupid '%s', albumid '%s'", ownerId, albumId));
         
         List<Photo> photos = photosTemplate.getPhotos(getOwnerId(ownerId), albumId);
         

@@ -52,7 +52,7 @@
       			<ref bean="randomlySelectedTrigger"/>
       			<ref bean="randomlySelectedTriggerLimit"/>
       			<ref bean="publishTrigger"/>
-      			<!-- <ref bean="cleanTrigger"/> -->
+      			<ref bean="cleanTrigger"/>
       			<ref bean="warmTrigger"/>
             </list>
         </property>

@@ -44,6 +44,7 @@ public class CleanScheduler implements Scheduler {
                 Collection<String> albumIds = albumMapper.getAlbumIds(category.name());
                 for (String albumId : albumIds) {
                     List<Photo> photos = photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId);
+                    Thread.sleep(1000);
                     for (Photo photo : photos) {
                         String id = publishManagerUtils.getId(photo.getDescription());
 
@@ -51,6 +52,7 @@ public class CleanScheduler implements Scheduler {
                             log.info(String.format("Photo ['%s'] is not valid", photo.getDescription()));
                             
                             photoManager.deletePhoto(photo.getPhotoId(), AlbumMapper.GROUP_ID);
+                            Thread.sleep(1000);
                         }
                     }
                 }
@@ -59,7 +61,7 @@ public class CleanScheduler implements Scheduler {
             log.info("********* End CleanScheduler *******");
 
         } catch (Exception e) {
-            log.error("Exception happened during scheduled scan: ", e);
+            log.error("Exception happened during CleanScheduler: ", e);
             throw new RuntimeException(e);
         }
     }

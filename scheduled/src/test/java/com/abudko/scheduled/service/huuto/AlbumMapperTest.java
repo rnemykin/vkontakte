@@ -18,22 +18,52 @@ public class AlbumMapperTest {
     }
     
     @Test
-    public void testLowerBorder() {
+    public void testLowerBorderTalvi() {
         assertEquals(AlbumMapper.TALVI_68_86, albumMapper.getAlbumId(Category.TALVIHAALARI.name(), 68));
     }
     
     @Test
-    public void testInside() {
+    public void testInsideTalvi() {
         assertEquals(AlbumMapper.TALVI_68_86, albumMapper.getAlbumId(Category.TALVIHAALARI.name(), 75));
     }
     
     @Test
-    public void testUpperBorder() {
+    public void testUpperBorderTalvi() {
         assertFalse(AlbumMapper.TALVI_68_86.equals(albumMapper.getAlbumId(Category.TALVIHAALARI.name(), 98)));
     }
     
     @Test
-    public void testGetAlbums() {
+    public void testGetAlbumsTalvi() {
         assertEquals(3, albumMapper.getAlbumIds(Category.TALVIHAALARI.name()).size());
+    }
+    
+    @Test
+    public void testLowerBorderVäli1() {
+        assertEquals(AlbumMapper.VÄLI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHAALARI.name(), 68));
+    }
+    
+    @Test
+    public void testInsideVäli1() {
+        assertEquals(AlbumMapper.VÄLI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHAALARI.name(), 75));
+    }
+    
+    @Test
+    public void testLowerBorderVäli2() {
+        assertEquals(AlbumMapper.VÄLI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHOUSUT.name(), 68));
+    }
+    
+    @Test
+    public void testInsideVäli2() {
+        assertEquals(AlbumMapper.VÄLI_68_86, albumMapper.getAlbumId(Category.VALIKAUSIHOUSUT.name(), 75));
+    }
+    
+    @Test
+    public void testUpperBorderVäli() {
+        assertFalse(AlbumMapper.TALVI_68_86.equals(albumMapper.getAlbumId(Category.VALIKAUSIHOUSUT.name(), 98)));
+    }
+    
+    @Test
+    public void testGetAlbumsVäli() {
+        assertEquals(3, albumMapper.getAlbumIds(Category.VALIKAUSIHOUSUT.name()).size());
     }
 }

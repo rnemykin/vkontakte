@@ -58,14 +58,18 @@ public class PublishScheduler implements Scheduler {
                 Collection<ListResponse> queryListResponses = queryListService.search(query, searchParams);
                 extractItemResponse(queryListResponses);
 
-                publishManager.publishResults(Category.getCategoryFromValue(searchParams.getWords()).name(),
-                        queryListResponses);
+                Category category = Category.valueOf(searchParams.getCategoryenum());
+                if (category != null) {
+                    publishManager.publishResults(category.name(), queryListResponses);
+                } else {
+                    log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
+                }
             }
 
             log.info("********* End PublishScheduler *******");
 
         } catch (Exception e) {
-            log.error("Exception happened during scheduled scan: ", e);
+            log.error("Exception happened during PublishScheduler: ", e);
             throw new RuntimeException(e);
         }
     }
