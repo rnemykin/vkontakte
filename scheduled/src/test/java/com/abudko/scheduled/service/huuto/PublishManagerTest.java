@@ -150,7 +150,7 @@ public class PublishManagerTest {
         listResponse.setSize("90");
         ItemResponse itemResponse = new ItemResponse();
         final String newPrice = "100";
-        listResponse.setNewPrice(newPrice);
+        itemResponse.setNewPrice(newPrice);
         listResponse.setItemResponse(itemResponse);
         when(
                 context.getMessage(Mockito.anyString(),

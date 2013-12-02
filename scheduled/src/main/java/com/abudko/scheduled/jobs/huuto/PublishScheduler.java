@@ -13,6 +13,7 @@ import com.abudko.reseller.huuto.query.builder.ParamBuilder;
 import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.mapper.ParamMapper;
 import com.abudko.reseller.huuto.query.params.SearchParams;
+import com.abudko.reseller.huuto.query.rules.SearchQueryRules;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
@@ -38,6 +39,10 @@ public class PublishScheduler implements Scheduler {
     @Autowired
     @Qualifier("atomQueryItemServiceImpl")
     private QueryItemService atomQueryItemService;
+    
+    @Autowired
+    @Qualifier("htmlSearchQueryRules")
+    private SearchQueryRules searchQueryRules;
 
     @Autowired
     private PublishManager publishManager;
@@ -76,6 +81,7 @@ public class PublishScheduler implements Scheduler {
 
     private void applySearchParamsRules(SearchParams searchParams) {
         searchParams.setBrand("NO_BRAND");
+        searchQueryRules.apply(searchParams);
     }
 
     private String getQuery(SearchParams searchParams) throws IllegalAccessException, InvocationTargetException,

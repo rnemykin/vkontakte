@@ -65,7 +65,7 @@ public class PublishManager {
 
     private PhotoData convert(String category, ListResponse listResponse) throws UnsupportedEncodingException {
         ItemResponse itemResponse = listResponse.getItemResponse();
-        String newPrice = listResponse.getNewPrice();
+        String newPrice = itemResponse.getNewPrice();
         String id = itemResponse.getId();
         String brand = listResponse.getBrand();
         String size = listResponse.getSize();
