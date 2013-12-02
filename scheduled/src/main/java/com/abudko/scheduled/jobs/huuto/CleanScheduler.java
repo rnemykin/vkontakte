@@ -54,6 +54,9 @@ public class CleanScheduler implements Scheduler {
                             photoManager.deletePhoto(photo.getPhotoId(), AlbumMapper.GROUP_ID);
                             Thread.sleep(1000);
                         }
+                        else {
+                            log.info(String.format("Photo is VALID: '%s'", photo.getDescription()));
+                        }
                     }
                 }
             }
