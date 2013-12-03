@@ -15,6 +15,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.image.ImageManipulator;
+import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.abudko.scheduled.csv.PhotoData;
@@ -47,7 +48,7 @@ public class PublishManager {
     @Autowired
     private PublishManagerUtils publishManagerUtils;
 
-    public void publishResults(String category, Collection<ListResponse> queryResponses) throws InterruptedException,
+    public void publishResults(Category category, Collection<ListResponse> queryResponses) throws InterruptedException,
             UnsupportedEncodingException {
         for (ListResponse queryResponse : queryResponses) {
             log.info(String.format("Publishing query response: %s", queryResponse.toString()));
@@ -63,26 +64,36 @@ public class PublishManager {
         }
     }
 
-    private PhotoData convert(String category, ListResponse listResponse) throws UnsupportedEncodingException {
-        ItemResponse itemResponse = listResponse.getItemResponse();
-        String newPrice = itemResponse.getNewPrice();
-        String id = itemResponse.getId();
-        String brand = listResponse.getBrand();
-        String size = listResponse.getSize();
-
-        String url = itemResponse.getImgBaseSrc() + "-orig.jpg";
-        imageManipulator.storeImage(url, "file:" + imageTempFileLocation);
-
-        String description = context.getMessage(COMMENT_KEY, new Object[] { brand, size, newPrice, id },
-                Locale.getDefault());
+    private PhotoData convert(Category category, ListResponse listResponse) throws UnsupportedEncodingException {
+        cropImage(listResponse);
 
         PhotoData photoData = new PhotoData();
         photoData.setGroupId(AlbumMapper.GROUP_ID);
-        photoData.setAlbumId(albumMapper.getAlbumId(category, Integer.valueOf(size)));
-        photoData.setDescription(description);
+        photoData.setAlbumId(albumMapper.getAlbumId(category.name(), Integer.valueOf(listResponse.getSize())));
+        photoData.setDescription(getDescription(category, listResponse));
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
 
         return photoData;
+    }
+    
+    private void cropImage(ListResponse listResponse) {
+        ItemResponse itemResponse = listResponse.getItemResponse();
+        String url = itemResponse.getImgBaseSrc() + "-orig.jpg";
+        imageManipulator.storeImage(url, "file:" + imageTempFileLocation);
+    }
+    
+    private String getDescription(Category category, ListResponse listResponse) {
+        ItemResponse itemResponse = listResponse.getItemResponse();
+        String newPrice = itemResponse.getNewPrice();
+        String id = itemResponse.getId();
+        String size = listResponse.getSize();
+        String brand = listResponse.getBrand();
+        String title = category.getLabel();
+        
+        String description = context.getMessage(COMMENT_KEY, new Object[] { title, brand, size, newPrice, id },
+                Locale.getDefault());
+        
+        return description;
     }
 
     private boolean isPhotoPublished(String id, PhotoData photoData) {

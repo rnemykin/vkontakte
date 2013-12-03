@@ -65,7 +65,7 @@ public class PublishScheduler implements Scheduler {
 
                 Category category = Category.valueOf(searchParams.getCategoryenum());
                 if (category != null) {
-                    publishManager.publishResults(category.name(), queryListResponses);
+                    publishManager.publishResults(category, queryListResponses);
                 } else {
                     log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
                 }

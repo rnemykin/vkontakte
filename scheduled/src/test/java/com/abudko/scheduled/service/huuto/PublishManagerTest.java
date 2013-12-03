@@ -1,5 +1,6 @@
 package com.abudko.scheduled.service.huuto;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -40,7 +41,7 @@ public class PublishManagerTest {
 
     @Mock
     private ImageManipulator imageManipulator;
-    
+
     @Mock
     private AlbumMapper albumMapper;
 
@@ -52,7 +53,7 @@ public class PublishManagerTest {
         setField(publishManager, "imageTempFileLocation", "imageTempFileLocation");
         when(albumMapper.getAlbumId(Mockito.anyString(), Mockito.any(Integer.class))).thenReturn("23876523");
     }
-    
+
     @Test
     public void testPublish() throws Exception {
         ListResponse listResponse1 = new ListResponse();
@@ -65,12 +66,12 @@ public class PublishManagerTest {
         listResponse3.setSize("90");
         listResponse3.setItemResponse(new ItemResponse());
         List<ListResponse> list = Arrays.asList(listResponse1, listResponse2, listResponse3);
-        
-        publishManager.publishResults(Category.TALVIHAALARI.name(), list);
-        
+
+        publishManager.publishResults(Category.TALVIHAALARI, list);
+
         verify(photoManager, times(3)).publishPhoto(Mockito.any(PhotoData.class));
     }
-    
+
     @Test
     public void testCropImage() throws Exception {
         ListResponse listResponse = new ListResponse();
@@ -82,9 +83,9 @@ public class PublishManagerTest {
         List<ListResponse> list = Arrays.asList(listResponse);
         final String location = "gjyug";
         setField(publishManager, "imageTempFileLocation", location);
-        
-        publishManager.publishResults(Category.TALVIHAALARI.name(), list);
-        
+
+        publishManager.publishResults(Category.TALVIHAALARI, list);
+
         verify(imageManipulator).storeImage(imgBaseSrc + "-orig.jpg", "file:" + location);
     }
 
@@ -101,7 +102,7 @@ public class PublishManagerTest {
                         Mockito.argThat(Matchers.<Object> hasItemInArray(is((Object) id))), Mockito.any(Locale.class)))
                 .thenReturn(id);
 
-        publishManager.publishResults(Category.TALVIHAALARI.name(), Arrays.asList(listResponse));
+        publishManager.publishResults(Category.TALVIHAALARI, asList(listResponse));
 
         verify(photoManager).publishPhoto(
                 Mockito.argThat(Matchers.<PhotoData> hasProperty("description", containsString(id))));
@@ -119,7 +120,7 @@ public class PublishManagerTest {
                         Mockito.argThat(Matchers.<Object> hasItemInArray(is((Object) size))), Mockito.any(Locale.class)))
                 .thenReturn(size);
 
-        publishManager.publishResults(Category.TALVIHAALARI.name(), Arrays.asList(listResponse));
+        publishManager.publishResults(Category.TALVIHAALARI, asList(listResponse));
 
         verify(photoManager).publishPhoto(
                 Mockito.argThat(Matchers.<PhotoData> hasProperty("description", containsString(size))));
@@ -138,12 +139,12 @@ public class PublishManagerTest {
                         Mockito.argThat(Matchers.<Object> hasItemInArray(is((Object) brand))),
                         Mockito.any(Locale.class))).thenReturn(brand);
 
-        publishManager.publishResults(Category.TALVIHAALARI.name(), Arrays.asList(listResponse));
+        publishManager.publishResults(Category.TALVIHAALARI, asList(listResponse));
 
         verify(photoManager).publishPhoto(
                 Mockito.argThat(Matchers.<PhotoData> hasProperty("description", containsString(brand))));
     }
-    
+
     @Test
     public void testDescriptionNewPrice() throws Exception {
         ListResponse listResponse = new ListResponse();
@@ -156,48 +157,46 @@ public class PublishManagerTest {
                 context.getMessage(Mockito.anyString(),
                         Mockito.argThat(Matchers.<Object> hasItemInArray(is((Object) newPrice))),
                         Mockito.any(Locale.class))).thenReturn(newPrice);
-        
-        publishManager.publishResults(Category.TALVIHAALARI.name(), Arrays.asList(listResponse));
-        
+
+        publishManager.publishResults(Category.TALVIHAALARI, asList(listResponse));
+
         verify(photoManager).publishPhoto(
                 Mockito.argThat(Matchers.<PhotoData> hasProperty("description", containsString(newPrice))));
     }
-    
+
     @Test
     public void testGroupId() throws Exception {
         ListResponse listResponse = new ListResponse();
         listResponse.setSize("90");
         ItemResponse itemResponse = new ItemResponse();
         listResponse.setItemResponse(itemResponse);
-        
-        publishManager.publishResults(Category.TALVIHAALARI.name(), Arrays.asList(listResponse));
-        
-        verify(photoManager).publishPhoto(
-                Mockito.argThat(Matchers.<PhotoData> hasProperty("groupId", notNullValue())));
+
+        publishManager.publishResults(Category.TALVIHAALARI, asList(listResponse));
+
+        verify(photoManager).publishPhoto(Mockito.argThat(Matchers.<PhotoData> hasProperty("groupId", notNullValue())));
     }
-    
+
     @Test
     public void testAlbumId() throws Exception {
         ListResponse listResponse = new ListResponse();
         listResponse.setSize("90");
         ItemResponse itemResponse = new ItemResponse();
         listResponse.setItemResponse(itemResponse);
-        
-        publishManager.publishResults(Category.TALVIHAALARI.name(), Arrays.asList(listResponse));
-        
-        verify(photoManager).publishPhoto(
-                Mockito.argThat(Matchers.<PhotoData> hasProperty("albumId", notNullValue())));
+
+        publishManager.publishResults(Category.TALVIHAALARI, asList(listResponse));
+
+        verify(photoManager).publishPhoto(Mockito.argThat(Matchers.<PhotoData> hasProperty("albumId", notNullValue())));
     }
-    
+
     @Test
     public void testFileLocationResource() throws Exception {
         ListResponse listResponse = new ListResponse();
         listResponse.setSize("90");
         ItemResponse itemResponse = new ItemResponse();
         listResponse.setItemResponse(itemResponse);
-        
-        publishManager.publishResults(Category.TALVIHAALARI.name(), Arrays.asList(listResponse));
-        
+
+        publishManager.publishResults(Category.TALVIHAALARI, asList(listResponse));
+
         verify(photoManager).publishPhoto(
                 Mockito.argThat(Matchers.<PhotoData> hasProperty("fileResource", notNullValue())));
     }

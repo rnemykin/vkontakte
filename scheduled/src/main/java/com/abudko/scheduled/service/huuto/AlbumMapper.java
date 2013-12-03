@@ -28,6 +28,8 @@ public class AlbumMapper {
     public static final String TALVIKENGAT_28_37 = "183417638";
     public static final String VALILENKKARIT_20_27 = "183417888";
     public static final String VALILENKKARIT_28_37 = "183417910";
+    public static final String VILLA_68_92 = "183428281";
+    public static final String VILLA_98_128 = "183430684";
 
     private Map<String, RangeMap<Integer, String>> map = new HashMap<String, RangeMap<Integer, String>>();
 
@@ -37,6 +39,7 @@ public class AlbumMapper {
         setupVali();
         setupTalviKengat();
         setupValiKengat();
+        setupVillaFleece();
     }
     
     private void setupTalvi() {
@@ -72,6 +75,13 @@ public class AlbumMapper {
         rangeMap.put(Range.closed(28, 37), VALILENKKARIT_28_37);
         map.put(Category.VALIKAUSIKENGAT.name(), rangeMap);
         map.put(Category.LENKKARIT.name(), rangeMap);
+    }
+
+    private void setupVillaFleece() {
+        RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
+        rangeMap.put(Range.closed(68, 92), VILLA_68_92);
+        rangeMap.put(Range.closed(98, 128), VILLA_98_128);
+        map.put(Category.VILLAHAALARI.name(), rangeMap);
     }
 
     public String getAlbumId(String category, Integer size) {
