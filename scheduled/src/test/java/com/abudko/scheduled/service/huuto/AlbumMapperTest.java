@@ -66,4 +66,14 @@ public class AlbumMapperTest {
     public void testGetAlbumsVäli() {
         assertEquals(3, albumMapper.getAlbumIds(Category.VALIKAUSIHOUSUT.name()).size());
     }
+    
+    @Test
+    public void testGetAlbumsLenkkarit() {
+        assertEquals(2, albumMapper.getAlbumIds(Category.LENKKARIT.name()).size());
+    }
+    
+    @Test
+    public void testInsideLenkkarit() {
+        assertEquals(AlbumMapper.VALILENKKARIT_20_27, albumMapper.getAlbumId(Category.LENKKARIT.name(), 26));
+    }
 }
