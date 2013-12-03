@@ -22,6 +22,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.ApplicationContext;
+import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.util.ReflectionUtils;
 
 import com.abudko.reseller.huuto.image.ImageManipulator;
 import com.abudko.reseller.huuto.query.enumeration.Category;
@@ -186,6 +188,19 @@ public class PublishManagerTest {
         publishManager.publishResults(Category.TALVIHAALARI, asList(listResponse));
 
         verify(photoManager).publishPhoto(Mockito.argThat(Matchers.<PhotoData> hasProperty("albumId", notNullValue())));
+    }
+    
+    @Test
+    public void testAlbumIdNull() throws Exception {
+        ReflectionTestUtils.setField(publishManager, "albumMapper", new AlbumMapper());
+        ListResponse listResponse = new ListResponse();
+        listResponse.setSize("90");
+        ItemResponse itemResponse = new ItemResponse();
+        listResponse.setItemResponse(itemResponse);
+        
+        publishManager.publishResults(Category.TALVIHAALARI, asList(listResponse));
+        
+        verify(photoManager, times(0)).publishPhoto(Mockito.any(PhotoData.class));
     }
 
     @Test

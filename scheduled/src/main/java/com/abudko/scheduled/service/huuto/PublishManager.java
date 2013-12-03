@@ -54,6 +54,10 @@ public class PublishManager {
             log.info(String.format("Publishing query response: %s", queryResponse.toString()));
 
             PhotoData photoData = convert(category, queryResponse);
+            if (photoData.getAlbumId() == null) {
+                log.warn(String.format("Unable to extract albumid for '%s' for category '%s'", queryResponse, category.name()));
+                continue;
+            }
 
             String id = queryResponse.getItemResponse().getId();
             if (isPhotoPublished(id, photoData) == false) {
