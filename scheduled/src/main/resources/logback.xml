@@ -39,15 +39,34 @@
 
     </appender>
     
-    <appender name="scheduled-huuto" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${com.sun.aas.instanceRoot}/logs/huuto-job.log</file>
+    <appender name="scheduled-huuto-publish" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${com.sun.aas.instanceRoot}/logs/publish-huuto-job.log</file>
 		
         <encoder>
             <pattern>%d{dd.MM.yyyy HH:mm:ss,SSS} [%thread] %p [%c] - %m %n</pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>${com.sun.aas.instanceRoot}/logs/huuto-job.%i.log</fileNamePattern>
+            <fileNamePattern>${com.sun.aas.instanceRoot}/logs/publish-huuto-job.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>5</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50MB</maxFileSize>
+        </triggeringPolicy>
+
+    </appender>
+
+    <appender name="scheduled-huuto-clean" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${com.sun.aas.instanceRoot}/logs/clean-huuto-job.log</file>
+		
+        <encoder>
+            <pattern>%d{dd.MM.yyyy HH:mm:ss,SSS} [%thread] %p [%c] - %m %n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${com.sun.aas.instanceRoot}/logs/clean-huuto-job.%i.log</fileNamePattern>
             <minIndex>1</minIndex>
             <maxIndex>5</maxIndex>
         </rollingPolicy>
@@ -89,8 +108,12 @@
         <appender-ref ref="scheduled-warm"/>
     </logger>
     
-    <logger name="com.abudko.scheduled.jobs.huuto" level="info" additivity="false">
-        <appender-ref ref="scheduled-huuto"/>
+    <logger name="com.abudko.scheduled.jobs.huuto.PublishScheduler" level="info" additivity="false">
+        <appender-ref ref="scheduled-huuto-publish"/>
+    </logger>
+    
+    <logger name="com.abudko.scheduled.jobs.huuto.CleanScheduler" level="info" additivity="false">
+        <appender-ref ref="scheduled-huuto-clean"/>
     </logger>
     
     <logger name="com.abudko.reseller.huuto" level="info" additivity="false">
