@@ -172,4 +172,28 @@ public class PhotosTemplate implements PhotosOperations {
 
         return photos;
     }
+
+    @Override
+    public List<String> getAlbumIds(String ownerId) {
+        Properties props = new Properties();
+
+        props.put("owner_id", ownerId);
+
+        URI uri = makeOperationURL("photos.getAlbums", props);
+
+        JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
+
+        log.info(String.format("photos.getAlbums, response '%s'", response));
+
+        response = response.get("response");
+
+        List<String> albumIds = new ArrayList<String>();
+        if (response != null) {
+            for (JsonNode jsonNode : response) {
+                albumIds.add(jsonNode.get("aid").asText());
+            }
+        }
+
+        return albumIds;
+    }
 }

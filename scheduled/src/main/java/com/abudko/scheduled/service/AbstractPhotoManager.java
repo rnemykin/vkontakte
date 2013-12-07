@@ -121,6 +121,15 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         return photos;
     }
 
+    @Override
+    public List<String> getAlbumIds(String groupId) {
+        log.info(String.format("Getting albums: groupid '%s'", groupId));
+        
+        List<String> albumIds = photosTemplate.getAlbumIds(getOwnerId(groupId));
+        
+        return albumIds;
+    }
+
     protected String getOwnerId(String id) {
         if (id.charAt(0) == '-') {
             return id;

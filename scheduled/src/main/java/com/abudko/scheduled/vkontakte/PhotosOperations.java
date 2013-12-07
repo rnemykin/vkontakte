@@ -17,4 +17,6 @@ public interface PhotosOperations {
     int getCommentsCount(String photoId, String ownerId);
     
     List<Photo> getPhotos(String ownerId, String albumId);
+    
+    List<String> getAlbumIds(String ownerId);
 }

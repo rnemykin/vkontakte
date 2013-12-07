@@ -1,6 +1,5 @@
 package com.abudko.scheduled.jobs.huuto;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.scheduled.jobs.Scheduler;
@@ -38,25 +36,22 @@ public class CleanScheduler implements Scheduler {
     public void schedule() {
         log.info("********* Start CleanScheduler *******");
         try {
+            List<String> albumIds = photoManager.getAlbumIds(AlbumMapper.GROUP_ID);
+            for (String albumId : albumIds) {
+                List<Photo> photos = photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId);
+                Thread.sleep(1000);
+                for (Photo photo : photos) {
+                    String id = publishManagerUtils.getId(photo.getDescription());
 
-            Category[] categories = Category.values();
-            for (Category category : categories) {
-                Collection<String> albumIds = albumMapper.getAlbumIds(category.name());
-                for (String albumId : albumIds) {
-                    List<Photo> photos = photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId);
-                    Thread.sleep(1000);
-                    for (Photo photo : photos) {
-                        String id = publishManagerUtils.getId(photo.getDescription());
+                    if (isValid(id) == false) {
+                        String info = String.format("Photo ['%s'] is not valid", photo.getDescription());
+                        log.info(info);
 
-                        if (isValid(id) == false) {
-                            log.info(String.format("Photo ['%s'] is not valid", photo.getDescription()));
-                            
-                            photoManager.deletePhoto(photo.getPhotoId(), AlbumMapper.GROUP_ID);
-                            Thread.sleep(1000);
-                        }
-                        else {
-                            log.info(String.format("Photo is VALID: '%s'", photo.getDescription()));
-                        }
+                        photoManager.deletePhoto(photo.getPhotoId(), AlbumMapper.GROUP_ID);
+                        Thread.sleep(1000);
+                    } else {
+                        String info = String.format("Photo is VALID: '%s'", photo.getDescription());
+                        log.info(info);
                     }
                 }
             }
