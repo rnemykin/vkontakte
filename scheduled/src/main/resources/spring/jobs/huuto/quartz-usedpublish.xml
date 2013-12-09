@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<bean id="usedCsvParamMapper"
+		class="com.abudko.reseller.huuto.query.mapper.csv.CsvParamMapper">
+		<constructor-arg value="classpath:/csv/huuto/used-query.csv" />
+	</bean>
+	
+	<bean id="usedPublishScheduler" class="com.abudko.scheduled.jobs.huuto.UsedPublishScheduler"/>
+
+	<bean name="usedPublishJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="name" value="usedPublishJob"/>
+        <property name="jobClass" value="com.abudko.scheduled.jobs.huuto.UsedPublishJob"/>
+    </bean>
+
+	<bean id="usedPublishTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="usedPublishJob"/>
+        <property name="cronExpression" value="0 0/30 * * * ?"/>
+    </bean>
+    
+</beans>

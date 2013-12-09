@@ -48,7 +48,7 @@ public class PublishManagerTest {
     private AlbumMapper albumMapper;
 
     @InjectMocks
-    private PublishManager publishManager = new PublishManager();
+    private PublishManager publishManager = new PublishManagerImpl();
 
     @Before
     public void setup() {

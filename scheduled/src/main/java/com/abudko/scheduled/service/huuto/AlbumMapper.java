@@ -18,6 +18,7 @@ import com.google.common.collect.TreeRangeMap;
 public class AlbumMapper {
 
     public static final String GROUP_ID = "60966965";
+    public static final String USED_ALBUM_ID = "183693243";
     public static final String TALVI_68_86 = "182291496";
     public static final String TALVI_92_128 = "182269995";
     public static final String TALVI_134_164 = "182328502";

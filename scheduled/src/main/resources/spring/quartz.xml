@@ -10,6 +10,7 @@
     <import resource="jobs/csv/quartz-randomly.xml"/>
     <import resource="jobs/csv/quartz-randomly-limit.xml"/>
     <import resource="jobs/huuto/quartz-publish.xml"/>
+    <import resource="jobs/huuto/quartz-usedpublish.xml"/>
     <import resource="jobs/huuto/quartz-clean.xml"/>
     <import resource="jobs/warm/quartz-warm.xml"/>
     
@@ -25,6 +26,7 @@
    				<entry key="randomlySelectedScheduler" value-ref="randomlySelectedScheduler" />
    				<entry key="randomlySelectedSchedulerLimit" value-ref="randomlySelectedSchedulerLimit" />
    				<entry key="publishScheduler" value-ref="publishScheduler" />
+   				<entry key="usedPublishScheduler" value-ref="usedPublishScheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
    				<entry key="warmScheduler" value-ref="warmScheduler" />
    			</map>
@@ -52,6 +54,7 @@
       			<ref bean="randomlySelectedTrigger"/>
       			<ref bean="randomlySelectedTriggerLimit"/>
       			<ref bean="publishTrigger"/>
+      			<ref bean="usedPublishTrigger"/>
       			<ref bean="cleanTrigger"/>
       			<ref bean="warmTrigger"/>
             </list>
