@@ -9,6 +9,7 @@ import com.abudko.scheduled.jobs.csv.HourIntervalScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedScheduler;
 import com.abudko.scheduled.jobs.huuto.CleanScheduler;
 import com.abudko.scheduled.jobs.huuto.PublishScheduler;
+import com.abudko.scheduled.jobs.huuto.UsedPublishScheduler;
 
 @Component
 public class ScheduledMbean {
@@ -24,6 +25,9 @@ public class ScheduledMbean {
     
     @Autowired
     private PublishScheduler publishScheduler;
+
+    @Autowired
+    private UsedPublishScheduler usedPublishScheduler;
     
     @Autowired
     private CleanScheduler cleanScheduler;
@@ -46,6 +50,11 @@ public class ScheduledMbean {
     @ManagedOperation
     public void startPublishJob() {
         publishScheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startUsedPublishJob() {
+        usedPublishScheduler.schedule();
     }
 
     @ManagedOperation

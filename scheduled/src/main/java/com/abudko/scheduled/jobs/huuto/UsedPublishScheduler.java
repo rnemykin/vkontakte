@@ -21,7 +21,7 @@ import com.abudko.scheduled.jobs.Scheduler;
 import com.abudko.scheduled.service.huuto.PublishManager;
 
 public class UsedPublishScheduler implements Scheduler {
-
+    
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -45,7 +45,7 @@ public class UsedPublishScheduler implements Scheduler {
     private PublishManager publishManager;
 
     public void schedule() {
-        log.info("********* Start PublishScheduler *******");
+        log.info("********* Start UsedPublishScheduler *******");
         try {
 
             List<SearchParams> searchParamsList = searchParamMapper.getSearchParams();
@@ -60,15 +60,10 @@ public class UsedPublishScheduler implements Scheduler {
                 Collection<ListResponse> queryListResponses = queryListService.search(query, searchParams);
                 extractItemResponse(queryListResponses);
 
-                Category category = Category.valueOf(searchParams.getCategoryenum());
-                if (category != null) {
-                    publishManager.publishResults(category, queryListResponses);
-                } else {
-                    log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
-                }
+                publishManager.publishResults(null, queryListResponses);
             }
 
-            log.info("********* End PublishScheduler *******");
+            log.info("********* End UsedPublishScheduler *******");
 
         } catch (Exception e) {
             log.error("Exception happened during PublishScheduler: ", e);

@@ -22,7 +22,7 @@ import com.abudko.scheduled.vkontakte.Photo;
 
 public abstract class AbstractPublishManager implements PublishManager {
 
-    private static final String COMMENT_KEY = "huuto.comment";
+    protected static final String COMMENT_KEY = "huuto.comment";
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
