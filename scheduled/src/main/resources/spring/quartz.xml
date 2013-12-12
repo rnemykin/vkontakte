@@ -13,6 +13,7 @@
     <import resource="jobs/huuto/quartz-usedpublish.xml"/>
     <import resource="jobs/huuto/quartz-clean.xml"/>
     <import resource="jobs/warm/quartz-warm.xml"/>
+    <import resource="jobs/huuto/quartz-pikalevo.xml"/>
     
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
    		<property name="jobFactory">
@@ -29,6 +30,7 @@
    				<entry key="usedPublishScheduler" value-ref="usedPublishScheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
    				<entry key="warmScheduler" value-ref="warmScheduler" />
+   				<entry key="pikalevoScheduler" value-ref="pikalevoScheduler" />
    			</map>
    		</property>
         <property name="quartzProperties">
@@ -57,6 +59,7 @@
       			<ref bean="usedPublishTrigger"/>
       			<ref bean="cleanTrigger"/>
       			<ref bean="warmTrigger"/>
+      			<ref bean="pikalevoTrigger"/>
             </list>
         </property>
     </bean>
