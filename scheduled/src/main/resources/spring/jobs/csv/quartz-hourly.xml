@@ -13,7 +13,7 @@
 
 	<bean id="hourIntervalTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="hourIntervalJob"/>
-        <property name="cronExpression" value="0 0 0/4 * * ?"/>
+        <property name="cronExpression" value="0 0 0/2 * * ?"/>
     </bean>
     
 </beans>
