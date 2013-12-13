@@ -32,8 +32,8 @@ public class CsvParamBuilder extends AbstractParamBuilder {
         result.put("addtime", params.getAddtime());
         result.put("seller_type", params.getSeller_type());
         result.put("sellernro", params.getSellernro());
-        result.put("price_min", params.getPrice_min());
-        result.put("price_max", params.getPrice_max());
+//        result.put("price_min", params.getPrice_min());
+//        result.put("price_max", params.getPrice_max());
         result.put("words", params.getWords());
         result.put("category", params.getCategory());
         return result;

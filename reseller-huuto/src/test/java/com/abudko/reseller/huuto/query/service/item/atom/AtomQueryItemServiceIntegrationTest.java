@@ -63,7 +63,7 @@ public class AtomQueryItemServiceIntegrationTest {
 
     @Test
     public void testItemResponseItemStatus() {
-        assertEquals("open", response.getItemStatus());
+        assertEquals("closed", response.getItemStatus());
     }
 
     @Test
