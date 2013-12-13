@@ -18,8 +18,6 @@ import com.google.common.collect.Multimaps;
 @Component
 public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager {
 
-    static final int RANDOM_PHOTO_COUNT = 5;
-
     @Override
     protected void publishAll(String csvResourcePath, Map<String, String> photoIdGroupIdMap) throws InterruptedException {
         List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
@@ -44,15 +42,19 @@ public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager {
         return ImmutableListMultimap.copyOf(groupIdToPhotos);
     }
 
-    protected List<PhotoData> getRandomPhotos(ImmutableList<PhotoData> list) {
+    private List<PhotoData> getRandomPhotos(ImmutableList<PhotoData> list) {
         List<PhotoData> randomList = new ArrayList<PhotoData>();
         List<PhotoData> l = new ArrayList<>(list);
         Collections.shuffle(l);
-        final int count = l.size();
+        final int count = l.size() > getRandomPhotoCount() ? getRandomPhotoCount() : l.size();
         for (int i = 0; i < count; i++) {
             randomList.add(l.get(i));
         }
         return randomList;
+    }
+    
+    protected int getRandomPhotoCount() {
+        return 30;
     }
 
     private enum GetPhotoIdFunction implements Function<PhotoData, String> {
