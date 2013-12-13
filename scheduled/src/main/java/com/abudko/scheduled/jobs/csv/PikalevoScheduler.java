@@ -14,7 +14,7 @@ public class PikalevoScheduler implements Scheduler {
     private Logger log = LoggerFactory.getLogger(getClass());
     
     @Autowired
-    @Qualifier("groupPhotoManager")
+    @Qualifier("allRandomSelectedGroupPhotoManager")
     private PhotoManager photoManager;
     
     @Value("#{scheduledProperties['pikalevoCsvFile']}")

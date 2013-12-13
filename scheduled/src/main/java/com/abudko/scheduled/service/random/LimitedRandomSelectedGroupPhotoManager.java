@@ -1,6 +1,7 @@
-package com.abudko.scheduled.service;
+package com.abudko.scheduled.service.random;
 
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class LimitedRandomSelectedGroupPhotoManager extends RandomSelectedGroupPhotoManager {

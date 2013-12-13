@@ -1,4 +1,4 @@
-package com.abudko.scheduled.service;
+package com.abudko.scheduled.service.random;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import com.abudko.scheduled.csv.PhotoData;
+import com.abudko.scheduled.service.AbstractPhotoManager;
 import com.abudko.scheduled.vkontakte.SavedPhoto;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;

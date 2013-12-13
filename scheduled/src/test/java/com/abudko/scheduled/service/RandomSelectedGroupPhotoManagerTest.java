@@ -16,6 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import com.abudko.scheduled.service.random.LimitedRandomSelectedGroupPhotoManager;
 import com.abudko.scheduled.vkontakte.SavedPhoto;
 import com.abudko.scheduled.vkontakte.UploadedPhoto;
 

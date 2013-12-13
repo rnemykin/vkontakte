@@ -9,11 +9,11 @@
     <import resource="jobs/csv/quartz-daily.xml"/>
     <import resource="jobs/csv/quartz-randomly.xml"/>
     <import resource="jobs/csv/quartz-randomly-limit.xml"/>
+    <import resource="jobs/csv/quartz-pikalevo.xml"/>
     <import resource="jobs/huuto/quartz-publish.xml"/>
     <import resource="jobs/huuto/quartz-usedpublish.xml"/>
     <import resource="jobs/huuto/quartz-clean.xml"/>
     <import resource="jobs/warm/quartz-warm.xml"/>
-    <import resource="jobs/huuto/quartz-pikalevo.xml"/>
     
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
    		<property name="jobFactory">
