@@ -17,6 +17,8 @@ public enum Category {
     VALIKAUSITAKKI("vÃ¤likausitakki", "Деми куртки", null),
     
     VILLAHAALARI("villahaalari%20OR%20fleecehaalari", "Поддевы", null),
+    
+    SADEHAALARI("sadehaalari%20OR%20kurahaalari%20OR%20sadehousut%20OR%20kurahousut%20OR%20sadetakki%20OR%20kuratakki", "Прорезиненная одежда", null),
 
     TALVIKENGAT("talvikengÃ¤t", "Зим. обувь", new String[] {"728","736"}),
     
