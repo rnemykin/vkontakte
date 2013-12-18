@@ -23,7 +23,6 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.util.ReflectionUtils;
 
 import com.abudko.reseller.huuto.image.ImageManipulator;
 import com.abudko.reseller.huuto.query.enumeration.Category;
@@ -88,7 +87,7 @@ public class PublishManagerTest {
 
         publishManager.publishResults(Category.TALVIHAALARI, list);
 
-        verify(imageManipulator).storeImage(imgBaseSrc + "-orig.jpg", "file:" + location);
+        verify(imageManipulator).storeImage(Mockito.eq(imgBaseSrc + "-orig.jpg"), Mockito.eq("file:" + location), Mockito.anyString());
     }
 
     @Test

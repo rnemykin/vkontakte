@@ -1,5 +1,6 @@
 package com.abudko.reseller.huuto.image;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,20 +17,36 @@ public class ImageManipulator {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
-    public void storeImage(String urlStr, String outputFile) {
-        log.info(String.format("Croping image from %s and storing in %s", urlStr, outputFile));
+    public void storeImage(String imageUrlStr, String outputFile, String addText) {
+        log.info(String.format("Croping image from %s and storing in %s", imageUrlStr, outputFile));
 
         try {
-            URL url = new URL(urlStr);
+            URL url = new URL(imageUrlStr);
             BufferedImage image = ImageIO.read(url);
-            BufferedImage subimage = image.getSubimage(0, 0, image.getWidth(), image.getHeight() * 28 / 30);
+            BufferedImage subimage = cropImage(image);
+            addTextToImage(subimage, addText);
             URL output = new URL(outputFile);
             File outputfile = new File(output.getFile());
             ImageIO.write(subimage, "jpg", outputfile);
         } catch (IOException e) {
-            String error = String.format("Exception while cropping image from url %s", urlStr);
+            String error = String.format("Exception while cropping image from url %s", imageUrlStr);
             log.error(error);
             throw new RuntimeException(error, e);
+        }
+    }
+
+    private BufferedImage cropImage(BufferedImage image) {
+        return image.getSubimage(0, 0, image.getWidth(), image.getHeight() * 28 / 30);
+    }
+
+    private void addTextToImage(BufferedImage image, String addText) {
+        if (addText != null) {
+            Graphics g = image.getGraphics();
+            g.setFont(g.getFont().deriveFont(15f));
+            final int x = 5;
+            final int y = image.getHeight() - 5;
+            g.drawString(addText, x, y);
+            g.dispose();
         }
     }
 }

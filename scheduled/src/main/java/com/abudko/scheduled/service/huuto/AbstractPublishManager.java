@@ -23,6 +23,7 @@ import com.abudko.scheduled.vkontakte.Photo;
 public abstract class AbstractPublishManager implements PublishManager {
 
     protected static final String COMMENT_KEY = "huuto.comment";
+    protected static final String GROUP_URL = "vk.com/kombezi.finland";
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -76,7 +77,7 @@ public abstract class AbstractPublishManager implements PublishManager {
     private void cropImage(ListResponse listResponse) {
         ItemResponse itemResponse = listResponse.getItemResponse();
         String url = itemResponse.getImgBaseSrc() + "-orig.jpg";
-        imageManipulator.storeImage(url, "file:" + imageTempFileLocation);
+        imageManipulator.storeImage(url, "file:" + imageTempFileLocation, GROUP_URL);
     }
     
     protected String getDescription(Category category, ListResponse listResponse) {
