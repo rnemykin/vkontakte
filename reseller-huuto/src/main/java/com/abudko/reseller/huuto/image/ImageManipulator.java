@@ -42,7 +42,7 @@ public class ImageManipulator {
     private void addTextToImage(BufferedImage image, String addText) {
         if (addText != null) {
             Graphics g = image.getGraphics();
-            g.setFont(g.getFont().deriveFont(15f));
+            g.setFont(g.getFont().deriveFont(18f));
             final int x = 5;
             final int y = image.getHeight() - 5;
             g.drawString(addText, x, y);
