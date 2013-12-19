@@ -1,5 +1,6 @@
 package com.abudko.reseller.huuto.image;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -43,6 +44,7 @@ public class ImageManipulator {
         if (addText != null) {
             Graphics g = image.getGraphics();
             g.setFont(g.getFont().deriveFont(18f));
+            g.setColor(Color.BLUE);
             final int x = 5;
             final int y = image.getHeight() - 5;
             g.drawString(addText, x, y);
