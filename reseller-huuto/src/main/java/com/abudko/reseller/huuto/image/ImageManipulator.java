@@ -45,7 +45,7 @@ public class ImageManipulator {
             Graphics g = image.getGraphics();
             float fontSize = 18f;
             g.setFont(g.getFont().deriveFont(fontSize));
-            g.setColor(Color.BLUE);
+            g.setColor(Color.WHITE);
             final int x = 5;
             final int y = (int) fontSize;
             g.drawString(addText, x, y);
