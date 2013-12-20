@@ -38,17 +38,17 @@ public class PriceRulesTest {
 
     @Test
     public void testRoundUp() {
-        assertEquals("11", rules.calculateNew("5.51"));
+        assertEquals("16", rules.calculateNew("5.51"));
     }
 
     @Test
     public void testRoundDown() {
-        assertEquals("10", rules.calculateNew("5.49"));
+        assertEquals("15", rules.calculateNew("5.49"));
     }
 
     @Test
     public void testZero() {
-        assertEquals("10", rules.calculateNew("5.0"));
+        assertEquals("15", rules.calculateNew("5.0"));
     }
     
     @Test
@@ -58,6 +58,6 @@ public class PriceRulesTest {
         when(restTemplate.getForObject(Mockito.any(String.class), eq(RateResponse.class))).thenThrow(new RuntimeException());
         ReflectionTestUtils.setField(rules, "currencyService", currencyServiceReal);
         
-        assertEquals("440", rules.calculateNew("5.0"));
+        assertEquals("690", rules.calculateNew("5.0"));
     }
 }

@@ -12,7 +12,7 @@ import com.abudko.reseller.huuto.query.currency.CurrencyService;
 @Component
 public class PriceRules {
     
-    private static final BigDecimal ADD_IN_EURO = new BigDecimal(5);
+    private static final BigDecimal ADD_IN_EURO = new BigDecimal(10);
     
     @Autowired
     private CurrencyService currencyService;

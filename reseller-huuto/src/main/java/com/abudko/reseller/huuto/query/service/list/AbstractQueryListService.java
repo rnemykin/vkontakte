@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.abudko.reseller.huuto.query.filter.SearchResultFilter;
 import com.abudko.reseller.huuto.query.params.SearchParams;
@@ -63,7 +64,8 @@ public abstract class AbstractQueryListService implements QueryListService {
 
     private void setNewPrice(Collection<ListResponse> queryResponses) {
         for (ListResponse queryListResponse : queryResponses) {
-            String newPrice = priceRules.calculateNew(queryListResponse.getFullPrice());
+            String fullPrice = queryListResponse.getFullPrice();
+            String newPrice = priceRules.calculateNew(StringUtils.isEmpty(fullPrice) ? queryListResponse.getCurrentPrice() : fullPrice);
             queryListResponse.setNewPrice(newPrice);
         }
     }

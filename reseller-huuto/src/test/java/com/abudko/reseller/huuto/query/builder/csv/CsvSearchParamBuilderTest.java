@@ -1,12 +1,12 @@
 package com.abudko.reseller.huuto.query.builder.csv;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
-import com.abudko.reseller.huuto.query.builder.csv.CsvParamBuilder;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 
 public class CsvSearchParamBuilderTest {
@@ -27,7 +27,7 @@ public class CsvSearchParamBuilderTest {
 
         String query = builder.buildQuery(searchParams);
 
-        assertEquals("/price_max/" + priceMax, query);
+        assertFalse(query.contains(priceMax));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class CsvSearchParamBuilderTest {
 
         String query = builder.buildQuery(searchParams);
 
-        assertEquals("/price_min/" + priceMin, query);
+        assertFalse(query.contains(priceMin));
     }
 
     @Test
@@ -196,7 +196,6 @@ public class CsvSearchParamBuilderTest {
         assertEquals("/classification/" + classification + "/sellstyle/" + sellstyle + "/status/" + status
                 + "/location/" + location + "/biddernro/" + biddernro + "/zipcode/" + zipcode + "/closingtime/"
                 + closingtime + "/addtime/" + addtime + "/seller_type/" + sellerType + "/sellernro/" + sellernro
-                + "/price_min/" + priceMin + "/price_max/" + priceMax + "/words/" + words + "/category/" + category,
-                query);
+                + "/words/" + words + "/category/" + category, query);
     }
 }
