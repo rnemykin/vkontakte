@@ -43,10 +43,11 @@ public class ImageManipulator {
     private void addTextToImage(BufferedImage image, String addText) {
         if (addText != null) {
             Graphics g = image.getGraphics();
-            g.setFont(g.getFont().deriveFont(18f));
+            float fontSize = 18f;
+            g.setFont(g.getFont().deriveFont(fontSize));
             g.setColor(Color.BLUE);
             final int x = 5;
-            final int y = image.getHeight() - 5;
+            final int y = (int) fontSize;
             g.drawString(addText, x, y);
             g.dispose();
         }
