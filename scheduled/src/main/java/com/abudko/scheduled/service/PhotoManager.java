@@ -7,6 +7,8 @@ import com.abudko.scheduled.vkontakte.Photo;
 import com.abudko.scheduled.vkontakte.SavedPhoto;
 
 public interface PhotoManager {
+    
+    void deleteAll(String dumpFileLocation) throws InterruptedException;
 
     void publish(String csvResourcePath, String dumpFileLocation, String token) throws InterruptedException;
     

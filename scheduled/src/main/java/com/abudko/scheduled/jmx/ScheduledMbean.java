@@ -42,6 +42,11 @@ public class ScheduledMbean {
     }
     
     @ManagedOperation
+    public void startHourDeleteAll() {
+        hourIntervalScheduler.clean();
+    }
+    
+    @ManagedOperation
     public void startDayJob() {
         dayIntervalScheduler.schedule();
     }

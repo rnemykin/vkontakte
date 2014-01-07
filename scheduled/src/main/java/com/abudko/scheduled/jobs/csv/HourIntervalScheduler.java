@@ -35,4 +35,17 @@ public class HourIntervalScheduler implements Scheduler {
             log.error("Exception happened during scheduled scan: ", e);
         }
     }
+    
+    public void clean() {
+        log.info("********* Start HourInterval delete all *******");
+        try {
+
+            photoManager.deleteAll(dumpFileLocation);
+            
+            log.info("********* End HourInterval delete all *******");
+
+        } catch (Exception e) {
+            log.error("Exception happened during HourInterval delete all: ", e);
+        }
+    }
 }

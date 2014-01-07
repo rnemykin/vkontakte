@@ -67,7 +67,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         }
     }
 
-    protected void deleteAll(String dumpFileLocation) throws InterruptedException {
+    public void deleteAll(String dumpFileLocation) throws InterruptedException {
         Map<String, String> map = photoDataLogger.read(dumpFileLocation);
         Set<Entry<String, String>> entrySet = map.entrySet();
 
