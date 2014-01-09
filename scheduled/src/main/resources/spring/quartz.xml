@@ -53,13 +53,13 @@
             	<!-- <ref bean="minuteIntervalTrigger"/> -->
       			<ref bean="hourIntervalTrigger"/>
       			<!-- <ref bean="dayIntervalTrigger"/> -->
-      			<!-- <ref bean="randomlySelectedTrigger"/>
-      			<ref bean="randomlySelectedTriggerLimit"/> -->
+      			<ref bean="randomlySelectedTrigger"/>
+      			<!-- <ref bean="randomlySelectedTriggerLimit"/> -->
       			<ref bean="publishTrigger"/>
       			<!-- <ref bean="usedPublishTrigger"/> -->
       			<ref bean="cleanTrigger"/>
       			<ref bean="warmTrigger"/>
-      			<ref bean="pikalevoTrigger"/>
+      			<!-- <ref bean="pikalevoTrigger"/> -->
             </list>
         </property>
     </bean>
