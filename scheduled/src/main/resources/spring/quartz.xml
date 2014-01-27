@@ -54,7 +54,7 @@
       			<ref bean="hourIntervalTrigger"/>
       			<!-- <ref bean="dayIntervalTrigger"/> -->
       			<!-- <ref bean="randomlySelectedTrigger"/> -->
-      			<!-- <ref bean="randomlySelectedTriggerLimit"/> -->
+      			<ref bean="randomlySelectedTriggerLimit"/>
       			<ref bean="publishTrigger"/>
       			<!-- <ref bean="usedPublishTrigger"/> -->
       			<ref bean="cleanTrigger"/>
