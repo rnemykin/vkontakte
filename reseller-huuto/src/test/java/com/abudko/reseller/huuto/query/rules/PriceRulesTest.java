@@ -58,6 +58,6 @@ public class PriceRulesTest {
         when(restTemplate.getForObject(Mockito.any(String.class), eq(RateResponse.class))).thenThrow(new RuntimeException());
         ReflectionTestUtils.setField(rules, "currencyService", currencyServiceReal);
         
-        assertEquals("690", rules.calculateNew("5.0"));
+        assertEquals("750", rules.calculateNew("5.0"));
     }
 }
