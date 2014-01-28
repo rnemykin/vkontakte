@@ -14,7 +14,7 @@ public class CurrencyService {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private static final BigDecimal DEFAULT_RATE = new BigDecimal(46);
+    private static final BigDecimal DEFAULT_RATE = new BigDecimal(50);
 
     private static final String URL = "http://rate-exchange.appspot.com/currency?from=EUR&to=RUB";
 
