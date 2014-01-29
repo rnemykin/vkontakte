@@ -19,5 +19,7 @@ public interface PhotoManager {
     List<String> getAlbumIds(String groupId);
     
     void deletePhoto(String photoId, String groupId) throws InterruptedException;
+    
+    void deletePhotoForce(String photoId, String groupId) throws InterruptedException;
 
 }

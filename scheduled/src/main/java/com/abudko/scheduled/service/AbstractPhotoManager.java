@@ -92,6 +92,17 @@ public abstract class AbstractPhotoManager implements PhotoManager {
                     groupId));
         }
     }
+    
+    @Override
+    public void deletePhotoForce(String photoId, String groupId) throws InterruptedException {
+        String ownerId = getOwnerId(groupId);
+        
+        log.info(String
+                .format("Deleting a photo id['%s'],  group['%s']", photoId, groupId));        
+        
+        photosTemplate.deletePhoto(photoId, ownerId);
+        
+    }
 
     @Override
     public SavedPhoto publishPhoto(PhotoData photoData) throws InterruptedException {

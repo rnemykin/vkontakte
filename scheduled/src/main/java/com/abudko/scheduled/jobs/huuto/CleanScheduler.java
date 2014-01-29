@@ -47,7 +47,7 @@ public class CleanScheduler implements Scheduler {
                         String info = String.format("Photo ['%s'] is not valid", photo.getDescription());
                         log.info(info);
 
-                        photoManager.deletePhoto(photo.getPhotoId(), AlbumMapper.GROUP_ID);
+                        photoManager.deletePhotoForce(photo.getPhotoId(), AlbumMapper.GROUP_ID);
                         Thread.sleep(1000);
                     } else {
                         String info = String.format("Photo is VALID: '%s'", photo.getDescription());
