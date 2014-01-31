@@ -1,12 +1,12 @@
 package com.abudko.reseller.huuto.query.currency;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -22,6 +22,8 @@ import org.springframework.web.client.RestTemplate;
 public class CurrencyService {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
+    
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     private static final BigDecimal DEFAULT_RATE = new BigDecimal(50);
 
@@ -29,6 +31,8 @@ public class CurrencyService {
 
     @Autowired
     private RestTemplate restTemplate;
+    
+    private HttpClient client = new DefaultHttpClient();
 
     @Cacheable("currencyRate")
     public BigDecimal getRate() {
@@ -37,19 +41,36 @@ public class CurrencyService {
         try {
             rate = restTemplate.getForObject(URL, RateResponse.class).getRate();
         } catch (Throwable e) {
-            log.error(String.format("Unable to extract currency rate, returning DEFAULT '%s'", DEFAULT_RATE), e);
+            log.error("Unable to extract currency rate, querying CBR", e);
             rate = getRateCbr();
         }
         
         return rate;
     }
-    
-    
-    private void getRateCbr() {
+
+    private BigDecimal getRateCbr() {
         try {
-        System.out.println("Hello World!");
-        
-        DefaultHttpClient client = new DefaultHttpClient();
+            HttpResponse hr = client.execute(getCbrPostRequest());
+
+            String responseNoSpaces = EntityUtils.toString(hr.getEntity(), "UTF-8").replace(" ", "");
+
+            final String euroSubstring = "Евро</Vname><Vnom>1</Vnom><Vcurs>";
+            String substring = responseNoSpaces.substring(responseNoSpaces.indexOf(euroSubstring)
+                    + euroSubstring.length());
+            String rate = substring.substring(0, substring.indexOf("<"));
+
+            BigDecimal result = new BigDecimal(rate);
+            
+            log.info(String.format("CBR current rate '%s'", result));
+            
+            return result;
+        } catch (Throwable e) {
+            log.error(String.format("Unable to extract currency rate from CBR, returning DEFAULT '%s'", DEFAULT_RATE), e);
+            return DEFAULT_RATE;
+        }
+    }
+    
+    private HttpPost getCbrPostRequest() throws UnsupportedEncodingException {
         HttpPost httpPost = new HttpPost("http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx");
         httpPost.addHeader("SOAPAction", "http://web.cbr.ru/GetCursOnDate");
 
@@ -72,27 +93,19 @@ public class CurrencyService {
         sb.append("\n");
         sb.append("<tns:GetCursOnDate xmlns:tns=\"http://web.cbr.ru/\">");
         sb.append("\n");
-        sb.append("<tns:On_date>2014-01-27</tns:On_date>");
+        sb.append("<tns:On_date>");
+        sb.append(dateFormat.format(new Date()));
+        sb.append("</tns:On_date>");
         sb.append("\n");
         sb.append("</tns:GetCursOnDate>");
         sb.append("\n");
         sb.append("</SOAP-ENV:Body>");
         sb.append("\n");
         sb.append("</SOAP-ENV:Envelope>");
-        
+
         httpPost.setEntity(new StringEntity(sb.toString()));
         httpPost.setHeader("Content-Type", "text/xml; charset=utf-8");
-        HttpResponse hr = client.execute(httpPost);
-         
-        String responseNoSpaces = EntityUtils.toString(hr.getEntity(), "UTF-8").replace(" ", "");
         
-        final String euroSubstring = "Евро</Vname><Vnom>1</Vnom><Vcurs>";
-        String substring = responseNoSpaces.substring(responseNoSpaces.indexOf(euroSubstring) + euroSubstring.length());
-        String rate = substring.substring(0, substring.indexOf("<")); 
-        
-
-    } catch (Exception ex) {
-        
-    }
+        return httpPost;
     }
 }
