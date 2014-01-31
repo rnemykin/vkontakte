@@ -16,7 +16,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<build.version>${project.version}-r${buildNumber}-${timestamp}</build.version>
-		<spring.framework.version>3.2.2.RELEASE</spring.framework.version>
+		<spring.framework.version>4.0.0.RELEASE</spring.framework.version>
 		<spring-support.version>2.0.8</spring-support.version>
 		<spring-social.version>1.0.3.RELEASE</spring-social.version>
 		<spring-social-vkontakte.version>1.1.1.RELEASE</spring-social-vkontakte.version>
@@ -28,7 +28,7 @@
 		<quartz.version>2.1.6</quartz.version>
 		<javacsv.version>2.0</javacsv.version>
 		<jackson.version>1.9.13</jackson.version>
-		<httpclient.version>4.2.5</httpclient.version>
+		<httpclient.version>4.3.2</httpclient.version>
 		<jstl.version>1.2</jstl.version>
 		<guava.version>14.0.1</guava.version>
 	</properties>
