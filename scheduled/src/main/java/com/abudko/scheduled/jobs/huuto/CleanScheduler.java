@@ -65,6 +65,9 @@ public class CleanScheduler implements Scheduler {
     }
 
     private boolean isValid(String id) {
+        if (id != null && id.contains("-")) {
+            return true;
+        }
         ItemResponse item = atomQueryItemService.extractItem("/" + id);
         return "open".equals(item.getItemStatus());
     }
