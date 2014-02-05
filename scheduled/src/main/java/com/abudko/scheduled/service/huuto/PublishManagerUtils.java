@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class PublishManagerUtils {
 
     public String getId(String description) {
-        Pattern pattern = Pattern.compile("\\[(\\d+)\\]");
+        Pattern pattern = Pattern.compile("\\[(.+)\\]");
         Matcher matcher = pattern.matcher(description);
         while (matcher.find()) {
             return matcher.group(1);
