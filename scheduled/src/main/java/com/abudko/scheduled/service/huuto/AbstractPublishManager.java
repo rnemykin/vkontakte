@@ -77,7 +77,8 @@ public abstract class AbstractPublishManager implements PublishManager {
     private void cropImage(ListResponse listResponse) {
         ItemResponse itemResponse = listResponse.getItemResponse();
         String url = itemResponse.getImgBaseSrc() + "-orig.jpg";
-        imageManipulator.storeImage(url, "file:" + imageTempFileLocation, GROUP_URL);
+        // no need to add advert.
+        imageManipulator.storeImage(url, "file:" + imageTempFileLocation, null);
     }
     
     protected String getDescription(Category category, ListResponse listResponse) {
