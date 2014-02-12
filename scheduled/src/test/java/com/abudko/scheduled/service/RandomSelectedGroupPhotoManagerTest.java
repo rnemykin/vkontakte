@@ -36,8 +36,8 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
     public void testRandomSelection() throws Exception {
         photoManager.publish("csvResourcePath", "dumpFileLocation", null);
 
-        verify(photosTemplate, times(4)).getUploadServer(Mockito.eq(GROUPID1), Mockito.anyString());
-        verify(photosTemplate, times(4)).getUploadServer(Mockito.eq(GROUPID2), Mockito.anyString());
+        verify(photosTemplate, times(3)).getUploadServer(Mockito.eq(GROUPID1), Mockito.anyString());
+        verify(photosTemplate, times(3)).getUploadServer(Mockito.eq(GROUPID2), Mockito.anyString());
     }
 
     @Test

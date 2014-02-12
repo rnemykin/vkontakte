@@ -7,9 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.scheduled.jobs.Scheduler;
+import com.abudko.scheduled.rules.ItemValidityRules;
 import com.abudko.scheduled.service.PhotoManager;
 import com.abudko.scheduled.service.huuto.AlbumMapper;
 import com.abudko.scheduled.service.huuto.PublishManagerUtils;
@@ -30,8 +29,7 @@ public class CleanScheduler implements Scheduler {
     private PublishManagerUtils publishManagerUtils;
 
     @Autowired
-    @Qualifier("atomQueryItemServiceImpl")
-    private QueryItemService atomQueryItemService;
+    private List<ItemValidityRules> itemValidityRules;
 
     public void schedule() {
         log.info("********* Start CleanScheduler *******");
@@ -65,10 +63,13 @@ public class CleanScheduler implements Scheduler {
     }
 
     private boolean isValid(String id) {
-        if (id != null && id.contains("-")) {
-            return true;
+        boolean valid = true;
+        for (ItemValidityRules rule : itemValidityRules) {
+            if (!rule.isValid(id)) {
+                valid = false;
+            }
         }
-        ItemResponse item = atomQueryItemService.extractItem("/" + id);
-        return "open".equals(item.getItemStatus());
+
+        return valid;
     }
 }
