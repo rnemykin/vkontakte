@@ -8,6 +8,6 @@ public class LimitedRandomSelectedGroupPhotoManager extends RandomSelectedGroupP
 
     @Override
     protected int getRandomPhotoCount() {
-        return 5;
+        return 3;
     }
 }
