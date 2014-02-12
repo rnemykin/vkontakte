@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.item.html;
+package com.abudko.reseller.huuto.query.service.item.html.lekmer;
 
 import javax.annotation.Resource;
 
@@ -14,12 +14,12 @@ import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 
 @Component
-public class HtmlQueryItemServiceImpl extends AbstractQueryItemService {
+public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private HtmlItemParser htmlItemParser;
+    private LekmerHtmlItemParser htmlItemParser;
 
     @Resource
     private PriceRules priceRules;

@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 
 @Component
-public class HuutoItemValidityRules extends AbstractItemValidityRules {
+public class LekmerItemValidityRules extends AbstractItemValidityRules {
     
     @Autowired
-    @Qualifier("atomQueryItemServiceImpl")
+    @Qualifier("lekmerQueryItemServiceImpl")
     private QueryItemService queryItemService;
 
     @Override
     public String getIdPrefix() {
-        return null;
+        return "LE";
     }
 
     @Override

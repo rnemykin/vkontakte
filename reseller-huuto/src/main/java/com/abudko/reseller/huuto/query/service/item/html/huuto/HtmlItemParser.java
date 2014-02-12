@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.item.html;
+package com.abudko.reseller.huuto.query.service.item.html.huuto;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
+import com.abudko.reseller.huuto.query.service.item.html.huuto.HtmlItemParser;
 import com.abudko.reseller.huuto.query.service.list.HtmlParserTestUtils;
 
 /**

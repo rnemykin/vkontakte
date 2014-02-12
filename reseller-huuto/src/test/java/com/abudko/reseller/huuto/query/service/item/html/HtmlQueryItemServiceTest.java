@@ -20,6 +20,8 @@ import org.springframework.web.client.RestTemplate;
 import com.abudko.reseller.huuto.query.rules.PriceRules;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
+import com.abudko.reseller.huuto.query.service.item.html.huuto.HtmlItemParser;
+import com.abudko.reseller.huuto.query.service.item.html.huuto.HtmlQueryItemServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HtmlQueryItemServiceTest {

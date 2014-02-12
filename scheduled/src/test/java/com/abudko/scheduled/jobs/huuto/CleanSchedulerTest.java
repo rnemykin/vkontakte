@@ -26,6 +26,10 @@ import com.abudko.scheduled.vkontakte.Photo;
 @RunWith(MockitoJUnitRunner.class)
 public class CleanSchedulerTest {
     
+    private static final String DESCRIPTION = "description";
+    private static final String ID = "id";
+    private static final String PHOTO_ID = "photoId";
+    
     @Mock
     private AlbumMapper albumMapper;
 
@@ -39,7 +43,10 @@ public class CleanSchedulerTest {
     private QueryItemService atomQueryItemService;
     
     @Mock
-    private ItemValidityRules rule;
+    private ItemValidityRules rule1;
+    
+    @Mock
+    private ItemValidityRules rule2;
     
     @InjectMocks
     public CleanScheduler cleanScheduler = new CleanScheduler();
@@ -47,51 +54,52 @@ public class CleanSchedulerTest {
     @Before
     public void setup() {
         List<ItemValidityRules> rules = new ArrayList<ItemValidityRules>();
-        rules.add(rule);
+        rules.add(rule1);
+        rules.add(rule2);
         
         ReflectionTestUtils.setField(cleanScheduler, "itemValidityRules", rules);
+        setupAlbums();
+    }
+    
+    private void setupAlbums() {
+        final String albumId = "albumid"; 
+        List<String> albumIds = Arrays.asList(albumId);
+        when(photoManager.getAlbumIds(AlbumMapper.GROUP_ID)).thenReturn(albumIds);
+        Photo photo = new Photo();
+        photo.setDescription(DESCRIPTION);
+        photo.setPhotoId(PHOTO_ID);
+        List<Photo> photoIds = Arrays.asList(photo);
+        when(photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId)).thenReturn(photoIds);
+        when(publishManagerUtils.getId(DESCRIPTION)).thenReturn(ID);
     }
 
     @Test
     public void testPhotoIdValid() throws InterruptedException {
-        final String id = "id";
-        final String albumId = "albumid"; 
-        List<String> albumIds = Arrays.asList(albumId);
-        when(photoManager.getAlbumIds(AlbumMapper.GROUP_ID)).thenReturn(albumIds);
-        Photo photo = new Photo();
-        final String description = "description";
-        final String photoId = "photoId";
-        photo.setDescription(description);
-        photo.setPhotoId(photoId);
-        List<Photo> photoIds = Arrays.asList(photo);
-        when(photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId)).thenReturn(photoIds);
-        when(publishManagerUtils.getId(description)).thenReturn(id);
-        when(rule.isValid(id)).thenReturn(true);
+        when(rule1.isValid(ID)).thenReturn(true);
+        when(rule2.isValid(ID)).thenReturn(true);
         
         cleanScheduler.schedule();
         
-        verify(photoManager, never()).deletePhotoForce(photoId, AlbumMapper.GROUP_ID);
+        verify(photoManager, never()).deletePhotoForce(PHOTO_ID, AlbumMapper.GROUP_ID);
     }
     
     @Test
-    public void testPhotoIdInValid() throws InterruptedException {
-        final String id = "id";
-        final String albumId = "albumid"; 
-        List<String> albumIds = Arrays.asList(albumId);
-        when(photoManager.getAlbumIds(AlbumMapper.GROUP_ID)).thenReturn(albumIds);
-        Photo photo = new Photo();
-        final String description = "description";
-        final String photoId = "photoId";
-        photo.setDescription(description);
-        photo.setPhotoId(photoId);
-        List<Photo> photoIds = Arrays.asList(photo);
-        when(photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId)).thenReturn(photoIds);
-        when(publishManagerUtils.getId(description)).thenReturn(id);
-        when(rule.isValid(id)).thenReturn(false);
+    public void testPhotoIdInvalid() throws InterruptedException {
+        when(rule1.isValid(ID)).thenReturn(false);
+        when(rule2.isValid(ID)).thenReturn(false);
         
         cleanScheduler.schedule();
         
-        verify(photoManager).deletePhotoForce(photoId, AlbumMapper.GROUP_ID);
+        verify(photoManager).deletePhotoForce(PHOTO_ID, AlbumMapper.GROUP_ID);
     }
-
+    
+    @Test
+    public void testPhotoIdInvalidForOneRule() throws InterruptedException {
+        when(rule1.isValid(ID)).thenReturn(false);
+        when(rule2.isValid(ID)).thenReturn(true);
+        
+        cleanScheduler.schedule();
+        
+        verify(photoManager).deletePhotoForce(PHOTO_ID, AlbumMapper.GROUP_ID);
+    }
 }
