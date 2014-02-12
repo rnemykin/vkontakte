@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
+import com.abudko.reseller.huuto.query.service.item.ItemStatus;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -63,7 +64,7 @@ public class AtomQueryItemServiceIntegrationTest {
 
     @Test
     public void testItemResponseItemStatus() {
-        assertEquals("closed", response.getItemStatus());
+        assertEquals(ItemStatus.CLOSED, response.getItemStatus());
     }
 
     @Test

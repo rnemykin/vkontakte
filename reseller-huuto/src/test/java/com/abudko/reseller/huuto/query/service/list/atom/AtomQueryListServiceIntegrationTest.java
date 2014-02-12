@@ -76,7 +76,7 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testItemUrl() throws Exception {
-        assertEquals("299421623", response.getItemUrl());
+        assertEquals("301055563", response.getItemUrl());
     }
     
     @Test

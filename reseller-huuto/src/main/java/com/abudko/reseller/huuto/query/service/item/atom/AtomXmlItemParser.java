@@ -8,6 +8,7 @@ import org.jdom.Text;
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
+import com.abudko.reseller.huuto.query.service.item.ItemStatus;
 import com.sun.syndication.feed.atom.Feed;
 import com.sun.syndication.feed.atom.Link;
 import com.sun.syndication.feed.atom.Person;
@@ -37,7 +38,7 @@ public class AtomXmlItemParser {
         String condition = parseCondition(foreignMarkup);
         response.setCondition(condition);
 
-        String itemStatus = parseItemStatus(foreignMarkup);
+        ItemStatus itemStatus = parseItemStatus(foreignMarkup);
         response.setItemStatus(itemStatus);
 
         String location = parseLocation(foreignMarkup);
@@ -62,7 +63,7 @@ public class AtomXmlItemParser {
         return condition;
     }
 
-    private String parseItemStatus(List<Element> foreignMarkup) {
+    private ItemStatus parseItemStatus(List<Element> foreignMarkup) {
         String itemStatus = "";
         
         for (Element e : foreignMarkup) {
@@ -71,7 +72,11 @@ public class AtomXmlItemParser {
             }
         }
         
-        return itemStatus;
+        if ("open".equals(itemStatus)) {
+            return ItemStatus.OPENED;
+        }
+        
+        return ItemStatus.CLOSED;
     }
 
     private String parseLocation(List<Element> foreignMarkup) {

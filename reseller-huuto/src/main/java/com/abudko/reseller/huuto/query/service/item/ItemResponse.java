@@ -22,7 +22,7 @@ public class ItemResponse {
 
     private ItemInfo itemInfo;
 
-    private String itemStatus;
+    private ItemStatus itemStatus;
 
     public String getId() {
         return id;
@@ -104,11 +104,11 @@ public class ItemResponse {
         this.itemInfo = itemInfo;
     }
 
-    public String getItemStatus() {
+    public ItemStatus getItemStatus() {
         return this.itemStatus;
     }
     
-    public void setItemStatus(String itemStatus) {
+    public void setItemStatus(ItemStatus itemStatus) {
         this.itemStatus = itemStatus;
     }
 
