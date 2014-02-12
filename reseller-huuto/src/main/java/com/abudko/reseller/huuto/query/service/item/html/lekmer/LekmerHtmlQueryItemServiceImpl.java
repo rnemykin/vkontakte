@@ -1,7 +1,5 @@
 package com.abudko.reseller.huuto.query.service.item.html.lekmer;
 
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
-import com.abudko.reseller.huuto.query.rules.PriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 
@@ -21,15 +18,12 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     @Autowired
     private LekmerHtmlItemParser htmlItemParser;
 
-    @Resource
-    private PriceRules priceRules;
-
     @Autowired
     private RestTemplate restTemplate;
 
     @Override
-    public ItemResponse callAndParse(String urlSuffix) {
-        String itemUrl = constructFullItemUrl(urlSuffix);
+    public ItemResponse callAndParse(String itemId) {
+        String itemUrl = constructFullItemUrl(itemId);
 
         log.info(String.format("Quering item: %s", itemUrl));
 
@@ -40,10 +34,9 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
         return itemResponse;
     }
 
-    private String constructFullItemUrl(String itemUrl) {
-        StringBuilder sb = new StringBuilder(HtmlParserConstants.HUUTO_NET);
-        sb.append(HtmlParserConstants.ITEM_URL_CONTEXT);
-        sb.append(itemUrl);
+    private String constructFullItemUrl(String itemId) {
+        StringBuilder sb = new StringBuilder(HtmlParserConstants.LEKMER_SEARCH_URL);
+        sb.append(itemId);
 
         return sb.toString();
     }
@@ -54,17 +47,7 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     }
     
     protected String extractIdFromUrl(String urlSuffix) {
-        if (urlSuffix == null) {
-            return null;
-        }
-
-        int indexOf = urlSuffix.lastIndexOf("/");
-
-        if (indexOf < 0) {
-            return null;
-        }
-
-        String id = urlSuffix.substring(indexOf + 1);
-        return id;
+        String itemId = urlSuffix;
+        return itemId;
     }
 }

@@ -10,7 +10,7 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 public class LekmerItemValidityRules extends AbstractItemValidityRules {
     
     @Autowired
-    @Qualifier("lekmerQueryItemServiceImpl")
+    @Qualifier("lekmerHtmlQueryItemServiceImpl")
     private QueryItemService queryItemService;
 
     @Override
