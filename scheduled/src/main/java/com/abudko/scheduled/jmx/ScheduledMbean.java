@@ -8,6 +8,7 @@ import com.abudko.scheduled.jobs.csv.DayIntervalScheduler;
 import com.abudko.scheduled.jobs.csv.HourIntervalScheduler;
 import com.abudko.scheduled.jobs.csv.PikalevoScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedScheduler;
+import com.abudko.scheduled.jobs.csv.RandomlySelectedSchedulerLimit;
 import com.abudko.scheduled.jobs.huuto.CleanScheduler;
 import com.abudko.scheduled.jobs.huuto.PublishScheduler;
 import com.abudko.scheduled.jobs.huuto.UsedPublishScheduler;
@@ -23,6 +24,9 @@ public class ScheduledMbean {
 
     @Autowired
     private RandomlySelectedScheduler randomlySelectedScheduler;
+
+    @Autowired
+    private RandomlySelectedSchedulerLimit randomlySelectedSchedulerLimit;
     
     @Autowired
     private PublishScheduler publishScheduler;
@@ -54,6 +58,11 @@ public class ScheduledMbean {
     @ManagedOperation
     public void startRandomJob() {
         randomlySelectedScheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startRandomLimitJob() {
+        randomlySelectedSchedulerLimit.schedule();
     }
     
     @ManagedOperation
