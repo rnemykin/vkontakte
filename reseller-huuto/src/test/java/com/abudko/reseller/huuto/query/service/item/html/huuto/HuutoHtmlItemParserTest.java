@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.item.html;
+package com.abudko.reseller.huuto.query.service.item.html.huuto;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,20 +10,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.abudko.reseller.huuto.query.service.item.html.huuto.HtmlItemParser;
+import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
 import com.abudko.reseller.huuto.query.service.list.HtmlParserTestUtils;
 
 /**
- * Tests for {@link HtmlItemParser}.
+ * Tests for {@link HuutoHtmlItemParser}.
  * 
  * @author Alexei
  * 
  */
-public class HtmlItemParserTest {
+public class HuutoHtmlItemParserTest {
 
     static {
         try {
-            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/test-item.html");
+            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/huuto/test-item.html");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,7 +35,7 @@ public class HtmlItemParserTest {
 
     @Before
     public void setup() throws IOException {
-        HtmlItemParser htmlParser = new HtmlItemParser();
+        HtmlItemParser htmlParser = new HuutoHtmlItemParser();
         response = htmlParser.parse(html);
     }
 

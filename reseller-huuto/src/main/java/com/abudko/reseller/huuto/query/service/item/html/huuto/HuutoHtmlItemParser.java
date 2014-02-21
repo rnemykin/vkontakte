@@ -9,9 +9,10 @@ import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
+import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
 
 @Component
-public class HtmlItemParser {
+public class HuutoHtmlItemParser implements HtmlItemParser {
 
     private static final String HTML_HV = "Hintavaraus";
 
@@ -25,6 +26,7 @@ public class HtmlItemParser {
 
     private static final String IMG_SUFFIX = "-m.jpg";
 
+    @Override
     public ItemResponse parse(String html) {
         ItemResponse response = new ItemResponse();
 

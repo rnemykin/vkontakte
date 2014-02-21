@@ -34,5 +34,5 @@ public abstract class AbstractQueryItemService implements QueryItemService {
     
     protected abstract String extractIdFromUrl(String urlSuffix);
     
-    public abstract ItemResponse callAndParse(String urlSuffix);
+    protected abstract ItemResponse callAndParse(String urlSuffix);
 }

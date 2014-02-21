@@ -41,7 +41,7 @@ public class CleanScheduler implements Scheduler {
                 for (Photo photo : photos) {
                     String id = publishManagerUtils.getId(photo.getDescription());
 
-                    if (isValid(id) == false) {
+                    if (!isValid(id)) {
                         String info = String.format("Photo ['%s'] is not valid", photo.getDescription());
                         log.info(info);
 

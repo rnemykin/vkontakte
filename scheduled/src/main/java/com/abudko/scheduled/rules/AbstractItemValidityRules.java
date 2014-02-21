@@ -19,17 +19,32 @@ public abstract class AbstractItemValidityRules implements ItemValidityRules {
         String idPrefix = getIdPrefix();
         
         if (idPrefix != null) {
-            if (id.substring(0, 2).equalsIgnoreCase(idPrefix)) {
-                ItemResponse itemResponse = getQueryItemService().extractItem("/" + id.substring(2, id.length()));
-                return ItemStatus.OPENED.equals(itemResponse.getItemStatus());
-            }
-            else {
-                return true;
-            }
+            return checkOthers(idPrefix, id);
         }
         else {
-            ItemResponse itemResponse = getQueryItemService().extractItem("/" + id);
-            return ItemStatus.OPENED.equals(itemResponse.getItemStatus());
+            return checkHuuto(id);
         }
+    }
+    
+    private boolean checkHuuto(String id) {
+        try {
+            Long.parseLong(id);
+            return getItemStatus("/" + id);
+        }
+        catch (NumberFormatException e) {
+            return true;
+        }
+    }
+    
+    private boolean checkOthers(String idPrefix, String id) {
+        if (id.substring(0, 2).equalsIgnoreCase(idPrefix)) {
+            return getItemStatus(id.substring(2, id.length()));
+        }
+        return true;
+    }
+    
+    private boolean getItemStatus(String id) {
+        ItemResponse itemResponse = getQueryItemService().extractItem(id);
+        return ItemStatus.OPENED.equals(itemResponse.getItemStatus());
     }
 }

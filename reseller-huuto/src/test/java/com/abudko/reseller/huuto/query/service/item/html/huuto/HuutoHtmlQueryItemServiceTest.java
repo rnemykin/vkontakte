@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.item.html;
+package com.abudko.reseller.huuto.query.service.item.html.huuto;
 
 import static com.abudko.reseller.huuto.query.html.HtmlParserConstants.HUUTO_NET;
 import static com.abudko.reseller.huuto.query.html.HtmlParserConstants.ITEM_URL_CONTEXT;
@@ -20,17 +20,17 @@ import org.springframework.web.client.RestTemplate;
 import com.abudko.reseller.huuto.query.rules.PriceRules;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
-import com.abudko.reseller.huuto.query.service.item.html.huuto.HtmlItemParser;
-import com.abudko.reseller.huuto.query.service.item.html.huuto.HtmlQueryItemServiceImpl;
+import com.abudko.reseller.huuto.query.service.item.html.huuto.HuutoHtmlItemParser;
+import com.abudko.reseller.huuto.query.service.item.html.huuto.HuutoHtmlQueryItemServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
-public class HtmlQueryItemServiceTest {
+public class HuutoHtmlQueryItemServiceTest {
 
     @Mock
     private Logger log;
 
     @Mock
-    private HtmlItemParser htmlItemParser;
+    private HuutoHtmlItemParser htmlItemParser;
 
     @Mock
     private RestTemplate restTemplate;
@@ -39,10 +39,10 @@ public class HtmlQueryItemServiceTest {
     private PriceRules priceRules;
 
     @InjectMocks
-    private QueryItemService service = new HtmlQueryItemServiceImpl();
+    private QueryItemService service = new HuutoHtmlQueryItemServiceImpl();
 
     /**
-     * Test for {@link HtmlQueryItemServiceImpl#extractItem(String)}.
+     * Test for {@link HuutoHtmlQueryItemServiceImpl#extractItem(String)}.
      */
     @Test
     public void testExtractItem() {

@@ -1,10 +1,11 @@
-package com.abudko.scheduled.rules;
+package com.abudko.scheduled.rules.lekmer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
+import com.abudko.scheduled.rules.AbstractItemValidityRules;
 
 @Component
 public class LekmerItemValidityRules extends AbstractItemValidityRules {

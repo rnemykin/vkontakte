@@ -15,7 +15,6 @@ import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.service.list.HtmlParserTestUtils;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
-import com.abudko.reseller.huuto.query.service.list.html.HtmlListParser;
 
 /**
  * Tests for {@link HtmlListParser}.
@@ -31,7 +30,7 @@ public class HtmlListParserTest {
 
     static {
         try {
-            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/test-resultlist.html");
+            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/huuto/test-resultlist.html");
             responses = htmlParser.parse(html);
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,7 +49,7 @@ public class HtmlListParserTest {
         String htmlNoSearchResults = null;
         try {
             htmlNoSearchResults = HtmlParserTestUtils
-                    .readHtmlFromFile("./src/test/resources/html/no-search-results.html");
+                    .readHtmlFromFile("./src/test/resources/html/huuto/no-search-results.html");
         } catch (IOException e) {
             e.printStackTrace();
         }

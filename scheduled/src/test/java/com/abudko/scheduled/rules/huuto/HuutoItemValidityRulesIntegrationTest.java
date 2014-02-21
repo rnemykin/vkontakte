@@ -1,4 +1,4 @@
-package com.abudko.scheduled.rules;
+package com.abudko.scheduled.rules.huuto;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -19,13 +19,15 @@ import com.abudko.reseller.huuto.query.builder.ParamBuilder;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.abudko.reseller.huuto.query.service.list.QueryListService;
+import com.abudko.scheduled.rules.ItemValidityRules;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
 public class HuutoItemValidityRulesIntegrationTest {
     
     @Autowired
-    private HuutoItemValidityRules rules;
+    @Qualifier("huutoItemValidityRules")
+    private ItemValidityRules rules;
     
     @Autowired
     @Qualifier("atomParamBuilder")
@@ -37,7 +39,7 @@ public class HuutoItemValidityRulesIntegrationTest {
 
     @Test
     public void testIdInvalid() {
-        assertFalse(rules.isValid("crap"));;
+        assertFalse(rules.isValid("764577676"));;
     }
     
     @Test
@@ -55,6 +57,11 @@ public class HuutoItemValidityRulesIntegrationTest {
     @Test
     public void testIdNull() {
         assertTrue(rules.isValid(null));;
+    }
+    
+    @Test
+    public void testIdNotHuuto() {
+        assertTrue(rules.isValid("LEishchi"));;
     }
     
     private SearchParams getSearchParams() {

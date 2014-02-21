@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,13 +13,15 @@ import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
 import com.abudko.reseller.huuto.query.rules.PriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
+import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
 
 @Component
-public class HtmlQueryItemServiceImpl extends AbstractQueryItemService {
+public class HuutoHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
+    @Qualifier("huutoHtmlItemParser")
     private HtmlItemParser htmlItemParser;
 
     @Resource
@@ -28,7 +31,7 @@ public class HtmlQueryItemServiceImpl extends AbstractQueryItemService {
     private RestTemplate restTemplate;
 
     @Override
-    public ItemResponse callAndParse(String urlSuffix) {
+    protected ItemResponse callAndParse(String urlSuffix) {
         String itemUrl = constructFullItemUrl(urlSuffix);
 
         log.info(String.format("Quering item: %s", itemUrl));

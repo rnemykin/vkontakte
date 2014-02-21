@@ -19,7 +19,7 @@ public class AtomQueryItemServiceImpl extends AbstractQueryItemService {
     private AtomXmlItemParser atomXmlItemParser;
 
     @Override
-    public ItemResponse callAndParse(String urlSuffix) {
+    protected ItemResponse callAndParse(String urlSuffix) {
         String itemUrl = constructFullItemUrl(urlSuffix);
 
         log.info(String.format("Quering item: %s", itemUrl));

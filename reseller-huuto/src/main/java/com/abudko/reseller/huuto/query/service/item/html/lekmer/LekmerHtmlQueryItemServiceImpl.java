@@ -22,7 +22,7 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     private RestTemplate restTemplate;
 
     @Override
-    public ItemResponse callAndParse(String itemId) {
+    protected ItemResponse callAndParse(String itemId) {
         String itemUrl = constructFullItemUrl(itemId);
 
         log.info(String.format("Quering item: %s", itemUrl));
