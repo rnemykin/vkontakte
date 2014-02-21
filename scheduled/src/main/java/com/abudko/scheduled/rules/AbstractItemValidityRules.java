@@ -31,7 +31,7 @@ public abstract class AbstractItemValidityRules implements ItemValidityRules {
             Long.parseLong(id);
             return getItemStatus("/" + id);
         }
-        catch (NumberFormatException e) {
+        catch (Throwable e) {
             return true;
         }
     }
