@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.list.html;
+package com.abudko.reseller.huuto.query.service.list.html.huuto;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -15,16 +15,17 @@ import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.service.list.HtmlParserTestUtils;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
+import com.abudko.reseller.huuto.query.service.list.html.HtmlListParser;
 
 /**
- * Tests for {@link HtmlListParser}.
+ * Tests for {@link HuutoHtmlListParser}.
  * 
  * @author Alexei
  * 
  */
-public class HtmlListParserTest {
+public class HuutoHtmlListParserTest {
 
-    private static HtmlListParser htmlParser = new HtmlListParser();
+    private static HtmlListParser htmlParser = new HuutoHtmlListParser();
     private static String html;
     private static Collection<ListResponse> responses;
 
@@ -65,30 +66,30 @@ public class HtmlListParserTest {
     }
 
     @Test
-    public void testParseDescription() {
+    public void testDescription() {
         assertTrue(queryResponse.getDescription().length() > 0);
     }
 
     @Test
-    public void testParseItemUrl() {
+    public void testItemUrl() {
         assertFalse("Url: " + queryResponse.getItemUrl(),
                 queryResponse.getItemUrl().contains("http://www.huuto.net/kohteet"));
         assertTrue("Url: " + queryResponse.getItemUrl(), queryResponse.getItemUrl().contains("/"));
     }
 
     @Test
-    public void testParseBids() {
+    public void testBids() {
         queryResponse = new ArrayList<ListResponse>(responses).get(5);
         assertEquals("Bids: " + queryResponse.getBids(), "Ei huutajia", queryResponse.getBids());
     }
 
     @Test
-    public void testParseLast() {
+    public void testLast() {
         assertTrue("Last: " + queryResponse.getLast(), queryResponse.getLast().length() > 0);
     }
 
     @Test
-    public void testParseCurrentPrice() {
+    public void testCurrentPrice() {
         String currentPrice = queryResponse.getCurrentPrice();
         try {
             Double.parseDouble(currentPrice);
@@ -98,7 +99,7 @@ public class HtmlListParserTest {
     }
 
     @Test
-    public void testParseFullPrice() {
+    public void testFullPrice() {
         ListResponse fullPriceQueryResponse = new ArrayList<ListResponse>(responses).get(5);
         String fullPrice = fullPriceQueryResponse.getFullPrice();
         try {
@@ -109,7 +110,7 @@ public class HtmlListParserTest {
     }
 
     @Test
-    public void testParseFullPriceBiggerThanCurrentPrice() {
+    public void testFullPriceBiggerThanCurrentPrice() {
         ListResponse fullPriceQueryResponse = new ArrayList<ListResponse>(responses).get(5);
         String currentPrice = fullPriceQueryResponse.getCurrentPrice();
         String fullPrice = fullPriceQueryResponse.getFullPrice();
@@ -132,7 +133,7 @@ public class HtmlListParserTest {
     }
 
     @Test
-    public void testParseFullPriceNoComma() {
+    public void testFullPriceNoComma() {
         ListResponse fullPriceQueryResponse = new ArrayList<ListResponse>(responses).get(5);
         String fullPrice = fullPriceQueryResponse.getFullPrice();
 
@@ -140,14 +141,14 @@ public class HtmlListParserTest {
     }
 
     @Test
-    public void testParseImgSrc() {
+    public void testImgSrc() {
         ListResponse imgSrcResponse = new ArrayList<ListResponse>(responses).get(5);
         assertTrue("Src: " + imgSrcResponse.getImgBaseSrc(),
                 imgSrcResponse.getImgBaseSrc().contains("http://kuvat2.huuto.net/"));
     }
 
     @Test
-    public void testParseSize() {
+    public void testSize() {
         String size = queryResponse.getSize();
         try {
             Double.parseDouble(size);
@@ -157,7 +158,7 @@ public class HtmlListParserTest {
     }
 
     @Test
-    public void testParseBrand() {
+    public void testBrand() {
         assertNotNull("Brand: " + queryResponse.getBrand(), queryResponse.getBrand());
     }
 }

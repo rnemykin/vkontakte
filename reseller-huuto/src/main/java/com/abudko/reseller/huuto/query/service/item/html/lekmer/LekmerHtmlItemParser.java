@@ -15,13 +15,13 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
     @Override
     public ItemResponse parse(String html) {
         ItemResponse response = new ItemResponse();
-        
+
         ItemStatus itemStatus = parseItemStatus(html);
         response.setItemStatus(itemStatus);
-        
+
         return response;
     }
-    
+
     private ItemStatus parseItemStatus(String html) {
         int prodCount = 0;
         Pattern pattern = Pattern.compile("class=\"productTotalCount\">(\\d+)");
@@ -29,7 +29,7 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         while (matcher.find()) {
             prodCount = Integer.parseInt(matcher.group(1));
         }
-        
+
         return prodCount == 0 ? ItemStatus.CLOSED : ItemStatus.OPENED;
     }
 }

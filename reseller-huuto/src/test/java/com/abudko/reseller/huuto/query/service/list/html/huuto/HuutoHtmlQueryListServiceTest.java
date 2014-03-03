@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.list.html;
+package com.abudko.reseller.huuto.query.service.list.html.huuto;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
@@ -32,15 +32,17 @@ import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.abudko.reseller.huuto.query.service.list.QueryListService;
+import com.abudko.reseller.huuto.query.service.list.html.huuto.HuutoHtmlListParser;
+import com.abudko.reseller.huuto.query.service.list.html.huuto.HuutoHtmlQueryListServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
-public class HtmlQueryListServiceTest {
+public class HuutoHtmlQueryListServiceTest {
 
     @Mock
     private Logger log;
 
     @Mock
-    private HtmlListParser htmlListParser;
+    private HuutoHtmlListParser htmlListParser;
 
     @Mock
     private RestTemplate restTemplate;
@@ -55,7 +57,7 @@ public class HtmlQueryListServiceTest {
     private PriceRules priceRules;
 
     @InjectMocks
-    private QueryListService service = new HtmlQueryListServiceImpl();
+    private QueryListService service = new HuutoHtmlQueryListServiceImpl();
 
     @Before
     public void setup() {

@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.list.html;
+package com.abudko.reseller.huuto.query.service.list.html.huuto;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.abudko.reseller.huuto.query.QueryConstants;
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
 import com.abudko.reseller.huuto.query.mapper.ParamMapper;
 import com.abudko.reseller.huuto.query.params.SearchParams;
@@ -18,7 +17,7 @@ import com.abudko.reseller.huuto.query.service.list.QueryListService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class HtmlQueryListServiceIntegrationTest {
+public class HuutoHtmlQueryListServiceIntegrationTest {
 
     @Autowired
     private ParamMapper queryParamMapper;
@@ -28,7 +27,7 @@ public class HtmlQueryListServiceIntegrationTest {
     private ParamBuilder csvParamBuilder;
 
     @Autowired
-    @Qualifier("htmlQueryListServiceImpl")
+    @Qualifier("huutoHtmlQueryListServiceImpl")
     private QueryListService queryService;
 
     @Test

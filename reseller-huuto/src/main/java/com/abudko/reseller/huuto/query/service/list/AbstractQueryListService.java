@@ -9,7 +9,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -23,10 +22,6 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 public abstract class AbstractQueryListService implements QueryListService {
 
     protected Logger log = LoggerFactory.getLogger(getClass());
-
-    @Autowired
-    @Qualifier("atomQueryItemServiceImpl")
-    private QueryItemService queryItemService;
 
     @Autowired
     private List<SearchResultFilter> searchResultFilters;
@@ -52,6 +47,8 @@ public abstract class AbstractQueryListService implements QueryListService {
     }
     
     public abstract Collection<ListResponse> callAndParse(String query) throws URISyntaxException;
+    
+    protected abstract QueryItemService getQueryItemService();
 
     private Collection<ListResponse> applyFilters(Collection<ListResponse> queryResponses, SearchParams searchParams) {
         for (SearchResultFilter filter : searchResultFilters) {
@@ -78,8 +75,8 @@ public abstract class AbstractQueryListService implements QueryListService {
 
     private void validateImgBaseSrc(Collection<ListResponse> queryResponses) {
         for (ListResponse queryListResponse : queryResponses) {
-            if (queryListResponse.getImgBaseSrc() == null || queryListResponse.getImgBaseSrc().isEmpty()) {
-                ItemResponse item = queryItemService.extractItem(queryListResponse.getItemUrl());
+            if (StringUtils.isEmpty(queryListResponse.getImgBaseSrc())) {
+                ItemResponse item = getQueryItemService().extractItem(queryListResponse.getItemUrl());
                 String imgBaseSrc = item.getImgBaseSrc();
                 queryListResponse.setImgBaseSrc(imgBaseSrc);
             }

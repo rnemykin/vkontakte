@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.list.html;
+package com.abudko.reseller.huuto.query.service.list.html.lekmer;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -6,21 +6,29 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.abudko.reseller.huuto.query.QueryConstants;
+import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.AbstractQueryListService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
+import com.abudko.reseller.huuto.query.service.list.html.HtmlListParser;
 
 @Component
-public class HtmlQueryListServiceImpl extends AbstractQueryListService {
+public class LekmerHtmlQueryListServiceImpl extends AbstractQueryListService {
 
     private static final int MAX_ITEMS_ON_PAGE = 50;
 
     private static final String PAGE_PARAM = "/page/";
+    
+    @Autowired
+    @Qualifier("atomQueryItemServiceImpl")
+    private QueryItemService queryItemService;
 
     @Autowired
+    @Qualifier("lekmerHtmlListParser")
     private HtmlListParser htmlListParser;
 
     @Autowired
@@ -60,5 +68,10 @@ public class HtmlQueryListServiceImpl extends AbstractQueryListService {
 
     private boolean morePages(Collection<ListResponse> queryPageResponses) {
         return queryPageResponses.size() == MAX_ITEMS_ON_PAGE;
+    }
+    
+    @Override
+    protected QueryItemService getQueryItemService() {
+        return queryItemService;
     }
 }

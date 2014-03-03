@@ -34,7 +34,7 @@ public class PublishScheduler implements Scheduler {
     private ParamBuilder paramBuilder;
 
     @Autowired
-    @Qualifier("htmlQueryListServiceImpl")
+    @Qualifier("huutoHtmlQueryListServiceImpl")
     private QueryListService queryListService;
 
     @Autowired
