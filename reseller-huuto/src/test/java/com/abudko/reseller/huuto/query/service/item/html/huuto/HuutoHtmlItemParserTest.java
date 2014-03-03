@@ -40,37 +40,37 @@ public class HuutoHtmlItemParserTest {
     }
 
     @Test
-    public void testParseHv() {
+    public void testHv() {
         assertFalse(response.isHv());
     }
 
     @Test
-    public void testParseCondition() {
+    public void testCondition() {
         assertEquals("Hyvä", response.getCondition());
     }
 
     @Test
-    public void testParseLocation() {
+    public void testLocation() {
         assertEquals("01370 Vantaa", response.getLocation());
     }
 
     @Test
-    public void testParsePrice() {
+    public void testPrice() {
         assertEquals("5.00", response.getPrice());
     }
 
     @Test
-    public void testParseImgBaseSrc() {
+    public void testImgBaseSrc() {
         assertTrue("Src: " + response.getImgBaseSrc(), response.getImgBaseSrc().contains("http://"));
     }
 
     @Test
-    public void testParseImgBaseSrcWithoutSuffix() {
+    public void testImgBaseSrcWithoutSuffix() {
         assertFalse("Src: " + response.getImgBaseSrc(), response.getImgBaseSrc().contains(".jpg"));
     }
     
     @Test
-    public void testParseSeller() {
+    public void testSeller() {
         assertEquals("make0713", response.getSeller());
     }
 }

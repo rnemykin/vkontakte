@@ -7,6 +7,7 @@ import java.util.Random;
 
 import org.springframework.stereotype.Component;
 
+import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.AbstractQueryListService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
@@ -41,6 +42,12 @@ public class QueryListServiceStub extends AbstractQueryListService {
         responses.add(response2);
 
         return responses;
+    }
+
+    @Override
+    protected QueryItemService getQueryItemService() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

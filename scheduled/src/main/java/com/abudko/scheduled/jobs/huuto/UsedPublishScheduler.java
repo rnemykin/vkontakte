@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
-import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.mapper.ParamMapper;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
@@ -33,7 +32,7 @@ public class UsedPublishScheduler implements Scheduler {
     private ParamBuilder paramBuilder;
 
     @Autowired
-    @Qualifier("htmlQueryListServiceImpl")
+    @Qualifier("huutoHtmlQueryListServiceImpl")
     private QueryListService queryListService;
 
     @Autowired
