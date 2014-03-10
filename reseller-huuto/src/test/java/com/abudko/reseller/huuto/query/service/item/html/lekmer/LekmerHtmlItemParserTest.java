@@ -39,7 +39,7 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testPrice() {
-        assertEquals("34.50", response.getPrice());
+        assertEquals("39.50", response.getPrice());
     }
     
     @Test

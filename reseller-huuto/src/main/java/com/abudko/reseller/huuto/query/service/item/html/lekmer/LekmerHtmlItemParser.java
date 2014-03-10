@@ -10,6 +10,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
+import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
 
@@ -64,7 +65,7 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         if (elements.size() > 0) {
             Element element = elements.get(0);
             String price = element.childNode(0).toString();
-            return price;
+            return price.replace(HtmlParserConstants.EURO_CHAR, "").trim().replace(",", ".");
         }
         return "";
     }
