@@ -29,7 +29,10 @@ public abstract class AbstractQueryItemService implements QueryItemService {
     
     private void setResponseIdFromUrlSuffix(String itemUrl, ItemResponse itemResponse) {
         String id = extractIdFromUrl(itemUrl);
-        itemResponse.setId(id);
+        
+        if (id != null) {
+            itemResponse.setId(id);
+        }
     }
     
     protected abstract String extractIdFromUrl(String urlSuffix);

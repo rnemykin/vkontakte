@@ -56,7 +56,7 @@ public class HuutoHtmlQueryListServiceImpl extends AbstractQueryListService {
     }
 
     private URI getPagedURI(String query, int page) throws URISyntaxException {
-        StringBuilder sb = new StringBuilder(QueryConstants.HTML_QUERY_URL);
+        StringBuilder sb = new StringBuilder(QueryConstants.HUUTO_HTML_SEARCH_URL);
         sb.append(query);
         sb.append(PAGE_PARAM);
         sb.append(page);

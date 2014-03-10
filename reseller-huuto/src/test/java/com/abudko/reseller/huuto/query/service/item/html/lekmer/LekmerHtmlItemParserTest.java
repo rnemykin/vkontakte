@@ -16,7 +16,7 @@ public class LekmerHtmlItemParserTest {
     
     static {
         try {
-            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/lekmer/lekmer-found.html");
+            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/lekmer/lekmer-item.html");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,21 +33,22 @@ public class LekmerHtmlItemParserTest {
     }
 
     @Test
-    public void testItemStatusOpened() {
-        assertEquals(ItemStatus.OPENED, response.getItemStatus());
+    public void testId() {
+        assertEquals("510097-6982", response.getId());
     }
 
     @Test
-    public void testItemStatusClosed() {
-        try {
-            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/lekmer/lekmer-notfound.html");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        HtmlItemParser htmlParser = new LekmerHtmlItemParser();
-        response = htmlParser.parse(html);
-        
-        assertEquals(ItemStatus.CLOSED, response.getItemStatus());
+    public void testPrice() {
+        assertEquals("34.50", response.getPrice());
     }
-
+    
+    @Test
+    public void testSizes() {
+        assertEquals("80", response.getSizes().get(1));
+    }
+    
+    @Test
+    public void testImgSrc() {
+        assertEquals("http://lekmer.fi/mediaarchive/1083385/productmanMeasurement465x500/reima-talvihaalari-tatum-raidallinen-tummansininen.jpg", response.getImgBaseSrc());
+    }
 }

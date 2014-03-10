@@ -32,8 +32,6 @@ import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.abudko.reseller.huuto.query.service.list.QueryListService;
-import com.abudko.reseller.huuto.query.service.list.html.huuto.HuutoHtmlListParser;
-import com.abudko.reseller.huuto.query.service.list.html.huuto.HuutoHtmlQueryListServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HuutoHtmlQueryListServiceTest {
@@ -75,7 +73,7 @@ public class HuutoHtmlQueryListServiceTest {
         params.setPrice_max("20");
         String query = "query";
         String responseList = "responseList";
-        when(restTemplate.getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/1"), String.class))
+        when(restTemplate.getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class))
                 .thenReturn(responseList);
         ListResponse response = new ListResponse();
         response.setDescription("description");
@@ -87,7 +85,7 @@ public class HuutoHtmlQueryListServiceTest {
 
         service.search(query, params);
 
-        verify(restTemplate).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/1"), String.class);
+        verify(restTemplate).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class);
         verify(htmlListParser).parse(responseList);
         verify(queryItemService, times(0)).extractItem(Mockito.anyString());
     }
@@ -98,7 +96,7 @@ public class HuutoHtmlQueryListServiceTest {
         params.setWords("keyword");
         String query = "query";
         String responseList = "responseList";
-        when(restTemplate.getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/1"), String.class))
+        when(restTemplate.getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class))
                 .thenReturn(responseList);
         ListResponse response = new ListResponse();
         response.setDescription("description");
@@ -114,7 +112,7 @@ public class HuutoHtmlQueryListServiceTest {
         Collection<ListResponse> responses = service.search(query, params);
 
         assertEquals(itemImgBaseSrc, responses.toArray(new ListResponse[100])[0].getImgBaseSrc());
-        verify(restTemplate).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/1"), String.class);
+        verify(restTemplate).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class);
         verify(htmlListParser).parse(responseList);
         verify(queryItemService).extractItem(Mockito.anyString());
     }
@@ -125,7 +123,7 @@ public class HuutoHtmlQueryListServiceTest {
         params.setWords("keyword");
         String query = "query";
         String responseList = "responseList";
-        when(restTemplate.getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/1"), String.class))
+        when(restTemplate.getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class))
                 .thenReturn(responseList);
         ListResponse response = new ListResponse();
         String fullPrice = "fullPrice";
@@ -148,9 +146,9 @@ public class HuutoHtmlQueryListServiceTest {
 
         service.search(query, new SearchParams());
 
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/1"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"),
                 String.class);
-        verify(restTemplate, times(0)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/2"),
+        verify(restTemplate, times(0)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/2"),
                 String.class);
     }
 
@@ -161,11 +159,11 @@ public class HuutoHtmlQueryListServiceTest {
 
         service.search(query, new SearchParams());
 
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/1"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"),
                 String.class);
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/2"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/2"),
                 String.class);
-        verify(restTemplate, times(0)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/3"),
+        verify(restTemplate, times(0)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/3"),
                 String.class);
     }
 
@@ -176,11 +174,11 @@ public class HuutoHtmlQueryListServiceTest {
 
         service.search(query, new SearchParams());
 
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/1"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"),
                 String.class);
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/2"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/2"),
                 String.class);
-        verify(restTemplate, times(0)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/3"),
+        verify(restTemplate, times(0)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/3"),
                 String.class);
     }
 
@@ -191,17 +189,17 @@ public class HuutoHtmlQueryListServiceTest {
 
         service.search(query, new SearchParams());
 
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/1"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"),
                 String.class);
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/2"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/2"),
                 String.class);
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/3"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/3"),
                 String.class);
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/4"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/4"),
                 String.class);
-        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/5"),
+        verify(restTemplate, times(1)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/5"),
                 String.class);
-        verify(restTemplate, times(0)).getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/6"),
+        verify(restTemplate, times(0)).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/6"),
                 String.class);
     }
 
@@ -211,7 +209,7 @@ public class HuutoHtmlQueryListServiceTest {
 
         for (int i = 1; i < pageCount + 1; i++) {
             String responseList = "responseList" + i;
-            when(restTemplate.getForObject(new URI(QueryConstants.HTML_QUERY_URL + query + "/page/" + i), String.class))
+            when(restTemplate.getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/" + i), String.class))
                     .thenReturn(responseList);
             List<ListResponse> queryResponses = new ArrayList<ListResponse>();
             int count = i == pageCount ? responseCount % maxItemOnPage : maxItemOnPage;

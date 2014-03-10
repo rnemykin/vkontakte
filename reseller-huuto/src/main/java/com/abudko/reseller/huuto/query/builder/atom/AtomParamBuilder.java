@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.abudko.reseller.huuto.query.builder.AbstractParamBuilder;
+import com.abudko.reseller.huuto.query.builder.ParamBuilder;
 import com.abudko.reseller.huuto.query.builder.ParamBuilderUtils;
 import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.params.SearchParams;
@@ -19,7 +19,7 @@ import com.abudko.reseller.huuto.query.params.SearchParams;
  * 
  */
 @Component
-public class AtomParamBuilder extends AbstractParamBuilder {
+public class AtomParamBuilder implements ParamBuilder {
 
     public String buildQuery(SearchParams params) throws IllegalAccessException, InvocationTargetException,
             NoSuchMethodException {
@@ -34,10 +34,8 @@ public class AtomParamBuilder extends AbstractParamBuilder {
         }
 
         return url.toString();
-
     }
 
-    @Override
     protected Map<String, String> getParameters(SearchParams params) {
         Map<String, String> result = new LinkedHashMap<String, String>();
 

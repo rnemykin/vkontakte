@@ -1,5 +1,8 @@
 package com.abudko.reseller.huuto.query.service.item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemResponse {
 
     private String id;
@@ -19,10 +22,12 @@ public class ItemResponse {
     private String newPrice;
 
     private String seller;
-
+    
     private ItemInfo itemInfo;
 
     private ItemStatus itemStatus;
+    
+    private List<String> sizes = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -111,11 +116,20 @@ public class ItemResponse {
     public void setItemStatus(ItemStatus itemStatus) {
         this.itemStatus = itemStatus;
     }
+    
+    public List<String> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(List<String> sizes) {
+        this.sizes = sizes;
+    }
 
     @Override
     public String toString() {
         return "ItemResponse [id=" + id + ", location=" + location + ", hv=" + hv + ", condition=" + condition
                 + ", itemUrl=" + itemUrl + ", imgBaseSrc=" + imgBaseSrc + ", price=" + price + ", newPrice=" + newPrice
-                + ", seller=" + seller + ", itemInfo=" + itemInfo + ", itemStatus=" + itemStatus + "]";
+                + ", seller=" + seller + ", itemInfo=" + itemInfo + ", itemStatus=" + itemStatus + ", sizes=" + sizes
+                + "]";
     }
 }

@@ -6,12 +6,12 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.abudko.reseller.huuto.query.builder.AbstractParamBuilder;
+import com.abudko.reseller.huuto.query.builder.ParamBuilder;
 import com.abudko.reseller.huuto.query.builder.ParamBuilderUtils;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 
 @Component
-public class CsvParamBuilder extends AbstractParamBuilder {
+public class CsvParamBuilder implements ParamBuilder {
 
     public String buildQuery(SearchParams params) throws IllegalAccessException, InvocationTargetException,
             NoSuchMethodException {

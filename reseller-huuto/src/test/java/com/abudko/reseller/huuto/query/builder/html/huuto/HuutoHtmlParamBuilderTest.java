@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.builder.html;
+package com.abudko.reseller.huuto.query.builder.html.huuto;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -11,9 +11,9 @@ import com.abudko.reseller.huuto.query.builder.ParamBuilder;
 import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 
-public class HtmlParamBuilderTest {
+public class HuutoHtmlParamBuilderTest {
 
-    private ParamBuilder builder = new HtmlParamBuilder();
+    private ParamBuilder builder = new HuutoHtmlParamBuilder();
 
     private SearchParams searchParams;
 

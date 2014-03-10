@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.builder.html;
+package com.abudko.reseller.huuto.query.builder.html.huuto;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
@@ -7,13 +7,13 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.abudko.reseller.huuto.query.builder.AbstractParamBuilder;
+import com.abudko.reseller.huuto.query.builder.ParamBuilder;
 import com.abudko.reseller.huuto.query.builder.ParamBuilderUtils;
 import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 
 @Component
-public class HtmlParamBuilder extends AbstractParamBuilder {
+public class HuutoHtmlParamBuilder implements ParamBuilder {
 
     public String buildQuery(SearchParams params) throws IllegalAccessException, InvocationTargetException,
             NoSuchMethodException {

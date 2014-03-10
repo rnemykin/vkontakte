@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
+import com.abudko.reseller.huuto.query.QueryConstants;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 
@@ -35,7 +35,7 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     }
 
     private String constructFullItemUrl(String itemId) {
-        StringBuilder sb = new StringBuilder(HtmlParserConstants.LEKMER_SEARCH_URL);
+        StringBuilder sb = new StringBuilder(QueryConstants.LEKMER_HTML_SEARCH_URL);
         sb.append(itemId);
 
         return sb.toString();
@@ -47,7 +47,6 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     }
     
     protected String extractIdFromUrl(String urlSuffix) {
-        String itemId = urlSuffix;
-        return itemId;
+        return null;
     }
 }

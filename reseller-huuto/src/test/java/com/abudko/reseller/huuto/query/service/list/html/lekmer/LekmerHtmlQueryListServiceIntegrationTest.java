@@ -20,8 +20,8 @@ import com.abudko.reseller.huuto.query.service.list.QueryListService;
 public class LekmerHtmlQueryListServiceIntegrationTest {
 
     @Autowired
-    @Qualifier("csvParamBuilder")
-    private ParamBuilder csvParamBuilder;
+    @Qualifier("lekmerHtmlParamBuilder")
+    private ParamBuilder paramBuilder;
 
     @Autowired
     @Qualifier("lekmerHtmlQueryListServiceImpl")
@@ -37,11 +37,12 @@ public class LekmerHtmlQueryListServiceIntegrationTest {
 
     private String getQuery(SearchParams searchParams) throws IllegalAccessException, InvocationTargetException,
             NoSuchMethodException {
-        return csvParamBuilder.buildQuery(searchParams);
+        return paramBuilder.buildQuery(searchParams);
     }
     
     private SearchParams getSearchParams() {
         SearchParams searchParams = new SearchParams();
+        searchParams.setWords("TALVIHAALARI");
         
         return searchParams;
     }

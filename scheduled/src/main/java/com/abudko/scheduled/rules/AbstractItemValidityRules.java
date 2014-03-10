@@ -43,7 +43,7 @@ public abstract class AbstractItemValidityRules implements ItemValidityRules {
         return true;
     }
     
-    private boolean getItemStatus(String id) {
+    protected boolean getItemStatus(String id) {
         ItemResponse itemResponse = getQueryItemService().extractItem(id);
         return ItemStatus.OPENED.equals(itemResponse.getItemStatus());
     }

@@ -19,10 +19,6 @@ import com.abudko.reseller.huuto.query.service.list.html.HtmlListParser;
 @Component
 public class LekmerHtmlQueryListServiceImpl extends AbstractQueryListService {
 
-    private static final int MAX_ITEMS_ON_PAGE = 50;
-
-    private static final String PAGE_PARAM = "/page/";
-    
     @Autowired
     @Qualifier("atomQueryItemServiceImpl")
     private QueryItemService queryItemService;
@@ -37,39 +33,25 @@ public class LekmerHtmlQueryListServiceImpl extends AbstractQueryListService {
     @Override
     public Collection<ListResponse> callAndParse(String query) throws URISyntaxException {
         Collection<ListResponse> queryAllResponses = new LinkedHashSet<ListResponse>();
-        boolean morePages = false;
 
-        int page = 1;
-        do {
-            URI pagedURI = getPagedURI(query, page++);
-            String responseList = restTemplate.getForObject(pagedURI, String.class);
-            Collection<ListResponse> queryPageResponses = htmlListParser.parse(responseList);
+        URI pagedURI = getPagedURI(query, 0);
+        String responseList = restTemplate.getForObject(pagedURI, String.class);
+        Collection<ListResponse> queryPageResponses = htmlListParser.parse(responseList);
 
-            String info = String.format("Called [%s], got [%d] responses", pagedURI, queryPageResponses.size());
-            log.info(info);
+        log.info(String.format("Called [%s], got [%d] responses", pagedURI, queryPageResponses.size()));
 
-            queryAllResponses.addAll(queryPageResponses);
-
-            morePages = morePages(queryPageResponses);
-        } while (morePages);
-
+        queryAllResponses.addAll(queryPageResponses);
         return queryAllResponses;
     }
 
     private URI getPagedURI(String query, int page) throws URISyntaxException {
-        StringBuilder sb = new StringBuilder(QueryConstants.HTML_QUERY_URL);
+        StringBuilder sb = new StringBuilder(QueryConstants.LEKMER_HTML_SEARCH_URL);
         sb.append(query);
-        sb.append(PAGE_PARAM);
-        sb.append(page);
         URI uri = new URI(sb.toString());
 
         return uri;
     }
 
-    private boolean morePages(Collection<ListResponse> queryPageResponses) {
-        return queryPageResponses.size() == MAX_ITEMS_ON_PAGE;
-    }
-    
     @Override
     protected QueryItemService getQueryItemService() {
         return queryItemService;
