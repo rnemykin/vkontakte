@@ -37,8 +37,8 @@ public abstract class AbstractQueryListService implements QueryListService {
 
         setNewPrice(queryResponses);
 
-        validateImgBaseSrc(queryResponses);
-
+        validate(queryResponses);
+        
         applySearchParamsTo(queryResponses, searchParams);
 
         Collection<ListResponse> filteredResponses = applyFilters(queryResponses, searchParams);
@@ -73,12 +73,13 @@ public abstract class AbstractQueryListService implements QueryListService {
         }
     }
 
-    private void validateImgBaseSrc(Collection<ListResponse> queryResponses) {
+    private void validate(Collection<ListResponse> queryResponses) {
         for (ListResponse queryListResponse : queryResponses) {
-            if (StringUtils.isEmpty(queryListResponse.getImgBaseSrc())) {
+            if (StringUtils.isEmpty(queryListResponse.getImgBaseSrc()) || StringUtils.isEmpty(queryListResponse.getSize())) {
                 ItemResponse item = getQueryItemService().extractItem(queryListResponse.getItemUrl());
                 String imgBaseSrc = item.getImgBaseSrc();
                 queryListResponse.setImgBaseSrc(imgBaseSrc);
+                queryListResponse.setItemResponse(item);
             }
         }
     }

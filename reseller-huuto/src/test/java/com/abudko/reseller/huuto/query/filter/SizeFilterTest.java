@@ -1,9 +1,11 @@
 package com.abudko.reseller.huuto.query.filter;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.params.SearchParams;
+import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 public class SizeFilterTest {
@@ -163,5 +166,26 @@ public class SizeFilterTest {
         Collection<ListResponse> filtered = filter.apply(queryResponses, searchParams);
 
         assertTrue(filtered.isEmpty());
+    }
+
+    @Test
+    public void testFilterResponseSizeNullSizesNotNull() {
+        searchParams.setSizeMax("9");
+        ListResponse response1 = queryResponses.get(0);
+        ListResponse response2 = queryResponses.get(1);
+        response1.setSize(null);
+        response1.setItemUrl("itemUrl1");
+        ItemResponse itemResponse1 = new ItemResponse();
+        itemResponse1.setSizes(Arrays.asList("8", "10"));
+        response1.setItemResponse(itemResponse1);
+        response2.setSize(null);
+        response2.setItemUrl("itemUrl2");
+        ItemResponse itemResponse2 = new ItemResponse();
+        itemResponse2.setSizes(Arrays.asList("10", "11"));
+        response2.setItemResponse(itemResponse2);
+        
+        Collection<ListResponse> filtered = filter.apply(queryResponses, searchParams);
+        
+        assertFalse(filtered.contains(response2));
     }
 }

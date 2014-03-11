@@ -2,10 +2,12 @@ package com.abudko.reseller.huuto.query.filter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.abudko.reseller.huuto.query.params.SearchParams;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
@@ -30,17 +32,37 @@ public class SizeFilter extends RangeFilter {
             double sizeMax) {
         Collection<ListResponse> filtered = new ArrayList<ListResponse>();
         for (ListResponse queryListResponse : queryResponses) {
-            String sizeStr = queryListResponse.getSize();
-            try {
-                double size = Double.parseDouble(sizeStr);
-                if (size >= sizeMin && size <= sizeMax) {
-                    filtered.add(queryListResponse);
+            if (hasManySizes(queryListResponse)) {
+                List<String> sizes = queryListResponse.getItemResponse().getSizes();
+                for (String size : sizes) {
+                    if (sizeMatches(size, sizeMin, sizeMax)) {
+                        filtered.add(queryListResponse);
+                        break;
+                    }
                 }
-            } catch (RuntimeException e) {
-                log.warn(String.format("Unable to parse size %s", sizeStr), e);
+            } else if (sizeMatches(queryListResponse.getSize(), sizeMin, sizeMax)) {
+                filtered.add(queryListResponse);
             }
         }
         return filtered;
+    }
+
+    private boolean hasManySizes(ListResponse queryListResponse) {
+        return queryListResponse.getItemResponse() != null && StringUtils.isEmpty(queryListResponse.getSize())
+                && !queryListResponse.getItemResponse().getSizes().isEmpty();
+    }
+
+    private boolean sizeMatches(String sizeStr, double sizeMin, double sizeMax) {
+        try {
+            double size = Double.parseDouble(sizeStr);
+            if (size >= sizeMin && size <= sizeMax) {
+                return true;
+            }
+        } catch (RuntimeException e) {
+            log.warn(String.format("Unable to parse size %s", sizeStr), e);
+        }
+
+        return false;
     }
 
 }

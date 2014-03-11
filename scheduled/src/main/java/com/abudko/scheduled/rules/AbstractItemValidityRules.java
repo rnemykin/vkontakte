@@ -1,10 +1,15 @@
 package com.abudko.scheduled.rules;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.ItemStatus;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 
 public abstract class AbstractItemValidityRules implements ItemValidityRules {
+    
+    protected Logger log = LoggerFactory.getLogger(getClass());
 
     public abstract QueryItemService getQueryItemService();
     
