@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -66,7 +67,7 @@ public class HuutoHtmlQueryListServiceTest {
     }
 
     @Test
-    public void testScanImgSrcExistsInSearch() throws Exception {
+    public void testScanImgSrcAndSizeExistsInSearch() throws Exception {
         SearchParams params = new SearchParams();
         params.setWords("keyword");
         params.setPrice_min("10");
@@ -78,6 +79,7 @@ public class HuutoHtmlQueryListServiceTest {
         ListResponse response = new ListResponse();
         response.setDescription("description");
         response.setImgBaseSrc("imgBaseSrc");
+        response.setSize("size");
         List<ListResponse> queryResponses = new ArrayList<ListResponse>();
         queryResponses.add(response);
         when(htmlListParser.parse(responseList)).thenReturn(queryResponses);
@@ -100,6 +102,7 @@ public class HuutoHtmlQueryListServiceTest {
                 .thenReturn(responseList);
         ListResponse response = new ListResponse();
         response.setDescription("description");
+        response.setSize("size");
         List<ListResponse> queryResponses = new ArrayList<ListResponse>();
         queryResponses.add(response);
         when(htmlListParser.parse(responseList)).thenReturn(queryResponses);
@@ -118,6 +121,33 @@ public class HuutoHtmlQueryListServiceTest {
     }
 
     @Test
+    public void testScanSizeDoesNotExistInSearch() throws Exception {
+        SearchParams params = new SearchParams();
+        params.setWords("keyword");
+        String query = "query";
+        String responseList = "responseList";
+        when(restTemplate.getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class))
+        .thenReturn(responseList);
+        ListResponse response = new ListResponse();
+        response.setDescription("description");
+        response.setImgBaseSrc("imgBaseSrc");
+        List<ListResponse> queryResponses = new ArrayList<ListResponse>();
+        queryResponses.add(response);
+        when(htmlListParser.parse(responseList)).thenReturn(queryResponses);
+        String size = "size";
+        ItemResponse itemResponse = new ItemResponse();
+        itemResponse.setSizes(Arrays.asList(size));
+        when(queryItemService.extractItem(response.getItemUrl())).thenReturn(itemResponse);
+        when(filter.apply(new LinkedHashSet<ListResponse>(queryResponses), params)).thenReturn(queryResponses);
+        
+        service.search(query, params);
+        
+        verify(restTemplate).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class);
+        verify(htmlListParser).parse(responseList);
+        verify(queryItemService).extractItem(Mockito.anyString());
+    }
+
+    @Test
     public void testPriceRulesAppliedAfterSearch() throws Exception {
         SearchParams params = new SearchParams();
         params.setWords("keyword");
@@ -130,6 +160,7 @@ public class HuutoHtmlQueryListServiceTest {
         response.setFullPrice(fullPrice);
         response.setDescription("description");
         response.setImgBaseSrc("imgBaseSrc");
+        response.setSize("size");
         List<ListResponse> queryResponses = new ArrayList<ListResponse>();
         queryResponses.add(response);
         when(htmlListParser.parse(responseList)).thenReturn(queryResponses);
@@ -215,6 +246,7 @@ public class HuutoHtmlQueryListServiceTest {
             int count = i == pageCount ? responseCount % maxItemOnPage : maxItemOnPage;
             for (int j = 0; j < count; j++) {
                 ListResponse response = new ListResponse();
+                response.setSize("size");
                 response.setImgBaseSrc("imgBaseSrc");
                 queryResponses.add(response);
             }
