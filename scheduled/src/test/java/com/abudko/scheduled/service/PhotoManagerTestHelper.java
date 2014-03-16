@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.slf4j.Logger;
 
 import com.abudko.scheduled.csv.PhotoData;
 import com.abudko.scheduled.csv.PhotoDataLogger;
@@ -27,6 +28,9 @@ public class PhotoManagerTestHelper {
 
     @Mock
     protected PhotoDataLogger photoDataLogger;
+    
+    @Mock
+    protected Logger log;
 
     @Mock
     protected PhotosTemplate photosTemplate;
@@ -44,6 +48,7 @@ public class PhotoManagerTestHelper {
         setInternalState(photoManager, "photoDataReader", photoDataReader);
         setInternalState(photoManager, "photoDataLogger", photoDataLogger);
         setInternalState(photoManager, "photosTemplate", photosTemplate);
+        setInternalState(photoManager, "log", log);
     }
     
     protected List<PhotoData> getTestData() {

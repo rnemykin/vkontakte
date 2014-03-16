@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.abudko.scheduled.csv.PhotoData;
 import com.abudko.scheduled.csv.PhotoDataLogger;
 import com.abudko.scheduled.csv.PhotoDataReader;
+import com.abudko.scheduled.service.exception.PublishPhotoException;
 import com.abudko.scheduled.vkontakte.Photo;
 import com.abudko.scheduled.vkontakte.PhotosTemplate;
 import com.abudko.scheduled.vkontakte.SavedPhoto;
@@ -22,7 +23,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
     int sleepInterval = 1000;
 
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+    protected Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     protected PhotoDataReader photoDataReader;
@@ -44,9 +45,8 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
         try {
             publishAll(csvResourcePath, photoIdGroupIdMap);
-        } catch (Throwable e) {
-            log.error("Exception happened while publishing a photo", e);
-            throw e;
+        } catch (PublishPhotoException e) {
+            log.error(e.getMessage());
         } finally {
             if (photoIdGroupIdMap.isEmpty() == false) {
                 photoDataLogger.dump(photoIdGroupIdMap, dumpFileLocation);
@@ -59,11 +59,15 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
 
         for (PhotoData photoData : photoDataList) {
-            SavedPhoto savedPhoto = publishPhoto(photoData);
+            try {
+                SavedPhoto savedPhoto = publishPhoto(photoData);
 
-            log.info(String.format("Saved photo id '%s'", savedPhoto));
+                log.info(String.format("Saved photo id '%s'", savedPhoto));
 
-            photoIdGroupIdMap.put(savedPhoto.getPhotoId(), savedPhoto.getOwnerId());
+                photoIdGroupIdMap.put(savedPhoto.getPhotoId(), savedPhoto.getOwnerId());
+            } catch (Throwable e) {
+                throw new PublishPhotoException(photoData);
+            }
         }
     }
 
@@ -81,8 +85,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         String ownerId = getOwnerId(groupId);
         int comments = photosTemplate.getCommentsCount(photoId, ownerId);
 
-        log.info(String
-                .format("Deleting a photo id['%s'],  group['%s'], comments '%d'", photoId, groupId, comments));
+        log.info(String.format("Deleting a photo id['%s'],  group['%s'], comments '%d'", photoId, groupId, comments));
 
         if (comments == 0) {
             Thread.sleep(sleepInterval);
@@ -92,16 +95,15 @@ public abstract class AbstractPhotoManager implements PhotoManager {
                     groupId));
         }
     }
-    
+
     @Override
     public void deletePhotoForce(String photoId, String groupId) throws InterruptedException {
         String ownerId = getOwnerId(groupId);
-        
-        log.info(String
-                .format("Deleting a photo id['%s'],  group['%s']", photoId, groupId));        
-        
+
+        log.info(String.format("Deleting a photo id['%s'],  group['%s']", photoId, groupId));
+
         photosTemplate.deletePhoto(photoId, ownerId);
-        
+
     }
 
     @Override
@@ -126,18 +128,18 @@ public abstract class AbstractPhotoManager implements PhotoManager {
     @Override
     public List<Photo> getPhotos(String ownerId, String albumId) {
         log.info(String.format("Getting photos: groupid '%s', albumid '%s'", ownerId, albumId));
-        
+
         List<Photo> photos = photosTemplate.getPhotos(getOwnerId(ownerId), albumId);
-        
+
         return photos;
     }
 
     @Override
     public List<String> getAlbumIds(String groupId) {
         log.info(String.format("Getting albums: groupid '%s'", groupId));
-        
+
         List<String> albumIds = photosTemplate.getAlbumIds(getOwnerId(groupId));
-        
+
         return albumIds;
     }
 

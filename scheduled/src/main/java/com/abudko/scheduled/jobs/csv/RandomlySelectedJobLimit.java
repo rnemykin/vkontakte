@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.abudko.scheduled.jobs.AbstractScheduledJob;
 
 @Component
-public class RandomlySelectedJobLimit extends AbstractScheduledJob<HourIntervalScheduler> implements Job {
+public class RandomlySelectedJobLimit extends AbstractScheduledJob implements Job {
 
     public void execute(JobExecutionContext context) throws JobExecutionException {
         this.callScheduler(context);

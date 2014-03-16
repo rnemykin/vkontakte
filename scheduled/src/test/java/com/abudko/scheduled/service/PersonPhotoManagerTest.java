@@ -1,6 +1,5 @@
 package com.abudko.scheduled.service;
 
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -109,30 +108,23 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         when(photosTemplate.savePhoto(uploadedPhoto, description)).thenReturn(savedPhoto);
         when(photosTemplate.getUploadServer(GROUPID1, ALBUMID2)).thenThrow(new RuntimeException());
 
-        try {
-            photoManager.publish("csvResourcePath", dumpFileLocation, null);
-            fail("should throw an exception before");
-        } catch (Exception e) {
-            // as expected
-        }
+        photoManager.publish("csvResourcePath", dumpFileLocation, null);
 
         Map<String, String> map = new HashMap<String, String>();
         map.put(photoId, ownerId);
         verify(photoDataLogger).dump(map, dumpFileLocation);
+        verify(log).error(Mockito.anyString());
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testNoDumpWhenDumpMapIsEmpty() throws Exception {
         final String dumpFileLocation = "dumpFileLocation";
         when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenThrow(new RuntimeException());
 
-        try {
-            photoManager.publish("csvResourcePath", dumpFileLocation, null);
-            fail("should throw an exception before");
-        } catch (Exception e) {
-            // as expected
-        }
+        photoManager.publish("csvResourcePath", dumpFileLocation, null);
 
         verify(photoDataLogger, times(0)).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
+        verify(log).error(Mockito.anyString());
     }
 }

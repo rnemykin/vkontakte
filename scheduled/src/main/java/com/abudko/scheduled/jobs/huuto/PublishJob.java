@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.abudko.scheduled.jobs.AbstractScheduledJob;
 
 @Component
-public class PublishJob extends AbstractScheduledJob<PublishScheduler> implements Job {
+public class PublishJob extends AbstractScheduledJob implements Job {
 
     public void execute(JobExecutionContext context) throws JobExecutionException {
         this.callScheduler(context);
