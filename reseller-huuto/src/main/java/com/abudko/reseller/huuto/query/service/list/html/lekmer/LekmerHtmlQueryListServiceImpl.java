@@ -20,7 +20,7 @@ import com.abudko.reseller.huuto.query.service.list.html.HtmlListParser;
 public class LekmerHtmlQueryListServiceImpl extends AbstractQueryListService {
 
     @Autowired
-    @Qualifier("atomQueryItemServiceImpl")
+    @Qualifier("lekmerHtmlQueryItemServiceImpl")
     private QueryItemService queryItemService;
 
     @Autowired

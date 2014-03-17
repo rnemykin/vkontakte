@@ -33,7 +33,7 @@ public class LekmerHtmlQueryListServiceIntegrationTest {
         String query = getQuery(searchParams);
         
         Collection<ListResponse> results = queryService.search(query, searchParams);
-        System.err.println(results.size());
+        System.out.println(results.size());
     }
 
     private String getQuery(SearchParams searchParams) throws IllegalAccessException, InvocationTargetException,
