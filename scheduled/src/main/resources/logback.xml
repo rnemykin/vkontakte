@@ -26,6 +26,10 @@
         <encoder>
             <pattern>%d{dd.MM.yyyy HH:mm:ss,SSS} [%thread] %p [%c] - %m %n</pattern>
         </encoder>
+        
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <fileNamePattern>${com.sun.aas.instanceRoot}/logs/scheduled-error.%i.log</fileNamePattern>
@@ -119,7 +123,7 @@
         <appender-ref ref="scheduled-application"/>
     </logger>
     
-    <logger name="com.abudko.scheduled.service.AbstractPhotoManager" level="error" additivity="false">
+    <logger name="com.abudko.scheduled" level="error" additivity="false">
         <appender-ref ref="scheduled-error"/>
     </logger>
     
@@ -150,6 +154,7 @@
     <!-- Root logger -->
     <root level="WARN">
         <appender-ref ref="scheduled-application"/>
+        <appender-ref ref="scheduled-error"/>
     </root>
 
 </configuration>

@@ -31,9 +31,10 @@ public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager {
             for (PhotoData photoData : randomPhotoDataList) {
                 SavedPhoto savedPhoto = publishPhoto(photoData);
 
-                log.info(String.format("Saved photo id '%s'", savedPhoto));
-
-                photoIdGroupIdMap.put(savedPhoto.getPhotoId(), photoData.getGroupId());
+                if (savedPhoto != null && savedPhoto.getPhotoId() != null && savedPhoto.getOwnerId() != null) {
+                    log.info(String.format("Saved photo id '%s'", savedPhoto));
+                    photoIdGroupIdMap.put(savedPhoto.getPhotoId(), photoData.getGroupId());
+                }
             }
         }
     }

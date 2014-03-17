@@ -1,6 +1,5 @@
 package com.abudko.scheduled.service;
 
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -25,6 +24,9 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
 
     @Before
     public void setup() {
+        Mockito.reset(photoDataReader);
+        Mockito.reset(photoDataLogger);
+        Mockito.reset(photosTemplate);
         photoManager = new LimitedRandomSelectedGroupPhotoManager();
         super.setup();
         setupMocks();
@@ -103,14 +105,10 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
         when(photosTemplate.getUploadServer(Mockito.eq(GROUPID2), Mockito.anyString())).thenThrow(
                 new RuntimeException());
 
-        try {
-            photoManager.publish("csvResourcePath", dumpFileLocation, null);
-            fail("should throw an exception before");
-        } catch (Exception e) {
-            // as expected
-        }
+        photoManager.publish("csvResourcePath", dumpFileLocation, null);
 
         verify(photoDataLogger).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
+        verify(log, times(3)).error(Mockito.anyString());
     }
 
     @Test
@@ -119,14 +117,10 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
         when(photosTemplate.getUploadServer(Mockito.anyString(), Mockito.anyString()))
                 .thenThrow(new RuntimeException());
 
-        try {
-            photoManager.publish("csvResourcePath", dumpFileLocation, null);
-            fail("should throw an exception before");
-        } catch (Exception e) {
-            // as expected
-        }
+        photoManager.publish("csvResourcePath", dumpFileLocation, null);
 
         verify(photoDataLogger, times(0)).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
+        verify(log, times(6)).error(Mockito.anyString());
     }
 
     @Test

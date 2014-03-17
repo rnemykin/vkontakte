@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.abudko.scheduled.csv.PhotoData;
 import com.abudko.scheduled.csv.PhotoDataLogger;
 import com.abudko.scheduled.csv.PhotoDataReader;
-import com.abudko.scheduled.service.exception.PublishPhotoException;
 import com.abudko.scheduled.vkontakte.Photo;
 import com.abudko.scheduled.vkontakte.PhotosTemplate;
 import com.abudko.scheduled.vkontakte.SavedPhoto;
@@ -45,8 +44,6 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
         try {
             publishAll(csvResourcePath, photoIdGroupIdMap);
-        } catch (PublishPhotoException e) {
-            log.error(e.getMessage());
         } finally {
             if (photoIdGroupIdMap.isEmpty() == false) {
                 photoDataLogger.dump(photoIdGroupIdMap, dumpFileLocation);
@@ -59,14 +56,11 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
 
         for (PhotoData photoData : photoDataList) {
-            try {
-                SavedPhoto savedPhoto = publishPhoto(photoData);
+            SavedPhoto savedPhoto = publishPhoto(photoData);
 
+            if (savedPhoto != null && savedPhoto.getPhotoId() != null && savedPhoto.getOwnerId() != null) {
                 log.info(String.format("Saved photo id '%s'", savedPhoto));
-
                 photoIdGroupIdMap.put(savedPhoto.getPhotoId(), savedPhoto.getOwnerId());
-            } catch (Throwable e) {
-                throw new PublishPhotoException(photoData);
             }
         }
     }
@@ -108,21 +102,27 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
     @Override
     public SavedPhoto publishPhoto(PhotoData photoData) throws InterruptedException {
-        log.info(String.format("Publishing photo '%s'", photoData));
+        try {
+            log.info(String.format("Publishing photo '%s'", photoData));
 
-        String uploadUrl = photosTemplate.getUploadServer(photoData.getGroupId(), photoData.getAlbumId());
+            String uploadUrl = photosTemplate.getUploadServer(photoData.getGroupId(), photoData.getAlbumId());
 
-        log.info(String.format("Got upload URL '%s'", uploadUrl));
+            log.info(String.format("Got upload URL '%s'", uploadUrl));
 
-        UploadedPhoto uploadedPhoto = photosTemplate.uploadPhoto(uploadUrl, photoData.getFileResource());
+            UploadedPhoto uploadedPhoto = photosTemplate.uploadPhoto(uploadUrl, photoData.getFileResource());
 
-        log.info(String.format("Got uploadedPhoto '%s'", uploadedPhoto));
+            log.info(String.format("Got uploadedPhoto '%s'", uploadedPhoto));
 
-        Thread.sleep(sleepInterval);
+            Thread.sleep(sleepInterval);
 
-        SavedPhoto savedPhoto = photosTemplate.savePhoto(uploadedPhoto, photoData.getDescription());
+            SavedPhoto savedPhoto = photosTemplate.savePhoto(uploadedPhoto, photoData.getDescription());
 
-        return savedPhoto;
+            return savedPhoto;
+        } catch (Throwable e) {
+            log.error(String.format("Exception happened while publishing a photo '%s'", photoData));
+        }
+
+        return null;
     }
 
     @Override
