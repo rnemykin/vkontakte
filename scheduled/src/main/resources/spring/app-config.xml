@@ -10,5 +10,6 @@
 	<import resource="properties.xml" />
 	<import resource="quartz.xml"/>
 	<import resource="jmx.xml"/>
+	<import resource="cache.xml"/>
 
 </beans>

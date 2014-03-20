@@ -6,5 +6,6 @@
 	<import resource="classpath:spring/components.xml" />
 	<import resource="classpath:spring/properties.xml" />
 	<import resource="classpath:spring/quartz.xml"/>
+	<import resource="classpath:spring/cache.xml"/>
 
 </beans>

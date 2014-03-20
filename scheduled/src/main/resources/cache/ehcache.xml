@@ -1,0 +1,5 @@
+<ehcache xsi:noNamespaceSchemaLocation="ehcache.xsd">
+
+	<cache name="currencyRate" maxElementsInMemory="1" eternal="false" timeToLiveSeconds="600" overflowToDisk="false" />
+
+</ehcache>

@@ -42,10 +42,15 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
 
     private List<String> parseSizes(Document document) {
         List<String> sizes = new ArrayList<>();
-        Elements elements = document.getElementsByAttributeValueMatching("class", Pattern.compile("1erpseparator\\w+"));
+        Elements elements = document.getElementsByAttributeValueMatching("class", Pattern.compile("[^0]erpseparator\\w+"));
         for (Element element : elements) {
             String text = element.text();
-            sizes.add(text.substring(0, 3).trim());
+            if (text.length() > 2) {
+                sizes.add(text.substring(0, 3).trim());
+            }
+            else {
+                sizes.add(text.substring(0, 2).trim());
+            }
         }
         return sizes;
     }

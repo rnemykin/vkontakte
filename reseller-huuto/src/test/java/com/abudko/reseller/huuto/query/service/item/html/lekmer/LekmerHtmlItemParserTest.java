@@ -3,12 +3,12 @@ package com.abudko.reseller.huuto.query.service.item.html.lekmer;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.abudko.reseller.huuto.query.service.item.ItemStatus;
 import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
 import com.abudko.reseller.huuto.query.service.list.HtmlParserTestUtils;
 
@@ -34,21 +34,21 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testId() {
-        assertEquals("510097-6982", response.getId());
+        assertEquals("102-405-133 NAV", response.getId());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("39.50", response.getPrice());
+        assertEquals("129.90", response.getPrice());
     }
     
     @Test
     public void testSizes() {
-        assertEquals("80", response.getSizes().get(1));
+        assertEquals(Arrays.asList("116", "128", "134"), response.getSizes());
     }
     
     @Test
     public void testImgSrc() {
-        assertEquals("http://lekmer.fi/mediaarchive/1083385/productmanMeasurement465x500/reima-talvihaalari-tatum-raidallinen-tummansininen.jpg", response.getImgBaseSrc());
+        assertEquals("http://lekmer.fi/mediaarchive/1084106/productmanMeasurement465x500/ticket-outdoor-haalari-baggie-rugged-suit-navy-iris.jpg", response.getImgBaseSrc());
     }
 }
