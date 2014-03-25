@@ -81,7 +81,7 @@ public abstract class AbstractPublishManager implements PublishManager {
         // no need to add advert.
         imageManipulator.storeImage(url, "file:" + imageTempFileLocation, null);
     }
-    
+
     protected PhotoData getPhotoData(Category category, ListResponse listResponse) {
         PhotoData photoData = new PhotoData();
         photoData.setGroupId(AlbumMapper.GROUP_ID);
@@ -96,8 +96,8 @@ public abstract class AbstractPublishManager implements PublishManager {
         ItemResponse itemResponse = listResponse.getItemResponse();
         String newPrice = itemResponse.getNewPrice();
         String id = itemResponse.getId();
-        String size = listResponse.hasManySizes() ? listResponse.getItemResponse().getSizes().toString() : listResponse
-                .getSize();
+        String size = listResponse.hasManySizes() ? listResponse.getItemResponse().getSizes().toString()
+                .replaceAll("\\[|\\]", "") : listResponse.getSize();
         String brand = listResponse.getBrand();
         String title = category.getLabel();
 
