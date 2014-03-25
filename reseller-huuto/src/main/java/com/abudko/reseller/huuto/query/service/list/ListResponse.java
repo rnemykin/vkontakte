@@ -2,6 +2,7 @@ package com.abudko.reseller.huuto.query.service.list;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import com.abudko.reseller.huuto.query.enumeration.Classification;
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
@@ -122,6 +123,10 @@ public class ListResponse implements Comparable<ListResponse> {
 
     public void setItemResponse(ItemResponse itemResponse) {
         this.itemResponse = itemResponse;
+    }
+
+    public boolean hasManySizes() {
+        return getItemResponse() != null && StringUtils.isEmpty(getSize()) && !getItemResponse().getSizes().isEmpty();
     }
 
     public String dump() {

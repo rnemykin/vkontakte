@@ -34,7 +34,7 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testId() {
-        assertEquals("102-405-133 NAV", response.getId());
+        assertEquals("LE102-405-133 NAV", response.getId());
     }
 
     @Test

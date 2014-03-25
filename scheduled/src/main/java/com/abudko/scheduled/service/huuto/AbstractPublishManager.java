@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.FileSystemResource;
 
 import com.abudko.reseller.huuto.image.ImageManipulator;
 import com.abudko.reseller.huuto.query.enumeration.Category;
@@ -54,7 +55,8 @@ public abstract class AbstractPublishManager implements PublishManager {
 
             PhotoData photoData = convert(category, queryResponse);
             if (photoData.getAlbumId() == null) {
-                log.warn(String.format("Unable to extract albumid for '%s' for category '%s'", queryResponse, category.name()));
+                log.warn(String.format("Unable to extract albumid for '%s' for category '%s'", queryResponse,
+                        category.name()));
                 continue;
             }
 
@@ -71,27 +73,37 @@ public abstract class AbstractPublishManager implements PublishManager {
         cropImage(listResponse);
         return getPhotoData(category, listResponse);
     }
-    
-    protected abstract PhotoData getPhotoData(Category category, ListResponse listResponse);
-    
+
+    protected abstract String getImgUrl(ListResponse listResponse);
+
     private void cropImage(ListResponse listResponse) {
-        ItemResponse itemResponse = listResponse.getItemResponse();
-        String url = itemResponse.getImgBaseSrc() + "-orig.jpg";
+        String url = getImgUrl(listResponse);
         // no need to add advert.
         imageManipulator.storeImage(url, "file:" + imageTempFileLocation, null);
     }
     
+    protected PhotoData getPhotoData(Category category, ListResponse listResponse) {
+        PhotoData photoData = new PhotoData();
+        photoData.setGroupId(AlbumMapper.GROUP_ID);
+        photoData.setAlbumId(albumMapper.getAlbumId(category.name(), listResponse));
+        photoData.setDescription(getDescription(category, listResponse));
+        photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
+
+        return photoData;
+    }
+
     protected String getDescription(Category category, ListResponse listResponse) {
         ItemResponse itemResponse = listResponse.getItemResponse();
         String newPrice = itemResponse.getNewPrice();
         String id = itemResponse.getId();
-        String size = listResponse.getSize();
+        String size = listResponse.hasManySizes() ? listResponse.getItemResponse().getSizes().toString() : listResponse
+                .getSize();
         String brand = listResponse.getBrand();
         String title = category.getLabel();
-        
+
         String description = context.getMessage(COMMENT_KEY, new Object[] { title, brand, size, newPrice, id },
                 Locale.getDefault());
-        
+
         return description;
     }
 
@@ -106,5 +118,5 @@ public abstract class AbstractPublishManager implements PublishManager {
 
         return false;
     }
-    
+
 }

@@ -47,12 +47,12 @@ public class PublishManagerTest {
     private AlbumMapper albumMapper;
 
     @InjectMocks
-    private PublishManager publishManager = new PublishManagerImpl();
+    private PublishManager publishManager = new HuutoPublishManager();
 
     @Before
     public void setup() {
         setField(publishManager, "imageTempFileLocation", "imageTempFileLocation");
-        when(albumMapper.getAlbumId(Mockito.anyString(), Mockito.any(Integer.class))).thenReturn("23876523");
+        when(albumMapper.getAlbumId(Mockito.anyString(), Mockito.any(ListResponse.class))).thenReturn("23876523");
     }
 
     @Test

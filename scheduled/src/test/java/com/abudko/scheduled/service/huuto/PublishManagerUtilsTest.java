@@ -35,6 +35,11 @@ public class PublishManagerUtilsTest {
     }
     
     @Test
+    public void testGetIdLekmer() {
+        assertEquals("LE102-405-133 NAV", utils.getId("2-dspik  sxs2323 332323 [LE102-405-133 NAV]"));
+    }
+    
+    @Test
     public void testGetIdDigits() {
         final String descriptionId = "82372082372038972309782902790273237";
         assertEquals(descriptionId, utils.getId(String.format("[%s]", descriptionId)));

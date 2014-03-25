@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +14,6 @@ import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.enumeration.Classification;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 public class ListResponseTest {
 
@@ -126,6 +126,30 @@ public class ListResponseTest {
         testResponse.setItemResponse(null);
         
         assertFalse(testResponse.dump().contains(SELLER));
+    }
+    
+    @Test
+    public void testHasManySizesItemResponseNull() {
+        testResponse.setItemResponse(null);
+        
+        assertFalse(testResponse.hasManySizes());
+    }
+    
+    @Test
+    public void testHasManySizesSizeNotNull() {
+        testResponse.setItemResponse(new ItemResponse());
+        testResponse.setSize("size");
+        
+        assertFalse(testResponse.hasManySizes());
+    }
+    
+    @Test
+    public void testHasManySizesPositive() {
+        testResponse.setItemResponse(new ItemResponse());
+        testResponse.setSize(null);
+        testResponse.getItemResponse().setSizes(Arrays.asList("1", "2"));
+        
+        assertTrue(testResponse.hasManySizes());
     }
     
     @Test

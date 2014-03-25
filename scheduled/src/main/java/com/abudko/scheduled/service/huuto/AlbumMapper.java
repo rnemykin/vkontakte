@@ -2,7 +2,9 @@ package com.abudko.scheduled.service.huuto;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +12,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.query.enumeration.Category;
+import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.google.common.collect.Range;
 import com.google.common.collect.RangeMap;
 import com.google.common.collect.TreeRangeMap;
@@ -95,7 +98,16 @@ public class AlbumMapper {
         map.put(Category.SADEHAALARI.name(), rangeMap);
     }
 
-    public String getAlbumId(String category, Integer size) {
+    public String getAlbumId(String category, ListResponse listResponse) {
+        Integer size = 1;
+        if (listResponse.hasManySizes()) {
+            List<String> sizes = listResponse.getItemResponse().getSizes();
+            Collections.shuffle(sizes);
+            size = Integer.valueOf(sizes.get(0));
+        }
+        else {
+            size = Integer.valueOf(listResponse.getSize());
+        }
         RangeMap<Integer, String> rangeMap = map.get(category);
         if (rangeMap == null) {
             return null;

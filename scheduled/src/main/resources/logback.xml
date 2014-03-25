@@ -139,10 +139,6 @@
         <appender-ref ref="scheduled-huuto-publish"/>
     </logger>
     
-    <logger name="com.abudko.scheduled.jobs.huuto.UsedPublishScheduler" level="info" additivity="false">
-        <appender-ref ref="scheduled-huuto-publish"/>
-    </logger>
-    
     <logger name="com.abudko.scheduled.jobs.huuto.CleanScheduler" level="info" additivity="false">
         <appender-ref ref="scheduled-huuto-clean"/>
     </logger>

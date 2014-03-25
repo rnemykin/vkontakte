@@ -1,6 +1,9 @@
 package com.abudko.scheduled.jobs.huuto;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,47 +34,43 @@ public class PublishScheduler implements Scheduler {
 
     @Autowired
     @Qualifier("csvParamBuilder")
-    private ParamBuilder paramBuilder;
+    private ParamBuilder huutoParamBuilder;
+
+    @Autowired
+    @Qualifier("lekmerHtmlParamBuilder")
+    private ParamBuilder lekmerBuilder;
 
     @Autowired
     @Qualifier("huutoHtmlQueryListServiceImpl")
-    private QueryListService queryListService;
+    private QueryListService huutoQueryListService;
+
+    @Autowired
+    @Qualifier("lekmerHtmlQueryListServiceImpl")
+    private QueryListService lekmerQueryListService;
 
     @Autowired
     @Qualifier("atomQueryItemServiceImpl")
     private QueryItemService atomQueryItemService;
-    
+
     @Autowired
     @Qualifier("htmlSearchQueryRules")
     private SearchQueryRules searchQueryRules;
 
     @Autowired
-    @Qualifier("publishManagerImpl")
-    private PublishManager publishManager;
+    @Qualifier("huutoPublishManager")
+    private PublishManager huutoPublishManager;
+
+    @Autowired
+    @Qualifier("lekmerPublishManager")
+    private PublishManager lekmerPublishManager;
 
     public void schedule() {
         log.info("********* Start PublishScheduler *******");
         try {
-
             List<SearchParams> searchParamsList = searchParamMapper.getSearchParams();
 
-            for (SearchParams searchParams : searchParamsList) {
-                applySearchParamsRules(searchParams);
-
-                String query = getQuery(searchParams);
-
-                log.info(String.format("Quering search: %s", query));
-
-                Collection<ListResponse> queryListResponses = queryListService.search(query, searchParams);
-                extractItemResponse(queryListResponses);
-
-                Category category = Category.valueOf(searchParams.getCategoryenum());
-                if (category != null) {
-                    publishManager.publishResults(category, queryListResponses);
-                } else {
-                    log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
-                }
-            }
+            publishHuuto(searchParamsList);
+            publishLekmer(searchParamsList);
 
             log.info("********* End PublishScheduler *******");
 
@@ -81,20 +80,59 @@ public class PublishScheduler implements Scheduler {
         }
     }
 
-    private void applySearchParamsRules(SearchParams searchParams) {
+    public void publishHuuto(List<SearchParams> searchParamsList) throws IllegalAccessException,
+            InvocationTargetException, NoSuchMethodException, UnsupportedEncodingException, URISyntaxException,
+            InterruptedException {
+        for (SearchParams searchParams : searchParamsList) {
+            applyHuutoSearchParamsRules(searchParams);
+
+            String query = huutoParamBuilder.buildQuery(searchParams);
+
+            log.info(String.format("Quering search: %s", query));
+
+            Collection<ListResponse> queryListResponses = huutoQueryListService.search(query, searchParams);
+            extractHuutoItemResponse(queryListResponses);
+
+            Category category = Category.valueOf(searchParams.getCategoryenum());
+            if (category != null) {
+                huutoPublishManager.publishResults(category, queryListResponses);
+            } else {
+                log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
+            }
+        }
+    }
+    
+    private void applyHuutoSearchParamsRules(SearchParams searchParams) {
         searchParams.setBrand("NO_BRAND");
         searchQueryRules.apply(searchParams);
     }
-
-    private String getQuery(SearchParams searchParams) throws IllegalAccessException, InvocationTargetException,
-            NoSuchMethodException {
-        return paramBuilder.buildQuery(searchParams);
-    }
-
-    private void extractItemResponse(Collection<ListResponse> queryListResponses) {
+    
+    private void extractHuutoItemResponse(Collection<ListResponse> queryListResponses) {
         for (ListResponse queryListResponse : queryListResponses) {
             ItemResponse itemResponse = atomQueryItemService.extractItem(queryListResponse.getItemUrl());
             queryListResponse.setItemResponse(itemResponse);
+        }
+    }
+
+    public void publishLekmer(List<SearchParams> searchParamsList) throws IllegalAccessException,
+            InvocationTargetException, NoSuchMethodException, UnsupportedEncodingException, URISyntaxException,
+            InterruptedException {
+        SearchParams searchParams = searchParamsList.get(0);
+        String query = "talvihaalari";//lekmerBuilder.buildQuery(searchParams);
+
+        log.info(String.format("Quering search: %s", query));
+
+        Collection<ListResponse> queryListResponses = lekmerQueryListService.search(query, searchParams);
+        
+        ListResponse next = queryListResponses.iterator().next();
+        List<ListResponse> list = new ArrayList<ListResponse>();
+        list.add(next);
+        
+        Category category = Category.valueOf(searchParams.getCategoryenum());
+        if (category != null) {
+            lekmerPublishManager.publishResults(category, list);
+        } else {
+            log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
         }
     }
 }

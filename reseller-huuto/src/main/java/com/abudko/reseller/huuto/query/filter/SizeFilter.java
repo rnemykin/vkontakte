@@ -7,7 +7,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import com.abudko.reseller.huuto.query.params.SearchParams;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
@@ -32,7 +31,7 @@ public class SizeFilter extends RangeFilter {
             double sizeMax) {
         Collection<ListResponse> filtered = new ArrayList<ListResponse>();
         for (ListResponse queryListResponse : queryResponses) {
-            if (hasManySizes(queryListResponse)) {
+            if (queryListResponse.hasManySizes()) {
                 List<String> sizes = queryListResponse.getItemResponse().getSizes();
                 for (String size : sizes) {
                     if (sizeMatches(size, sizeMin, sizeMax)) {
@@ -45,11 +44,6 @@ public class SizeFilter extends RangeFilter {
             }
         }
         return filtered;
-    }
-
-    private boolean hasManySizes(ListResponse queryListResponse) {
-        return queryListResponse.getItemResponse() != null && StringUtils.isEmpty(queryListResponse.getSize())
-                && !queryListResponse.getItemResponse().getSizes().isEmpty();
     }
 
     private boolean sizeMatches(String sizeStr, double sizeMin, double sizeMax) {

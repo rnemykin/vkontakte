@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public abstract class PublishSchedulerIntegrationTest {
+public class PublishSchedulerIntegrationTest {
 
     @Autowired
     private PublishScheduler publishScheduler;
