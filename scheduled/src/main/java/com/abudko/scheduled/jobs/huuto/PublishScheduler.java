@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -124,9 +125,14 @@ public class PublishScheduler implements Scheduler {
 
         Collection<ListResponse> queryListResponses = lekmerQueryListService.search(query, searchParams);
         
-        ListResponse next = queryListResponses.iterator().next();
+        int i = 0;
         List<ListResponse> list = new ArrayList<ListResponse>();
-        list.add(next);
+        for (Iterator<ListResponse> iterator = queryListResponses.iterator(); iterator.hasNext();) {
+            ListResponse response = iterator.next();
+            if (i++ < 5) {
+                list.add(response);
+            }
+        }
         
         Category category = Category.valueOf(searchParams.getCategoryenum());
         if (category != null) {
