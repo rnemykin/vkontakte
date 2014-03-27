@@ -1,7 +1,9 @@
 package com.abudko.reseller.huuto.query.service.list.html.lekmer;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
@@ -46,7 +48,12 @@ public class LekmerHtmlQueryListServiceImpl extends AbstractQueryListService {
 
     private URI getPagedURI(String query, int page) throws URISyntaxException {
         StringBuilder sb = new StringBuilder(QueryConstants.LEKMER_HTML_SEARCH_URL);
-        sb.append(query);
+        try {
+            sb.append(URLEncoder.encode(query, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         URI uri = new URI(sb.toString());
 
         return uri;
