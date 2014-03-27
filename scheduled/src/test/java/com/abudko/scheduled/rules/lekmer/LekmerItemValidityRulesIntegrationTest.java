@@ -32,7 +32,7 @@ public class LekmerItemValidityRulesIntegrationTest {
     
     @Test
     public void testLekmerIdWithSpacesValid() {
-        assertTrue(rules.isValid("HW 13103 BLACK/"));
+        assertTrue(rules.isValid("LEHW 13103 BLACK/"));
     }
     
     @Test
