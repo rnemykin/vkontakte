@@ -28,7 +28,7 @@ import org.springframework.web.client.RestTemplate;
 import com.abudko.reseller.huuto.query.QueryConstants;
 import com.abudko.reseller.huuto.query.filter.SearchResultFilter;
 import com.abudko.reseller.huuto.query.params.SearchParams;
-import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
+import com.abudko.reseller.huuto.query.rules.HuutoPriceRules;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
