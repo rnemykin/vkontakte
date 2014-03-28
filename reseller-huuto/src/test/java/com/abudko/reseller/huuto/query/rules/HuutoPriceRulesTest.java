@@ -21,7 +21,7 @@ import com.abudko.reseller.huuto.query.currency.CurrencyService;
 import com.abudko.reseller.huuto.query.currency.RateResponse;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PriceRulesTest {
+public class HuutoPriceRulesTest {
 
     @Mock
     private CurrencyService currencyService;
@@ -33,7 +33,7 @@ public class PriceRulesTest {
     private HttpClient httpClient;
 
     @InjectMocks
-    private PriceRules rules = new PriceRules();
+    private AbstractPriceRules rules = new HuutoPriceRules();
     
     @Before
     public void setup() {

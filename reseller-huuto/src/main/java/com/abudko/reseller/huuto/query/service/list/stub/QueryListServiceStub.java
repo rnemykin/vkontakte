@@ -7,6 +7,7 @@ import java.util.Random;
 
 import org.springframework.stereotype.Component;
 
+import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.AbstractQueryListService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
@@ -49,5 +50,9 @@ public class QueryListServiceStub extends AbstractQueryListService {
         // TODO Auto-generated method stub
         return null;
     }
-
+    
+    @Override
+    protected AbstractPriceRules getPriceRules() {
+        return this.defaultPriceRules;
+    }
 }

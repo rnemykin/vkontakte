@@ -3,12 +3,16 @@ package com.abudko.reseller.huuto.query.service.item.html.lekmer;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
+import com.abudko.reseller.huuto.query.rules.LekmerPriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 
@@ -16,6 +20,9 @@ import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
     private Logger log = LoggerFactory.getLogger(getClass());
+    
+    @Resource
+    protected LekmerPriceRules lekmerPriceRules;
 
     @Autowired
     private LekmerHtmlItemParser htmlItemParser;
@@ -54,5 +61,9 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     
     protected String extractIdFromUrl(String urlSuffix) {
         return null;
+    }
+    
+    protected AbstractPriceRules getPriceRules() {
+        return lekmerPriceRules;
     }
 }

@@ -6,7 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.abudko.reseller.huuto.query.rules.PriceRules;
+import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
+import com.abudko.reseller.huuto.query.rules.HuutoPriceRules;
 
 @Component
 public abstract class AbstractQueryItemService implements QueryItemService {
@@ -14,14 +15,14 @@ public abstract class AbstractQueryItemService implements QueryItemService {
     protected Logger log = LoggerFactory.getLogger(getClass());
 
     @Resource
-    private PriceRules priceRules;
+    protected HuutoPriceRules defaultPriceRules;
 
     @Override
     public ItemResponse extractItem(String urlSuffix) {
 
         ItemResponse itemResponse = callAndParse(urlSuffix);
 
-        itemResponse.setNewPrice(priceRules.calculateNew(itemResponse.getPrice()));
+        itemResponse.setNewPrice(getPriceRules().calculateNew(itemResponse.getPrice()));
         setResponseIdFromUrlSuffix(urlSuffix, itemResponse);
 
         return itemResponse;
@@ -38,4 +39,6 @@ public abstract class AbstractQueryItemService implements QueryItemService {
     protected abstract String extractIdFromUrl(String urlSuffix);
     
     protected abstract ItemResponse callAndParse(String urlSuffix);
+    
+    protected abstract AbstractPriceRules getPriceRules(); 
 }

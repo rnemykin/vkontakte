@@ -10,9 +10,7 @@ import org.springframework.util.StringUtils;
 import com.abudko.reseller.huuto.query.currency.CurrencyService;
 
 @Component
-public class PriceRules {
-    
-    private static final BigDecimal ADD_IN_EURO = new BigDecimal(10);
+public abstract class AbstractPriceRules {
     
     @Autowired
     private CurrencyService currencyService;
@@ -21,11 +19,13 @@ public class PriceRules {
 
     public String calculateNew(String price) {
         if (StringUtils.hasLength(price)) {
-            BigDecimal newPrice = new BigDecimal(price).add(ADD_IN_EURO);
+            BigDecimal newPrice = new BigDecimal(price).add(getAddInEuro());
             BigDecimal priceInRub = newPrice.multiply(currencyService.getRate());
             
             return priceFormat.format(priceInRub);
         }
         return price;
     }
+    
+    protected abstract BigDecimal getAddInEuro();
 }

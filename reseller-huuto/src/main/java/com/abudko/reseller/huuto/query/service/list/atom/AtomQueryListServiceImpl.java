@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.abudko.reseller.huuto.query.QueryConstants;
+import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.AbstractQueryListService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
@@ -75,5 +76,10 @@ public class AtomQueryListServiceImpl extends AbstractQueryListService {
     @Override
     protected QueryItemService getQueryItemService() {
         return queryItemService;
+    }
+
+    @Override
+    protected AbstractPriceRules getPriceRules() {
+        return this.defaultPriceRules;
     }
 }

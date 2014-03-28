@@ -9,12 +9,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.abudko.reseller.huuto.query.filter.SearchResultFilter;
 import com.abudko.reseller.huuto.query.params.SearchParams;
-import com.abudko.reseller.huuto.query.rules.PriceRules;
+import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 
@@ -27,7 +28,8 @@ public abstract class AbstractQueryListService implements QueryListService {
     private List<SearchResultFilter> searchResultFilters;
 
     @Autowired
-    private PriceRules priceRules;
+    @Qualifier("huutoPriceRules")
+    protected AbstractPriceRules defaultPriceRules;
 
     @Override
     public Collection<ListResponse> search(String query, SearchParams searchParams)
@@ -50,6 +52,8 @@ public abstract class AbstractQueryListService implements QueryListService {
     
     protected abstract QueryItemService getQueryItemService();
 
+    protected abstract AbstractPriceRules getPriceRules();
+
     private Collection<ListResponse> applyFilters(Collection<ListResponse> queryResponses, SearchParams searchParams) {
         for (SearchResultFilter filter : searchResultFilters) {
             log.info(String.format("Applying filter '%s', queryResponses before '%d'", filter, queryResponses.size()));
@@ -62,7 +66,7 @@ public abstract class AbstractQueryListService implements QueryListService {
     private void setNewPrice(Collection<ListResponse> queryResponses) {
         for (ListResponse queryListResponse : queryResponses) {
             String fullPrice = queryListResponse.getFullPrice();
-            String newPrice = priceRules.calculateNew(StringUtils.isEmpty(fullPrice) ? queryListResponse.getCurrentPrice() : fullPrice);
+            String newPrice = getPriceRules().calculateNew(StringUtils.isEmpty(fullPrice) ? queryListResponse.getCurrentPrice() : fullPrice);
             queryListResponse.setNewPrice(newPrice);
         }
     }

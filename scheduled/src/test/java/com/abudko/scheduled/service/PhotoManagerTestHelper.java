@@ -77,11 +77,6 @@ public class PhotoManagerTestHelper {
         photoData13.setAlbumId("3");
         list.add(photoData13);
 
-        PhotoData photoData14 = new PhotoData();
-        photoData14.setGroupId(GROUPID1);
-        photoData14.setAlbumId("4");
-        list.add(photoData14);
-
         PhotoData photoData21 = new PhotoData();
         photoData21.setGroupId(GROUPID2);
         photoData21.setAlbumId("a");
@@ -96,11 +91,6 @@ public class PhotoManagerTestHelper {
         photoData23.setGroupId(GROUPID2);
         photoData23.setAlbumId("c");
         list.add(photoData23);
-
-        PhotoData photoData24 = new PhotoData();
-        photoData24.setGroupId(GROUPID2);
-        photoData24.setAlbumId("d");
-        list.add(photoData24);
 
         return list;
     }

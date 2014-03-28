@@ -17,11 +17,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 import org.springframework.web.client.RestTemplate;
 
-import com.abudko.reseller.huuto.query.rules.PriceRules;
+import com.abudko.reseller.huuto.query.rules.HuutoPriceRules;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
-import com.abudko.reseller.huuto.query.service.item.html.huuto.HuutoHtmlItemParser;
-import com.abudko.reseller.huuto.query.service.item.html.huuto.HuutoHtmlQueryItemServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HuutoHtmlQueryItemServiceTest {
@@ -31,12 +29,11 @@ public class HuutoHtmlQueryItemServiceTest {
 
     @Mock
     private HuutoHtmlItemParser htmlItemParser;
-
     @Mock
     private RestTemplate restTemplate;
 
     @Mock
-    private PriceRules priceRules;
+    private HuutoPriceRules priceRules;
 
     @InjectMocks
     private QueryItemService service = new HuutoHtmlQueryItemServiceImpl();

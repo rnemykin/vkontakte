@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
-import com.abudko.reseller.huuto.query.rules.PriceRules;
+import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
+import com.abudko.reseller.huuto.query.rules.HuutoPriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
@@ -25,7 +26,7 @@ public class HuutoHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     private HtmlItemParser htmlItemParser;
 
     @Resource
-    private PriceRules priceRules;
+    private HuutoPriceRules priceRules;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -69,5 +70,9 @@ public class HuutoHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
         String id = urlSuffix.substring(indexOf + 1);
         return id;
+    }
+    
+    protected AbstractPriceRules getPriceRules() {
+        return defaultPriceRules;
     }
 }

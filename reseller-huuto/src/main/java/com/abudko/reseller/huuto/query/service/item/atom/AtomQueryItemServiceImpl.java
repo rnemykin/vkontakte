@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.abudko.reseller.huuto.query.QueryConstants;
+import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.sun.syndication.feed.atom.Feed;
@@ -44,5 +45,9 @@ public class AtomQueryItemServiceImpl extends AbstractQueryItemService {
     protected String extractIdFromUrl(String urlSuffix) {
         int index = urlSuffix.lastIndexOf("/");
         return urlSuffix.substring(index + 1);
+    }
+    
+    protected AbstractPriceRules getPriceRules() {
+        return defaultPriceRules;
     }
 }

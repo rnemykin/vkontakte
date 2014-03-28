@@ -2,6 +2,7 @@ package com.abudko.reseller.huuto.query.service.item.stub;
 
 import org.springframework.stereotype.Component;
 
+import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 
@@ -27,5 +28,8 @@ public class StubQueryItemServiceImpl extends AbstractQueryItemService {
     protected String extractIdFromUrl(String urlSuffix) {
         return "65322623";
     }
-
+    
+    protected AbstractPriceRules getPriceRules() {
+        return defaultPriceRules;
+    }
 }
