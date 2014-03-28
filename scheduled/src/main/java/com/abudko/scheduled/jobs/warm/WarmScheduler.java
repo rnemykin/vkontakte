@@ -9,8 +9,7 @@ import com.abudko.scheduled.jobs.Scheduler;
 
 public class WarmScheduler implements Scheduler {
     
-    private static final String URI = "http://reseller.alexbud.cloudbees.net/items/search";
-    private static final String URI2 = "http://kombezi.finland.cloudbees.net/items/search";
+    private static final String URI = "http://kombezi.finland.cloudbees.net/items/search";
 
     private Logger log = LoggerFactory.getLogger(getClass());
     
@@ -20,11 +19,10 @@ public class WarmScheduler implements Scheduler {
     public void schedule() {
         log.info("********* Start scheduled scanning *******");
         try {
-            log.info("Warming: " + URI);
-            restTemplate.getForObject(URI, String.class);
-        
-            log.info("Warming: " + URI2);
-            restTemplate.getForObject(URI2, String.class);
+            for (int i = 0; i < 5; i++) {
+                log.info("Warming: " + URI);
+                restTemplate.getForObject(URI, String.class);
+            }
             
             log.info("********* End scheduled scanning *******");
 

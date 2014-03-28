@@ -13,7 +13,7 @@
 
 	<bean id="warmTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="warmJob"/>
-        <property name="cronExpression" value="0 0/30 * * * ?"/>
+        <property name="cronExpression" value="0 0/10 * * * ?"/>
     </bean>
     
 </beans>
