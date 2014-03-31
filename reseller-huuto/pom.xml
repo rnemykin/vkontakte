@@ -99,6 +99,7 @@
 					<artifactId>spring-webmvc</artifactId>
 				</exclusion>
 			</exclusions>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
