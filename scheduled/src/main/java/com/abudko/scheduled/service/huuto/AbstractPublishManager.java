@@ -107,11 +107,12 @@ public abstract class AbstractPublishManager implements PublishManager {
         return description;
     }
 
-    private boolean isPhotoPublished(String id, PhotoData photoData) {
+    private boolean isPhotoPublished(String id, PhotoData photoData) throws InterruptedException {
         List<Photo> photos = photoManager.getPhotos(photoData.getGroupId(), photoData.getAlbumId());
         for (Photo photo : photos) {
             String description = photo.getDescription();
-            if (id.equals(publishManagerUtils.getId(description))) {
+            String descriptionId = publishManagerUtils.getId(description);
+            if (id.equals(descriptionId)) {
                 return true;
             }
         }

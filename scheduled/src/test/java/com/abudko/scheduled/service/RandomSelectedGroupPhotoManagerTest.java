@@ -108,7 +108,7 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
         photoManager.publish("csvResourcePath", dumpFileLocation, null);
 
         verify(photoDataLogger).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
-        verify(log, times(3)).error(Mockito.anyString());
+        verify(log, times(3)).error(Mockito.anyString(), Mockito.any(Throwable.class));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class RandomSelectedGroupPhotoManagerTest extends PhotoManagerTestHelper 
         photoManager.publish("csvResourcePath", dumpFileLocation, null);
 
         verify(photoDataLogger, times(0)).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
-        verify(log, times(6)).error(Mockito.anyString());
+        verify(log, times(6)).error(Mockito.anyString(), Mockito.any(Throwable.class));
     }
 
     @Test

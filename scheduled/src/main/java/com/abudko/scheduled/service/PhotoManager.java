@@ -14,7 +14,7 @@ public interface PhotoManager {
     
     SavedPhoto publishPhoto(PhotoData photoData) throws InterruptedException;
     
-    List<Photo> getPhotos(String groupId, String albumId);
+    List<Photo> getPhotos(String groupId, String albumId) throws InterruptedException;
     
     List<String> getAlbumIds(String groupId);
     

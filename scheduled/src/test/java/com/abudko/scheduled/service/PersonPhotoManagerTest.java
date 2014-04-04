@@ -113,7 +113,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         Map<String, String> map = new HashMap<String, String>();
         map.put(photoId, ownerId);
         verify(photoDataLogger).dump(map, dumpFileLocation);
-        verify(log).error(Mockito.anyString());
+        verify(log).error(Mockito.anyString(), Mockito.any(Throwable.class));
     }
 
     @SuppressWarnings("unchecked")
@@ -125,6 +125,6 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         photoManager.publish("csvResourcePath", dumpFileLocation, null);
 
         verify(photoDataLogger, times(0)).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
-        verify(log).error(Mockito.anyString());
+        verify(log).error(Mockito.anyString(), Mockito.any(Throwable.class));
     }
 }

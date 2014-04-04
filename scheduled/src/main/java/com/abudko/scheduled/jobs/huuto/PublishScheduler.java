@@ -129,7 +129,7 @@ public class PublishScheduler implements Scheduler {
         List<ListResponse> list = new ArrayList<ListResponse>();
         for (Iterator<ListResponse> iterator = queryListResponses.iterator(); iterator.hasNext();) {
             ListResponse response = iterator.next();
-            if (i++ < 5) {
+            if (i++ < 25) {
                 list.add(response);
             }
         }

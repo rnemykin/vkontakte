@@ -45,7 +45,13 @@ public class PhotosTemplate implements PhotosOperations {
 
         log.info(String.format("photos.getUploadServer, response '%s'", response));
 
-        return response.get("response").get("upload_url").asText();
+        try {
+            return response.get("response").get("upload_url").asText();
+        } catch (Throwable e) {
+            String errorMsg = String.format("getUploadServer request failed. Got response '%s'", response);
+            log.error(errorMsg);
+            throw e;
+        }
     }
 
     public UploadedPhoto uploadPhoto(String url, Resource photoFileResource) {

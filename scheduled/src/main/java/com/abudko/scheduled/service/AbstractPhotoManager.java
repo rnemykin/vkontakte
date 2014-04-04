@@ -119,16 +119,17 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
             return savedPhoto;
         } catch (Throwable e) {
-            log.error(String.format("Exception happened while publishing a photo '%s'", photoData));
+            log.error(String.format("Exception happened while publishing a photo '%s'", photoData), e);
         }
 
         return null;
     }
 
     @Override
-    public List<Photo> getPhotos(String ownerId, String albumId) {
+    public List<Photo> getPhotos(String ownerId, String albumId) throws InterruptedException {
         log.info(String.format("Getting photos: groupid '%s', albumid '%s'", ownerId, albumId));
 
+        Thread.sleep(sleepInterval);
         List<Photo> photos = photosTemplate.getPhotos(getOwnerId(ownerId), albumId);
 
         return photos;

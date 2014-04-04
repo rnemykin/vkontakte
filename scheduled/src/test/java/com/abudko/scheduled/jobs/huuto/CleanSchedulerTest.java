@@ -52,7 +52,7 @@ public class CleanSchedulerTest {
     public CleanScheduler cleanScheduler = new CleanScheduler();
     
     @Before
-    public void setup() {
+    public void setup() throws InterruptedException {
         List<ItemValidityRules> rules = new ArrayList<ItemValidityRules>();
         rules.add(rule1);
         rules.add(rule2);
@@ -61,7 +61,7 @@ public class CleanSchedulerTest {
         setupAlbums();
     }
     
-    private void setupAlbums() {
+    private void setupAlbums() throws InterruptedException {
         final String albumId = "albumid"; 
         List<String> albumIds = Arrays.asList(albumId);
         when(photoManager.getAlbumIds(AlbumMapper.GROUP_ID)).thenReturn(albumIds);
