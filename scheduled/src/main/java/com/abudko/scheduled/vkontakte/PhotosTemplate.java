@@ -164,6 +164,12 @@ public class PhotosTemplate implements PhotosOperations {
 
         log.info(String.format("photos.get, response '%s'", response));
 
+        JsonNode error = response.get("error");
+        if (error != null) {
+            throw new RuntimeException(String.format("Unable to get photos for group '%s',  album '%s'. Response '%s'",
+                    ownerId, albumId, response));
+        }
+
         response = response.get("response");
 
         List<Photo> photos = new ArrayList<Photo>();
