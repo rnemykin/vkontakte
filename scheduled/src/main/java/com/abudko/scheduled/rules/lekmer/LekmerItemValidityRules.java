@@ -42,7 +42,7 @@ public class LekmerItemValidityRules extends AbstractItemValidityRules {
     }
 
     @Override
-    protected boolean getItemStatus(String id) {
+    protected boolean isValidInternal(String id) {
         Collection<ListResponse> responses = null;
         SearchParams searchParams = getSearchParams(id);
         String query = null;

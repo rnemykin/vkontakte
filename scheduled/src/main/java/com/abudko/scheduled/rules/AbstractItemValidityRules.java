@@ -34,7 +34,7 @@ public abstract class AbstractItemValidityRules implements ItemValidityRules {
     private boolean checkHuuto(String id) {
         try {
             Long.parseLong(id);
-            return getItemStatus("/" + id);
+            return isValidInternal("/" + id);
         }
         catch (Throwable e) {
             return true;
@@ -43,12 +43,12 @@ public abstract class AbstractItemValidityRules implements ItemValidityRules {
     
     private boolean checkOthers(String idPrefix, String id) {
         if (id.substring(0, 2).equalsIgnoreCase(idPrefix)) {
-            return getItemStatus(id.substring(2, id.length()));
+            return isValidInternal(id.substring(2, id.length()));
         }
         return true;
     }
     
-    protected boolean getItemStatus(String id) {
+    protected boolean isValidInternal(String id) {
         ItemResponse itemResponse = getQueryItemService().extractItem(id);
         return ItemStatus.OPENED.equals(itemResponse.getItemStatus());
     }
