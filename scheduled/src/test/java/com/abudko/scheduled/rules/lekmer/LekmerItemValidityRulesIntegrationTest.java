@@ -31,6 +31,11 @@ public class LekmerItemValidityRulesIntegrationTest {
     }
     
     @Test
+    public void testLekmerIdValidLongId() {
+        assertTrue(rules.isValid("LE3171210711"));
+    }
+    
+    @Test
     public void testLekmerIdWithSpacesValid() {
         assertTrue(rules.isValid("LEHW 13103 BLACK/"));
     }

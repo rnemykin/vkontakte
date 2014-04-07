@@ -2,6 +2,7 @@ package com.abudko.reseller.huuto.query.service.item.html.lekmer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
@@ -80,8 +81,24 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         if (elements.size() > 0) {
             Element element = elements.get(0);
             Element child = element.child(0).child(1);
-            return "LE" + child.ownText();
+            return "LE" + getValidId(child.ownText());
         }
         return "";
+    }
+    
+    protected String getValidId(String id) {
+        try {
+            Long.parseLong(id);
+        }
+        catch (NumberFormatException e) {
+            return id;
+        }
+
+        Matcher matcher = Pattern.compile("[1-9][0-9]{9,1000}$").matcher(id);
+        if (matcher.find()) {
+            return id.substring(0, 10);
+        }
+        
+        return id;
     }
 }
