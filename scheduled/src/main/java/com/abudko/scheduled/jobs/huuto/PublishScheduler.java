@@ -119,22 +119,37 @@ public class PublishScheduler implements Scheduler {
             InvocationTargetException, NoSuchMethodException, UnsupportedEncodingException, URISyntaxException,
             InterruptedException {
         SearchParams searchParams = searchParamsList.get(0);
-        String query = "talvihaalari";//lekmerBuilder.buildQuery(searchParams);
+        
+        List<ListResponse> list = new ArrayList<ListResponse>();
 
+        String query = "talvihaalari";
+        searchParams.setCategoryenum("TALVIHAALARI");
         log.info(String.format("Quering search: %s", query));
-
         Collection<ListResponse> queryListResponses = lekmerQueryListService.search(query, searchParams);
         
         int i = 0;
-        List<ListResponse> list = new ArrayList<ListResponse>();
         for (Iterator<ListResponse> iterator = queryListResponses.iterator(); iterator.hasNext();) {
             ListResponse response = iterator.next();
-            if (i++ < 25) {
+            if (i++ < 35) {
                 list.add(response);
             }
         }
         
         Category category = Category.valueOf(searchParams.getCategoryenum());
+        if (category != null) {
+            lekmerPublishManager.publishResults(category, list);
+        } else {
+            log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
+        }
+        
+        list = new ArrayList<ListResponse>();
+        query = "välikausihaalari";
+        searchParams.setCategoryenum("VALIKAUSIHAALARI");
+        log.info(String.format("Quering search: %s", query));
+        queryListResponses = lekmerQueryListService.search(query, searchParams);
+        list.addAll(queryListResponses);
+        
+        category = Category.valueOf(searchParams.getCategoryenum());
         if (category != null) {
             lekmerPublishManager.publishResults(category, list);
         } else {
