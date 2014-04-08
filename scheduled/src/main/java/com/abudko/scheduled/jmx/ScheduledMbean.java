@@ -11,6 +11,7 @@ import com.abudko.scheduled.jobs.csv.RandomlySelectedScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedSchedulerLimit;
 import com.abudko.scheduled.jobs.publish.CleanScheduler;
 import com.abudko.scheduled.jobs.publish.PublishHuutoScheduler;
+import com.abudko.scheduled.jobs.publish.PublishLekmerScheduler;
 
 @Component
 public class ScheduledMbean {
@@ -29,6 +30,9 @@ public class ScheduledMbean {
     
     @Autowired
     private PublishHuutoScheduler publishHuutoScheduler;
+    
+    @Autowired
+    private PublishLekmerScheduler publishLekmerScheduler;
     
     @Autowired
     private CleanScheduler cleanScheduler;
@@ -64,6 +68,11 @@ public class ScheduledMbean {
     @ManagedOperation
     public void startPublishHuutoJob() {
         publishHuutoScheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startPublishLekmerJob() {
+        publishLekmerScheduler.schedule();
     }
     
     @ManagedOperation
