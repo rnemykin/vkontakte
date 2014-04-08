@@ -4,6 +4,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 	
+	<bean id="csvParamMapper" class="com.abudko.reseller.huuto.query.mapper.csv.CsvParamMapper">
+ 		<constructor-arg value="classpath:/csv/huuto/query.csv" />
+ 	</bean>
+	
     <import resource="jobs/csv/quartz-minutely.xml"/>
     <import resource="jobs/csv/quartz-hourly.xml"/>
     <import resource="jobs/csv/quartz-daily.xml"/>

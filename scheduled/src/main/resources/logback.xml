@@ -138,6 +138,10 @@
     <logger name="com.abudko.scheduled.jobs.publish.PublishHuutoScheduler" level="info" additivity="false">
         <appender-ref ref="scheduled-publish"/>
     </logger>
+
+    <logger name="com.abudko.scheduled.jobs.publish.PublishLekmerScheduler" level="info" additivity="false">
+        <appender-ref ref="scheduled-publish"/>
+    </logger>
     
     <logger name="com.abudko.scheduled.jobs.publish.CleanScheduler" level="info" additivity="false">
         <appender-ref ref="scheduled-clean"/>
