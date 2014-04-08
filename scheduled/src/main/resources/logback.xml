@@ -62,7 +62,7 @@
 
     </appender>
     
-    <appender name="scheduled-huuto-publish" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="scheduled-publish" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${com.sun.aas.instanceRoot}/logs/publish-huuto-job.log</file>
 		
         <encoder>
@@ -81,7 +81,7 @@
 
     </appender>
 
-    <appender name="scheduled-huuto-clean" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="scheduled-clean" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${com.sun.aas.instanceRoot}/logs/clean-huuto-job.log</file>
 		
         <encoder>
@@ -135,12 +135,12 @@
         <appender-ref ref="scheduled-warm"/>
     </logger>
     
-    <logger name="com.abudko.scheduled.jobs.huuto.PublishScheduler" level="info" additivity="false">
-        <appender-ref ref="scheduled-huuto-publish"/>
+    <logger name="com.abudko.scheduled.jobs.publish.PublishHuutoScheduler" level="info" additivity="false">
+        <appender-ref ref="scheduled-publish"/>
     </logger>
     
-    <logger name="com.abudko.scheduled.jobs.huuto.CleanScheduler" level="info" additivity="false">
-        <appender-ref ref="scheduled-huuto-clean"/>
+    <logger name="com.abudko.scheduled.jobs.publish.CleanScheduler" level="info" additivity="false">
+        <appender-ref ref="scheduled-clean"/>
     </logger>
     
     <logger name="com.abudko.reseller.huuto" level="info" additivity="false">

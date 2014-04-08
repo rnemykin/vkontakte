@@ -10,8 +10,8 @@
     <import resource="jobs/csv/quartz-randomly.xml"/>
     <import resource="jobs/csv/quartz-randomly-limit.xml"/>
     <import resource="jobs/csv/quartz-pikalevo.xml"/>
-    <import resource="jobs/huuto/quartz-publish.xml"/>
-    <import resource="jobs/huuto/quartz-clean.xml"/>
+    <import resource="jobs/publish/quartz-publish-huuto.xml"/>
+    <import resource="jobs/publish/quartz-clean.xml"/>
     <import resource="jobs/warm/quartz-warm.xml"/>
     
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -25,7 +25,7 @@
    				<entry key="dayIntervalScheduler" value-ref="dayIntervalScheduler" />
    				<entry key="randomlySelectedScheduler" value-ref="randomlySelectedScheduler" />
    				<entry key="randomlySelectedSchedulerLimit" value-ref="randomlySelectedSchedulerLimit" />
-   				<entry key="publishScheduler" value-ref="publishScheduler" />
+   				<entry key="publishHuutoScheduler" value-ref="publishHuutoScheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
    				<entry key="warmScheduler" value-ref="warmScheduler" />
    				<entry key="pikalevoScheduler" value-ref="pikalevoScheduler" />
@@ -53,7 +53,7 @@
       			<!-- <ref bean="dayIntervalTrigger"/> -->
       			<ref bean="randomlySelectedTrigger"/>
       			<ref bean="randomlySelectedTriggerLimit"/>
-      			<ref bean="publishTrigger"/>
+      			<ref bean="publishHuutoTrigger"/>
       			<ref bean="cleanTrigger"/>
       			<ref bean="warmTrigger"/>
       			<!-- <ref bean="pikalevoTrigger"/> -->

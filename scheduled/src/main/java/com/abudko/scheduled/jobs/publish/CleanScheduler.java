@@ -1,4 +1,4 @@
-package com.abudko.scheduled.jobs.huuto;
+package com.abudko.scheduled.jobs.publish;
 
 import java.util.List;
 

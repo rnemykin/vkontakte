@@ -1,4 +1,4 @@
-package com.abudko.scheduled.jobs.huuto;
+package com.abudko.scheduled.jobs.publish;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
@@ -25,7 +25,7 @@ import com.abudko.reseller.huuto.query.service.list.QueryListService;
 import com.abudko.scheduled.jobs.Scheduler;
 import com.abudko.scheduled.service.huuto.PublishManager;
 
-public class PublishScheduler implements Scheduler {
+public class PublishHuutoScheduler implements Scheduler {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 

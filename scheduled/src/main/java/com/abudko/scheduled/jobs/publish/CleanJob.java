@@ -1,4 +1,4 @@
-package com.abudko.scheduled.jobs.huuto;
+package com.abudko.scheduled.jobs.publish;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.abudko.scheduled.jobs.AbstractScheduledJob;
 
 @Component
-public class PublishJob extends AbstractScheduledJob implements Job {
+public class CleanJob extends AbstractScheduledJob implements Job {
 
     public void execute(JobExecutionContext context) throws JobExecutionException {
         this.callScheduler(context);
@@ -16,6 +16,6 @@ public class PublishJob extends AbstractScheduledJob implements Job {
 
     @Override
     protected String getSchedulerBeanName() {
-        return "publishScheduler";
+        return "cleanScheduler";
     }
 }

@@ -9,15 +9,15 @@
 		<constructor-arg value="classpath:/csv/huuto/query.csv" />
 	</bean>
 	
-	<bean id="publishScheduler" class="com.abudko.scheduled.jobs.huuto.PublishScheduler"/>
+	<bean id="publishHuutoScheduler" class="com.abudko.scheduled.jobs.publish.PublishHuutoScheduler"/>
 
-	<bean name="publishJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-		<property name="name" value="publishJob"/>
-        <property name="jobClass" value="com.abudko.scheduled.jobs.huuto.PublishJob"/>
+	<bean name="publishHuutoJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="name" value="publishHuutoJob"/>
+        <property name="jobClass" value="com.abudko.scheduled.jobs.publish.PublishHuutoJob"/>
     </bean>
 
-	<bean id="publishTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="publishJob"/>
+	<bean id="publishHuutoTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="publishHuutoJob"/>
         <property name="cronExpression" value="0 0/30 * * * ?"/>
     </bean>
     

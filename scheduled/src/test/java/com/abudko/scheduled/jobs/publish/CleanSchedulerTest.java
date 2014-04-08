@@ -1,4 +1,4 @@
-package com.abudko.scheduled.jobs.huuto;
+package com.abudko.scheduled.jobs.publish;
 
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -17,6 +17,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
+import com.abudko.scheduled.jobs.publish.CleanScheduler;
 import com.abudko.scheduled.rules.ItemValidityRules;
 import com.abudko.scheduled.service.PhotoManager;
 import com.abudko.scheduled.service.huuto.AlbumMapper;
