@@ -33,14 +33,14 @@ public class PublishLekmerScheduler implements Scheduler {
     private PublishManager lekmerPublishManager;
 
     public void schedule() {
-        log.info("********* Start PublishScheduler *******");
+        log.info("********* Start Publish Lekmer Scheduler *******");
         try {
             publishLekmer();
 
-            log.info("********* End PublishScheduler *******");
+            log.info("********* End Publish Lekmer Scheduler *******");
 
         } catch (Exception e) {
-            log.error("Exception happened during PublishScheduler: ", e);
+            log.error("Exception happened during Publish Lekmer Scheduler: ", e);
             throw new RuntimeException(e);
         }
     }

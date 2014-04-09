@@ -52,16 +52,16 @@ public class PublishHuutoScheduler implements Scheduler {
     private PublishManager huutoPublishManager;
 
     public void schedule() {
-        log.info("********* Start PublishScheduler *******");
+        log.info("********* Start Publish Huuto Scheduler *******");
         try {
             List<SearchParams> searchParamsList = searchParamMapper.getSearchParams();
 
             publishHuuto(searchParamsList);
 
-            log.info("********* End PublishScheduler *******");
+            log.info("********* End Publish Huuto Scheduler *******");
 
         } catch (Exception e) {
-            log.error("Exception happened during PublishScheduler: ", e);
+            log.error("Exception happened during Publish Huuto Scheduler: ", e);
             throw new RuntimeException(e);
         }
     }
