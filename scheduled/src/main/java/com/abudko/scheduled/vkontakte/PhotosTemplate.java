@@ -81,6 +81,12 @@ public class PhotosTemplate implements PhotosOperations {
 
         JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
 
+        JsonNode error = response.get("error");
+        if (error != null) {
+            throw new PhotosOperationsException(String.format("Unable to save photo '%s', description '%s'",
+                    uploadedPhoto, description), response);
+        }
+        
         log.info(String.format("photos.save, response '%s'", response));
 
         String photoId = response.get("response").get(0).get("pid").asText();
@@ -166,8 +172,8 @@ public class PhotosTemplate implements PhotosOperations {
 
         JsonNode error = response.get("error");
         if (error != null) {
-            throw new RuntimeException(String.format("Unable to get photos for group '%s',  album '%s'. Response '%s'",
-                    ownerId, albumId, response));
+            throw new PhotosOperationsException(String.format("Unable to get photos for group '%s',  album '%s'",
+                    ownerId, albumId), response);
         }
 
         response = response.get("response");
