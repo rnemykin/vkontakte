@@ -56,14 +56,7 @@ public class PublishLekmerScheduler implements Scheduler {
         searchParams.setCategoryenum("TALVIHAALARI");
         log.info(String.format("Quering search: %s", query));
         Collection<ListResponse> queryListResponses = lekmerQueryListService.search(query, searchParams);
-        
-        int i = 0;
-        for (Iterator<ListResponse> iterator = queryListResponses.iterator(); iterator.hasNext();) {
-            ListResponse response = iterator.next();
-            if (i++ < 35) {
-                list.add(response);
-            }
-        }
+        list.addAll(queryListResponses);
         
         Category category = Category.valueOf(searchParams.getCategoryenum());
         if (category != null) {
