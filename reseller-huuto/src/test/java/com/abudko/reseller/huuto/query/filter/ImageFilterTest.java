@@ -24,7 +24,7 @@ public class ImageFilterTest {
         listResponseWithoutImage.setImgBaseSrc(null);
         queryResponses.add(listResponseWithoutImage);
 
-        Collection<ListResponse> resultList = new ImageFilter().apply(queryResponses, searchParams);
+        Collection<ListResponse> resultList = new ImageNotEmptyFilter().apply(queryResponses, searchParams);
 
         assertEquals(1, resultList.size());
     }
@@ -40,7 +40,7 @@ public class ImageFilterTest {
         listResponseWithoutImage.setImgBaseSrc("");
         queryResponses.add(listResponseWithoutImage);
         
-        Collection<ListResponse> resultList = new ImageFilter().apply(queryResponses, searchParams);
+        Collection<ListResponse> resultList = new ImageNotEmptyFilter().apply(queryResponses, searchParams);
         
         assertEquals(1, resultList.size());
     }

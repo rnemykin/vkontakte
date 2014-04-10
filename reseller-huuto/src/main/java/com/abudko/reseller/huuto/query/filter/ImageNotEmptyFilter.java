@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 @Component
-public class ImageFilter extends AbstractNotEmptyFilter {
+public class ImageNotEmptyFilter extends AbstractNotEmptyFilter {
 
     @Override
     protected String getValue(ListResponse queryListResponse) {

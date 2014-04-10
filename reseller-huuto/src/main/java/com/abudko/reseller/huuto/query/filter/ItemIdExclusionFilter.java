@@ -1,12 +1,17 @@
 package com.abudko.reseller.huuto.query.filter;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 @Component
-public class ItemIdFilter extends AbstractNotEmptyFilter {
+public class ItemIdExclusionFilter extends AbstractNotEmptyFilter {
+    
+    private static final List<String> EXCLUSION_LIST = Arrays.asList("LE475521 056");
 
     @Override
     protected String getValue(ListResponse queryListResponse) {
@@ -14,6 +19,14 @@ public class ItemIdFilter extends AbstractNotEmptyFilter {
         if (itemResponse == null) {
             return " ";
         }
-        return itemResponse.getId();
+        if (shouldInclude(itemResponse)) {
+            return itemResponse.getId();
+        }
+        
+        return null;
+    }
+    
+    private boolean shouldInclude(ItemResponse itemResponse) {
+        return !EXCLUSION_LIST.contains(itemResponse.getId());
     }
 }
