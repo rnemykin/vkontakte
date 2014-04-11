@@ -45,38 +45,42 @@ public class PublishLekmerScheduler implements Scheduler {
         }
     }
 
-    private void publishLekmer() throws IllegalAccessException,
-            InvocationTargetException, NoSuchMethodException, UnsupportedEncodingException, URISyntaxException,
-            InterruptedException {
-        SearchParams searchParams = new SearchParams();
-        
-        List<ListResponse> list = new ArrayList<ListResponse>();
+    private void publishLekmer() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
+            UnsupportedEncodingException, URISyntaxException, InterruptedException {
+        publishLekmerInternal("talvihaalari", "TALVIHAALARI", 0);
+        publishLekmerInternal("välikausihaalari", "VALIKAUSIHAALARI", 0);
+        publishLekmerInternal("sadeasu", "SADEHAALARI", 5);
+    }
 
-        String query = "talvihaalari";
-        searchParams.setCategoryenum("TALVIHAALARI");
+    private void publishLekmerInternal(String query, String categoryenum, int limit)
+            throws UnsupportedEncodingException, IllegalAccessException, InvocationTargetException,
+            NoSuchMethodException, URISyntaxException, InterruptedException {
+        List<ListResponse> list = new ArrayList<ListResponse>();
+        SearchParams searchParams = new SearchParams();
+        searchParams.setCategoryenum(categoryenum);
+
         log.info(String.format("Quering search: %s", query));
+
         Collection<ListResponse> queryListResponses = lekmerQueryListService.search(query, searchParams);
-        list.addAll(queryListResponses);
-        
-        Category category = Category.valueOf(searchParams.getCategoryenum());
-        if (category != null) {
-            lekmerPublishManager.publishResults(category, list);
-        } else {
-            log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
+
+        if (limit == 0) {
+            list.addAll(queryListResponses);
         }
-        
-        list = new ArrayList<ListResponse>();
-        query = "välikausihaalari";
-        searchParams.setCategoryenum("VALIKAUSIHAALARI");
-        log.info(String.format("Quering search: %s", query));
-        queryListResponses = lekmerQueryListService.search(query, searchParams);
-        list.addAll(queryListResponses);
-        
-        category = Category.valueOf(searchParams.getCategoryenum());
+        else {
+            int i = 0;
+            for (Iterator<ListResponse> iterator = queryListResponses.iterator(); iterator.hasNext();) {
+                ListResponse response = iterator.next();
+                if (i++ < limit) {
+                    list.add(response);
+                }
+            }
+        }
+
+        Category category = Category.valueOf(categoryenum);
         if (category != null) {
             lekmerPublishManager.publishResults(category, list);
         } else {
-            log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
+            log.warn(String.format("Can't find category for '%s'", categoryenum));
         }
     }
 }
