@@ -96,7 +96,7 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
 
         Matcher matcher = Pattern.compile("[1-9][0-9]{9,1000}$").matcher(id);
         if (matcher.find()) {
-            return id.substring(0, 10);
+            return id.substring(0, 9);
         }
         
         return id;

@@ -35,7 +35,7 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testId() {
-        assertEquals("LE3171210711", response.getId());
+        assertEquals("LE317121071", response.getId());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class LekmerHtmlItemParserTest {
     @Test
     public void testGetValidId() throws Exception {
         final String id = "1234567890123456789";
-        assertEquals("1234567890", htmlParser.getValidId(id));
+        assertEquals("123456789", htmlParser.getValidId(id));
     }
     
     @Test
