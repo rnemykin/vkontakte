@@ -52,7 +52,7 @@ public class PublishLekmerScheduler implements Scheduler {
         publishLekmerInternal("toppahaalari", "TALVIHAALARI", 0);
         publishLekmerInternal("toppapuku", "TALVIHAALARI", 0);
         publishLekmerInternal("kaksiosainen+setti+talvi", "TALVIHAALARI", 0);
-//        publishLekmerInternal("wind+haalari", "VALIKAUSIHAALARI", 0);
+        publishLekmerInternal("wind+haalari", "VALIKAUSIHAALARI", 0);
 //        publishLekmerInternal("sadeasu", "SADEHAALARI", 5);
     }
 
