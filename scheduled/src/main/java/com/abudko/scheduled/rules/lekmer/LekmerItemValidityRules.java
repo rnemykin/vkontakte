@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
+import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
@@ -33,7 +34,7 @@ public class LekmerItemValidityRules extends AbstractItemValidityRules {
 
     @Override
     public String getIdPrefix() {
-        return "LE";
+        return HtmlParserConstants.LEKMER_ID_PREFIX;
     }
 
     @Override

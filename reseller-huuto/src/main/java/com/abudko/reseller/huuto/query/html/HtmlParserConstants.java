@@ -9,4 +9,6 @@ public class HtmlParserConstants {
     public static final String ITEM_URL_CONTEXT = "/kohteet/";
 
     public static final String LEKMER_FI = "http://lekmer.fi/";
+
+    public static final String LEKMER_ID_PREFIX = "LE";
 }

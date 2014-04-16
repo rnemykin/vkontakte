@@ -81,7 +81,7 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         if (elements.size() > 0) {
             Element element = elements.get(0);
             Element child = element.child(0).child(1);
-            return "LE" + getValidId(child.ownText());
+            return HtmlParserConstants.LEKMER_ID_PREFIX + getValidId(child.ownText());
         }
         return "";
     }
