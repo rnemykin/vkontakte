@@ -3,7 +3,6 @@ package com.abudko.reseller.huuto.query.filter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +10,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
