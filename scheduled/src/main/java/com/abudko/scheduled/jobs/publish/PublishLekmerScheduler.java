@@ -53,7 +53,7 @@ public class PublishLekmerScheduler implements Scheduler {
         publishLekmerInternal("toppapuku", "TALVIHAALARI", 0);
         publishLekmerInternal("kaksiosainen+setti+talvi", "TALVIHAALARI", 0);
         publishLekmerInternal("wind+haalari", "VALIKAUSIHAALARI", 0);
-        publishLekmerInternal("sadeasut", "SADEHAALARI", 30);
+        publishLekmerInternal("sadeasut", "SADEHAALARI", 35);
     }
 
     private void publishLekmerInternal(String query, String categoryenum, int limit)
