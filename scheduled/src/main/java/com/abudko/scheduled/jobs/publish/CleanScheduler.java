@@ -39,17 +39,23 @@ public class CleanScheduler implements Scheduler {
                 List<Photo> photos = photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId);
                 Thread.sleep(1000);
                 for (Photo photo : photos) {
-                    String id = publishManagerUtils.getId(photo.getDescription());
+                    try {
+                        String id = publishManagerUtils.getId(photo.getDescription());
 
-                    if (!isValid(id)) {
-                        String info = String.format("Photo ['%s'] is not valid", photo.getDescription());
-                        log.info(info);
+                        if (!isValid(id)) {
+                            String info = String.format("Photo ['%s'] is not valid", photo.getDescription());
+                            log.info(info);
 
-                        photoManager.deletePhotoForce(photo.getPhotoId(), AlbumMapper.GROUP_ID);
-                        Thread.sleep(1000);
-                    } else {
-                        String info = String.format("Photo is VALID: '%s'", photo.getDescription());
-                        log.info(info);
+                            photoManager.deletePhotoForce(photo.getPhotoId(), AlbumMapper.GROUP_ID);
+                            Thread.sleep(1000);
+                        } else {
+                            String info = String.format("Photo is VALID: '%s'", photo.getDescription());
+                            log.info(info);
+                        }
+                    } catch (Exception e) {
+                        log.error(String.format("Exception happened during cleaning photo '%s' in album '%s'", photo,
+                                albumId), e);
+                        throw e;
                     }
                 }
             }

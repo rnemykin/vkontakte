@@ -147,6 +147,10 @@
         <appender-ref ref="scheduled-clean"/>
     </logger>
     
+    <logger name="com.abudko.scheduled.jobs.publish.CleanScheduler" level="error" additivity="false">
+        <appender-ref ref="scheduled-error"/>
+    </logger>
+    
     <logger name="com.abudko.reseller.huuto" level="info" additivity="false">
         <appender-ref ref="reseller-huuto"/>
     </logger>

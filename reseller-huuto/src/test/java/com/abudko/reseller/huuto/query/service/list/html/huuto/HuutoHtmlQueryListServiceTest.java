@@ -101,6 +101,7 @@ public class HuutoHtmlQueryListServiceTest {
         when(restTemplate.getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class))
                 .thenReturn(responseList);
         ListResponse response = new ListResponse();
+        response.setItemUrl("itemUrl");
         response.setDescription("description");
         response.setSize("size");
         List<ListResponse> queryResponses = new ArrayList<ListResponse>();
@@ -129,6 +130,7 @@ public class HuutoHtmlQueryListServiceTest {
         when(restTemplate.getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class))
         .thenReturn(responseList);
         ListResponse response = new ListResponse();
+        response.setItemUrl("itemUrl");
         response.setDescription("description");
         response.setImgBaseSrc("imgBaseSrc");
         List<ListResponse> queryResponses = new ArrayList<ListResponse>();
@@ -145,6 +147,34 @@ public class HuutoHtmlQueryListServiceTest {
         verify(restTemplate).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class);
         verify(htmlListParser).parse(responseList);
         verify(queryItemService).extractItem(Mockito.anyString());
+    }
+    
+    @Test
+    public void testScanSizeDoesNotExistInSearchButItemURLIsNull() throws Exception {
+        SearchParams params = new SearchParams();
+        params.setWords("keyword");
+        String query = "query";
+        String responseList = "responseList";
+        when(restTemplate.getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class))
+        .thenReturn(responseList);
+        ListResponse response = new ListResponse();
+        response.setDescription("description");
+        response.setImgBaseSrc("imgBaseSrc");
+        response.setItemUrl("");
+        List<ListResponse> queryResponses = new ArrayList<ListResponse>();
+        queryResponses.add(response);
+        when(htmlListParser.parse(responseList)).thenReturn(queryResponses);
+        String size = "size";
+        ItemResponse itemResponse = new ItemResponse();
+        itemResponse.setSizes(Arrays.asList(size));
+        when(queryItemService.extractItem(response.getItemUrl())).thenReturn(itemResponse);
+        when(filter.apply(new LinkedHashSet<ListResponse>(queryResponses), params)).thenReturn(queryResponses);
+        
+        service.search(query, params);
+        
+        verify(restTemplate).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class);
+        verify(htmlListParser).parse(responseList);
+        verify(queryItemService, times(0)).extractItem(Mockito.anyString());
     }
 
     @Test

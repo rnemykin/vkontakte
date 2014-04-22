@@ -79,7 +79,7 @@ public abstract class AbstractQueryListService implements QueryListService {
 
     private void validate(Collection<ListResponse> queryResponses) {
         for (ListResponse queryListResponse : queryResponses) {
-            if (StringUtils.isEmpty(queryListResponse.getImgBaseSrc()) || StringUtils.isEmpty(queryListResponse.getSize())) {
+            if (!StringUtils.isEmpty(queryListResponse.getItemUrl()) && (StringUtils.isEmpty(queryListResponse.getImgBaseSrc()) || StringUtils.isEmpty(queryListResponse.getSize()))) {
                 ItemResponse item = getQueryItemService().extractItem(queryListResponse.getItemUrl());
                 String imgBaseSrc = item.getImgBaseSrc();
                 queryListResponse.setImgBaseSrc(imgBaseSrc);
