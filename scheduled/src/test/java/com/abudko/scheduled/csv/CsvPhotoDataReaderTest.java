@@ -47,7 +47,7 @@ public class CsvPhotoDataReaderTest {
     }
     
     @Test
-    public void testCommentAreNotRead() {
+    public void testCommentAreNotReadSymbolsInTheBeginning() {
         List<PhotoData> photoDataList = reader.read(FILE_LOCATION);
         
         for (PhotoData photoData : photoDataList) {

@@ -68,6 +68,9 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
     
     private String parsePrice(Document document) {
         Elements elements = document.getElementsByAttributeValue("class", "campaignprice-value");
+        if (elements.size() == 0) {
+            elements = document.getElementsByAttributeValue("class", "price-value");
+        }
         if (elements.size() > 0) {
             Element element = elements.get(0);
             String price = element.childNode(0).toString();

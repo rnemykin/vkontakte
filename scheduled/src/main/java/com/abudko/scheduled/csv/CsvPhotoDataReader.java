@@ -33,7 +33,7 @@ public class CsvPhotoDataReader implements PhotoDataReader {
                 PhotoData photoData = new PhotoData();
 
                 String groupId = csvReader.get("groupId");
-                if (groupId == null || groupId.contains("//")) {
+                if (groupId == null || groupId.contains("//") || csvReader.get("description").contains("//")) {
                     continue;
                 }
 
