@@ -47,7 +47,14 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         for (Element element : elements) {
             String text = element.text();
             if (text.length() > 2) {
-                sizes.add(text.substring(0, 3).trim());
+                if (!text.contains("/")) {
+                    sizes.add(text.substring(0, 3).trim());
+                }
+                else {
+                    int index = text.indexOf("/");
+                    sizes.add(text.substring(0, index).trim());
+                    sizes.add(text.substring(index + 1, text.trim().length()).trim());
+                }
             }
             else {
                 sizes.add(text.substring(0, 2).trim());

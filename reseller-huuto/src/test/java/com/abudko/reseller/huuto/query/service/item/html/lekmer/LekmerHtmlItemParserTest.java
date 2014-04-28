@@ -35,22 +35,22 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testId() {
-        assertEquals("LE1126", response.getId());
+        assertEquals("LE4775552-045 LIL", response.getId());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("69.90", response.getPrice());
+        assertEquals("39.90", response.getPrice());
     }
     
     @Test
     public void testSizes() {
-        assertEquals(Arrays.asList("80"), response.getSizes());
+        assertEquals(Arrays.asList("86", "92", "98", "104", "110", "116", "122", "128", "134", "140"), response.getSizes());
     }
     
     @Test
     public void testImgSrc() {
-        assertEquals("http://lekmer.fi/mediaarchive/1054639/productmanMeasurement465x500/celavi-haalari-vauvan-kahdella-vetoketjulla-pinkki.jpg", response.getImgBaseSrc());
+        assertEquals("http://lekmer.fi/mediaarchive/1097309/productmanMeasurement465x500/tenson-sadeasu-globe-liila.jpg", response.getImgBaseSrc());
     }
     
     @Test
