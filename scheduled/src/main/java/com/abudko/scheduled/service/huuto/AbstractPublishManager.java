@@ -51,20 +51,26 @@ public abstract class AbstractPublishManager implements PublishManager {
     public void publishResults(Category category, Collection<ListResponse> queryResponses) throws InterruptedException,
             UnsupportedEncodingException {
         for (ListResponse queryResponse : queryResponses) {
-            log.info(String.format("Publishing query response: %s", queryResponse.toString()));
+            try {
+                log.info(String.format("Publishing query response: %s", queryResponse.toString()));
 
-            PhotoData photoData = convert(category, queryResponse);
-            if (photoData.getAlbumId() == null) {
-                log.warn(String.format("Unable to extract albumid for '%s' for category '%s'", queryResponse,
-                        category.name()));
-                continue;
-            }
+                PhotoData photoData = convert(category, queryResponse);
+                if (photoData.getAlbumId() == null) {
+                    log.warn(String.format("Unable to extract albumid for '%s' for category '%s'", queryResponse,
+                            category.name()));
+                    continue;
+                }
 
-            String id = queryResponse.getItemResponse().getId();
-            if (isPhotoPublished(id, photoData) == false) {
-                photoManager.publishPhoto(photoData);
-            } else {
-                log.info(String.format("Photo with id '%s' aleady published", id));
+                String id = queryResponse.getItemResponse().getId();
+                if (isPhotoPublished(id, photoData) == false) {
+                    photoManager.publishPhoto(photoData);
+                } else {
+                    log.info(String.format("Photo with id '%s' aleady published", id));
+                }
+            } catch (Throwable e) {
+                String error = String.format("Error happened while publishing queryResponse '%s'", queryResponse);
+                log.error(error, e);
+                throw e;
             }
         }
     }
