@@ -105,6 +105,8 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         try {
             log.info(String.format("Publishing photo '%s'", photoData));
 
+            Thread.sleep(sleepInterval);
+            
             String uploadUrl = photosTemplate.getUploadServer(photoData.getGroupId(), photoData.getAlbumId());
 
             log.info(String.format("Got upload URL '%s'", uploadUrl));
