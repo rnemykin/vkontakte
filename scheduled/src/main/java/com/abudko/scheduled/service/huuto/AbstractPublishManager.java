@@ -68,8 +68,8 @@ public abstract class AbstractPublishManager implements PublishManager {
                     log.info(String.format("Photo with id '%s' aleady published", id));
                 }
             } catch (Throwable e) {
-                String error = String.format("Error happened while publishing queryResponse '%s'", queryResponse);
-                log.error(error, e);
+                String error = String.format("Error '%s' happened while publishing queryResponse '%s'", e.getMessage(), queryResponse);
+                log.error(error, e.getMessage());
                 throw e;
             }
         }

@@ -13,7 +13,7 @@
 
 	<bean id="publishLekmerTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="publishLekmerJob"/>
-        <property name="cronExpression" value="0 0/30 * * * ?"/>
+        <property name="cronExpression" value="0 0 0/1 * * ?"/>
     </bean>
     
 </beans>
