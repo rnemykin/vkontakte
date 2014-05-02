@@ -53,15 +53,26 @@ public class LekmerHtmlQueryListServiceImpl extends AbstractQueryListService {
 
     private URI getPagedURI(String query, int page) throws URISyntaxException {
         StringBuilder sb = new StringBuilder(QueryConstants.LEKMER_HTML_SEARCH_URL);
+        String[] split = query.split(" ");
+        for (int i = 0; i < split.length; i++) {
+            sb.append(encodeKeyword(split[i]));
+            sb.append(" ");
+        }
+        
+        String encodedQuery = sb.toString().trim();
+        URI uri = new URI(encodedQuery.replace(" ", "+"));
+
+        return uri;
+    }
+    
+    private String encodeKeyword(String keyword) {
         try {
-            sb.append(URLEncoder.encode(query, "UTF-8"));
+            return URLEncoder.encode(keyword, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
-        URI uri = new URI(sb.toString());
-
-        return uri;
+            return null;
+        }        
     }
 
     @Override

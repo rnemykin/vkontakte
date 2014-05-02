@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-public class ImageManipulatorTest {
+public abstract class ImageManipulatorTest {
 
     private ImageManipulator imageManipulator = new ImageManipulator();
 
