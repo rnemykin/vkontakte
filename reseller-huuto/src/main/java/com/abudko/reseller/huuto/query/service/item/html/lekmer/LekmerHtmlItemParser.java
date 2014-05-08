@@ -90,8 +90,11 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         Elements elements = document.getElementsByClass(HTML_PRODUCT_ID);
         if (elements.size() > 0) {
             Element element = elements.get(0);
-            Element child = element.child(0).child(1);
-            return HtmlParserConstants.LEKMER_ID_PREFIX + getValidId(child.ownText());
+            Element child = element.child(0);
+            if (child.children().size() > 1) {
+                Element childChild = child.child(1);
+                return HtmlParserConstants.LEKMER_ID_PREFIX + getValidId(childChild.ownText());
+            }
         }
         return "";
     }
