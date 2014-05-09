@@ -51,9 +51,11 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
                     sizes.add(text.substring(0, 3).trim());
                 }
                 else {
-                    int index = text.indexOf("/");
-                    sizes.add(text.substring(0, index).trim());
-                    sizes.add(text.substring(index + 1, text.trim().length()).trim());
+                    int length = text.trim().length();
+                    int slashindex = text.indexOf("/");
+                    int spaceindex = text.indexOf(" ");
+                    sizes.add(text.substring(0, slashindex).trim());
+                    sizes.add(text.substring(slashindex + 1, spaceindex < 0 ? length : spaceindex).trim());
                 }
             }
             else {
