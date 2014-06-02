@@ -40,7 +40,7 @@ public enum Brand {
     DIDRIKSONS("Didriksons", "Didriksons", TALVIHAALARI, TALVIHOUSUT, TALVITAKKI, VALIKAUSIHAALARI, VALIKAUSITAKKI,
             VALIKAUSIHOUSUT, SADEHAALARI), //
     GEGGAMOJA("Geggamoja", "Geggamoja", TALVIHAALARI, TALVIHOUSUT, TALVITAKKI, VALIKAUSIHAALARI, VALIKAUSITAKKI,
-                    VALIKAUSIHOUSUT, SADEHAALARI, VILLAHAALARI), //
+            VALIKAUSIHOUSUT, SADEHAALARI, VILLAHAALARI), //
     GREENHILL("Green", "Greenhill", VILLAHAALARI), //
     JONATHAN("Jonathan", "Jonathan", TALVIHAALARI, TALVIHOUSUT, TALVITAKKI, VALIKAUSIHAALARI, VALIKAUSITAKKI,
             VALIKAUSIHOUSUT, SADEHAALARI, VILLAHAALARI), //
@@ -75,8 +75,8 @@ public enum Brand {
             SADEHAALARI), //
     MCKINLEY("Mckinley", "Mckinley", TALVIHAALARI, TALVITAKKI, TALVIHOUSUT, VALIKAUSIHAALARI, VALIKAUSITAKKI,
             VALIKAUSIHOUSUT, SADEHAALARI), //
-    METOO("Me Too", "Me Too", TALVIHAALARI, TALVIHOUSUT, TALVITAKKI, VALIKAUSIHAALARI, VALIKAUSITAKKI,
-                    VALIKAUSIHOUSUT, SADEHAALARI, VILLAHAALARI), //
+    METOO("Me Too", "Me Too", TALVIHAALARI, TALVIHOUSUT, TALVITAKKI, VALIKAUSIHAALARI, VALIKAUSITAKKI, VALIKAUSIHOUSUT,
+            SADEHAALARI, VILLAHAALARI), //
     MOTION("Motion", "Motion's", TALVIHAALARI, TALVIHOUSUT, TALVITAKKI, VALIKAUSIHAALARI, VALIKAUSITAKKI,
             VALIKAUSIHOUSUT, SADEHAALARI, VILLAHAALARI), //
     MINYMO("Minymo", "Minymo", TALVIHAALARI, TALVITAKKI, TALVIHOUSUT, VALIKAUSIHAALARI, VALIKAUSITAKKI,
@@ -149,6 +149,15 @@ public enum Brand {
                 return brand;
             }
         }
+        
+        for (Brand brand : brands) {
+            if (Brand.NO_BRAND.equals(brand)) {
+                continue;
+            }
+            if (brandMatches(string, brand)) {
+                return brand;
+            }
+        }
 
         return null;
     }
@@ -165,5 +174,10 @@ public enum Brand {
         }
 
         return false;
+    }
+
+    private static boolean brandMatches(String string, Brand brand) {
+        int index = string.toLowerCase().indexOf(brand.getParseName().toLowerCase());
+        return index >= 0;
     }
 }

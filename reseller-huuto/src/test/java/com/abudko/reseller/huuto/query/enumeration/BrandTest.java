@@ -27,6 +27,13 @@ public class BrandTest {
 
         assertEquals(Brand.TICKET, Brand.getBrandFrom(testStr));
     }
+    
+    @Test
+    public void testGetBrandFromStart() {
+        String testStr = "Legowear, Toppahousut, Justin 613, Liila";
+        
+        assertEquals(Brand.LEGO, Brand.getBrandFrom(testStr));
+    }
 
     @Test
     public void testGetBrandFromUpperCase() {
