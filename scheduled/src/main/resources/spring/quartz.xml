@@ -63,7 +63,7 @@
       			<ref bean="publishLekmerTrigger"/>
       			<ref bean="cleanTrigger"/>
       			<ref bean="warmTrigger"/>
-      			<!-- <ref bean="pikalevoTrigger"/> -->
+      			<ref bean="pikalevoTrigger"/>
             </list>
         </property>
     </bean>
