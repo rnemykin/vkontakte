@@ -10,8 +10,8 @@ public abstract class ImageManipulatorTest {
 
     @Test
     public void test() throws IOException {
-        String url = "http://kuvat2.huuto.net/c/9c/93c94d9bce19ad57340e3084b8deb-orig.jpg";
-        imageManipulator.storeImage(url, "file:gaba.jpg", "vk.com/kombezi.finland");
+        String url = "http://kuvat2.huuto.net/8/39/8988038c2ebacc8836b3b40f8d30e-orig.jpg";
+        imageManipulator.storeImage(url, "file:gaba.jpg", "пересыл по России бесплатно");
     }
 
 }
