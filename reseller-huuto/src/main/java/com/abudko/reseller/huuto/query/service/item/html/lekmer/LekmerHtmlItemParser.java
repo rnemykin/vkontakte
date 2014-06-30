@@ -70,6 +70,9 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         if (elements.size() > 0) {
             Element element = elements.get(0);
             String imgSrc = element.attributes().get("href");
+            if (imgSrc.startsWith("http://lekmer.fihttp")) {
+                imgSrc = imgSrc.replace("http://lekmer.fihttp", "http");
+            }
             return imgSrc;
         }
         return "";

@@ -35,22 +35,22 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testId() {
-        assertEquals("LE265AW13 BLACK", response.getId());
+        assertEquals("LE511103-6980", response.getId());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("41.94", response.getPrice());
+        assertEquals("49.50", response.getPrice());
     }
     
     @Test
     public void testSizes() {
-        assertEquals(Arrays.asList("122", "128", "134", "140"), response.getSizes());
+        assertEquals(Arrays.asList("80"), response.getSizes());
     }
     
     @Test
     public void testImgSrc() {
-        assertEquals("http://lekmer.fi/mediaarchive/1086456/productmanMeasurement465x500/geggamoja-hupullinen-talvitakki-musta.jpg", response.getImgBaseSrc());
+        assertEquals("http://b-lekmer.r.worldssl.net/1091533/productmanMeasurement465x500/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg", response.getImgBaseSrc());
     }
     
     @Test

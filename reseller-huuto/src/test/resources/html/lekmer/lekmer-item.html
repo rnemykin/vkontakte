@@ -12,7 +12,7 @@
 		<!-- Set the viewport width to device width for mobile -->
     	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		
-		<title>Geggamoja, Hupullinen talvitakki, Musta</title>
+		<title>Reima, Untuvatakki tekoturkissomisteella, Abe, Laivastonsininen</title>
 		
 		<meta name="robots" content="index, follow">
 		<meta name="googlebot" content="index, follow">
@@ -20,23 +20,22 @@
 		
 		<meta name="revisit-after" content="1 days">
 		
-		<meta property="og:image" content="http://lekmer.fi/media/images/2013/lekmer-logo-fi-winter.png" />		
+		<meta property="og:image" content="http://lekmer.fihttp://a-lekmer.r.worldssl.net/media/images/2013/lekmer-logo-fi-winter.png" />		
 		<meta name="google-site-verification" content="wMhAJABk5wYXCxp6tdx40w2Qt9LUUdx-3jetK8Kgm2U"><meta name="google-site-verification" content="vA7WOpCR6ICBxbC8Ojtc31wCVz92w8Sv-CuoCI-Qxw4" /><!--//MERCHANT CENTER FI--> 
 		
-		<link rel="stylesheet" href="/media/css/offcanvas.css?v=1">
-		<link rel="stylesheet" href="/media/css/general_foundicons.css?v=1">
-		<link rel="stylesheet" href="/media/css/general_foundicons_ie7.css?v=1">
-		<link rel="stylesheet" href="/media/css/fc-webicons.css?v=1">
+		<link rel="stylesheet" href="http://a-lekmer.r.worldssl.net/media/css/offcanvas.css?v=1">
+		<link rel="stylesheet" href="http://a-lekmer.r.worldssl.net/media/css/general_foundicons.css?v=1">
+		<link rel="stylesheet" href="http://a-lekmer.r.worldssl.net/media/css/general_foundicons_ie7.css?v=1">
+		<link rel="stylesheet" href="http://a-lekmer.r.worldssl.net/media/css/fc-webicons.css?v=1">
+		
+		
+		<link rel="stylesheet" href="http://a-lekmer.r.worldssl.net/media/css/app.min.css?v=103">
 		
 		
 		
-		<link rel="stylesheet" href="/media/css/app.min.css?v=78">
 		
 		
-		
-		
-		
-		<script src="/media/js/foundation/foundation.min.js?v=1"></script>
+		<script src="http://a-lekmer.r.worldssl.net/media/js/foundation/foundation.min.js?v=1"></script>
 		
 		<script type="text/javascript">
 	$(document).ready(function(){
@@ -47,8 +46,8 @@
 	});
 
 </script>
-<meta property="og:image" content="http://lekmer.fi/mediaarchive/1086456/productmanMeasurement465x500/geggamoja-hupullinen-talvitakki-musta.jpg" />
-<link rel="image_src" href="http://lekmer.fi/mediaarchive/1086456/productmanMeasurement465x500/geggamoja-hupullinen-talvitakki-musta.jpg" />
+<meta property="og:image" content="http://lekmer.fihttp://b-lekmer.r.worldssl.net/1091533/productmanMeasurement465x500/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg" />
+<link rel="image_src" href="http://lekmer.fihttp://b-lekmer.r.worldssl.net/1091533/productmanMeasurement465x500/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg" />
 
 
 
@@ -162,7 +161,7 @@
 
 <script type="text/javascript">
 	var tw_language = "finish";
-	var tw_url = "http://lekmer.fi/http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/geggamoja-hupullinen-talvitakki-musta";
+	var tw_url = "http://lekmer.fi/http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen";
 	var tw_pageSize = 3;
 	var tw_useNextPrev = true;
 	var tw_skipDefaultCss = true; 
@@ -182,11 +181,11 @@ $(document).ready(function(){
 </script>
 
 <meta property="og:url" content="http://lekmer.fi" />
-<meta property="og:title" content="Geggamoja, Hupullinen talvitakki, Musta" />
+<meta property="og:title" content="Reima, Untuvatakki tekoturkissomisteella, Abe, Laivastonsininen" />
 
 
 
-<script type="text/javascript" src="/media/js/jQuery/jquery.rating.min.js"></script>
+<script type="text/javascript" src="http://a-lekmer.r.worldssl.net/media/js/jQuery/jquery.rating.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#submit-review').bind('click',function(e) {
@@ -228,7 +227,7 @@ $(document).ready(function(){
 		{ event: "setAccount", account:"5751" },
 		{ event: "setCustomerId", id: ""},
 		{ event: "setSiteType", type: "d"},
-		{ event: "viewItem", item: "0011624-1001"}
+		{ event: "viewItem", item: "0012094-1016"}
 	); 
 </script>
 
@@ -240,32 +239,67 @@ $(document).ready(function(){
 	 
 	});
 });
+//this same updateFreeShipping script is copied from and exist also in blockextendedcart/default-2013.html
 var updateFreeShipping = function() {
-	var cartTotal = $("#cart-total").html();
+  var cartTotal = 0;
+  // calculate cartTotal excluding pampers products
+  var diapersPresent = false;
+  var diapersMessage = "";
 
-	if(cartTotal){
-		cartTotal = cartTotal.replace(/&nbsp;/g, ''); //Remove thousand separator (SE/NO/DK)
-		cartTotal = cartTotal.replace(/[\s\.]/g, ''); //Remove thousand separator (FI/NL)
-		cartTotal = cartTotal.replace('€',''); //Remove euro symbol
-		cartTotal = cartTotal.replace('\,','\.'); //Replace decimal point
-		cartTotal = parseFloat(cartTotal);
-		cartTotal = Math.floor(cartTotal);
-		
-		var untilFreeShipping = 100 - cartTotal;
-		var untilFreeShippingLabel = " " + "j&#228;ljell&#228; ilmaiseen toimitukseen!";
-		//console.log("cartTotal:" + cartTotal);
-		//console.log("untilFreeShipping:" + untilFreeShipping);
+  var productRow =$(".cart_product_line");
 
-		if(untilFreeShipping<=0){
-			untilFreeShipping = "";
-			untilFreeShippingLabel = "Saat nyt ilmaisen toimituksen!";
-		} else if("eur" == 'eur' || "eur" == 'Euro' || "eur" == '€') {
-			untilFreeShipping = "€ " + untilFreeShipping.toFixed(2);
-			untilFreeShipping = untilFreeShipping.replace('\.','\,');
-		}
-		$("#until-free-shipping").html(untilFreeShipping);
-		$("#until-free-shipping-label").html(untilFreeShippingLabel);
-	}
+  //adds all product values excluding pampers
+  for(var i = 0; i < productRow.length; i++){
+    var productTitle = $(productRow[i]).find(".item>a").text();
+    var productValue = $(productRow[i]).find(".price > .price").text();
+
+    //check if row is pampers product
+    var regex = /pampers/i;
+    var isPampers = regex.test(productTitle);
+    if(isPampers){
+      diapersPresent = true;
+      productValue = 0;
+    } else {
+      productValue = productValue.replace(/&nbsp;/g, ''); //Remove spaces
+      productValue = productValue.replace(/[\s\.]/g, ''); //Remove spaces
+      productValue = productValue.replace('€',''); //Remove euro symbol
+      productValue = productValue.replace('\,','\.'); //Replace decimal point
+      productValue = parseFloat(productValue);
+    }
+    cartTotal = cartTotal + productValue;
+  }
+
+  if(diapersPresent){
+    diapersMessage = "<br/><em class='fusnote'> * Vaipat eiv&#228;t sis&#228;lly ilmaiseen toimitusmaksu-kampanjaan.</em>";
+  } else {
+    diapersMessage = "";
+  }
+
+  cartTotal = parseFloat(cartTotal);
+  cartTotal = Math.floor(cartTotal);
+
+  if(cartTotal){
+    var untilFreeShipping = 100 - cartTotal;
+    var untilFreeshippingText;
+    var untilFreeShippingWithCurrency;
+
+    // adding currency for message
+    if("eur" == 'eur' || "eur" == 'Euro' || "eur" == '€'){
+      untilFreeShippingWithCurrency = "€ " + untilFreeShipping;
+    } else {
+      untilFreeShippingWithCurrency = untilFreeShipping + " kr";
+    }
+
+    // check if it is free shipping or not
+    if(untilFreeShipping <= 0){
+      untilFreeshippingText = "Saat nyt ilmaisen toimituksen!";
+    } else {
+      untilFreeshippingText = untilFreeShippingWithCurrency + " j&#228;ljell&#228; ilmaiseen toimitukseen! " + diapersMessage;
+    }
+
+    $("#until-free-shipping-message").html(untilFreeshippingText);
+
+  }
 }
 var initMegaCartItems = function( ) {/* Delete product from avail*/
 	var
@@ -396,6 +430,14 @@ $(function() { initMegaCartItems(); updateFreeShipping(); });
 									<!--/Find gift toggle-->
 									<!--Wishlist toggle-->
 									<a class="topmenu-toggle small secondary radius button" href="#wishlist-container" id="wishlist-toggle">
+										<!--
+										<i class="foundicon-heart"></i><span class="hide-for-small">
+Toivelista <b class="wish-list-count">(0)</b>
+</span>
+<span class="show-for-small">
+<b class="wish-list-count">0</b>
+</span>
+										-->
 										<i class="foundicon-star"></i><span class="hide-for-small">
 Toivelista <b class="wish-list-count">(0)</b>
 </span>
@@ -463,8 +505,6 @@ Toivelista <b class="wish-list-count">(0)</b>
 			
 							<div class="four mobile-two columns round_corners_small show-for-small">
 			
-									
-									
 									<a class="topmenu-toggle small secondary radius button right" href="#wishlist-container" id="mobile-wishlist-toggle">
 										<!--<i class="foundicon-heart"></i>-->
 										<i class="foundicon-star"></i> <span class="hide-for-small">
@@ -507,13 +547,13 @@ Toivelista <b class="wish-list-count">(0)</b>
 					<ul class="button-group even radius three-up">
 						<li><a href="#" class="small secondary button">Asiakaspalvelu</a></li>
 						<li><a href="#newsletter-container" class="topmenu-toggle small secondary button">Uutiskirje</a></li>
-						<li><a href="#" class="small secondary button" id="search-toggle">Sök</a></li>
+						<li><a href="#" class="small secondary button" id="search-toggle">Sok</a></li>
 					</ul>
 				</div>
 			</div>
 			
 			
-			<div class="twelve" style="margin-bottom: -44px; padding-top: 45px; text-align: center;background: #d1372d; padding-bottom:0; overflow:hidden;" id="fullwidth-banner"> <div class="row" style="margin-bottom:0;"> <div class="one columns mobile-one"></div> <div class="ten columns mobile-ten"> <h3 style="margin-bottom: 15px;color:#fff;"> <a href="http://lekmer.fi/lastenvaatteet/lasten-jalkineet/#!/block-1005997?mode=filter&current=level3category-id&level2category-id=1002379&level1category-id=1001310&pagesize=50&sort=IsNewFrom" style="color:#fff;">VIIKON KAMPANJA:20-50% ale KAIKILLE lastenkengille!</a></h3></div> <div class="one columns mobile-one" style="text-align: right;"></div> </div></div>
+			<div class="twelve" style="margin-bottom: -44px; padding-top: 45px; text-align: center;background: #d1372d; padding-bottom:0; overflow:hidden;" id="fullwidth-banner"> <div class="row" style="margin-bottom:0;"> <div class="one columns mobile-one"></div> <div class="ten columns mobile-ten"> <h3 style="margin-bottom: 10px;color:#fff;font-size:23px;"> <a href="http://lekmer.fi/lelut/nuket-keinuhevoset-ja-pehmoelaimet/muotinuket/" style="color:#fff;">VIIKON KAMPANJA: 20-50% ale KAIKILLE muotinukeille!</a></h3></div> <div class="one columns mobile-one" style="text-align: right;"></div> </div></div>
 			
 			<!-- NEWSLETTER -->
 			
@@ -715,80 +755,80 @@ Toivelista <b class="wish-list-count">(0)</b>
 			<div class="top_dropdown" id="wishlist-container">
 				<div class="row">
 					<div class="contain-to-grid twelve columns white_block">
-						<div class="baby_blue round_corners_small padded">
-	<div class="hide-when-empty-wishlist wishlist bottom_margin hide-inside-wishlist-page">
-		<div class="row">
-			<div class="six columns">
-				<div class="edit-wishlist-title-form hide">
-					<input type="text" name="wishlisttitle" value="Toivelistasi"/>
-					<input type="hidden" name="posturl" value="/wishlist-ajax/">
-					<input type="hidden" name="postmode-name" value="mode">
-					<input type="hidden" name="postmode-value" value="wishlist">
-					<input type="hidden" name="wishlist-title" value="wishlisttitle">
-				
-					<a class="small secondary radius button edit-title left" id="wishlist-title-edit" href="#" >Muuta nimi
-					</a>				
-				</div>
-
-				<h2 class="left wishlist-title"><span>Toivelistasi</span> 
-					<a href="#" class="edit-wishlist-title">Muuta nimi</a></h2>
-		
-			</div>
-			<div class="columns">
-				<div class="columns end">
-					<span class="right" style="margin:7px 5px 0 0;">Jaa toivelistasi:</span>
-				</div>
-				<div class="columns end">
-					<div class="socialholder right clearfix">
-					
-						<!-- AddThis Button BEGIN -->
-						<div id="wishlist-addthis-toolbox" class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://lekmer.fi/jaettu-toivomuslista/?WishList=00000000-0000-0000-0000-000000000000" addthis:title="Lekmerin toivelista" addthis:note="Olet saanut toivelistan Lekmerilt&#228;." addthis:from="wishlist@lekmer.com">
-							<a href="/wishlist-single-receiver/" id="share-wishlist-by-email" class="right addthis_default_style addthis_32x32_style at300b" title="Haluan jakaa toivelistani seuraavan s&#228;hk&#246;postiosoitteen kanssa"><span class="at300bs at15nc at15t_email"><span class="at_a11y">Haluan jakaa toivelistani seuraavan s&#228;hk&#246;postiosoitteen kanssa</span></span></a>
-							<a class="addthis_button_facebook"></a>
-							<a class="addthis_button_twitter"></a>
-							<a class="addthis_button_google"></a>  
+							<div class="baby_blue round_corners_small padded">
+								<div class="hide-when-empty-wishlist wishlist bottom_margin hide-inside-wishlist-page">
+									<div class="row">
+										<div class="six columns">
+											<div class="edit-wishlist-title-form hide">
+												<input type="text" name="wishlisttitle" value="Toivelistasi"/>
+												<input type="hidden" name="posturl" value="/wishlist-ajax/">
+												<input type="hidden" name="postmode-name" value="mode">
+												<input type="hidden" name="postmode-value" value="wishlist">
+												<input type="hidden" name="wishlist-title" value="wishlisttitle">
+											
+												<a class="small secondary radius button edit-title left" id="wishlist-title-edit" href="#" >Muuta nimi
+												</a>				
+											</div>
 							
-							<a class="addthis_button_compact"></a>
-						</div>
-						<script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=Lekmer"></script>
-						
-						<!-- AddThis Button END -->
-
-					</div>
-				</div>
-			</div>
-		</div>	
-	</div>
-	<div class="wishlist wishlist-holder bottom_margin_mobile" data-wishlistkey="00000000-0000-0000-0000-000000000000">
-		
-			<div class="six columns centered round_corners_small white padded empty-wishlist">
-				<h3>i</h3><h4>Toivelistasi on tyhj&#228;</h4>
-				<p>Lis&#228;&#228; tuotteita n&#228;p&#228;ytt&#228;m&#228;ll&#228; tuotteen kohdalla olevaa &quot;Lis&#228;&#228; toivelistaan&quot; n&#228;pp&#228;int&#228;.</p>
-			</div>
-		
-			
-		
-	</div>
-
-	<div class="row wishlist hide-when-empty-wishlist">
-		<div class="eight mobile-twelwe columns">
-			<div class="edit-wishlist-title-form " style="margin-top: 10px">
-				<form action="/lastenvaatteet/Ulkovaatteet/talvitakkeja/geggamoja-hupullinen-talvitakki-musta" method="post">
-					<input type="hidden" name="mode" value="wishlist" />
-						
-					<input type="text" name="wishlisttitle" value="" size="30" />
-					
-					<a href="#" id="wishlist-title-save" class="small secondary radius button edit-title" >No Alias</a>					
-					
-				</form>
-			</div>
-		</div>
-		<div class="four mobile-twelve columns">
-			<a class="small success radius button buyall right" rel="nofollow" href="/wishlisttocart?referrer=%2flastenvaatteet%2fUlkovaatteet%2ftalvitakkeja%2fgeggamoja-hupullinen-talvitakki-musta">Siirr&#228; kaikki tuotteet ostoskoriin</a>
-		</div>
-	</div>
-</div>
-<!-- 2013 WishListKey = 00000000-0000-0000-0000-000000000000 Title = -->
+											<h2 class="left wishlist-title"><span>Toivelistasi</span> 
+												<a href="#" class="edit-wishlist-title">Muuta nimi</a></h2>
+									
+										</div>
+										<div class="columns">
+											<div class="columns end">
+												<span class="right" style="margin:7px 5px 0 0;">Jaa toivelistasi:</span>
+											</div>
+											<div class="columns end">
+												<div class="socialholder right clearfix">
+												
+													<!-- AddThis Button BEGIN -->
+													<div id="wishlist-addthis-toolbox" class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://lekmer.fi/jaettu-toivomuslista/?WishList=00000000-0000-0000-0000-000000000000" addthis:title="Lekmerin toivelista" addthis:note="Olet saanut toivelistan Lekmerilt&#228;." addthis:from="wishlist@lekmer.com">
+														<a href="/wishlist-single-receiver/" id="share-wishlist-by-email" class="right addthis_default_style addthis_32x32_style at300b" title="Haluan jakaa toivelistani seuraavan s&#228;hk&#246;postiosoitteen kanssa"><span class="at300bs at15nc at15t_email"><span class="at_a11y">Haluan jakaa toivelistani seuraavan s&#228;hk&#246;postiosoitteen kanssa</span></span></a>
+														<a class="addthis_button_facebook"></a>
+														<a class="addthis_button_twitter"></a>
+														<a class="addthis_button_google"></a>  
+														
+														<a class="addthis_button_compact"></a>
+													</div>
+													<script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=Lekmer"></script>
+													
+													<!-- AddThis Button END -->
+							
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+								<div class="wishlist wishlist-holder bottom_margin_mobile" data-wishlistkey="00000000-0000-0000-0000-000000000000">
+									
+										<div class="six columns centered round_corners_small white padded empty-wishlist">
+											<h3>i</h3><h4>Toivelistasi on tyhj&#228;</h4>
+											<p>Lis&#228;&#228; tuotteita n&#228;p&#228;ytt&#228;m&#228;ll&#228; tuotteen kohdalla olevaa &quot;Lis&#228;&#228; toivelistaan&quot; n&#228;pp&#228;int&#228;.</p>
+										</div>
+									
+										
+									
+								</div>
+							
+								<div class="row wishlist hide-when-empty-wishlist">
+									<div class="eight mobile-twelwe columns">
+										<div class="edit-wishlist-title-form " style="margin-top: 10px">
+											<form action="/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen" method="post">
+												<input type="hidden" name="mode" value="wishlist" />
+													
+												<input type="text" name="wishlisttitle" value="" size="30" />
+												
+												<a href="#" id="wishlist-title-save" class="small secondary radius button edit-title" >No Alias</a>					
+												
+											</form>
+										</div>
+									</div>
+									<div class="four mobile-twelve columns">
+										<a class="small success radius button buyall right" rel="nofollow" href="/wishlisttocart?referrer=%2flastenvaatteet%2fUlkovaatteet%2ftalvitakkeja%2freima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen">Siirr&#228; kaikki tuotteet ostoskoriin</a>
+									</div>
+								</div>
+							</div>
+							<!-- 2013 WishListKey = 00000000-0000-0000-0000-000000000000 Title = -->
 					</div>
 				</div>
 			</div>	
@@ -803,61 +843,61 @@ Toivelista <b class="wish-list-count">(0)</b>
 							<div class="contain-to-grid twelve columns white_block">
 								<div class="twelve columns cart_dropdown baby_green round_corners_small padded">
 									<div id="toggle-widecart-holder" class="topmenu-function-holder clearfix empty-cart">
-	<div class="mobile_empty_cart">
-		<div class="row">
-			<div class="twelve mobile-four columns">
-			</div>
-			<div class="twelve mobile-four columns">
-					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="75px" height="75px" viewBox="0 0 60 60" enable-background="new 0 0 60 60" xml:space="preserve">
-
-						<defs>
-							<radialGradient id="grad1" cx="65%" cy="25%" r="75%" fx="50%" fy="50%">
-								<stop offset="0%" style="stop-color:rgb(253,254,255); stop-opacity:0"></stop>
-								<stop offset="100%" style="stop-color:rgb(237,243,250);stop-opacity:1"></stop>
-							</radialGradient>
-						</defs>
-
-
-						<circle fill="url(#grad1)" cx="30" cy="30" r="28" stroke="#b3d2f5" stroke-width="3"></circle>
-						<circle fill="#ffffff" cx="30" cy="30" r="28" stroke="#b3d2f5" stroke-width="3"></circle>
-						<path fill="#68A6EB" d="M26.716,19.077c1.329,6.256,12.271,1.934,11.221-3.709C36.77,8.921,25.486,13.274,26.716,19.077"></path>
-						<path fill="#68A6EB" d="M35.017,41.675c-1.699,0.809-4.443,0.86-3.736-1.771l3.923-14.643H24.82 c-1.159,4.324-2.317,8.647-3.476,12.971c-0.685,2.554-1.559,5.234-0.828,7.878c1.568,5.674,9.237,4.388,13.192,2.407L35.017,41.675"></path>
-					</svg>
-				<span class="js-mobile-cart-quantity"></span>
-			</div>
-			<div class="twelve mobile-four columns">
-			</div>
-		</div>
-		<div class="row">
-			<div class="twelve columns">
-				<div class="mini-checkout empty">
-					<span><h4>Ostosk&#228;rrysi on tyhj&#228;</h4></span>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div id="mini-cart-clone" class="hidden">
-	<div class="js-mini-cart-container">
-		<div class="eight columns hide-for-small js-cart-target">
-			<i class="foundicon-cart"></i><p class="mini-checkout">0 tuotetta 0 EUR</p>
-		</div>
-
-		<div class="four columns hide-for-small">	
-			<a class="small success radius button right" href="https://lekmer.fi/checkout/">Kassalle</a>
-		</div>
-
-		<div class="mobile-nine columns hide">
-			<p><strong>0</strong> tuotetta</p>
-		</div>
-
-		<div class="mobile-twelve columns show-for-small" >
-				<a class="small success radius button right js-mobile-cart-target sidebar-cart-Button" href="#sidebar-cart"><i class="foundicon-cart"></i><span class="js-mobile-cart-quantity"></span></a>
-		</div>
-	</div>
-</div>
-
+										<div class="mobile_empty_cart">
+											<div class="row">
+												<div class="twelve mobile-four columns">
+												</div>
+												<div class="twelve mobile-four columns">
+														<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="75px" height="75px" viewBox="0 0 60 60" enable-background="new 0 0 60 60" xml:space="preserve">
+									
+															<defs>
+																<radialGradient id="grad1" cx="65%" cy="25%" r="75%" fx="50%" fy="50%">
+																	<stop offset="0%" style="stop-color:rgb(253,254,255); stop-opacity:0"></stop>
+																	<stop offset="100%" style="stop-color:rgb(237,243,250);stop-opacity:1"></stop>
+																</radialGradient>
+															</defs>
+									
+									
+															<circle fill="url(#grad1)" cx="30" cy="30" r="28" stroke="#b3d2f5" stroke-width="3"></circle>
+															<circle fill="#ffffff" cx="30" cy="30" r="28" stroke="#b3d2f5" stroke-width="3"></circle>
+															<path fill="#68A6EB" d="M26.716,19.077c1.329,6.256,12.271,1.934,11.221-3.709C36.77,8.921,25.486,13.274,26.716,19.077"></path>
+															<path fill="#68A6EB" d="M35.017,41.675c-1.699,0.809-4.443,0.86-3.736-1.771l3.923-14.643H24.82 c-1.159,4.324-2.317,8.647-3.476,12.971c-0.685,2.554-1.559,5.234-0.828,7.878c1.568,5.674,9.237,4.388,13.192,2.407L35.017,41.675"></path>
+														</svg>
+													<span class="js-mobile-cart-quantity"></span>
+												</div>
+												<div class="twelve mobile-four columns">
+												</div>
+											</div>
+											<div class="row">
+												<div class="twelve columns">
+													<div class="mini-checkout empty">
+														<span><h4>Ostosk&#228;rrysi on tyhj&#228;</h4></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div id="mini-cart-clone" class="hidden">
+										<div class="js-mini-cart-container">
+											<div class="eight columns hide-for-small js-cart-target">
+												<i class="foundicon-cart"></i><p class="mini-checkout">0 tuotetta 0 EUR</p>
+											</div>
+									
+											<div class="four columns hide-for-small">	
+												<a class="small success radius button right" href="https://lekmer.fi/checkout/">Kassalle</a>
+											</div>
+									
+											<div class="mobile-nine columns hide">
+												<p><strong>0</strong> tuotetta</p>
+											</div>
+									
+											<div class="mobile-twelve columns show-for-small" >
+													<a class="small success radius button right js-mobile-cart-target sidebar-cart-Button" href="#sidebar-cart"><i class="foundicon-cart"></i><span class="js-mobile-cart-quantity"></span></a>
+											</div>
+										</div>
+									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -876,15 +916,13 @@ Toivelista <b class="wish-list-count">(0)</b>
 			
 			<!-- Topmenu - 2013 end -->
 			
-			
-			
 			<div class="row header_search">
 			
 					<div class="header">
 			
 						<div class="four columns logo mobile-eight">
 							<a href="http://lekmer.fi/" title="Lelut netiss&#228;">
-								<img src="/media/images/2013/lekmer-logo-fi.png" alt="Lelut netiss&#228;">
+								<img src="http://a-lekmer.r.worldssl.net/media/images/2013/lekmer-logo-fi.png" alt="Lelut netiss&#228;">
 							</a>
 						</div>
 						<div class="four columns search-container hide-for-small">
@@ -965,7 +1003,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 						
 						
 						
-						<li class="current unavalible"><a href="#">Geggamoja, Hupullinen talvitakki, Musta</a></li>
+						<li class="current unavalible"><a href="#">Reima, Untuvatakki tekoturkissomisteella, Abe, Laivastonsininen</a></li>
 						
 						
 						
@@ -985,7 +1023,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 <div class="twelve columns hide-for-small" id="product_image_big_picture">
 	<div class="large_product_image bottom_margin">
 		
-				<img class="mobile-product-images-move" itemprop="image" id="zoom1" src="/mediaarchive/1086456/productmanMeasurement465x500/geggamoja-hupullinen-talvitakki-musta.jpg" data-productoriginal="/mediaarchive/1086456/productoriginal/geggamoja-hupullinen-talvitakki-musta.jpg" data-productThumb="/mediaarchive/1086456/thumbnail/geggamoja-hupullinen-talvitakki-musta.jpg" data-productZoom="/mediaarchive/1086456/geggamoja-hupullinen-talvitakki-musta.jpg"  />
+				<img class="mobile-product-images-move" itemprop="image" id="zoom1" src="http://b-lekmer.r.worldssl.net/1091533/productmanMeasurement465x500/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg" data-productoriginal="http://b-lekmer.r.worldssl.net/1091533/productoriginal/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg" data-productThumb="http://b-lekmer.r.worldssl.net/1091533/thumbnail/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg" data-productZoom="http://b-lekmer.r.worldssl.net/1091533/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg"  />
 		
 	</div>
 </div>
@@ -993,7 +1031,63 @@ Toivelista <b class="wish-list-count">(0)</b>
 <!--//ENDS-->
 						
 						<div class="twelve columns hide-for-small" id="product_image_thumbnails">
+							<div class="row">
+							<div class="twelve columns">
+									
+								<div class="imagethumbs_container twelve">
+									<div class="imagethumbs twelve">
+										<ul class="twelve">
 							
+							<li class="two columns small_product_image active bottom_margin end">
+								<a href="http://a-lekmer.r.worldssl.net/1091534/productoriginal/.jpg" title="'" data-productmain="http://a-lekmer.r.worldssl.net/1091534/productmanMeasurement465x500/.jpg" class="thumbImage">
+									<img src="http://a-lekmer.r.worldssl.net/1091534/thumbnail/.jpg" alt="" />
+								</a>
+							</li>
+						
+						
+						
+						
+							<li class="two columns small_product_image active bottom_margin end">
+								<a href="http://b-lekmer.r.worldssl.net/1091535/productoriginal/511103-6980-3a.jpg" title="511103-6980_3a" data-productmain="http://b-lekmer.r.worldssl.net/1091535/productmanMeasurement465x500/511103-6980-3a.jpg" class="thumbImage">
+									<img src="http://b-lekmer.r.worldssl.net/1091535/thumbnail/511103-6980-3a.jpg" alt="" />
+								</a>
+							</li>
+						
+						
+						
+						
+							<li class="two columns small_product_image active bottom_margin end">
+								<a href="http://a-lekmer.r.worldssl.net/1091536/productoriginal/511103-6980-5a.jpg" title="511103-6980_5a" data-productmain="http://a-lekmer.r.worldssl.net/1091536/productmanMeasurement465x500/511103-6980-5a.jpg" class="thumbImage">
+									<img src="http://a-lekmer.r.worldssl.net/1091536/thumbnail/511103-6980-5a.jpg" alt="" />
+								</a>
+							</li>
+						
+						
+						
+						
+							<li class="two columns small_product_image active bottom_margin end">
+								<a href="http://b-lekmer.r.worldssl.net/1091537/productoriginal/511103-6980-4a.jpg" title="511103-6980_4a" data-productmain="http://b-lekmer.r.worldssl.net/1091537/productmanMeasurement465x500/511103-6980-4a.jpg" class="thumbImage">
+									<img src="http://b-lekmer.r.worldssl.net/1091537/thumbnail/511103-6980-4a.jpg" alt="" />
+								</a>
+							</li>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						</ul>
+						
+									</div>
+								</div>
+								
+							</div>										
+						</div>
+						
 						</div>
 						
 						
@@ -1002,13 +1096,40 @@ Toivelista <b class="wish-list-count">(0)</b>
 						<div class="ten columns push-two show-for-small"> 
 							<div id="featured">
 								
-										<img src="/mediaarchive/1086456/productmanMeasurement465x500/geggamoja-hupullinen-talvitakki-musta.jpg" />
+										<img src="http://b-lekmer.r.worldssl.net/1091533/productmanMeasurement465x500/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg" />
 								
 						
 						<!--//ENDS-->
 						
 
-		
+				
+	<img src="http://a-lekmer.r.worldssl.net/1091534/productmanMeasurement465x500/.jpg" alt="" />
+
+
+
+						
+	<img src="http://b-lekmer.r.worldssl.net/1091535/productmanMeasurement465x500/511103-6980-3a.jpg" alt="" />
+
+
+
+						
+	<img src="http://a-lekmer.r.worldssl.net/1091536/productmanMeasurement465x500/511103-6980-5a.jpg" alt="" />
+
+
+
+						
+	<img src="http://b-lekmer.r.worldssl.net/1091537/productmanMeasurement465x500/511103-6980-4a.jpg" alt="" />
+
+
+
+						
+						
+						
+						
+						
+						
+						
+						
 	</div>
 </div> 
 
@@ -1032,7 +1153,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 									<li class="active" id="product_infoTab">
 										<!--//PRODUCT DESCRIPTION-->
 										<div class="description bottom_margin">
-											<p id="proddesc">Geggamojan kivannäköinen musta talvitakki, jossa oranssit yksityiskohdat. Takissa on irrotettavat hihat, joten takki muuntautuu helposti liiviksi. YKK-vetoketju, irrotettava huppu sekä kaksi etutaskua. <br><br> Materiaali: vedenpitävää nylonia polyesteritäytteellä, hupussa ja taskujen sisällä pehmeä fleecevuori.</p>					  	
+											<p id="proddesc">Reiman tyylikäs untuvatakki. Erittäin lämmin lasten takki vettähylkivää ja tuulenpitävää materiaalia. Irrotettava huppu, jossa irrotettava tekoturkisreunus. <br><br>- Tuulenpitävä <br>- Vettä ja likaa hylkivä pinta <br>- Resorit hihansuissa <br>- Irrotettava huppu <br>- Vetoketjulliset taskut <br>- Heijastavia yksityiskohtia <br>- Hengittävä materiaali <br><br>Materiaali: 100% polyesteriä <br>Täyte: 80% untuvaa, 20% höyhentä</p>					  	
 										</div>
 										<!--//ENDS-->
 						
@@ -1043,12 +1164,12 @@ Toivelista <b class="wish-list-count">(0)</b>
 							
 											
 												
-													3-10 v.,
+													0-3 v.,
 												
 											
 											
 												
-													<a href="http://lekmer.fi/hinta/50-70/">50-70</a>
+													<a href="http://lekmer.fi/hinta/70-100/">70-100</a>
 												
 											
 											</p>
@@ -1057,7 +1178,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 												<p>
 												
 						<p style="margin-bottom:0px;" class="hide-from-no hide-from-dk hide-from-fi hide-from-nl">
-							<img src="/mediaarchive/1000034/produkten-ar-atervinningsbar.jpg" style="margin-right:5px; margin-bottom: 5px; vertical-align: middle; width:20px;" alt="">
+							<img src="http://a-lekmer.r.worldssl.net/1000034/produkten-ar-atervinningsbar.jpg" style="margin-right:5px; margin-bottom: 5px; vertical-align: middle; width:20px;" alt="">
 							<b>Produkten &#228;r &#229;tervinningsbar</b>
 						</p>
 						
@@ -1066,7 +1187,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 							<br>
 						</p>
 						
-						<img src="/mediaarchive/1000034/produkten-ar-atervinningsbar.jpg" style="margin-right:5px; margin-bottom: 5px; vertical-align: middle; width:20px;" alt="" class="hide-from-se">
+						<img src="http://a-lekmer.r.worldssl.net/1000034/produkten-ar-atervinningsbar.jpg" style="margin-right:5px; margin-bottom: 5px; vertical-align: middle; width:20px;" alt="" class="hide-from-se">
 						
 							
 												</p>		
@@ -1082,7 +1203,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 						
 											
 						<p style="margin-bottom:0px;" class="hide-from-no hide-from-dk hide-from-fi hide-from-nl">
-							<img src="/mediaarchive/1000034/produkten-ar-atervinningsbar.jpg" style="margin-right:5px; margin-bottom: 5px; vertical-align: middle; width:20px;" alt="">
+							<img src="http://a-lekmer.r.worldssl.net/1000034/produkten-ar-atervinningsbar.jpg" style="margin-right:5px; margin-bottom: 5px; vertical-align: middle; width:20px;" alt="">
 							<b>Produkten &#228;r &#229;tervinningsbar</b>
 						</p>
 						
@@ -1091,7 +1212,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 							<br>
 						</p>
 						
-						<img src="/mediaarchive/1000034/produkten-ar-atervinningsbar.jpg" style="margin-right:5px; margin-bottom: 5px; vertical-align: middle; width:20px;" alt="" class="hide-from-se">
+						<img src="http://a-lekmer.r.worldssl.net/1000034/produkten-ar-atervinningsbar.jpg" style="margin-right:5px; margin-bottom: 5px; vertical-align: middle; width:20px;" alt="" class="hide-from-se">
 						
 							
 							
@@ -1108,8 +1229,8 @@ Toivelista <b class="wish-list-count">(0)</b>
 									  		<p><strong>Jaa linkki</strong><br/>Kopioi ja kiinnit&#228; linkki blogiisi.</p>
 									  		<p>
 									  			<code>
-									  				&lt;a href="http://lekmer.fi/http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/geggamoja-hupullinen-talvitakki-musta"&gt;<br />
-									  				&lt;img src="http://lekmer.fi/mediaarchive/1086456/geggamoja-hupullinen-talvitakki-musta.jpg" alt="Geggamoja, Hupullinen talvitakki, Musta" /&gt;<br />
+									  				&lt;a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen"&gt;<br />
+									  				&lt;img src="http://lekmer.fihttp://b-lekmer.r.worldssl.net/1091533/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg" alt="Reima, Untuvatakki tekoturkissomisteella, Abe, Laivastonsininen" /&gt;<br />
 									  				&lt;/a&gt;
 									  			</code>
 									  		</p>
@@ -1167,7 +1288,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 								<div class="twelve columns">
 									<div class="product_title">
 										<h1 itemprop="name">
-											Geggamoja, Hupullinen talvitakki, Musta
+											Reima, Untuvatakki tekoturkissomisteella, Abe, Laivastonsininen
 										</h1>
 									</div>
 								</div>
@@ -1177,8 +1298,8 @@ Toivelista <b class="wish-list-count">(0)</b>
 								<div class="twelve columns">
 									<div class="product_band">
 										<p>
-											Tavaramerkit: <a href="http://lekmer.fi/geggamoja/" itemprop="brand">Geggamoja</a>,
-							Artikkelinumero: <span>265AW13 BLACK</span>
+											Tavaramerkit: <a href="http://lekmer.fi/reima/" itemprop="brand">Reima</a>,
+							Artikkelinumero: <span>511103-6980</span>
 										</p>
 									</div>
 								</div>
@@ -1240,22 +1361,22 @@ Toivelista <b class="wish-list-count">(0)</b>
 							
 							          
 															<span class="campaignprice-value">
-																€ 41,94
+																€ 49,50
 															</span>	
 							
 															<span itemprop="price" class="listprice-value">
-																€ 69,90
+																€ 99
 															</span>
 							
 															<span class="save-value">
-																-<span id="save-amount">€ 27,96</span> <b class="yellow">-40%</b>
+																-<span id="save-amount">€ 49,50</span> <b class="yellow">-50%</b>
 															</span>
 							
 							          
 							
 							          
 															<span class="stockleft-value" style="display:none;">
-																yellow
+																red
 															</span>
 							          
 							          
@@ -1263,7 +1384,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 							      </div>
 							    </div>
 							    <div class="right prisjakt-cheapest hide" style="margin:10px 10px 10px 0">
-							      <img src="http://extern2.prisjakt.nu/billigast.php?ident=0011624-1001&f=6277&mellan=1" />
+							      <img src="http://extern2.prisjakt.nu/billigast.php?ident=0012094-1016&f=6277&mellan=1" />
 							    </div>
 							    <script type="text/javascript">
 							      $(document).ready(function(){
@@ -1279,10 +1400,6 @@ Toivelista <b class="wish-list-count">(0)</b>
 							  <div class="twelve columns">
 							    <div class="product_stock">
 							      
-							      <p>
-							        Osamaksa <strong>€ 6,79 /kk</strong>
-							      </p>
-							      
 							    </div>
 							  </div>
 							</div>
@@ -1292,7 +1409,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 							
 							
 							<form action="/cart/add" class="selectsholder custom clearfix">
-							  <input type="hidden" name="id" value="1033261" />
+							  <input type="hidden" name="id" value="1036974" />
 							  <input type="hidden" name="addedtobasket" value="addedtobasket" />
 							  
 							
@@ -1322,24 +1439,24 @@ Toivelista <b class="wish-list-count">(0)</b>
 							
 							
 							    <div class="choose_size sizes">
-							      <a id="size_1000148" data-id="1000148" href="#" class="0erpseparator0011624-1001-169erpseparator">
+							      <a id="size_19" data-id="19" href="#" class="1erpseparator0012094-1016-109erpseparator">
 							  
-							  98/104 cm <span>(3 - 4 vuotta)</span>
-							  
-							</a>
-							<a id="size_38" data-id="38" href="#" class="0erpseparator0011624-1001-170erpseparator">
-							  
-							  110/116 cm <span>(5 - 6 vuotta)</span>
+							  80 cm <span>(1 vuotta)</span>
 							  
 							</a>
-							<a id="size_1000150" data-id="1000150" href="#" class="11erpseparator0011624-1001-171erpseparator">
+							<a id="size_20" data-id="20" href="#" class="0erpseparator0012094-1016-110erpseparator">
 							  
-							  122/128 cm <span>(6 - 8 vuotta)</span>
+							  86 cm <span>(1,5 vuotta)</span>
 							  
 							</a>
-							<a id="size_1000151" data-id="1000151" href="#" class="6erpseparator0011624-1001-172erpseparator">
+							<a id="size_22" data-id="22" href="#" class="0erpseparator0012094-1016-111erpseparator">
 							  
-							  134/140 cm <span>(8 - 10 vuotta)</span>
+							  92 cm <span>(2 vuotta)</span>
+							  
+							</a>
+							<a id="size_23" data-id="23" href="#" class="0erpseparator0012094-1016-112erpseparator">
+							  
+							  98 cm <span>(3 vuotta)</span>
 							  
 							</a>
 							
@@ -1348,7 +1465,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 							  </div>
 							
 							  <div class="buy_now">
-							    <button type="submit" id="buy-button" name="buy" class="large success radius button buy eS-addingToCart eS-t-L3Byb2R1Y3QtdGlja2V0L3Byb2R1Y3QtaW5mb3JtYXRpb247Iztwcm9kdWN0X2tleTsxMDMzMjYxOyM7Iw">Osta nyt</button>
+							    <button type="submit" id="buy-button" name="buy" class="large success radius button buy eS-addingToCart eS-t-L3Byb2R1Y3QtdGlja2V0L3Byb2R1Y3QtaW5mb3JtYXRpb247Iztwcm9kdWN0X2tleTsxMDM2OTc0OyM7Iw" data-buyproductpopup="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen?page-common-name=BuyProductPopup">Osta nyt</button>
 							    <button type="submit" id="book-button" name="buy" class="large success radius button" style="display:none;">Tilaa</button>
 							    
 							
@@ -1364,7 +1481,6 @@ Toivelista <b class="wish-list-count">(0)</b>
 							
 							<div class="row">
 							  <div class="twelve columns margin_bottom">
-							
 							    <div class="instock">
 							      <div class="product_stock">
 							        <p class="left">
@@ -1377,13 +1493,14 @@ Toivelista <b class="wish-list-count">(0)</b>
 																</span>
 							
 																<span class="delivery">
-																	(Toimitus 3-5 arkip&#228;iv&#228;n sis&#228;ll&#228;)
+																	
+																	Toimitusaika: 3-5 arkip&#228;iv&#228;&#228;
 																</span>
 							        </p>
 							        <form action="http://lekmer.fi/wishlist" class="wl-size-form">
 										<a href="/wishlist/"  class="wishlist right" rel="nofollow"><i class="foundicon-star"></i> Lis&#228;&#228; toivelistaan</a>
 										<div class="buttons">
-											<input type="hidden" id="wl-product-id" name="id" value="1033261" />
+											<input type="hidden" id="wl-product-id" name="id" value="1036974" />
 											<input type="hidden" id="wl-size-id" name="sizeid" />
 											
 										</div>
@@ -1395,53 +1512,25 @@ Toivelista <b class="wish-list-count">(0)</b>
 							
 							
 							
+							<div class="row content-message-wrapper">
 							
+							        <div class="twelve columns"> <div class="alert-box secondary"> <div class="round infomark"> <h2></h2> </div> <div class="content-message"><div class="one columns"> </div> <div class="eleven columns"> <ul> <li> <i class="foundicon-checkmark"></i> Ilmainen toimitus yli 100 € tilauksille </li>  <li> <i class="foundicon-checkmark"></i> 365 päivän vapaa-kauppa </li>  <li> <i class="foundicon-checkmark"></i> Ilmainen kortti-ja laskumaksu </li> </ul> </div> </div> </div> </div>
 							
+							</div>
+							<div class="row content-message-wrapper">
 							
+							        
 							
-							
-							
-							
-							
-							<div class="row hide-from-no hide-from-dk hide-from-fi hide-from-nl">
-							  <div class="twelve columns">
-							    <div class="alert-box secondary">
-							      <div class="product-payoff">
-							        <div class="row payoff-arguments-holder">
-							          <div class="columns">
-							
-							          </div>
-							          <div class="columns">
-							            <img class="right" src="/media/images/lekmer/payoff-arguments-trygg_ehandel.png" alt="Trygg ehandel" title="Trygg ehandel">
-							          </div>
-							          <div class="columns end payoff-arguments">
-							            <ul>
-							              <li>
-							                <i class="foundicon-checkmark"></i> Fri frakt over 1000 kr
-							              </li>
-							              <li>
-							                <i class="foundicon-checkmark"></i> 365 dagars öppet köp
-							              </li>
-							              <li>
-							                <i class="foundicon-checkmark"></i> Avgiftsfri betalning
-							              </li>
-							            </ul>
-							          </div>
-							        </div>
-							      </div>
-							    </div>
-							  </div>
 							</div>
 							
-							<div class="row hide-from-se">
-							  <div class="twelve columns">
-							    <div class="alert-box secondary">
-							      <div class="product-payoff">
-							        <div class="row payoff-arguments-holder"> <div class="columns end payoff-arguments"> <ul> <li> <i class="foundicon-checkmark"></i> Ilmainen toimitus yli 100 € tilauksille </li> <li> <i class="foundicon-checkmark"></i> 365 päivän vapaa-kauppa </li> <li> <i class="foundicon-checkmark"></i> Ilmainen kortti-ja laskumaksu </li> </ul> </div> </div>
-							      </div>
-							    </div>
-							  </div>
-							</div>
+							
+							
+							
+							
+							
+							
+							
+							
 							
 							</div>
 							</div>
@@ -1462,7 +1551,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 							  
 							  <div class="six columns centered baby_blue round_corners_small padded size-table">
 							  <div class="row">
-							    <h4>Geggamoja Vaatteet</h4>
+							    <h4>Reima Vaatteet</h4>
 							
 							    <div class="six columns mobile-six size-table-left-header">
 							      <strong>Koko</strong>
@@ -1473,56 +1562,84 @@ Toivelista <b class="wish-list-count">(0)</b>
 							    </div>
 							
 							    <div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">Mini</div>
-							  <div class="six columns mobile-six size-table-right-col">(0 - 2 kk)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">56</div>
+							  <div class="six columns mobile-six size-table-right-col">0-3 m</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">Baby</div>
-							  <div class="six columns mobile-six size-table-right-col">(2 - 6 kk)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">62 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(3 - 6 kk)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">XXS</div>
-							  <div class="six columns mobile-six size-table-right-col">(6-12 m)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">68 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(6 kk)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">XS</div>
-							  <div class="six columns mobile-six size-table-right-col">(1-2 år)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">74 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(9 kk)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">S</div>
-							  <div class="six columns mobile-six size-table-right-col">(2-4 år)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">80 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(1 vuotta)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">M</div>
-							  <div class="six columns mobile-six size-table-right-col">(5-6 år)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">80 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(1 vuotta)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">L</div>
-							  <div class="six columns mobile-six size-table-right-col">(6+ år)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">86 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(1,5 vuotta)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">74/80 cm</div>
-							  <div class="six columns mobile-six size-table-right-col">(6 - 18 kk)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">92 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(2 vuotta)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">86/92 cm</div>
-							  <div class="six columns mobile-six size-table-right-col">(1 - 2 vuotta)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">98 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(3 vuotta)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">98/104 cm</div>
-							  <div class="six columns mobile-six size-table-right-col">(3 - 4 vuotta)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">104 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(4 vuotta)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">110/116 cm</div>
-							  <div class="six columns mobile-six size-table-right-col">(5 - 6 vuotta)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">110 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(5 vuotta)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">122/128 cm</div>
-							  <div class="six columns mobile-six size-table-right-col">(6 - 8 vuotta)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">116 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(6 vuotta)</div>
 							</div>
 							<div class="twelve">
-							  <div class="six columns mobile-six size-table-left-col size-table-right-border">134/140 cm</div>
-							  <div class="six columns mobile-six size-table-right-col">(8 - 10 vuotta)</div>
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">122 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(7 vuotta)</div>
+							</div>
+							<div class="twelve">
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">128 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(8 vuotta)</div>
+							</div>
+							<div class="twelve">
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">134 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(9 vuotta)</div>
+							</div>
+							<div class="twelve">
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">140 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(10 vuotta)</div>
+							</div>
+							<div class="twelve">
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">146 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(11 vuotta)</div>
+							</div>
+							<div class="twelve">
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">152 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(12 vuotta)</div>
+							</div>
+							<div class="twelve">
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">158 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(13 vuotta)</div>
+							</div>
+							<div class="twelve">
+							  <div class="six columns mobile-six size-table-left-col size-table-right-border">164 cm</div>
+							  <div class="six columns mobile-six size-table-right-col">(14 vuotta)</div>
 							</div>
 							
 							  </div>
@@ -1556,18 +1673,16 @@ Toivelista <b class="wish-list-count">(0)</b>
 										<ul class="package_product_line">	
 											<li class="image two columns mobile-two">
 												<div class="vertical_align">
-													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/disney-pixar-cars-takki-punainen-tummansininen" title="Disney Pixar Cars, Takki, Punainen/Tummansininen">
-													<img src="/mediaarchive/1085728/mediumthumbnail/disney-pixar-cars-takki-punainen-tummansininen.jpg" alt="Disney Pixar Cars, Takki, Punainen/Tummansininen" />
+													<a href="http://lekmer.fi/lastenvaatteet/lasten-jalkineet/urheilukengat-ja-lenkkarit/nike-tennarit-son-of-force-mid-toddler-white-red" title="Nike, Tennarit, Son of Force Mid, Toddler, White/Red">
+													<img src="http://a-lekmer.r.worldssl.net/1109898/mediumthumbnail/nike-tennarit-son-of-force-mid-toddler-white-red.jpg" alt="Nike, Tennarit, Son of Force Mid, Toddler, White/Red" />
 													</a>
 												</div>
 											</li>
-											<li class="item ten mobile-ten columns" data-category="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/disney-pixar-cars-takki-punainen-tummansininen" data-brand="Disney Pixar Cars">
+											<li class="item ten mobile-ten columns" data-category="http://lekmer.fi/lastenvaatteet/lasten-jalkineet/urheilukengat-ja-lenkkarit/nike-tennarit-son-of-force-mid-toddler-white-red" data-brand="Nike">
 												<div class="vertical_align">
-													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/disney-pixar-cars-takki-punainen-tummansininen" title="Disney Pixar Cars, Takki, Punainen/Tummansininen">Disney Pixar Cars, Takki, Punainen/Tummansininen </a><br>
+													<a href="http://lekmer.fi/lastenvaatteet/lasten-jalkineet/urheilukengat-ja-lenkkarit/nike-tennarit-son-of-force-mid-toddler-white-red" title="Nike, Tennarit, Son of Force Mid, Toddler, White/Red">Nike, Tennarit, Son of Force Mid, Toddler, White/Red </a><br>
 													
-														<span class="price sale">€ 29,90</span>&nbsp;
-														<span class="original_price">(€ 34,90)</span>&nbsp;
-														<span class="price sale percentage">-14%</span>
+														<span class="price">€ 52,90</span>
 													
 												</div>
 											</li>
@@ -1581,42 +1696,17 @@ Toivelista <b class="wish-list-count">(0)</b>
 										<ul class="package_product_line">	
 											<li class="image two columns mobile-two">
 												<div class="vertical_align">
-													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-takki-kuviollinen-mello-dress-blues" title="Name it, Takki, Kuviollinen, Mello, Dress blues">
-													<img src="/mediaarchive/1082758/mediumthumbnail/name-it-takki-kuviollinen-mello-dress-blues.jpg" alt="Name it, Takki, Kuviollinen, Mello, Dress blues" />
+													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reimatec-takki-jessi-tummansininen" title="ReimaTec, Takki, Jessi, Tummansininen">
+													<img src="http://a-lekmer.r.worldssl.net/1091508/mediumthumbnail/reimatec-takki-jessi-tummansininen.jpg" alt="ReimaTec, Takki, Jessi, Tummansininen" />
 													</a>
 												</div>
 											</li>
-											<li class="item ten mobile-ten columns" data-category="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-takki-kuviollinen-mello-dress-blues" data-brand="Name it">
+											<li class="item ten mobile-ten columns" data-category="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reimatec-takki-jessi-tummansininen" data-brand="Reima">
 												<div class="vertical_align">
-													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-takki-kuviollinen-mello-dress-blues" title="Name it, Takki, Kuviollinen, Mello, Dress blues">Name it, Takki, Kuviollinen, Mello, Dress blues </a><br>
+													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reimatec-takki-jessi-tummansininen" title="ReimaTec, Takki, Jessi, Tummansininen">ReimaTec, Takki, Jessi, Tummansininen </a><br>
 													
-														<span class="price sale">€ 20,93</span>&nbsp;
-														<span class="original_price">(€ 29,90)</span>&nbsp;
-														<span class="price sale percentage">-30%</span>
-													
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="twelve columns">
-									<div class="round_corners_small white padded bottom_margin_tiny">
-										<ul class="package_product_line">	
-											<li class="image two columns mobile-two">
-												<div class="vertical_align">
-													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-vaaleanpunainen" title="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Vaaleanpunainen">
-													<img src="/mediaarchive/1088797/mediumthumbnail/reima-angry-birds-takki-kaannettava-vaaleanpunainen.jpg" alt="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Vaaleanpunainen" />
-													</a>
-												</div>
-											</li>
-											<li class="item ten mobile-ten columns" data-category="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-vaaleanpunainen" data-brand="Reima">
-												<div class="vertical_align">
-													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-vaaleanpunainen" title="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Vaaleanpunainen">Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Vaaleanpunainen </a><br>
-													
-														<span class="price sale">€ 71,94</span>&nbsp;
-														<span class="original_price">(€ 119,90)</span>&nbsp;
+														<span class="price sale">€ 59,40</span>&nbsp;
+														<span class="original_price">(€ 99)</span>&nbsp;
 														<span class="price sale percentage">-40%</span>
 													
 												</div>
@@ -1631,18 +1721,43 @@ Toivelista <b class="wish-list-count">(0)</b>
 										<ul class="package_product_line">	
 											<li class="image two columns mobile-two">
 												<div class="vertical_align">
-													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-tummansininen" title="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Tummansininen">
-													<img src="/mediaarchive/1088810/mediumthumbnail/reima-angry-birds-takki-kaannettava-tummansininen.jpg" alt="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Tummansininen" />
+													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/tenson-parkatakki-vedenpit%c3%a4v%c3%a4-lukas-tummansininen" title="Tenson, Parkatakki, Vedenpit&#228;v&#228;, Lukas, Tummansininen">
+													<img src="http://b-lekmer.r.worldssl.net/1080491/mediumthumbnail/tenson-parkatakki-vedenpitava-lukas-tummansininen.jpg" alt="Tenson, Parkatakki, Vedenpit&#228;v&#228;, Lukas, Tummansininen" />
 													</a>
 												</div>
 											</li>
-											<li class="item ten mobile-ten columns" data-category="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-tummansininen" data-brand="Reima">
+											<li class="item ten mobile-ten columns" data-category="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/tenson-parkatakki-vedenpit%c3%a4v%c3%a4-lukas-tummansininen" data-brand="Tenson">
 												<div class="vertical_align">
-													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-tummansininen" title="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Tummansininen">Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Tummansininen </a><br>
+													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/tenson-parkatakki-vedenpit%c3%a4v%c3%a4-lukas-tummansininen" title="Tenson, Parkatakki, Vedenpit&#228;v&#228;, Lukas, Tummansininen">Tenson, Parkatakki, Vedenpit&#228;v&#228;, Lukas, Tummansininen </a><br>
 													
-														<span class="price sale">€ 71,94</span>&nbsp;
-														<span class="original_price">(€ 119,90)</span>&nbsp;
-														<span class="price sale percentage">-40%</span>
+														<span class="price sale">€ 69,95</span>&nbsp;
+														<span class="original_price">(€ 139,90)</span>&nbsp;
+														<span class="price sale percentage">-50%</span>
+													
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="twelve columns">
+									<div class="round_corners_small white padded bottom_margin_tiny">
+										<ul class="package_product_line">	
+											<li class="image two columns mobile-two">
+												<div class="vertical_align">
+													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/tenson-parkatakki-vedenpit%c3%a4v%c3%a4-lukas-vihre%c3%a4" title="Tenson, Parkatakki, Vedenpit&#228;v&#228;, Lukas, Vihre&#228;">
+													<img src="http://b-lekmer.r.worldssl.net/1082577/mediumthumbnail/tenson-parkatakki-vedenpitava-lukas-vihrea.jpg" alt="Tenson, Parkatakki, Vedenpit&#228;v&#228;, Lukas, Vihre&#228;" />
+													</a>
+												</div>
+											</li>
+											<li class="item ten mobile-ten columns" data-category="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/tenson-parkatakki-vedenpit%c3%a4v%c3%a4-lukas-vihre%c3%a4" data-brand="Tenson">
+												<div class="vertical_align">
+													<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/tenson-parkatakki-vedenpit%c3%a4v%c3%a4-lukas-vihre%c3%a4" title="Tenson, Parkatakki, Vedenpit&#228;v&#228;, Lukas, Vihre&#228;">Tenson, Parkatakki, Vedenpit&#228;v&#228;, Lukas, Vihre&#228; </a><br>
+													
+														<span class="price sale">€ 69,95</span>&nbsp;
+														<span class="original_price">(€ 139,90)</span>&nbsp;
+														<span class="price sale percentage">-50%</span>
 													
 												</div>
 											</li>
@@ -1670,347 +1785,307 @@ Toivelista <b class="wish-list-count">(0)</b>
 				<div class="twelve columns">
 					<h2 class="other_customer_interest">Muita Lekmer-asiakkaita kiinnosti my&#246;s</h2>
 					<div class="product_list">
-						<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/lasten-jalkineet/urheilukengat-ja-lenkkarit/disney-planes-sneakers-high-laivastonsininen-sininen" class="eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTA0MDA0NDsjOyM"><img src="/mediaarchive/1101538/thumbnail168x169/disney-planes-sneakers-high-laivastonsininen-sininen.jpg" alt="Disney Planes, Sneakers, High, Laivastonsininen/Sininen" /></a>
-						
-					</div>
+						<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
 					
-					<div class="product_info">
-						
-						
-				
-						
-						<a href="http://lekmer.fi/lastenvaatteet/lasten-jalkineet/urheilukengat-ja-lenkkarit/disney-planes-sneakers-high-laivastonsininen-sininen" class="product_name eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTA0MDA0NDsjOyM">Disney Planes, Sneakers, High, Laivastonsininen/Sininen</a><br />
-						<p>
-							
-								<span class="price sale">€ 23,92</span>
-								<span class="original_price">(€ 29,90)</span> 
-								<span class="price sale percentage">-20%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/lasten-jalkineet/urheilukengat-ja-lenkkarit/disney-planes-sneakers-high-laivastonsininen-sininen" class="small success radius button watch">Valitse koko</a>
-							
-						
-				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1040044" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
-				<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/uima-asut/uv-suojavaatteet/swimpy-uv-keng%c3%a4t-musta" class="eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTA0MDM3MjsjOyM"><img src="/mediaarchive/1103667/thumbnail168x169/swimpy-uv-kengat-musta.jpg" alt="Swimpy, UV-keng&#228;t, Musta" /></a>
-						
-					</div>
+						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/lindberg-takki-riksgr%c3%a4nsen-sininen" class="eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTAxODEzNjsjOyM"><img src="http://a-lekmer.r.worldssl.net/1055950/thumbnail168x169/lindberg-takki-riksgransen-sininen.jpg" alt="Lindberg, Takki, Riksgr&#228;nsen, Sininen" /></a>
 					
-					<div class="product_info">
-						
-						
+				</div>
+				<div class="product_info">		
+					<span class='flag radius label red'>OUTLET</span>
 				
-						
-						<a href="http://lekmer.fi/lastenvaatteet/uima-asut/uv-suojavaatteet/swimpy-uv-keng%c3%a4t-musta" class="product_name eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTA0MDM3MjsjOyM">Swimpy, UV-keng&#228;t, Musta</a><br />
-						<p>
-							
-								<span class="price sale">€ 11,92</span>
-								<span class="original_price">(€ 14,90)</span> 
-								<span class="price sale percentage">-20%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/uima-asut/uv-suojavaatteet/swimpy-uv-keng%c3%a4t-musta" class="small success radius button watch">Valitse koko</a>
-							
-						
-				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1040372" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
-				<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/disney-pixar-cars-takki-punainen-tummansininen" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMxMjI7Izsj"><img src="/mediaarchive/1085728/thumbnail168x169/disney-pixar-cars-takki-punainen-tummansininen.jpg" alt="Disney Pixar Cars, Takki, Punainen/Tummansininen" /></a>
-						
-					</div>
 					
-					<div class="product_info">
+					<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/lindberg-takki-riksgr%c3%a4nsen-sininen" data-title="Lindberg, Takki, Riksgr&#228;nsen, Sininen" class="product_name eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTAxODEzNjsjOyM">Lindberg, Takki, Riksgr&#228;nsen, Sininen</a><br />
+					<p>
 						
+							<span class="price sale">€ 39,95</span>
+							<span class="original_price">(€ 79,90)</span> 
+							<span class="price sale percentage">-50%</span> 
 						
-				
-						
-						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/disney-pixar-cars-takki-punainen-tummansininen" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMxMjI7Izsj">Disney Pixar Cars, Takki, Punainen/Tummansininen</a><br />
-						<p>
-							
-								<span class="price sale">€ 29,90</span>
-								<span class="original_price">(€ 34,90)</span> 
-								<span class="price sale percentage">-14%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/disney-pixar-cars-takki-punainen-tummansininen" class="small success radius button watch">Valitse koko</a>
-							
-						
-				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1033122" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
-				<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-takki-kuviollinen-mello-dress-blues" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMyNDI7Izsj"><img src="/mediaarchive/1082758/thumbnail168x169/name-it-takki-kuviollinen-mello-dress-blues.jpg" alt="Name it, Takki, Kuviollinen, Mello, Dress blues" /></a>
-						
-					</div>
+					</p>
 					
-					<div class="product_info">
 						
-						<span class='flag radius label red'>OUTLET</span>
-				
+						  <a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/lindberg-takki-riksgr%c3%a4nsen-sininen" class="small success radius button watch">Valitse koko</a>
 						
-						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-takki-kuviollinen-mello-dress-blues" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMyNDI7Izsj">Name it, Takki, Kuviollinen, Mello, Dress blues</a><br />
-						<p>
-							
-								<span class="price sale">€ 20,93</span>
-								<span class="original_price">(€ 29,90)</span> 
-								<span class="price sale percentage">-30%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-takki-kuviollinen-mello-dress-blues" class="small success radius button watch">Valitse koko</a>
-							
-						
-				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1033242" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
-				<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-vaaleanpunainen" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzUyNDA7Izsj"><img src="/mediaarchive/1088797/thumbnail168x169/reima-angry-birds-takki-kaannettava-vaaleanpunainen.jpg" alt="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Vaaleanpunainen" /></a>
-						
-					</div>
 					
-					<div class="product_info">
-						
-						<span class='flag radius label red'>OUTLET</span>
 				
-						
-						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-vaaleanpunainen" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzUyNDA7Izsj">Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Vaaleanpunainen</a><br />
-						<p>
-							
-								<span class="price sale">€ 71,94</span>
-								<span class="original_price">(€ 119,90)</span> 
-								<span class="price sale percentage">-40%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-vaaleanpunainen" class="small success radius button watch">Valitse koko</a>
-							
-						
-				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1035240" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
-				
-				<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-tummansininen" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzUyNDI7Izsj"><img src="/mediaarchive/1088810/thumbnail168x169/reima-angry-birds-takki-kaannettava-tummansininen.jpg" alt="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Tummansininen" /></a>
-						
-					</div>
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1018136" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
+				<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
 					
-					<div class="product_info">
-						
-						<span class='flag radius label red'>OUTLET</span>
-				
-						
-						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-tummansininen" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzUyNDI7Izsj">Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Tummansininen</a><br />
-						<p>
-							
-								<span class="price sale">€ 71,94</span>
-								<span class="original_price">(€ 119,90)</span> 
-								<span class="price sale percentage">-40%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-tummansininen" class="small success radius button watch">Valitse koko</a>
-							
-						
-				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1035242" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
-				<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tian-musta" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzg3NDA7Izsj"><img src="/mediaarchive/1094387/thumbnail168x169/reima-untuvatakki-tian-musta.jpg" alt="Reima, Untuvatakki, Tian, Musta" /></a>
-						
-					</div>
+						<a href="http://lekmer.fi/lastenvaatteet/alaosat/leggingsit/me-too-leggingsit-papaya-mini-violetti" class="eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTAzMDI1MjsjOyM"><img src="http://a-lekmer.r.worldssl.net/1090640/thumbnail168x169/me-too-leggingsit-papaya-mini-violetti.jpg" alt="Me Too, Leggingsit, Papaya mini, Violetti" /></a>
 					
-					<div class="product_info">
-						
-						<span class='flag radius label red'>OUTLET</span>
+				</div>
+				<div class="product_info">		
+					<span class='flag radius label red'>OUTLET</span>
 				
-						
-						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tian-musta" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzg3NDA7Izsj">Reima, Untuvatakki, Tian, Musta</a><br />
-						<p>
-							
-								<span class="price sale">€ 77,40</span>
-								<span class="original_price">(€ 129)</span> 
-								<span class="price sale percentage">-40%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tian-musta" class="small success radius button watch">Valitse koko</a>
-							
-						
-				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1038740" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
-				<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-violetti" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzUyNDE7Izsj"><img src="/mediaarchive/1088803/thumbnail168x169/reima-angry-birds-takki-kaannettava-violetti.jpg" alt="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Violetti" /></a>
-						
-					</div>
 					
-					<div class="product_info">
+					<a href="http://lekmer.fi/lastenvaatteet/alaosat/leggingsit/me-too-leggingsit-papaya-mini-violetti" data-title="Me Too, Leggingsit, Papaya mini, Violetti" class="product_name eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTAzMDI1MjsjOyM">Me Too, Leggingsit, Papaya mini, Violetti</a><br />
+					<p>
 						
-						<span class='flag radius label red'>OUTLET</span>
-				
+							<span class="price sale">€ 9,95</span>
+							<span class="original_price">(€ 19,90)</span> 
+							<span class="price sale percentage">-50%</span> 
 						
-						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-violetti" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzUyNDE7Izsj">Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Violetti</a><br />
-						<p>
-							
-								<span class="price sale">€ 71,94</span>
-								<span class="original_price">(€ 119,90)</span> 
-								<span class="price sale percentage">-40%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-violetti" class="small success radius button watch">Valitse koko</a>
-							
-						
-				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1035241" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
-				<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/abeko-parka-jossa-isot-taskut-andy-musta" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzIwMjc7Izsj"><img src="/mediaarchive/1082267/thumbnail168x169/abeko-parka-jossa-isot-taskut-andy-musta.jpg" alt="Abeko, Parka, jossa isot taskut, Andy, Musta" /></a>
-						
-					</div>
+					</p>
 					
-					<div class="product_info">
 						
-						<span class='flag radius label red'>OUTLET</span>
-				
+						  <a href="http://lekmer.fi/lastenvaatteet/alaosat/leggingsit/me-too-leggingsit-papaya-mini-violetti" class="small success radius button watch">Valitse koko</a>
 						
-						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/abeko-parka-jossa-isot-taskut-andy-musta" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzIwMjc7Izsj">Abeko, Parka, jossa isot taskut, Andy, Musta</a><br />
-						<p>
-							
-								<span class="price sale">€ 54,95</span>
-								<span class="original_price">(€ 109,90)</span> 
-								<span class="price sale percentage">-50%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/abeko-parka-jossa-isot-taskut-andy-musta" class="small success radius button watch">Valitse koko</a>
-							
-						
-				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1032027" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
-				<div class="product round_corners_small three columns white mobile-six end">	<!--<a class="product_expand_mobile">
-					</a>
-					<a class="product_closer_mobile">
-						<div class="closer">
-							<i class="foundicon-remove"></i>
-						</div>
-					</a>-->
-					<div class="image_holder">
-						
-							<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-musta" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzUyNDM7Izsj"><img src="/mediaarchive/1088816/thumbnail168x169/reima-angry-birds-takki-kaannettava-musta.jpg" alt="Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Musta" /></a>
-						
-					</div>
 					
-					<div class="product_info">
-						
-						<span class='flag radius label red'>OUTLET</span>
 				
-						
-						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-musta" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzUyNDM7Izsj">Reima, Angry Birds, Takki, K&#228;&#228;nnett&#228;v&#228;, Musta</a><br />
-						<p>
-							
-								<span class="price sale">€ 71,94</span>
-								<span class="original_price">(€ 119,90)</span> 
-								<span class="price sale percentage">-40%</span> 
-							
-						</p>
-						
-							
-								<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-angry-birds-takki-k%c3%a4%c3%a4nnett%c3%a4v%c3%a4-musta" class="small success radius button watch">Valitse koko</a>
-							
-						
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1030252" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
+				<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
+					
+						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/kasineet/abeko-rukkaset-vuorilliset-meya-sininen" class="eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTAzMjAzNDsjOyM"><img src="http://a-lekmer.r.worldssl.net/1082290/thumbnail168x169/abeko-rukkaset-vuorilliset-meya-sininen.jpg" alt="Abeko, Rukkaset, Vuorilliset, Meya, Sininen" /></a>
+					
+				</div>
+				<div class="product_info">		
+					<span class='flag radius label red'>OUTLET</span>
 				
-						<span class="add_to_wishlist"><a href="/wishlist/?id=1035243" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
-					</div></div>
+					
+					<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/kasineet/abeko-rukkaset-vuorilliset-meya-sininen" data-title="Abeko, Rukkaset, Vuorilliset, Meya, Sininen" class="product_name eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTAzMjAzNDsjOyM">Abeko, Rukkaset, Vuorilliset, Meya, Sininen</a><br />
+					<p>
+						
+							<span class="price sale">€ 14,95</span>
+							<span class="original_price">(€ 29,90)</span> 
+							<span class="price sale percentage">-50%</span> 
+						
+					</p>
+					
+						
+						  <a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/kasineet/abeko-rukkaset-vuorilliset-meya-sininen" class="small success radius button watch">Valitse koko</a>
+						
+					
+				
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1032034" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
+				<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
+					
+						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen" class="eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTAzNjk3NDsjOyM"><img src="http://b-lekmer.r.worldssl.net/1091533/thumbnail168x169/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg" alt="Reima, Untuvatakki tekoturkissomisteella, Abe, Laivastonsininen" /></a>
+					
+				</div>
+				<div class="product_info">		
+					<span class='flag radius label red'>OUTLET</span>
+				
+					
+					<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen" data-title="Reima, Untuvatakki tekoturkissomisteella, Abe, Laivastonsininen" class="product_name eS-click eS-t-L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0L3Rob3NlLXdoby12aWV3ZWQtYm91Z2h0OyM7cHJvZHVjdF9rZXk7MTAzNjk3NDsjOyM">Reima, Untuvatakki tekoturkissomisteella, Abe, Laivastonsininen</a><br />
+					<p>
+						
+							<span class="price sale">€ 49,50</span>
+							<span class="original_price">(€ 99)</span> 
+							<span class="price sale percentage">-50%</span> 
+						
+					</p>
+					
+						
+						  <a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen" class="small success radius button watch">Valitse koko</a>
+						
+					
+				
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1036974" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
+				<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
+					
+						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/disney-pixar-cars-takki-punainen-tummansininen" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMxMjI7Izsj"><img src="http://a-lekmer.r.worldssl.net/1085728/thumbnail168x169/disney-pixar-cars-takki-punainen-tummansininen.jpg" alt="Disney Pixar Cars, Takki, Punainen/Tummansininen" /></a>
+					
+				</div>
+				<div class="product_info">		
+					
+				
+					
+					<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/disney-pixar-cars-takki-punainen-tummansininen" data-title="Disney Pixar Cars, Takki, Punainen/Tummansininen" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMxMjI7Izsj">Disney Pixar Cars, Takki, Punainen/Tummansininen</a><br />
+					<p>
+						
+							<span class="price sale">€ 29,90</span>
+							<span class="original_price">(€ 34,90)</span> 
+							<span class="price sale percentage">-14%</span> 
+						
+					</p>
+					
+						
+						  <a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/disney-pixar-cars-takki-punainen-tummansininen" class="small success radius button watch">Valitse koko</a>
+						
+					
+				
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1033122" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
+				
+				<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
+					
+						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-takki-kuviollinen-mello-dress-blues" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMyNDI7Izsj"><img src="http://a-lekmer.r.worldssl.net/1082758/thumbnail168x169/name-it-takki-kuviollinen-mello-dress-blues.jpg" alt="Name it, Takki, Kuviollinen, Mello, Dress blues" /></a>
+					
+				</div>
+				<div class="product_info">		
+					<span class='flag radius label red'>OUTLET</span>
+				
+					
+					<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-takki-kuviollinen-mello-dress-blues" data-title="Name it, Takki, Kuviollinen, Mello, Dress blues" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMyNDI7Izsj">Name it, Takki, Kuviollinen, Mello, Dress blues</a><br />
+					<p>
+						
+							<span class="price sale">€ 14,95</span>
+							<span class="original_price">(€ 29,90)</span> 
+							<span class="price sale percentage">-50%</span> 
+						
+					</p>
+					
+						
+						  <a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-takki-kuviollinen-mello-dress-blues" class="small success radius button watch">Valitse koko</a>
+						
+					
+				
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1033242" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
+				<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
+					
+						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/helly-hansen-parkatakki-powder-tummansininen" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzI5ODA7Izsj"><img src="http://b-lekmer.r.worldssl.net/1082111/thumbnail168x169/helly-hansen-parkatakki-powder-tummansininen.jpg" alt="Helly Hansen, Parkatakki, Powder, Tummansininen" /></a>
+					
+				</div>
+				<div class="product_info">		
+					<span class='flag radius label red'>OUTLET</span>
+				
+					
+					<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/helly-hansen-parkatakki-powder-tummansininen" data-title="Helly Hansen, Parkatakki, Powder, Tummansininen" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzI5ODA7Izsj">Helly Hansen, Parkatakki, Powder, Tummansininen</a><br />
+					<p>
+						
+							<span class="price sale">€ 69,95</span>
+							<span class="original_price">(€ 139,90)</span> 
+							<span class="price sale percentage">-50%</span> 
+						
+					</p>
+					
+						
+						  <a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/helly-hansen-parkatakki-powder-tummansininen" class="small success radius button watch">Valitse koko</a>
+						
+					
+				
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1032980" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
+				<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
+					
+						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-untuvatakki-music-punainen" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMyMzE7Izsj"><img src="http://b-lekmer.r.worldssl.net/1085833/thumbnail168x169/name-it-untuvatakki-music-punainen.jpg" alt="Name it, Untuvatakki, Music, Punainen" /></a>
+					
+				</div>
+				<div class="product_info">		
+					<span class='flag radius label red'>OUTLET</span>
+				
+					
+					<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-untuvatakki-music-punainen" data-title="Name it, Untuvatakki, Music, Punainen" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMyMzE7Izsj">Name it, Untuvatakki, Music, Punainen</a><br />
+					<p>
+						
+							<span class="price sale">€ 24,95</span>
+							<span class="original_price">(€ 49,90)</span> 
+							<span class="price sale percentage">-50%</span> 
+						
+					</p>
+					
+						
+						  <a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-untuvatakki-music-punainen" class="small success radius button watch">Valitse koko</a>
+						
+					
+				
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1033231" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
+				<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
+					
+						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-untuvatakki-music-mini-fandango-pink" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMzOTQ7Izsj"><img src="http://b-lekmer.r.worldssl.net/1082819/thumbnail168x169/name-it-untuvatakki-music-mini-fandango-pink.jpg" alt="Name it, Untuvatakki, Music Mini, Fandango pink" /></a>
+					
+				</div>
+				<div class="product_info">		
+					<span class='flag radius label red'>OUTLET</span>
+				
+					
+					<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-untuvatakki-music-mini-fandango-pink" data-title="Name it, Untuvatakki, Music Mini, Fandango pink" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMzMzOTQ7Izsj">Name it, Untuvatakki, Music Mini, Fandango pink</a><br />
+					<p>
+						
+							<span class="price sale">€ 24,95</span>
+							<span class="original_price">(€ 49,90)</span> 
+							<span class="price sale percentage">-50%</span> 
+						
+					</p>
+					
+						
+						  <a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/name-it-untuvatakki-music-mini-fandango-pink" class="small success radius button watch">Valitse koko</a>
+						
+					
+				
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1033394" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
+				<div class="product round_corners_small three columns white mobile-six end"><!-- HOVER OVERLAY -->
+				<div class="hover_overlay"></div>
+				<!-- /HOVER OVERLAY -->
+				<!-- IMAGE -->
+				<div class="image_holder">
+					
+						<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/lindberg-takki-riksgr%c3%a4nsen-vadelma1" class="eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMTk2OTg7Izsj"><img src="http://a-lekmer.r.worldssl.net/1057598/thumbnail168x169/lindberg-takki-riksgransen-vadelma.jpg" alt="Lindberg, Takki, Riksgr&#228;nsen, Vadelma" /></a>
+					
+				</div>
+				<div class="product_info">		
+					<span class='flag radius label red'>OUTLET</span>
+				
+					
+					<a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/lindberg-takki-riksgr%c3%a4nsen-vadelma1" data-title="Lindberg, Takki, Riksgr&#228;nsen, Vadelma" class="product_name eS-click eS-t-L3RvcC1zZWxsZXJzLWZhbGxiYWNrL3Byb2R1Y3QtbGlzdDsjO3Byb2R1Y3Rfa2V5OzEwMTk2OTg7Izsj">Lindberg, Takki, Riksgr&#228;nsen, Vadelma</a><br />
+					<p>
+						
+							<span class="price sale">€ 39,95</span>
+							<span class="original_price">(€ 79,90)</span> 
+							<span class="price sale percentage">-50%</span> 
+						
+					</p>
+					
+						
+						  <a href="http://lekmer.fi/lastenvaatteet/Ulkovaatteet/talvitakkeja/lindberg-takki-riksgr%c3%a4nsen-vadelma1" class="small success radius button watch">Valitse koko</a>
+						
+					
+				
+					<span class="add_to_wishlist"><a href="/wishlist/?id=1019698" class="wishlist" title="Lis&#228;&#228; toivelistaan" rel="nofollow"><i class="foundicon-star"></i> <span>Lis&#228;&#228; toivelistaan</span></a></span>
+				</div>
+				<!-- /IMAGE --></div>
 				
 				
 					</div>
@@ -2022,7 +2097,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 			
 			
 					<h2>Kirjoita oma arvostelusi tuotteesta.</h2>
-	<form action="/lastenvaatteet/Ulkovaatteet/talvitakkeja/geggamoja-hupullinen-talvitakki-musta" method="post" id="review-form">
+	<form action="/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen" method="post" id="review-form">
 		<div class="validation-error">
 			
 		</div>
@@ -2089,7 +2164,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 
 		<input type="hidden" name="mode" value="review">
 		<div class="align-right">
-			<a id="submit-review" href="/lastenvaatteet/Ulkovaatteet/talvitakkeja/geggamoja-hupullinen-talvitakki-musta" class="button radius secondary large"><span>L&#228;het&#228; arvostelusi</span></a>
+			<a id="submit-review" href="/lastenvaatteet/Ulkovaatteet/talvitakkeja/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen" class="button radius secondary large"><span>L&#228;het&#228; arvostelusi</span></a>
 		</div>
 	</form>
 			
@@ -2100,14 +2175,14 @@ Toivelista <b class="wish-list-count">(0)</b>
 
 				<div class="twelve columns">
 					<div class="about_brand">
-						<h2>Lis&#228;tietoa Geggamoja</h2>
+						<h2>Lis&#228;tietoa Reima</h2>
 						<p class="left">
 							
-								<a href="http://lekmer.fi/geggamoja/" alt="Geggamoja" title="Geggamoja">
-									<img src="/mediaarchive/1019138/thumbnail/geggamoja.jpg" class="left right_margin">
+								<a href="http://lekmer.fi/reima/" alt="Reima" title="Reima">
+									<img src="http://a-lekmer.r.worldssl.net/1096072/thumbnail/reima.jpg" class="left right_margin">
 								</a>
 							
-							Lekmer-verkkokaupasta löydät myös Geggamoja-lastenvaatteet. Geggamoja haluaa tehdä hyvännäköisiä, käytännöllisiä ja mukavia vaatteita. Hauskat yksityiskohdat tekevät yksinkertaisesta takista tai suloisesta mekosta ainutlaatuisen. Mallit sopivat usein niin tytöille kuin pojille. Geggamojan mallisto yhdistelee klassista raitaa, iloisia värejä sekä selkeää harmaata, mustaa ja valkoista - tuloksena ainutlaatuinen Geggamoja-tyyli.
+							Kankaanpäässä vuonna 1944 perustettu Reima on tänä päivänä Pohjoismaiden johtava lastenvaatteiden valmistaja. Lapsille tulee antaa mahdollisuus leikkiä ulkona säässä kuin säässä milloin lumessa kierien, milloin vesilammikoissa hyppien. Vaatteiden käyttötarkoitus on tarkkaan huomioitu jo suunnitteluvaiheessa: kaikki Reima-tuotteet suunnitellaan vastaamaan toimivuudelle, turvallisuudelle, luotettavuudelle asetettuja vaatimuksia.
 						</p>
 					</div>
 				</div>
@@ -2132,10 +2207,10 @@ Toivelista <b class="wish-list-count">(0)</b>
 			
 			<input id="newsletterregistration-email" name="newsletterregistration-email" value="" size="30">
 			<div id="newsletter-captcha-container" class="form-container">
-				<label for="sum">Enter sum of <span id="newsletter-first-item">7</span> + <span id="newsletter-second-item">7</span>? <span class="required">*</span></label>
+				<label for="sum">Enter sum of <span id="newsletter-first-item">5</span> + <span id="newsletter-second-item">4</span>? <span class="required">*</span></label>
 				<input id="sum" name="sum" type="text" value="">
-				<input id="first-item" name="first-item" type="hidden" value="7">
-				<input id="second-item" name="second-item" type="hidden" value="7">
+				<input id="first-item" name="first-item" type="hidden" value="5">
+				<input id="second-item" name="second-item" type="hidden" value="4">
 			</div>
 			<script type="text/javascript">
 				var first = parseInt($("input#first-item").val());
@@ -2776,6 +2851,16 @@ Toivelista <b class="wish-list-count">(0)</b>
 															LEGO Wear
 														</a>
 													</li>
+													<li class="Lmtd by Name It">
+														<a href="http://lekmer.fi/limited-by-name-it/">
+															Lmtd by Name It
+														</a>
+													</li>
+													<li class="Little Pieces">
+														<a href="http://lekmer.fi/little-pieces/">
+															Little Pieces
+														</a>
+													</li>
 													<li class="Mala">
 														<a href="http://lekmer.fi/mala/">
 															Mala
@@ -3121,7 +3206,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 												<li class="Disney">
 													<a href="http://lekmer.fi/Disney/">
 														Disney
-													a>
+													</a>
 												</li>
 												<li class="Disney Pixar Cars1">
 													<a href="http://lekmer.fi/disney-pixar-cars/">
@@ -3235,17 +3320,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 								
 									
 								<li>
-									<a href="/Asiakaspalvelu/">Asiakaspalvelu</a>
-								</li>
-								
-								
-								<li>
-									<a href="/tilausehdot/">Tilausehdot</a>
-								</li>
-								
-								
-								<li>
-									<a href="/tutustu-lekmeriin/">Tutustu Lekmeriin</a>
+									<a href="/Asiakaspalvelu/tilausehdot/">Tilausehdot</a>
 								</li>
 								
 								
@@ -3288,8 +3363,8 @@ Toivelista <b class="wish-list-count">(0)</b>
 									<div class="three columns padded">
 										<h3>Turvallinen &amp; luotettava e-kauppa:</h3>
 										<p>Täten takaamme että lekmer.fi jonka omistaa Lekmer AB täyttää sähköisen kaupankäynnin vaatimukset e-kauppiaille.</p>
-										<img class="hide-from-fi" src="/media/images/Lekmer/trygg-ehandel-fi.png" alt="Turvallinen verkkokappa">
-										<img class="hide-from-se hide-from-no hide-from-dk hide-from-nl" src="/media/images/fi-banks.png" alt="Turvallinen verkkokappa">
+										<img class="hide-from-fi" src="http://a-lekmer.r.worldssl.net/media/images/Lekmer/trygg-ehandel-fi.png" alt="Turvallinen verkkokappa">
+										<img class="hide-from-se hide-from-no hide-from-dk hide-from-nl" src="http://a-lekmer.r.worldssl.net/media/images/fi-banks.png" alt="Turvallinen verkkokappa">
 									</div>
 									<div class="three columns padded">
 										<h3>Asiakaspalvelu:</h3>
@@ -3298,17 +3373,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 										<ul>
 												
 											<li>
-												<a href="/Asiakaspalvelu/">Asiakaspalvelu</a>
-											</li>
-											
-											
-											<li>
-												<a href="/tilausehdot/">Tilausehdot</a>
-											</li>
-											
-											
-											<li>
-												<a href="/tutustu-lekmeriin/">Tutustu Lekmeriin</a>
+												<a href="/Asiakaspalvelu/tilausehdot/">Tilausehdot</a>
 											</li>
 											
 											
@@ -3367,7 +3432,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 										<div class="round_corners_small padded baby_blue green bottom_margin_mobile">
 											<div class="row">
 												<div class="columns">
-													<img style="width:48px; height:48px;" src="/media/images/2013/instagram-logo.png" alt="instagram">
+													<img style="width:48px; height:48px;" src="http://a-lekmer.r.worldssl.net/media/images/2013/instagram-logo.png" alt="instagram">
 												</div>
 												<div class="columns">
 													<h3>Seuraa meit&#228; Instagramissa</h3>
@@ -3454,7 +3519,7 @@ Toivelista <b class="wish-list-count">(0)</b>
 							<div class="row">
 								<div class="twelve columns">
 									<div class="friends padded">
-										<p> &#169; Lekmer AB 2006-2013. Lekmer.fi on osa <a title="CDONgroup" rel="nofollow" href="http://cdongroup.com" target="_blank">CDONgroup</a>: <a title="Tietkokonepelit, dvd:t, elokuvat" href="http://cdon.fi/" target="_blank">CDON.COM</a> | <a title="Kirjat" href="http://bookplus.fi/" target="_blank">Bookplus.fi</a> | <a title="Vatteet, mekot" href="http://nelly.com/fi/vaatteita-miehille/" target="_blank">Nelly.com</a> | <a title="Lis&auml;ravinteet" href="http://www.fitnesstukku.fi/" target="_blank">Fitnesstukku.fi</a> | <a href="http://www.room21.fi" title="Kalusteita, lamppuja ja sisustusta netissä" target="_blank">Room21.fi</a> | <a href="http://www.tretti.fi" title="Kodinkoneita ja keittiökoneita netissä" target="_blank">Tretti.fi</a> | <a href="http://members.com" title="Members.com">Members.com</a> </p>
+										<p> &#169; Lekmer AB 2006-2013. Lekmer.fi on osa <a title="CDONgroup" rel="nofollow" href="http://cdongroup.com" target="_blank">CDONgroup</a>: <a title="Tietkokonepelit, dvd:t, elokuvat" href="http://cdon.fi/" target="_blank">CDON.COM</a> | <a title="Kirjat" href="http://bookplus.fi/" target="_blank">Bookplus.fi</a> | <a title="Vatteet, mekot" href="http://nelly.com/fi/vaatteita-miehille/" target="_blank">Nelly.com</a> | <a title="NLY Man" href="http://nlyman.com/fi/vaatteita-miehille">Nlyman.com</a> | <a title="Lis&auml;ravinteet" href="http://www.fitnesstukku.fi/" target="_blank">Fitnesstukku.fi</a> | <a href="http://www.room21.fi" title="Kalusteita, lamppuja ja sisustusta netissä" target="_blank">Room21.fi</a> | <a href="http://www.tretti.fi" title="Kodinkoneita ja keittiökoneita netissä" target="_blank">Tretti.fi</a> | <a href="http://members.com" title="Members.com">Members.com</a> </p>
 									</div>
 								</div>
 							</div>
@@ -3463,11 +3528,11 @@ Toivelista <b class="wish-list-count">(0)</b>
 								<div class="three columns centered">
 									<div class="countries">
 										<div class="centerme">
-											<a href="http://lekmer.se" title="Svenska"><img src="/media/images/2013/flag-se.gif" alt="Svenska"></a>
-											<a href="http://lekmer.no" title="Norsk"><img src="/media/images/2013/flag-no.gif" alt="Norsk"></a>
-											<a href="http://lekmer.dk" title="Dansk"><img src="/media/images/2013/flag-dk.gif" alt="Dansk"></a>
-											<a href="http://lekmer.fi" title="Suomi"><img src="/media/images/2013/flag-fi.gif" alt="Suomi"></a>
-											<a href="http://lekmer.nl" title="Nederlands"><img src="/media/images/2013/flag-nl.gif" alt="Nederlands"></a>
+											<a href="http://lekmer.se" title="Svenska"><img src="http://a-lekmer.r.worldssl.net/media/images/2013/flag-se.gif" alt="Svenska"></a>
+											<a href="http://lekmer.no" title="Norsk"><img src="http://a-lekmer.r.worldssl.net/media/images/2013/flag-no.gif" alt="Norsk"></a>
+											<a href="http://lekmer.dk" title="Dansk"><img src="http://a-lekmer.r.worldssl.net/media/images/2013/flag-dk.gif" alt="Dansk"></a>
+											<a href="http://lekmer.fi" title="Suomi"><img src="http://a-lekmer.r.worldssl.net/media/images/2013/flag-fi.gif" alt="Suomi"></a>
+											<a href="http://lekmer.nl" title="Nederlands"><img src="http://a-lekmer.r.worldssl.net/media/images/2013/flag-nl.gif" alt="Nederlands"></a>
 										</div>
 									</div>
 								</div>
@@ -3533,34 +3598,35 @@ Toivelista <b class="wish-list-count">(0)</b>
 	</script>
 	
 	<a class="anzery-activate-faq via-alias hidden" href="#"></a> <script src="//lekmer.anzery.com/faq.js"></script> <script type="text/javascript"> $( document ).ready(function() { var hash = window.location.hash.substring(1); var humany = 'humany'; if(hash === humany) { $('.anzery-activate-faq.via-alias').click(); } }); </script>
-	<script src="/media/js/jQuery/jquery.ba-hashchange.min.js?v=1"></script>
-	<script src="/media/js/jQuery/jquery.livequery.min.js?v=1"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/jQuery/jquery.ba-hashchange.min.js?v=1"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/jQuery/jquery.livequery.min.js?v=1"></script>
 	
 	
-	<script src="/media/js/jQuery/jquery.expander.min.js?v=1"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/jQuery/jquery.expander.min.js?v=1"></script>
 	
 	
-	<script src="/media/js/jQuery/jquery.zoom-min.js?v=1"></script>
-	<script src="/media/js/jQuery/jquery.hoverIntent.minified.js?v=1"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/jQuery/jquery.zoom-min.js?v=1"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/jQuery/jquery.hoverIntent.minified.js?v=2"></script>
 	
 	
 	
-	<script src="/media/js/foundation/jquery.offcanvas.min.js?v=2"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/foundation/jquery.offcanvas.min.js?v=2"></script>
 	
-	<script src="/media/js/jQuery/jquery.nouislider.min.js?v=1"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/jQuery/jquery.nouislider.min.js?v=1"></script>
 	
-	<script src="/media/js/jQuery/jquery.cookie.min.js?v=1"></script>
-	
-	
-	<script src="/media/js/foundation/jquery.unveil.min.js?v=1"></script>
-	
-	<script src="/media/js/eSales/json2.min.js?v=1"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/jQuery/jquery.cookie.min.js?v=1"></script>
 	
 	
-	<script src="/media/js/eSales/esales.min.js?v=1"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/foundation/jquery.unveil.min.js?v=1"></script>
+	
+	<script src="http://a-lekmer.r.worldssl.net/media/js/eSales/json2.min.js?v=1"></script>
 	
 	
-	<script src="/media/js/foundation/draggabilly.pkgd.min.js?v=1"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/eSales/esales.min.js?v=1"></script>
+	
+	
+	<script src="http://a-lekmer.r.worldssl.net/media/js/foundation/draggabilly.pkgd.min.js?v=1"></script>
+	
 	
 	
 	
@@ -3667,10 +3733,19 @@ Toivelista <b class="wish-list-count">(0)</b>
 	//]]>
 	</script>
 	
-	<script type="text/javascript" src="/media/js/filter-2013.min.js?v=6"></script>
+	<script type="text/javascript" src="http://a-lekmer.r.worldssl.net/media/js/filter-2013.min.js?v=5"></script>
 	
 	
 	<script type="text/javascript">
+	//calculating the height of slider
+	if ($(window).width() < 978) {
+	  var slider = $("#featured");
+	  var sliderWidth = slider.css("width");
+	  var sliderHeight = parseFloat( sliderWidth ) * 0.4167938931 + "px";
+	
+	  slider.css("height", sliderHeight);
+	}
+	
 	$(window).load(function() {
 		$("#featured").orbit({
 			animation: 'fade',
@@ -3678,15 +3753,17 @@ Toivelista <b class="wish-list-count">(0)</b>
 			bullets: true 	
 		});
 	});
+	
+	
 	</script>
 	
 	
 	<!-- Application Javascript, safe to override -->
 	
-	<script src="/media/js/foundation/app.min.js?v=30"></script>
+	<script src="http://a-lekmer.r.worldssl.net/media/js/foundation/app.min.js?v=24"></script>
 	
 	<!-- Welcome campaign -->
-	<!-- <script src="/media/js/welcome.js?v=6"></script>  -->
+	<!-- <script src="http://a-lekmer.r.worldssl.net/media/js/welcome.js?v=6"></script>  -->
 	
 	<!-- Used by js to check if we are in mobile view or not -->
 	<span id="js-is-small-check" class="show-for-small"></span>
@@ -3885,7 +3962,7 @@ jQuery.fn.log = function (msg) {
 
 <!-- Webtraffic retarget -->
 <script type="text/javascript">
-  window.wtdyn_sku = '0011624-1001';
+  window.wtdyn_sku = '0012094-1016';
   (function() {
     var p   = (("https:" == document.location.protocol) ? "https://" : "http://");
     var url = 'dyn.webtraffic.se/static/lekmer.se/retarget.js';
@@ -3897,8 +3974,8 @@ jQuery.fn.log = function (msg) {
 <!-- GA custom dimensions -->
 <script>
   ga('send', 'pageview', {
-    'dimension3': '0011624-1001',
-    'dimension2': '0011624-1001',
+    'dimension3': '0012094-1016',
+    'dimension2': '0012094-1016',
     'dimension1': 'product-page'
   });
 </script>
@@ -4129,12 +4206,6 @@ function UpdateSizeDependencies() {
 
 
 
-function SaveSearch(productId) {
-  /* disable avail */ //var emark = new Emark();
-  /* disable avail */ //var status = emark.saveSearch('265AW13+BLACK', productId);
-  /* disable avail */ //emark.commit(function(){});
-}
-
 
 function initMonitor()
 {
@@ -4169,21 +4240,20 @@ $(document).ready( initMonitor );
 <script>
 $(document).ready(function() {
 	if ($('.monitor-color').length != 0) {
-		$(".simmilar-products-buy-settings").insertAfter(".list-prices-holder").show();
+		$(".simmilar-products-buy-settings").insertAfter("form.selectsholder").show();
 	}
 });
 </script>
 
-<!-- Start of Yieldify Code -->
-<script>
-(function(d) {
-var e = d.createElement('script');
-e.src = d.location.protocol + '//app.yieldify.com/yieldify/code.js?yieldify_id=496&loca='+window.location.href;
-e.async = true;
-d.getElementsByTagName("head")[0].appendChild(e);
-}(document));
+<!-- // GOOGLE REMARKETING -->
+<script type="text/javascript">
+	var google_tag_params = {
+		ecomm_prodid: '0012094-1016', 
+		ecomm_pagetype: 'product',
+		ecomm_totalvalue: '49.50',
+};
 </script>
-<!-- End of Yieldify Code -->
+<div class="hidden"><script type="text/javascript"> /* <![CDATA[ */ var google_conversion_id = 997020071; var google_custom_params = window.google_tag_params; var google_remarketing_only = true; var google_conversion_format = 3; /* ]]> */ </script> <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> <noscript> <div style="display:inline;"> <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/997020071/?value=0&amp;guid=ON&amp;script=0"/> </div> </noscript></div>
 
 
 <!-- Search Form JS -->
