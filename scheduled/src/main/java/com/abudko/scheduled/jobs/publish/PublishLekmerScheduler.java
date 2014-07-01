@@ -53,8 +53,8 @@ public class PublishLekmerScheduler implements Scheduler {
         publishLekmerInternal("toppapuku", "TALVIHAALARI", 0);
         publishLekmerInternal("kaksiosainen+setti+talvi", "TALVIHAALARI", 0);
         publishLekmerInternal("wind haalari", "VALIKAUSIHAALARI", 0);
-        publishLekmerInternal("sadeasut", "SADEHAALARI", 80);
-        publishLekmerInternal("kevät takki", "VALIKAUSITAKKI", 80);
+        publishLekmerInternal("sadeasut", "SADEHAALARI", 85);
+        publishLekmerInternal("kevät takki", "VALIKAUSITAKKI", 85);
         publishLekmerInternal("talvitakkeja", "TALVITAKKI", 65);
         publishLekmerInternal("toppahousut", "TALVIHOUSUT", 50);
     }
