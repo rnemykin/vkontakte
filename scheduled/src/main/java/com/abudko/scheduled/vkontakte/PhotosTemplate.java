@@ -168,7 +168,7 @@ public class PhotosTemplate implements PhotosOperations {
 
         JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
 
-        log.info(String.format("photos.get, response '%s'", response));
+        log.info(String.format("photos.get, request '%s', response '%s'", uri, response));
 
         JsonNode error = response.get("error");
         if (error != null) {

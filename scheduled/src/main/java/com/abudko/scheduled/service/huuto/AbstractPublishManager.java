@@ -26,11 +26,11 @@ public abstract class AbstractPublishManager implements PublishManager {
     protected static final String COMMENT_KEY = "huuto.comment";
     protected static final String GROUP_URL = "vk.com/kombezi.finland";
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    protected Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     @Qualifier("groupPhotoManager")
-    private PhotoManager photoManager;
+    protected PhotoManager photoManager;
 
     @Autowired
     protected ApplicationContext context;
@@ -45,7 +45,7 @@ public abstract class AbstractPublishManager implements PublishManager {
     protected AlbumMapper albumMapper;
 
     @Autowired
-    private PublishManagerUtils publishManagerUtils;
+    protected PublishManagerUtils publishManagerUtils;
 
     @Override
     public void publishResults(Category category, Collection<ListResponse> queryResponses) throws InterruptedException,
@@ -65,7 +65,7 @@ public abstract class AbstractPublishManager implements PublishManager {
                 if (isPhotoPublished(id, photoData) == false) {
                     photoManager.publishPhoto(photoData);
                 } else {
-                    log.info(String.format("Photo with id '%s' aleady published", id));
+                    log.info(String.format("Photo with id '%s' already published", id));
                 }
             } catch (Throwable e) {
                 String error = String.format("Error '%s' happened while publishing queryResponse '%s'", e.getMessage(), queryResponse);
@@ -75,7 +75,7 @@ public abstract class AbstractPublishManager implements PublishManager {
         }
     }
 
-    private PhotoData convert(Category category, ListResponse listResponse) throws UnsupportedEncodingException {
+    protected PhotoData convert(Category category, ListResponse listResponse) throws UnsupportedEncodingException {
         cropImage(listResponse);
         return getPhotoData(category, listResponse);
     }
@@ -113,7 +113,7 @@ public abstract class AbstractPublishManager implements PublishManager {
         return description;
     }
 
-    private boolean isPhotoPublished(String id, PhotoData photoData) throws InterruptedException {
+    protected boolean isPhotoPublished(String id, PhotoData photoData) throws InterruptedException {
         List<Photo> photos = photoManager.getPhotos(photoData.getGroupId(), photoData.getAlbumId());
         for (Photo photo : photos) {
             String description = photo.getDescription();

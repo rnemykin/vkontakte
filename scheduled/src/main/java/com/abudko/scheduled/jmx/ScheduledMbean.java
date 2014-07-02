@@ -10,6 +10,7 @@ import com.abudko.scheduled.jobs.csv.PikalevoScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedSchedulerLimit;
 import com.abudko.scheduled.jobs.publish.CleanScheduler;
+import com.abudko.scheduled.jobs.publish.PublishHuutoInternalScheduler;
 import com.abudko.scheduled.jobs.publish.PublishHuutoScheduler;
 import com.abudko.scheduled.jobs.publish.PublishLekmerScheduler;
 
@@ -30,6 +31,9 @@ public class ScheduledMbean {
     
     @Autowired
     private PublishHuutoScheduler publishHuutoScheduler;
+    
+    @Autowired
+    private PublishHuutoInternalScheduler publishHuutoInternalScheduler;
     
     @Autowired
     private PublishLekmerScheduler publishLekmerScheduler;
@@ -68,6 +72,11 @@ public class ScheduledMbean {
     @ManagedOperation
     public void startPublishHuutoJob() {
         publishHuutoScheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startPublishHuutoInternalJob() {
+        publishHuutoInternalScheduler.schedule();
     }
     
     @ManagedOperation

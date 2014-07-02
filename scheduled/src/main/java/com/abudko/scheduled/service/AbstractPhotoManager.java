@@ -147,6 +147,9 @@ public abstract class AbstractPhotoManager implements PhotoManager {
     }
 
     protected String getOwnerId(String id) {
+        if (id.startsWith("user-")) {
+            return id.substring(5);
+        }
         if (id.charAt(0) == '-') {
             return id;
         }

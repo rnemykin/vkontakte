@@ -7,6 +7,10 @@
 	<bean id="csvParamMapper" class="com.abudko.reseller.huuto.query.mapper.csv.CsvParamMapper">
  		<constructor-arg value="classpath:/csv/huuto/query.csv" />
  	</bean>
+ 	
+ 	<bean id="csvUsedParamMapper" class="com.abudko.reseller.huuto.query.mapper.csv.CsvParamMapper">
+ 		<constructor-arg value="classpath:/csv/huuto/used-query.csv" />
+ 	</bean>
 	
     <import resource="jobs/csv/quartz-minutely.xml"/>
     <import resource="jobs/csv/quartz-hourly.xml"/>
@@ -15,6 +19,7 @@
     <import resource="jobs/csv/quartz-randomly-limit.xml"/>
     <import resource="jobs/csv/quartz-pikalevo.xml"/>
     <import resource="jobs/publish/quartz-publish-huuto.xml"/>
+    <import resource="jobs/publish/quartz-publish-huuto-internal.xml"/>
     <import resource="jobs/publish/quartz-publish-lekmer.xml"/>
     <import resource="jobs/publish/quartz-clean.xml"/>
     <import resource="jobs/warm/quartz-warm.xml"/>
@@ -31,6 +36,7 @@
    				<entry key="randomlySelectedScheduler" value-ref="randomlySelectedScheduler" />
    				<entry key="randomlySelectedSchedulerLimit" value-ref="randomlySelectedSchedulerLimit" />
    				<entry key="publishHuutoScheduler" value-ref="publishHuutoScheduler" />
+   				<entry key="publishHuutoInternalScheduler" value-ref="publishHuutoInternalScheduler" />
    				<entry key="publishLekmerScheduler" value-ref="publishLekmerScheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
    				<entry key="warmScheduler" value-ref="warmScheduler" />
@@ -60,6 +66,7 @@
       			<ref bean="randomlySelectedTrigger"/>
       			<ref bean="randomlySelectedTriggerLimit"/>
       			<ref bean="publishHuutoTrigger"/>
+      			<ref bean="publishHuutoInternalTrigger"/>
       			<ref bean="publishLekmerTrigger"/>
       			<ref bean="cleanTrigger"/>
       			<ref bean="warmTrigger"/>

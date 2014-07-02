@@ -20,6 +20,11 @@
 		<property name="singleton" value="true"/>
 	</bean>
 	
+	<bean id="userProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:/user.properties" />
+		<property name="singleton" value="true"/>
+	</bean>
+	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">

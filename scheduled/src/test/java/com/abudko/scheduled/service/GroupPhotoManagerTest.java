@@ -139,4 +139,11 @@ public class GroupPhotoManagerTest extends PhotoManagerTestHelper {
         final String ownerId = "238623726";
         assertEquals("-"+ownerId, photoManager.getOwnerId("-"+ownerId));
     }
+    
+    @Test
+    public void testOwnerIdWithUserPrefix() throws Exception {
+        final String id = "238623726";
+        final String ownerId = "user-"+ id;
+        assertEquals(id, photoManager.getOwnerId(ownerId));
+    }
 }
