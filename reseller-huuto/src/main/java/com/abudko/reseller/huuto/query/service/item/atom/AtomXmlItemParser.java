@@ -6,6 +6,7 @@ import org.jdom.Attribute;
 import org.jdom.Element;
 import org.jdom.Text;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.ItemStatus;
@@ -17,6 +18,7 @@ import com.sun.syndication.feed.atom.Person;
 public class AtomXmlItemParser {
 
     private static final String PRICE = "buyNowPrice";
+    private static final String CURRENT_PRICE = "currentPrice";
     private static final String LOCATION = "city";
     private static final String CONDITION = "condition";
     private static final String STATUS = "itemStatus";
@@ -45,6 +47,9 @@ public class AtomXmlItemParser {
         response.setLocation(location);
 
         String price = parsePrice(foreignMarkup);
+        if (StringUtils.isEmpty(price)) {
+            price = parseCurrentPrice(foreignMarkup);
+        }
         response.setPrice(price);
 
         return response;
@@ -107,6 +112,25 @@ public class AtomXmlItemParser {
                 if (object2 instanceof Element) {
                     Element el = (Element) object2;
                     if (PRICE.equals(el.getName())) {
+                        Text elData = (Text) el.getContent().get(0);
+                        fullPrice = elData.getValue();
+                    }
+                }
+            }
+        }
+
+        return fullPrice.replace(",", ".");
+    }
+    
+    private String parseCurrentPrice(List<Element> foreignMarkup) {
+        String fullPrice = "";
+
+        for (Element e : foreignMarkup) {
+            List<?> content = e.getContent();
+            for (Object object2 : content) {
+                if (object2 instanceof Element) {
+                    Element el = (Element) object2;
+                    if (CURRENT_PRICE.equals(el.getName())) {
                         Text elData = (Text) el.getContent().get(0);
                         fullPrice = elData.getValue();
                     }

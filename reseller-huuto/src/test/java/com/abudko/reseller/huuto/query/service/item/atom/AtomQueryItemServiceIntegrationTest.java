@@ -20,6 +20,7 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 public class AtomQueryItemServiceIntegrationTest {
 
     private static final String ITEM_URL = "uusi-hm-silk-bend-silkkisekoite-paita-98-cm-katso/303523873";
+    private static final String ITEM_URL_NO_OSTA_HETI = "reimatec-talvihousut-110cm/325784667";
 
     @Autowired
     @Qualifier("atomQueryItemServiceImpl")
@@ -50,6 +51,12 @@ public class AtomQueryItemServiceIntegrationTest {
     @Test
     public void testItemResponsePrice() {
         assertEquals("13.50", response.getPrice());
+    }
+
+    @Test
+    public void testItemResponsePriceNoOstaHeti() {
+        response = atomQueryItemService.extractItem(ITEM_URL_NO_OSTA_HETI);
+        assertEquals("39.00", response.getPrice());
     }
 
     @Test
