@@ -12,6 +12,6 @@ public class HtmlSearchQueryRules implements SearchQueryRules {
     public void apply(SearchParams searchParams) {
         searchParams.setLocation("Helsinki%20OR%20Espoo%20OR%20Vantaa%20OR%20Kauniainen");
         searchParams.setClassification("new");
-        searchParams.setSellstyle("buy-now");
+//        searchParams.setSellstyle("buy-now");
     }
 }
