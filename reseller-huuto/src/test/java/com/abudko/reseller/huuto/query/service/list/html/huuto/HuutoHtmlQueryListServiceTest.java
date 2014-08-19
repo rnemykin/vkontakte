@@ -5,6 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -197,7 +198,7 @@ public class HuutoHtmlQueryListServiceTest {
 
         service.search(query, params);
 
-        verify(priceRules).calculateNew(fullPrice);
+        verify(priceRules).calculateNew(fullPrice, new BigDecimal(0));
     }
 
     @Test

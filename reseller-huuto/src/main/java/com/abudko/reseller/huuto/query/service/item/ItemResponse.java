@@ -19,6 +19,8 @@ public class ItemResponse {
 
     private String price;
 
+    private String currentPrice;
+
     private String newPrice;
 
     private String seller;
@@ -83,6 +85,14 @@ public class ItemResponse {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+    
+    public String getCurrentPrice() {
+        return currentPrice;
+    }
+    
+    public void setCurrentPrice(String currentPrice) {
+        this.currentPrice = currentPrice;
     }
 
     public String getNewPrice() {

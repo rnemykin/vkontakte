@@ -2,6 +2,7 @@ package com.abudko.reseller.huuto.query.service.list;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.List;
@@ -40,16 +41,16 @@ public abstract class AbstractQueryListService implements QueryListService {
         setNewPrice(queryResponses);
 
         validate(queryResponses);
-        
+
         applySearchParamsTo(queryResponses, searchParams);
 
         Collection<ListResponse> filteredResponses = applyFilters(queryResponses, searchParams);
 
         return filteredResponses;
     }
-    
+
     public abstract Collection<ListResponse> callAndParse(String query) throws URISyntaxException;
-    
+
     protected abstract QueryItemService getQueryItemService();
 
     protected abstract AbstractPriceRules getPriceRules();
@@ -66,7 +67,9 @@ public abstract class AbstractQueryListService implements QueryListService {
     private void setNewPrice(Collection<ListResponse> queryResponses) {
         for (ListResponse queryListResponse : queryResponses) {
             String fullPrice = queryListResponse.getFullPrice();
-            String newPrice = getPriceRules().calculateNew(StringUtils.isEmpty(fullPrice) ? queryListResponse.getCurrentPrice() : fullPrice);
+            String newPrice = getPriceRules()
+                    .calculateNew(StringUtils.isEmpty(fullPrice) ? queryListResponse.getCurrentPrice() : fullPrice,
+                            new BigDecimal(0));
             queryListResponse.setNewPrice(newPrice);
         }
     }
@@ -79,7 +82,9 @@ public abstract class AbstractQueryListService implements QueryListService {
 
     private void validate(Collection<ListResponse> queryResponses) {
         for (ListResponse queryListResponse : queryResponses) {
-            if (!StringUtils.isEmpty(queryListResponse.getItemUrl()) && (StringUtils.isEmpty(queryListResponse.getImgBaseSrc()) || StringUtils.isEmpty(queryListResponse.getSize()))) {
+            if (!StringUtils.isEmpty(queryListResponse.getItemUrl())
+                    && (StringUtils.isEmpty(queryListResponse.getImgBaseSrc()) || StringUtils.isEmpty(queryListResponse
+                            .getSize()))) {
                 ItemResponse item = getQueryItemService().extractItem(queryListResponse.getItemUrl());
                 String imgBaseSrc = item.getImgBaseSrc();
                 queryListResponse.setImgBaseSrc(imgBaseSrc);

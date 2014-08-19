@@ -2,6 +2,7 @@ package com.abudko.reseller.huuto.query.service.item.atom;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -52,11 +53,22 @@ public class AtomQueryItemServiceIntegrationTest {
     public void testItemResponsePrice() {
         assertEquals("13.50", response.getPrice());
     }
+    
+    @Test
+    public void testItemResponsePriceCurrentPriceNotSet() {
+        assertNull(response.getCurrentPrice());
+    }
 
     @Test
     public void testItemResponsePriceNoOstaHeti() {
         response = atomQueryItemService.extractItem(ITEM_URL_NO_OSTA_HETI);
-        assertEquals("39.00", response.getPrice());
+        assertEquals("40.00", response.getPrice());
+    }
+    
+    @Test
+    public void testItemResponsePriceNoOstaHetiCurrentPriceSet() {
+        response = atomQueryItemService.extractItem(ITEM_URL_NO_OSTA_HETI);
+        assertEquals("40.00", response.getCurrentPrice());
     }
 
     @Test

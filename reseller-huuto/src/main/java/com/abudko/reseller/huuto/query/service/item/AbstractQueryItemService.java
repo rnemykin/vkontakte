@@ -22,7 +22,7 @@ public abstract class AbstractQueryItemService implements QueryItemService {
 
         ItemResponse itemResponse = callAndParse(urlSuffix);
 
-        itemResponse.setNewPrice(getPriceRules().calculateNew(itemResponse.getPrice()));
+        itemResponse.setNewPrice(getPriceRules().calculateNew(itemResponse));
         setResponseIdFromUrlSuffix(urlSuffix, itemResponse);
 
         return itemResponse;

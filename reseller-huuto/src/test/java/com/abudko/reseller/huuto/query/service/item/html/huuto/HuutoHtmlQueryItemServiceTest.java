@@ -119,7 +119,7 @@ public class HuutoHtmlQueryItemServiceTest {
         String price = "835";
         itemResponse.setPrice(price);
         when(htmlItemParser.parse(response)).thenReturn(itemResponse);
-        when(priceRules.calculateNew(price)).thenReturn("3453");
+        when(priceRules.calculateNew(itemResponse)).thenReturn("3453");
         
         ItemResponse extractedItem = service.extractItem(itemUrl);
         

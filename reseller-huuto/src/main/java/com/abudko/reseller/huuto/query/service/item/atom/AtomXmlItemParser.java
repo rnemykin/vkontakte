@@ -49,6 +49,7 @@ public class AtomXmlItemParser {
         String price = parsePrice(foreignMarkup);
         if (StringUtils.isEmpty(price)) {
             price = parseCurrentPrice(foreignMarkup);
+            response.setCurrentPrice(price);
         }
         response.setPrice(price);
 

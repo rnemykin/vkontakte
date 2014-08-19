@@ -56,7 +56,7 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testFullPrice() throws Exception {
-        assertEquals("65.00", response.getFullPrice());
+        assertEquals("64.00", response.getFullPrice());
     }
     
     @Test

@@ -16,7 +16,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<build.version>${project.version}-r${buildNumber}-${timestamp}</build.version>
-		<spring.framework.version>4.0.5.RELEASE</spring.framework.version>
+		<spring.framework.version>4.0.6.RELEASE</spring.framework.version>
 		<spring-social.version>1.0.3.RELEASE</spring-social.version>
 		<spring-social-vkontakte.version>1.1.1.RELEASE</spring-social-vkontakte.version>
 		<junit.version>4.10</junit.version>
