@@ -32,11 +32,11 @@ public class CsvPhotoDataReader implements PhotoDataReader {
             while (csvReader.readRecord()) {
                 PhotoData photoData = new PhotoData();
 
-                String groupId = csvReader.get("groupId");
-                if (groupId == null || groupId.contains("//") || csvReader.get("description").contains("//")) {
+                if (shouldSkipRow(csvReader)) {
                     continue;
                 }
 
+                String groupId = csvReader.get("groupId");
                 photoData.setGroupId(groupId);
                 photoData.setAlbumId(csvReader.get("albumId"));
                 photoData.setFileResource(new ClassPathResource("/photos/" + csvReader.get("file")));
@@ -55,6 +55,16 @@ public class CsvPhotoDataReader implements PhotoDataReader {
         }
 
         return photoDataList;
+    }
+
+    private boolean shouldSkipRow(CsvReader csvReader) throws IOException {
+        String groupId = csvReader.get("groupId");
+        if (groupId == null || groupId.contains("//") || csvReader.get("description").contains("//")
+                || groupId.contains("\\") || csvReader.get("description").contains("\\")) {
+            return true;
+        }
+
+        return false;
     }
 
 }
