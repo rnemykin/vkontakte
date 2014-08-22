@@ -105,7 +105,7 @@ public abstract class AbstractPublishManager implements PublishManager {
         String size = listResponse.hasManySizes() ? listResponse.getItemResponse().getSizes().toString()
                 .replaceAll("\\[|\\]", "") : listResponse.getSize();
         String brand = listResponse.getBrand();
-        String title = category.getLabel();
+        String title = category.getCommonLabel();
 
         String description = context.getMessage(COMMENT_KEY, new Object[] { title, brand, size, newPrice, id },
                 Locale.getDefault());
