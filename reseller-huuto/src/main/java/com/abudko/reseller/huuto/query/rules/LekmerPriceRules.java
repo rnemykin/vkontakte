@@ -9,6 +9,6 @@ public class LekmerPriceRules extends AbstractPriceRules {
 
     @Override
     protected BigDecimal getAddInEuro() {
-        return new BigDecimal(15);
+        return new BigDecimal(20);
     }
 }

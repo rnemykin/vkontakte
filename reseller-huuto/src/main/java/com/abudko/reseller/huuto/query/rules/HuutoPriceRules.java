@@ -9,6 +9,6 @@ public class HuutoPriceRules extends AbstractPriceRules {
 
     @Override
     protected BigDecimal getAddInEuro() {
-        return new BigDecimal(10);
+        return new BigDecimal(15);
     }
 }

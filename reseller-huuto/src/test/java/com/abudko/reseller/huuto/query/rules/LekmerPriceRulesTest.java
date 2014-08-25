@@ -42,17 +42,17 @@ public class LekmerPriceRulesTest {
 
     @Test
     public void testRoundUp() {
-        assertEquals("21", rules.calculateNew("5.51", new BigDecimal(0)));
+        assertEquals("26", rules.calculateNew("5.51", new BigDecimal(0)));
     }
 
     @Test
     public void testRoundDown() {
-        assertEquals("20", rules.calculateNew("5.49", new BigDecimal(0)));
+        assertEquals("25", rules.calculateNew("5.49", new BigDecimal(0)));
     }
 
     @Test
     public void test() {
-        assertEquals("20", rules.calculateNew("5.0", new BigDecimal(0)));
+        assertEquals("25", rules.calculateNew("5.0", new BigDecimal(0)));
     }
     
     @Test
@@ -63,6 +63,6 @@ public class LekmerPriceRulesTest {
         when(restTemplate.getForObject(Mockito.any(String.class), eq(RateResponse.class))).thenThrow(new RuntimeException());
         ReflectionTestUtils.setField(rules, "currencyService", currencyServiceReal);
         
-        assertEquals("1040", rules.calculateNew("5.0", new BigDecimal(0)));
+        assertEquals("1300", rules.calculateNew("5.0", new BigDecimal(0)));
     }
 }
