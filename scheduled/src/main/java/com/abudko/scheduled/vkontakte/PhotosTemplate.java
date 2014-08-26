@@ -184,6 +184,7 @@ public class PhotosTemplate implements PhotosOperations {
                 Photo photo = new Photo();
                 photo.setPhotoId(jsonNode.get("pid").asText());
                 photo.setDescription(jsonNode.get("text").getTextValue());
+                photo.setUserId(jsonNode.get("user_id").asText());
                 photos.add(photo);
             }
         }
