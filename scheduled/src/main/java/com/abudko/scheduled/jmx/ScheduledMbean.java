@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.stereotype.Component;
 
+import com.abudko.scheduled.jobs.csv.CleanAllScheduler;
 import com.abudko.scheduled.jobs.csv.DayIntervalScheduler;
 import com.abudko.scheduled.jobs.csv.HourIntervalScheduler;
 import com.abudko.scheduled.jobs.csv.PikalevoScheduler;
@@ -40,6 +41,9 @@ public class ScheduledMbean {
     
     @Autowired
     private CleanScheduler cleanScheduler;
+
+    @Autowired
+    private CleanAllScheduler cleanAllScheduler;
 
     @Autowired
     private PikalevoScheduler pikalevoScheduler;
@@ -87,6 +91,11 @@ public class ScheduledMbean {
     @ManagedOperation
     public void startCleanJob() {
         cleanScheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startCleanAllJob() {
+        cleanAllScheduler.schedule();
     }
     
     @ManagedOperation

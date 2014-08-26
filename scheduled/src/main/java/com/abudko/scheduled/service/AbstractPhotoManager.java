@@ -1,5 +1,6 @@
 package com.abudko.scheduled.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,30 @@ public abstract class AbstractPhotoManager implements PhotoManager {
                 log.info(String.format("Saved photo id '%s'", savedPhoto));
                 photoIdGroupIdMap.put(savedPhoto.getPhotoId(), savedPhoto.getOwnerId());
             }
+        }
+    }
+    
+    public void cleanAll(String csvResourcePath, String userId) throws InterruptedException {
+        List<String> processed = new ArrayList<String>(); 
+        
+        List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
+        for (PhotoData photoData : photoDataList) {
+            String groupId = photoData.getGroupId();
+            String albumId = photoData.getAlbumId();
+            
+            if (processed.contains(groupId + " " + albumId)) {
+                continue;
+            }
+            
+            List<Photo> photos = this.getPhotos(groupId, albumId);
+            
+            for (Photo photo : photos) {
+                if (userId.equals(photo.getUserId())) {
+                    this.deletePhotoForce(photo.getPhotoId(), groupId); 
+                }
+            }
+            
+            processed.add(groupId + " " + albumId);
         }
     }
 

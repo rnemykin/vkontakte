@@ -18,6 +18,7 @@
     <import resource="jobs/csv/quartz-randomly.xml"/>
     <import resource="jobs/csv/quartz-randomly-limit.xml"/>
     <import resource="jobs/csv/quartz-pikalevo.xml"/>
+    <import resource="jobs/csv/quartz-clean-all.xml"/>
     <import resource="jobs/publish/quartz-publish-huuto.xml"/>
     <import resource="jobs/publish/quartz-publish-huuto-internal.xml"/>
     <import resource="jobs/publish/quartz-publish-lekmer.xml"/>
@@ -39,6 +40,7 @@
    				<entry key="publishHuutoInternalScheduler" value-ref="publishHuutoInternalScheduler" />
    				<entry key="publishLekmerScheduler" value-ref="publishLekmerScheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
+   				<entry key="cleanAllScheduler" value-ref="cleanAllScheduler" />
    				<entry key="warmScheduler" value-ref="warmScheduler" />
    				<entry key="pikalevoScheduler" value-ref="pikalevoScheduler" />
    			</map>
@@ -69,6 +71,7 @@
       			<ref bean="publishHuutoInternalTrigger"/>
       			<ref bean="publishLekmerTrigger"/>
       			<ref bean="cleanTrigger"/>
+      			<!-- <ref bean="cleanAllTrigger"/> -->
       			<ref bean="warmTrigger"/>
       			<ref bean="pikalevoTrigger"/>
             </list>
