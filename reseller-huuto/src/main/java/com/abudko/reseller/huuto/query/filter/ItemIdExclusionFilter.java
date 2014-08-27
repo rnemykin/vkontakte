@@ -10,8 +10,9 @@ import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 @Component
 public class ItemIdExclusionFilter extends AbstractNotEmptyFilter {
-    
-    private static final List<String> EXCLUSION_LIST = Arrays.asList("LE", "LE475521 056", "LE13092862 BRIGHT", "LE13092852 BRIGHT");
+
+    private static final List<String> EXCLUSION_LIST = Arrays.asList("LE", "LEJ81899", "LE475521 056",
+            "LE13092862 BRIGHT", "LE13092852 BRIGHT");
 
     @Override
     protected String getValue(ListResponse queryListResponse) {
@@ -22,10 +23,10 @@ public class ItemIdExclusionFilter extends AbstractNotEmptyFilter {
         if (shouldInclude(itemResponse)) {
             return itemResponse.getId();
         }
-        
+
         return null;
     }
-    
+
     private boolean shouldInclude(ItemResponse itemResponse) {
         return !EXCLUSION_LIST.contains(itemResponse.getId());
     }
