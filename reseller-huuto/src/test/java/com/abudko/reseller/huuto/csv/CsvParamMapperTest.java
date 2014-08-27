@@ -146,4 +146,9 @@ public class CsvParamMapperTest {
 
         assertEquals("BuyerId2", queryParams.getBiddernro());
     }
+    
+    @Test
+    public void testCommentedLine() throws IOException {
+        assertEquals(3, queryParamMapper.getSearchParams().size());
+    }
 }

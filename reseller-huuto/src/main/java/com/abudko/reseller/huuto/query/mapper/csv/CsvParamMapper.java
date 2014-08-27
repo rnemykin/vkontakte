@@ -11,6 +11,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
+import org.springframework.util.StringUtils;
 
 import com.abudko.reseller.huuto.query.mapper.ParamMapper;
 import com.abudko.reseller.huuto.query.params.SearchParams;
@@ -61,7 +62,20 @@ public class CsvParamMapper implements ParamMapper {
             }
         }
 
-        return queryParamsList;
+        return filter(queryParamsList);
+    }
+    
+    private List<SearchParams> filter(List<SearchParams> params) {
+        List<SearchParams> filtered = new ArrayList<SearchParams>();
+        
+        for (SearchParams searchParams : params) {
+            String biddernro = searchParams.getBiddernro();
+            if (StringUtils.isEmpty(biddernro) || !biddernro.contains("//")) {
+                filtered.add(searchParams);
+            }
+        }
+        
+        return filtered;
     }
 
     private void readProperty(CsvReader reader, String property, SearchParams destination) throws IOException,

@@ -48,13 +48,13 @@ public class PublishLekmerScheduler implements Scheduler {
     private void publishLekmer() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
         publishLekmerInternal("talvihaalari", "TALVIHAALARI", 0);
-        publishLekmerInternal("välikausihaalari", "VALIKAUSIHAALARI", 0);
+//        publishLekmerInternal("välikausihaalari", "VALIKAUSIHAALARI", 0);
         publishLekmerInternal("toppahaalari", "TALVIHAALARI", 0);
         publishLekmerInternal("toppapuku", "TALVIHAALARI", 0);
         publishLekmerInternal("kaksiosainen+setti+talvi", "TALVIHAALARI", 0);
         publishLekmerInternal("wind haalari", "VALIKAUSIHAALARI", 0);
-        publishLekmerInternal("sadeasut", "SADEHAALARI", 85);
-        publishLekmerInternal("kevät takki", "VALIKAUSITAKKI", 90);
+//        publishLekmerInternal("sadeasut", "SADEHAALARI", 85);
+//        publishLekmerInternal("kevät takki", "VALIKAUSITAKKI", 90);
         publishLekmerInternal("talvitakkeja", "TALVITAKKI", 75);
         publishLekmerInternal("toppahousut", "TALVIHOUSUT", 65);
     }

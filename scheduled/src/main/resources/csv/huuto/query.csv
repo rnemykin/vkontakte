@@ -2,11 +2,11 @@ biddernro,sellernro,category,classification,addtime,closingtime,price_min,price_
 ,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,talvihaalari%20OR%20toppahaalari,,,,,TALVIHAALARI
 ,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,talvihousut%20OR%20toppahousut,,,,,TALVIHOUSUT
 ,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,talvitakki%20OR%20toppatakki,,,,,TALVITAKKI
-,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,v%E4likausihaalari,,,,,VALIKAUSIHAALARI
-,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,v%E4likausitakki,,,,,VALIKAUSITAKKI
-,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,v%E4likausihousut,,,,,VALIKAUSIHOUSUT
+//,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,v%E4likausihaalari,,,,,VALIKAUSIHAALARI
+//,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,v%E4likausitakki,,,,,VALIKAUSITAKKI
+//,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,v%E4likausihousut,,,,,VALIKAUSIHOUSUT
 ,,728-736,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,talvikeng%E4t,,,,,TALVIKENGAT
-,,728-736,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,v%E4likausikeng%E4t,,,,,VALIKAUSIKENGAT
-,,729-737,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,lenkkarit,,,,,LENKKARIT
+//,,728-736,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,v%E4likausikeng%E4t,,,,,VALIKAUSIKENGAT
+//,,729-737,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,lenkkarit,,,,,LENKKARIT
 ,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,villahaalari%20OR%20fleecehaalari,,,,,VILLAHAALARI
-,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,sadehaalari%20OR%20kurahaalari%20OR%20sadehousut%20OR%20kurahousut%20OR%20sadetakki%20OR%20kuratakki,,,,,SADEHAALARI
+//,,,new,-3600,,,,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,sadehaalari%20OR%20kurahaalari%20OR%20sadehousut%20OR%20kurahousut%20OR%20sadetakki%20OR%20kuratakki,,,,,SADEHAALARI
