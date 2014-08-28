@@ -67,7 +67,7 @@ public class HuutoHtmlQueryListServiceImpl extends AbstractQueryListService {
     }
 
     private boolean morePages(Collection<ListResponse> queryPageResponses) {
-        return queryPageResponses.size() == MAX_ITEMS_ON_PAGE;
+        return queryPageResponses.size() >= MAX_ITEMS_ON_PAGE;
     }
 
     @Override

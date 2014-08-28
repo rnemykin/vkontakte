@@ -101,6 +101,9 @@ public class HuutoHtmlListParser implements HtmlListParser {
         } else {
             pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).get(0);
         }
+        if (pricesElement.child(0).childNodes().size() == 1) {
+            pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).get(0);
+        }
         Element currentPriceElement = pricesElement.child(0).child(1);
         if (currentPriceElement.children().isEmpty() == false) {
             return formatPrice(currentPriceElement.child(0).ownText());
