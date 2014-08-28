@@ -104,12 +104,12 @@ public class AtomSearchParamBuilderTest {
 
     @Test
     public void testKeyword() throws Exception {
-        Category words = Category.TALVIHAALARI;
+        Category words = Category.SADEHAALARI;
         searchParams.setWords(words.name());
 
         String query = builder.buildQuery(searchParams);
 
-        assertEquals("?q=" + words.getValue(), query);
+        assertTrue(query.contains("?q=" + words.getValue()));
     }
 
     @Test
@@ -124,12 +124,12 @@ public class AtomSearchParamBuilderTest {
 
     @Test
     public void testWordsCategoryEmpty() throws Exception {
-        Category words = Category.TALVIHAALARI;
+        Category words = Category.SADEHAALARI;
         searchParams.setWords(words.name());
 
         String query = builder.buildQuery(searchParams);
 
-        assertFalse(query.contains("category"));
+        assertTrue(query.contains("category"));
     }
 
     @Test
