@@ -10,7 +10,8 @@ import com.abudko.reseller.huuto.query.service.list.ListResponse;
 @Component
 public class DescriptionKeywordExclusionFilter extends AbstractNotEmptyFilter {
 
-    private static final List<String> EXCLUSION_LIST = Arrays.asList("vakosamettihousut");
+    private static final List<String> EXCLUSION_LIST = Arrays.asList("vakosamettihousut", "tunika", "leggingsit",
+            "toppi");
 
     @Override
     protected String getValue(ListResponse queryListResponse) {
