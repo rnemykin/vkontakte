@@ -62,13 +62,13 @@ public class AtomQueryItemServiceIntegrationTest {
     @Test
     public void testItemResponsePriceNoOstaHeti() {
         response = atomQueryItemService.extractItem(ITEM_URL_NO_OSTA_HETI);
-        assertEquals("40.00", response.getPrice());
+        assertEquals("41.00", response.getPrice());
     }
     
     @Test
     public void testItemResponsePriceNoOstaHetiCurrentPriceSet() {
         response = atomQueryItemService.extractItem(ITEM_URL_NO_OSTA_HETI);
-        assertEquals("40.00", response.getCurrentPrice());
+        assertEquals("41.00", response.getCurrentPrice());
     }
 
     @Test

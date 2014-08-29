@@ -25,7 +25,7 @@ public class SizeParser {
     }
 
     private static boolean isNotSizeDigit(String str, String description) {
-        Matcher matcher = Pattern.compile("[ovh]\\.*\\s*(\\d+)", Pattern.CASE_INSENSITIVE).matcher(description);
+        Matcher matcher = Pattern.compile("[ovh(euroa)]\\.*\\s*(\\d+)", Pattern.CASE_INSENSITIVE).matcher(description);
         
         int i = description.indexOf(str) - 1;
         if (i >= 0 && description.substring(i, i + 1).equals("/")) {

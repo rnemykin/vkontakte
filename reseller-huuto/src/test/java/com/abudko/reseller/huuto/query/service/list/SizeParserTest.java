@@ -4,8 +4,6 @@ import static junit.framework.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.abudko.reseller.huuto.query.service.list.SizeParser;
-
 public class SizeParserTest {
 
     @Test
@@ -106,5 +104,10 @@ public class SizeParserTest {
     @Test
     public void testGetSizeSlash() {
         assertEquals("122", SizeParser.getSize("Ticket to Heaven T2H -tähtihaalari välikausi 122/7 UUSI"));
+    }
+    
+    @Test
+    public void testGetSizeEuroa() {
+        assertEquals("20", SizeParser.getSize("Viking Gore-Tex talvikengät 20 Uudet! (79 euroa)"));
     }
 }

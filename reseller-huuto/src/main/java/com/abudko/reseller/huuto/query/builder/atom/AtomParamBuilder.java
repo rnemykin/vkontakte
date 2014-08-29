@@ -52,7 +52,7 @@ public class AtomParamBuilder implements ParamBuilder {
         String categoryName = params.getWords();
         if (StringUtils.hasLength(categoryName)) {
             Category category = Category.valueOf(categoryName);
-            result.put("q", category.getValue());
+            result.put("q", category.getValueAtom());
         }
 
         return result;

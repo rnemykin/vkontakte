@@ -1,7 +1,6 @@
 package com.abudko.reseller.huuto.query.builder.atom;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -109,7 +108,7 @@ public class AtomSearchParamBuilderTest {
 
         String query = builder.buildQuery(searchParams);
 
-        assertTrue(query.contains("?q=" + words.getValue()));
+        assertTrue(query.contains("?q=" + words.getValueAtom()));
     }
 
     @Test
@@ -119,7 +118,7 @@ public class AtomSearchParamBuilderTest {
 
         String query = builder.buildQuery(searchParams);
 
-        assertEquals("?q=" + words.getValue() + "&category=728&category=736", query);
+        assertEquals("?q=" + words.getValueAtom() + "&category=728&category=736", query);
     }
 
     @Test
@@ -218,6 +217,6 @@ public class AtomSearchParamBuilderTest {
         assertEquals("?condition=" + classification + "&type=" + sellstyle + "&status=" + status
                 + "&location=" + location + "&bidder=" + biddernro + "&closingTime="
                 + closingtime + "&publishingTime=" + addtime + "&sellerType=" + sellerType + "&seller=" + sellernro
-                + "&q=" + words.getValue() + "&category=728&category=736", query);
+                + "&q=" + words.getValueAtom() + "&category=728&category=736", query);
     }
 }

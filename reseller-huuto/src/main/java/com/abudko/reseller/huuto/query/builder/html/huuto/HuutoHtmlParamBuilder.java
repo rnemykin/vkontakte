@@ -40,7 +40,7 @@ public class HuutoHtmlParamBuilder implements ParamBuilder {
         String categoryName = params.getWords();
         if (StringUtils.hasLength(categoryName)) {
             Category category = Category.valueOf(categoryName);
-            result.put("words", category.getValue());
+            result.put("words", category.getValueHtml());
             
             String categoryStr = getCategoryStr(category.getId());
             if (categoryStr != null) {

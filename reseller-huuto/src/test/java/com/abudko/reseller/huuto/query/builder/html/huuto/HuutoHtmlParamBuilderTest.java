@@ -1,7 +1,6 @@
 package com.abudko.reseller.huuto.query.builder.html.huuto;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -119,7 +118,7 @@ public class HuutoHtmlParamBuilderTest {
 
         String query = builder.buildQuery(searchParams);
 
-        assertTrue(query.contains("/words/" + words.getValue()));
+        assertTrue(query.contains("/words/" + words.getValueHtml()));
     }
 
     @Test
@@ -129,7 +128,7 @@ public class HuutoHtmlParamBuilderTest {
 
         String query = builder.buildQuery(searchParams);
 
-        assertEquals("/words/" + words.getValue() + "/category/728-736", query);
+        assertEquals("/words/" + words.getValueHtml() + "/category/728-736", query);
     }
 
     @Test
@@ -228,6 +227,6 @@ public class HuutoHtmlParamBuilderTest {
         assertEquals("/classification/" + classification + "/sellstyle/" + sellstyle + "/status/" + status
                 + "/location/" + location + "/biddernro/" + biddernro + "/zipcode/" + zipcode + "/closingtime/"
                 + closingtime + "/addtime/" + addtime + "/seller_type/" + sellerType + "/sellernro/" + sellernro
-                + "/words/" + words.getValue() + "/category/728-736", query);
+                + "/words/" + words.getValueHtml() + "/category/728-736", query);
     }
 }
