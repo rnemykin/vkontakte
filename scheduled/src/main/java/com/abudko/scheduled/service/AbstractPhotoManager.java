@@ -81,7 +81,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
             List<Photo> photos = this.getPhotos(groupId, albumId);
             
             for (Photo photo : photos) {
-                if (userId.equals(photo.getUserId())) {
+                if (userId.equals(getOwnerId(photo.getUserId()))) {
                     this.deletePhotoForce(photo.getPhotoId(), groupId); 
                 }
             }
@@ -121,6 +121,8 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
         log.info(String.format("Deleting a photo id['%s'],  group['%s']", photoId, groupId));
 
+        Thread.sleep(sleepInterval);
+        
         photosTemplate.deletePhoto(photoId, ownerId);
 
     }

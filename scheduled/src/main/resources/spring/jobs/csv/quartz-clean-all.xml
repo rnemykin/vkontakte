@@ -13,7 +13,7 @@
 
 	<bean id="cleanAllTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="cleanAllJob"/>
-        <property name="cronExpression" value="0 0 0/12 * * ?"/>
+        <property name="cronExpression" value="0 0 1 * * ?"/>
     </bean>
     
 </beans>
