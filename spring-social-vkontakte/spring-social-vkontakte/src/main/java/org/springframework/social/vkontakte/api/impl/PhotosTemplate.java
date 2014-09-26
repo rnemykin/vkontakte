@@ -84,6 +84,7 @@ public class PhotosTemplate extends AbstractVKontakteOperations implements Photo
         URI uri = makeOperationURL("photos.delete", props);
         
         String url = "https://oauth.vk.com/authorize?response_type=token&redirect_uri=https://oauth.vk.com/blank.html&client_id=3932536&display=page&scope=notify,friends,photos,audio,video,notes,pages,wall,offline&v=5.2";
+        //String url = "https://oauth.vk.com/authorize?response_type=token&redirect_uri=https://oauth.vk.com/blank.html&client_id=4564889&display=page&scope=notify,friends,photos,audio,video,notes,pages,wall,offline&v=5.2";
         String accessTokenStandaloneResponse = this.restTemplate.getForObject(url, String.class);
         
         System.out.println(accessTokenStandaloneResponse);
