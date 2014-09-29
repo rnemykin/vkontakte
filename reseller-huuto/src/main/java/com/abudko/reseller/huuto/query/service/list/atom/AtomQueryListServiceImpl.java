@@ -15,7 +15,7 @@ import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.AbstractQueryListService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
-import com.sun.syndication.feed.atom.Feed;
+import com.rometools.rome.feed.atom.Feed;
 
 @Component
 public class AtomQueryListServiceImpl extends AbstractQueryListService {

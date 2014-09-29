@@ -1,6 +1,6 @@
 package com.abudko.scheduled.vkontakte;
 
-import org.codehaus.jackson.JsonNode;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public class PhotosOperationsException extends RuntimeException {
 

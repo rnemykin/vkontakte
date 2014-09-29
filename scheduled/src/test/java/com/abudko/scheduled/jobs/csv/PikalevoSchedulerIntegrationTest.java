@@ -1,5 +1,6 @@
 package com.abudko.scheduled.jobs.csv;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ public class PikalevoSchedulerIntegrationTest {
     private PikalevoScheduler pikalevoScheduler;
     
     @Test
+    @Ignore
     public void test() {
         pikalevoScheduler.schedule();
     }

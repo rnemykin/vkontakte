@@ -20,7 +20,7 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
 public class AtomQueryItemServiceIntegrationTest {
 
-    private static final String ITEM_URL = "uusi-hm-silk-bend-silkkisekoite-paita-98-cm-katso/303523873";
+    private static final String ITEM_URL = "reima-toppahaalari-122/332227118";
     private static final String ITEM_URL_NO_OSTA_HETI = "reimatec-talvihousut-110cm/325784667";
 
     @Autowired
@@ -36,12 +36,12 @@ public class AtomQueryItemServiceIntegrationTest {
 
     @Test
     public void testItemResponseSeller() {
-        assertEquals("Mimmasa", response.getSeller());
+        assertEquals("vrmaki1", response.getSeller());
     }
 
     @Test
     public void testItemResponseLocation() {
-        assertEquals("Helsinki", response.getLocation());
+        assertEquals("", response.getLocation());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class AtomQueryItemServiceIntegrationTest {
 
     @Test
     public void testItemResponsePrice() {
-        assertEquals("13.50", response.getPrice());
+        assertEquals("82.00", response.getPrice());
     }
     
     @Test
@@ -73,17 +73,17 @@ public class AtomQueryItemServiceIntegrationTest {
 
     @Test
     public void testItemResponseImgSrc() {
-        assertEquals("http://kuvat2.huuto.net/5/e7/a893515cfb7ab3652f45b4725e5fb", response.getImgBaseSrc());
+        assertEquals("http://kuvat2.huuto.net/1/7f/9a8a1b85839a052fd65efc01781ef", response.getImgBaseSrc());
     }
     
     @Test
     public void testItemResponseID() {
-        assertEquals("303523873", response.getId());
+        assertEquals("332227118", response.getId());
     }
 
     @Test
     public void testItemResponseItemStatus() {
-        assertEquals(ItemStatus.CLOSED, response.getItemStatus());
+        assertEquals(ItemStatus.OPENED, response.getItemStatus());
     }
 
     @Test

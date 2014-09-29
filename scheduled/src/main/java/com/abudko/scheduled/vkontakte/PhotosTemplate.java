@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.codehaus.jackson.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -183,7 +184,7 @@ public class PhotosTemplate implements PhotosOperations {
             for (JsonNode jsonNode : response) {
                 Photo photo = new Photo();
                 photo.setPhotoId(jsonNode.get("pid").asText());
-                photo.setDescription(jsonNode.get("text").getTextValue());
+                photo.setDescription(jsonNode.get("text").textValue());
                 photo.setUserId(jsonNode.get("user_id").asText());
                 photos.add(photo);
             }

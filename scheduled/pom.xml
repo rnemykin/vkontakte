@@ -16,7 +16,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<build.version>${project.version}-r${buildNumber}-${timestamp}</build.version>
-		<spring.framework.version>4.0.6.RELEASE</spring.framework.version>
+		<spring.framework.version>4.1.0.RELEASE</spring.framework.version>
 		<spring-social.version>1.0.3.RELEASE</spring-social.version>
 		<spring-social-vkontakte.version>1.1.1.RELEASE</spring-social-vkontakte.version>
 		<junit.version>4.10</junit.version>
@@ -26,7 +26,7 @@
 		<logback.version>1.0.11</logback.version>
 		<quartz.version>2.1.6</quartz.version>
 		<javacsv.version>2.0</javacsv.version>
-		<jackson.version>1.9.13</jackson.version>
+		<jackson.version>2.4.2</jackson.version>
 		<httpclient.version>4.3.2</httpclient.version>
 		<jstl.version>1.2</jstl.version>
 		<guava.version>14.0.1</guava.version>
@@ -235,11 +235,29 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>rome</groupId>
+			<artifactId>rome</artifactId>
+			<version>1.0</version>
+			<exclusions>
+				<exclusion>
+						<artifactId>jdom</artifactId>
+						<groupId>jdom</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>

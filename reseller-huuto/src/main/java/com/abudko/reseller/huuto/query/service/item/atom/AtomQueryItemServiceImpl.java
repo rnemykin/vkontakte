@@ -8,7 +8,7 @@ import com.abudko.reseller.huuto.query.QueryConstants;
 import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.sun.syndication.feed.atom.Feed;
+import com.rometools.rome.feed.atom.Feed;
 
 @Component
 public class AtomQueryItemServiceImpl extends AbstractQueryItemService {
