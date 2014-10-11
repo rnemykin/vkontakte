@@ -20,7 +20,7 @@ import com.abudko.reseller.huuto.query.service.list.QueryListService;
 import com.abudko.scheduled.jobs.Scheduler;
 import com.abudko.scheduled.service.huuto.PublishManager;
 
-public class PublishLekmerScheduler implements Scheduler {
+public class PublishLekmer2Scheduler implements Scheduler {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -48,11 +48,15 @@ public class PublishLekmerScheduler implements Scheduler {
     private void publishLekmer() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
         publishLekmerInternal("talvihaalari", "TALVIHAALARI", 0);
+//        publishLekmerInternal("välikausihaalari", "VALIKAUSIHAALARI", 0);
         publishLekmerInternal("toppahaalari", "TALVIHAALARI", 0);
         publishLekmerInternal("toppapuku", "TALVIHAALARI", 0);
-//        publishLekmerInternal("kaksiosainen+setti+talvi", "TALVIHAALARI", 0);
-//        publishLekmerInternal("talvitakkeja", "TALVITAKKI", 75);
-//        publishLekmerInternal("toppahousut", "TALVIHOUSUT", 65);
+        publishLekmerInternal("kaksiosainen+setti+talvi", "TALVIHAALARI", 0);
+        publishLekmerInternal("wind haalari", "VALIKAUSIHAALARI", 0);
+//        publishLekmerInternal("sadeasut", "SADEHAALARI", 85);
+//        publishLekmerInternal("kevät takki", "VALIKAUSITAKKI", 90);
+        publishLekmerInternal("talvitakkeja", "TALVITAKKI", 75);
+        publishLekmerInternal("toppahousut", "TALVIHOUSUT", 65);
     }
 
     private void publishLekmerInternal(String query, String categoryenum, int limit)

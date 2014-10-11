@@ -19,10 +19,13 @@
     <import resource="jobs/csv/quartz-randomly-limit.xml"/>
     <import resource="jobs/csv/quartz-pikalevo.xml"/>
     <import resource="jobs/csv/quartz-clean-all.xml"/>
+    <import resource="jobs/publish/quartz-publish-huuto2.xml"/>
     <import resource="jobs/publish/quartz-publish-huuto.xml"/>
-    <import resource="jobs/publish/quartz-publish-huuto-internal.xml"/>
+    <import resource="jobs/publish/quartz-publish-huuto-internal2.xml"/>
     <import resource="jobs/publish/quartz-publish-lekmer.xml"/>
+    <import resource="jobs/publish/quartz-publish-lekmer2.xml"/>
     <import resource="jobs/publish/quartz-clean.xml"/>
+    <import resource="jobs/publish/quartz-clean2.xml"/>
     <import resource="jobs/warm/quartz-warm.xml"/>
     
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -37,9 +40,12 @@
    				<entry key="randomlySelectedScheduler" value-ref="randomlySelectedScheduler" />
    				<entry key="randomlySelectedSchedulerLimit" value-ref="randomlySelectedSchedulerLimit" />
    				<entry key="publishHuutoScheduler" value-ref="publishHuutoScheduler" />
-   				<entry key="publishHuutoInternalScheduler" value-ref="publishHuutoInternalScheduler" />
+   				<entry key="publishHuuto2Scheduler" value-ref="publishHuuto2Scheduler" />
+   				<entry key="publishHuuto2InternalScheduler" value-ref="publishHuuto2InternalScheduler" />
    				<entry key="publishLekmerScheduler" value-ref="publishLekmerScheduler" />
+   				<entry key="publishLekmer2Scheduler" value-ref="publishLekmer2Scheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
+   				<entry key="clean2Scheduler" value-ref="clean2Scheduler" />
    				<entry key="cleanAllScheduler" value-ref="cleanAllScheduler" />
    				<entry key="warmScheduler" value-ref="warmScheduler" />
    				<entry key="pikalevoScheduler" value-ref="pikalevoScheduler" />
@@ -71,6 +77,7 @@
       			<ref bean="publishHuutoInternalTrigger"/>
       			<ref bean="publishLekmerTrigger"/> -->
       			<ref bean="cleanTrigger"/>
+      			<!-- <ref bean="clean2Trigger"/> -->
       			<ref bean="cleanAllTrigger"/>
       			<!-- <ref bean="warmTrigger"/> -->
       			<ref bean="pikalevoTrigger"/>

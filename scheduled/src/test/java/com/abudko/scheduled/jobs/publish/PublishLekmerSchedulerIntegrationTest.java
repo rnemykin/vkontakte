@@ -10,13 +10,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class PublishHuutoSchedulerIntegrationTest {
+public class PublishLekmerSchedulerIntegrationTest {
 
     @Autowired
-    private PublishHuutoScheduler publishScheduler;
+    private PublishLekmerScheduler publishLekmerScheduler;
     
     @Test
     public void testPublish() throws IOException {
-       publishScheduler.schedule();
+        publishLekmerScheduler.schedule();
     }
 }

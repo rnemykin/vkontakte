@@ -12,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
-import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.mapper.ParamMapper;
 import com.abudko.reseller.huuto.query.params.SearchParams;
-import com.abudko.reseller.huuto.query.rules.SearchQueryRules;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
@@ -23,7 +21,7 @@ import com.abudko.reseller.huuto.query.service.list.QueryListService;
 import com.abudko.scheduled.jobs.Scheduler;
 import com.abudko.scheduled.service.huuto.PublishManager;
 
-public class PublishHuutoInternalScheduler implements Scheduler {
+public class PublishHuuto2InternalScheduler implements Scheduler {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 

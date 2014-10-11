@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<bean id="publishLekmer2Scheduler" class="com.abudko.scheduled.jobs.publish.PublishLekmer2Scheduler"/>
+
+	<bean name="publishLekmer2Job" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="name" value="publishLekmer2Job"/>
+        <property name="jobClass" value="com.abudko.scheduled.jobs.publish.PublishLekmer2Job"/>
+    </bean>
+
+	<bean id="publishLekmer2Trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="publishLekmer2Job"/>
+        <property name="cronExpression" value="0 0 0/1 * * ?"/>
+    </bean>
+    
+</beans>

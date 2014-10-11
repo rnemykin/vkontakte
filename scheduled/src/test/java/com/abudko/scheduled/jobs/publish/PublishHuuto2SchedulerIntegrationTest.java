@@ -2,6 +2,7 @@ package com.abudko.scheduled.jobs.publish;
 
 import java.io.IOException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class PublishHuutoSchedulerIntegrationTest {
+public class PublishHuuto2SchedulerIntegrationTest {
 
     @Autowired
-    private PublishHuutoScheduler publishScheduler;
+    private PublishHuuto2Scheduler publish2Scheduler;
     
     @Test
+    @Ignore
     public void testPublish() throws IOException {
-       publishScheduler.schedule();
+       publish2Scheduler.schedule();
     }
 }

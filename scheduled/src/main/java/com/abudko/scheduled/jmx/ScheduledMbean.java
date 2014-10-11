@@ -2,7 +2,6 @@ package com.abudko.scheduled.jmx;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jmx.export.annotation.ManagedOperation;
-import org.springframework.stereotype.Component;
 
 import com.abudko.scheduled.jobs.csv.CleanAllScheduler;
 import com.abudko.scheduled.jobs.csv.DayIntervalScheduler;
@@ -10,12 +9,11 @@ import com.abudko.scheduled.jobs.csv.HourIntervalScheduler;
 import com.abudko.scheduled.jobs.csv.PikalevoScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedSchedulerLimit;
-import com.abudko.scheduled.jobs.publish.CleanScheduler;
-import com.abudko.scheduled.jobs.publish.PublishHuutoInternalScheduler;
-import com.abudko.scheduled.jobs.publish.PublishHuutoScheduler;
-import com.abudko.scheduled.jobs.publish.PublishLekmerScheduler;
+import com.abudko.scheduled.jobs.publish.Clean2Scheduler;
+import com.abudko.scheduled.jobs.publish.PublishHuuto2InternalScheduler;
+import com.abudko.scheduled.jobs.publish.PublishHuuto2Scheduler;
+import com.abudko.scheduled.jobs.publish.PublishLekmer2Scheduler;
 
-@Component
 public class ScheduledMbean {
 
     @Autowired
@@ -31,16 +29,16 @@ public class ScheduledMbean {
     private RandomlySelectedSchedulerLimit randomlySelectedSchedulerLimit;
     
     @Autowired
-    private PublishHuutoScheduler publishHuutoScheduler;
+    private PublishHuuto2Scheduler publishHuuto2Scheduler;
     
     @Autowired
-    private PublishHuutoInternalScheduler publishHuutoInternalScheduler;
+    private PublishHuuto2InternalScheduler publishHuuto2InternalScheduler;
     
     @Autowired
-    private PublishLekmerScheduler publishLekmerScheduler;
+    private PublishLekmer2Scheduler publishLekmer2Scheduler;
     
     @Autowired
-    private CleanScheduler cleanScheduler;
+    private Clean2Scheduler clean2Scheduler;
 
     @Autowired
     private CleanAllScheduler cleanAllScheduler;
@@ -74,23 +72,23 @@ public class ScheduledMbean {
     }
     
     @ManagedOperation
-    public void startPublishHuutoJob() {
-        publishHuutoScheduler.schedule();
+    public void startPublishHuuto2Job() {
+        publishHuuto2Scheduler.schedule();
     }
     
     @ManagedOperation
-    public void startPublishHuutoInternalJob() {
-        publishHuutoInternalScheduler.schedule();
+    public void startPublishHuuto2InternalJob() {
+        publishHuuto2InternalScheduler.schedule();
     }
     
     @ManagedOperation
-    public void startPublishLekmerJob() {
-        publishLekmerScheduler.schedule();
+    public void startPublishLekmer2Job() {
+        publishLekmer2Scheduler.schedule();
     }
     
     @ManagedOperation
-    public void startCleanJob() {
-        cleanScheduler.schedule();
+    public void startClean2Job() {
+        clean2Scheduler.schedule();
     }
     
     @ManagedOperation

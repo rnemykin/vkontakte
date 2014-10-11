@@ -62,7 +62,7 @@ public class HuutoUsedPublishManager extends HuutoPublishManager {
     protected PhotoData getPhotoData(Category category, ListResponse listResponse) {
         PhotoData photoData = new PhotoData();
         photoData.setGroupId(userid);
-        photoData.setAlbumId(AlbumMapper.USED_ALBUM_ID);
+        photoData.setAlbumId(AlbumMapper2.USED_ALBUM_ID);
         photoData.setDescription(getDescription(listResponse));
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
 

@@ -14,3 +14,4 @@ public class LekmerPublishManager extends AbstractPublishManager {
         return itemResponse.getImgBaseSrc();
     }
 }
+    

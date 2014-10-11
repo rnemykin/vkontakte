@@ -5,6 +5,6 @@ import org.springframework.stereotype.Component;
 import com.abudko.scheduled.jobs.AbstractScheduledJob;
 
 @Component
-public class PublishLekmerJob extends AbstractScheduledJob<PublishLekmerScheduler> {
+public class PublishHuuto2InternalJob extends AbstractScheduledJob<PublishHuuto2InternalScheduler> {
 
 }

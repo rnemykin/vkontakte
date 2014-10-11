@@ -1,21 +1,10 @@
 package com.abudko.scheduled.jobs.csv;
 
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 import org.springframework.stereotype.Component;
 
 import com.abudko.scheduled.jobs.AbstractScheduledJob;
 
 @Component
-public class PikalevoJob extends AbstractScheduledJob implements Job {
+public class PikalevoJob extends AbstractScheduledJob<PikalevoScheduler> {
 
-    public void execute(JobExecutionContext context) throws JobExecutionException {
-        this.callScheduler(context);
-    }
-
-    @Override
-    protected String getSchedulerBeanName() {
-        return "pikalevoScheduler";
-    }
 }

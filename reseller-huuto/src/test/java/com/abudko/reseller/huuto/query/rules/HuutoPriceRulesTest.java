@@ -43,22 +43,22 @@ public class HuutoPriceRulesTest {
 
     @Test
     public void testRoundUp() {
-        assertEquals("21", rules.calculateNew("5.51", new BigDecimal(0)));
+        assertEquals("26", rules.calculateNew("5.51", new BigDecimal(0)));
     }
 
     @Test
     public void testRoundDown() {
-        assertEquals("20", rules.calculateNew("5.49", new BigDecimal(0)));
+        assertEquals("25", rules.calculateNew("5.49", new BigDecimal(0)));
     }
 
     @Test
     public void testZero() {
-        assertEquals("20", rules.calculateNew("5.0", new BigDecimal(0)));
+        assertEquals("25", rules.calculateNew("5.0", new BigDecimal(0)));
     }
     
     @Test
     public void testAddMore() {
-        assertEquals("30", rules.calculateNew("5.0", new BigDecimal(10)));
+        assertEquals("35", rules.calculateNew("5.0", new BigDecimal(10)));
     }
     
     @Test
@@ -66,7 +66,7 @@ public class HuutoPriceRulesTest {
         ItemResponse itemResponse = new ItemResponse();
         itemResponse.setPrice("10");
         
-        assertEquals("25", rules.calculateNew(itemResponse));
+        assertEquals("30", rules.calculateNew(itemResponse));
     }
     
     @Test
@@ -74,7 +74,7 @@ public class HuutoPriceRulesTest {
         ItemResponse itemResponse = new ItemResponse();
         itemResponse.setCurrentPrice("10");
         
-        assertEquals("35", rules.calculateNew(itemResponse));
+        assertEquals("40", rules.calculateNew(itemResponse));
     }
     
     @Test
@@ -85,6 +85,6 @@ public class HuutoPriceRulesTest {
         when(restTemplate.getForObject(Mockito.any(String.class), eq(RateResponse.class))).thenThrow(new RuntimeException());
         ReflectionTestUtils.setField(rules, "currencyService", currencyServiceReal);
         
-        assertEquals("1040", rules.calculateNew("5.0", new BigDecimal(0)));
+        assertEquals("1325", rules.calculateNew("5.0", new BigDecimal(0)));
     }
 }
