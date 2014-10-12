@@ -27,7 +27,7 @@ public class RandomlySelectedSchedulerLimit implements Scheduler {
         log.info("********* Start RandomlySelectedSchedulerLimit *******");
         try {
 
-            photoManager.publish(csvResourcePath, dumpFileLocation, null);
+            photoManager.publish(csvResourcePath, dumpFileLocation);
             
             log.info("********* End RandomlySelectedSchedulerLimit *******");
 

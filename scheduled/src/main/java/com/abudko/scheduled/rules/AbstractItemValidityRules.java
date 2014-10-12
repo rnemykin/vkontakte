@@ -2,6 +2,8 @@ package com.abudko.scheduled.rules;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.ItemStatus;
@@ -35,6 +37,12 @@ public abstract class AbstractItemValidityRules implements ItemValidityRules {
         try {
             Long.parseLong(id);
             return isValidInternal("/" + id);
+        }
+        catch (HttpClientErrorException e) {
+            if (HttpStatus.NOT_FOUND.equals(e.getStatusCode())) {
+                return false;
+            }
+            return true;
         }
         catch (Throwable e) {
             return true;

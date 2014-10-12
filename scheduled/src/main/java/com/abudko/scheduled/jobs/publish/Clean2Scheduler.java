@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.abudko.scheduled.jobs.Scheduler;
 import com.abudko.scheduled.rules.ItemValidityRules;
+import com.abudko.scheduled.service.AbstractPhotoManager;
 import com.abudko.scheduled.service.PhotoManager;
 import com.abudko.scheduled.service.huuto.AlbumMapper2;
 import com.abudko.scheduled.service.huuto.PublishManagerUtils;
@@ -35,6 +36,8 @@ public class Clean2Scheduler implements Scheduler {
     public void schedule() {
         log.info("********* Start Clean2Scheduler *******");
         try {
+            ((AbstractPhotoManager) photoManager).getPhotosTemplate().setToken(customToken);
+            
             List<String> albumIds = photoManager.getAlbumIds(AlbumMapper2.GROUP_ID);
             for (String albumId : albumIds) {
                 List<Photo> photos = photoManager.getPhotos(AlbumMapper2.GROUP_ID, albumId);

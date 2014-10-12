@@ -35,11 +35,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
     protected PhotosTemplate photosTemplate;
 
     @Override
-    public void publish(String csvResourcePath, String dumpFileLocation, String token) throws InterruptedException {
-        if (token != null) {
-            photosTemplate.setToken(token);
-        }
-
+    public void publish(String csvResourcePath, String dumpFileLocation) throws InterruptedException {
         deleteAll(dumpFileLocation);
 
         Map<String, String> photoIdGroupIdMap = new HashMap<String, String>();
@@ -181,5 +177,9 @@ public abstract class AbstractPhotoManager implements PhotoManager {
             return id;
         }
         return "-" + id;
+    }
+
+    public PhotosTemplate getPhotosTemplate() {
+        return photosTemplate;
     }
 }

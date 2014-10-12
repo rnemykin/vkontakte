@@ -27,7 +27,7 @@ public class PikalevoScheduler implements Scheduler {
         log.info("********* Start PikalevoScheduler *******");
         try {
 
-            photoManager.publish(csvResourcePath, dumpFileLocation, null);
+            photoManager.publish(csvResourcePath, dumpFileLocation);
             
             log.info("********* End PikalevoScheduler *******");
 

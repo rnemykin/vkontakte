@@ -33,7 +33,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
     @Test
     public void testReadDumpFile() throws Exception {
         final String dumpFileLocation = "dumpFileLocation";
-        photoManager.publish("csvResourcePath", dumpFileLocation, null);
+        photoManager.publish("csvResourcePath", dumpFileLocation);
 
         verify(photoDataLogger).read(dumpFileLocation);
     }
@@ -50,7 +50,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         dump.put(photoId2, groupId2);
         when(photoDataLogger.read(dumpFileLocation)).thenReturn(dump);
 
-        photoManager.publish("csvResourcePath", dumpFileLocation, null);
+        photoManager.publish("csvResourcePath", dumpFileLocation);
 
         verify(photosTemplate).getCommentsCount(photoId1, groupId1);
         verify(photosTemplate).getCommentsCount(photoId2, groupId2);
@@ -68,7 +68,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         when(photoDataLogger.read(dumpFileLocation)).thenReturn(dump);
         when(photosTemplate.getCommentsCount(photoId1, groupId1)).thenReturn(1);
 
-        photoManager.publish("csvResourcePath", dumpFileLocation, null);
+        photoManager.publish("csvResourcePath", dumpFileLocation);
 
         verify(photosTemplate, times(0)).deletePhoto(photoId1, groupId1);
     }
@@ -84,7 +84,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         final UploadedPhoto uploadedPhoto = new UploadedPhoto();
         when(photosTemplate.uploadPhoto(uploadUrl, fileResource)).thenReturn(uploadedPhoto);
 
-        photoManager.publish("csvResourcePath", "dumpFileLocation", null);
+        photoManager.publish("csvResourcePath", "dumpFileLocation");
 
         verify(photosTemplate).savePhoto(uploadedPhoto, description);
     }
@@ -108,7 +108,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         when(photosTemplate.savePhoto(uploadedPhoto, description)).thenReturn(savedPhoto);
         when(photosTemplate.getUploadServer(GROUPID1, ALBUMID2)).thenThrow(new RuntimeException());
 
-        photoManager.publish("csvResourcePath", dumpFileLocation, null);
+        photoManager.publish("csvResourcePath", dumpFileLocation);
 
         Map<String, String> map = new HashMap<String, String>();
         map.put(photoId, ownerId);
@@ -122,7 +122,7 @@ public class PersonPhotoManagerTest extends PhotoManagerTestHelper {
         final String dumpFileLocation = "dumpFileLocation";
         when(photosTemplate.getUploadServer(GROUPID1, ALBUMID1)).thenThrow(new RuntimeException());
 
-        photoManager.publish("csvResourcePath", dumpFileLocation, null);
+        photoManager.publish("csvResourcePath", dumpFileLocation);
 
         verify(photoDataLogger, times(0)).dump(Mockito.anyMap(), Mockito.eq(dumpFileLocation));
         verify(log).error(Mockito.anyString(), Mockito.any(Throwable.class));

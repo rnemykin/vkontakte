@@ -12,7 +12,7 @@ public interface PhotoManager {
     
     void deleteAll(String dumpFileLocation) throws InterruptedException;
 
-    void publish(String csvResourcePath, String dumpFileLocation, String token) throws InterruptedException;
+    void publish(String csvResourcePath, String dumpFileLocation) throws InterruptedException;
     
     SavedPhoto publishPhoto(PhotoData photoData) throws InterruptedException;
     

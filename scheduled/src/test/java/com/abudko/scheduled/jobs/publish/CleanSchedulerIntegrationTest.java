@@ -2,6 +2,7 @@ package com.abudko.scheduled.jobs.publish;
 
 import java.io.IOException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class CleanSchedulerIntegrationTest {
     private CleanScheduler cleanScheduler;
     
     @Test
+    @Ignore
     public void testClean() throws IOException {
         cleanScheduler.schedule();
     }

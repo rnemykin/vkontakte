@@ -27,7 +27,7 @@ public class HourIntervalScheduler implements Scheduler {
         log.info("********* Start HourIntervalScheduler *******");
         try {
 
-            photoManager.publish(csvResourcePath, dumpFileLocation, null);
+            photoManager.publish(csvResourcePath, dumpFileLocation);
             
             log.info("********* End HourIntervalScheduler *******");
 

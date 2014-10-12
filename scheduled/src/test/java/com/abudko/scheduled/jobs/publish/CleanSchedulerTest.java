@@ -17,22 +17,21 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
-import com.abudko.scheduled.jobs.publish.Clean2Scheduler;
 import com.abudko.scheduled.rules.ItemValidityRules;
 import com.abudko.scheduled.service.PhotoManager;
-import com.abudko.scheduled.service.huuto.AlbumMapper2;
+import com.abudko.scheduled.service.huuto.AlbumMapper;
 import com.abudko.scheduled.service.huuto.PublishManagerUtils;
 import com.abudko.scheduled.vkontakte.Photo;
 
 @RunWith(MockitoJUnitRunner.class)
-public class Clean2SchedulerTest {
+public class CleanSchedulerTest {
     
     private static final String DESCRIPTION = "description";
     private static final String ID = "id";
     private static final String PHOTO_ID = "photoId";
     
     @Mock
-    private AlbumMapper2 albumMapper;
+    private AlbumMapper albumMapper;
 
     @Mock
     private PhotoManager photoManager;
@@ -50,7 +49,7 @@ public class Clean2SchedulerTest {
     private ItemValidityRules rule2;
     
     @InjectMocks
-    public Clean2Scheduler cleanScheduler = new Clean2Scheduler();
+    public CleanScheduler cleanScheduler = new CleanScheduler();
     
     @Before
     public void setup() throws InterruptedException {
@@ -65,12 +64,12 @@ public class Clean2SchedulerTest {
     private void setupAlbums() throws InterruptedException {
         final String albumId = "albumid"; 
         List<String> albumIds = Arrays.asList(albumId);
-        when(photoManager.getAlbumIds(AlbumMapper2.GROUP_ID)).thenReturn(albumIds);
+        when(photoManager.getAlbumIds(AlbumMapper.GROUP_ID)).thenReturn(albumIds);
         Photo photo = new Photo();
         photo.setDescription(DESCRIPTION);
         photo.setPhotoId(PHOTO_ID);
         List<Photo> photoIds = Arrays.asList(photo);
-        when(photoManager.getPhotos(AlbumMapper2.GROUP_ID, albumId)).thenReturn(photoIds);
+        when(photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId)).thenReturn(photoIds);
         when(publishManagerUtils.getId(DESCRIPTION)).thenReturn(ID);
     }
 
@@ -81,7 +80,7 @@ public class Clean2SchedulerTest {
         
         cleanScheduler.schedule();
         
-        verify(photoManager, never()).deletePhotoForce(PHOTO_ID, AlbumMapper2.GROUP_ID);
+        verify(photoManager, never()).deletePhotoForce(PHOTO_ID, AlbumMapper.GROUP_ID);
     }
     
     @Test
@@ -91,7 +90,7 @@ public class Clean2SchedulerTest {
         
         cleanScheduler.schedule();
         
-        verify(photoManager).deletePhotoForce(PHOTO_ID, AlbumMapper2.GROUP_ID);
+        verify(photoManager).deletePhotoForce(PHOTO_ID, AlbumMapper.GROUP_ID);
     }
     
     @Test
@@ -101,6 +100,6 @@ public class Clean2SchedulerTest {
         
         cleanScheduler.schedule();
         
-        verify(photoManager).deletePhotoForce(PHOTO_ID, AlbumMapper2.GROUP_ID);
+        verify(photoManager).deletePhotoForce(PHOTO_ID, AlbumMapper.GROUP_ID);
     }
 }
