@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<bean id="csvParamMapper" class="com.abudko.reseller.huuto.query.mapper.csv.CsvParamMapper">
+ 		<constructor-arg value="classpath:/csv/huuto/query.csv" />
+ 	</bean>
+ 	
+ 	<bean id="csvUsedParamMapper" class="com.abudko.reseller.huuto.query.mapper.csv.CsvParamMapper">
+ 		<constructor-arg value="classpath:/csv/huuto/used-query.csv" />
+ 	</bean>
+	
+    <import resource="csv/quartz-minutely.xml"/>
+    <import resource="csv/quartz-hourly.xml"/>
+    <import resource="csv/quartz-daily.xml"/>
+    <import resource="csv/quartz-randomly.xml"/>
+    <import resource="csv/quartz-randomly-limit.xml"/>
+    <import resource="csv/quartz-pikalevo.xml"/>
+    <import resource="csv/quartz-clean-all.xml"/>
+    <import resource="publish/quartz-publish-huuto2.xml"/>
+    <import resource="publish/quartz-publish-huuto.xml"/>
+    <import resource="publish/quartz-publish-huuto-internal2.xml"/>
+    <import resource="publish/quartz-publish-lekmer.xml"/>
+    <import resource="publish/quartz-publish-lekmer2.xml"/>
+    <import resource="publish/quartz-clean.xml"/>
+    <import resource="publish/quartz-clean2.xml"/>
+    <import resource="warm/quartz-warm.xml"/>
+
+</beans>

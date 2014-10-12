@@ -66,8 +66,6 @@ public class CleanScheduler implements Scheduler {
     }
 
     private boolean isValid(String id) {
-        if (true)
-            return false;
         boolean valid = true;
         for (ItemValidityRules rule : itemValidityRules) {
             if (!rule.isValid(id)) {
