@@ -9,10 +9,10 @@ import com.abudko.scheduled.jobs.csv.HourIntervalScheduler;
 import com.abudko.scheduled.jobs.csv.PikalevoScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedSchedulerLimit;
-import com.abudko.scheduled.jobs.publish.Clean2Scheduler;
+import com.abudko.scheduled.jobs.publish.CleanScheduler;
 import com.abudko.scheduled.jobs.publish.PublishHuuto2InternalScheduler;
-import com.abudko.scheduled.jobs.publish.PublishHuuto2Scheduler;
-import com.abudko.scheduled.jobs.publish.PublishLekmer2Scheduler;
+import com.abudko.scheduled.jobs.publish.PublishHuutoScheduler;
+import com.abudko.scheduled.jobs.publish.PublishLekmerScheduler;
 
 public class ScheduledMbean {
 
@@ -29,16 +29,16 @@ public class ScheduledMbean {
     private RandomlySelectedSchedulerLimit randomlySelectedSchedulerLimit;
     
     @Autowired
-    private PublishHuuto2Scheduler publishHuuto2Scheduler;
+    private PublishHuutoScheduler publishHuutoScheduler;
     
     @Autowired
     private PublishHuuto2InternalScheduler publishHuuto2InternalScheduler;
     
     @Autowired
-    private PublishLekmer2Scheduler publishLekmer2Scheduler;
+    private PublishLekmerScheduler publishLekmerScheduler;
     
     @Autowired
-    private Clean2Scheduler clean2Scheduler;
+    private CleanScheduler cleanScheduler;
 
     @Autowired
     private CleanAllScheduler cleanAllScheduler;
@@ -72,8 +72,8 @@ public class ScheduledMbean {
     }
     
     @ManagedOperation
-    public void startPublishHuuto2Job() {
-        publishHuuto2Scheduler.schedule();
+    public void startPublishHuutoJob() {
+        publishHuutoScheduler.schedule();
     }
     
     @ManagedOperation
@@ -82,13 +82,13 @@ public class ScheduledMbean {
     }
     
     @ManagedOperation
-    public void startPublishLekmer2Job() {
-        publishLekmer2Scheduler.schedule();
+    public void startPublishLekmerJob() {
+        publishLekmerScheduler.schedule();
     }
     
     @ManagedOperation
-    public void startClean2Job() {
-        clean2Scheduler.schedule();
+    public void startCleanJob() {
+        cleanScheduler.schedule();
     }
     
     @ManagedOperation
