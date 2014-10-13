@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import org.junit.Before;
@@ -68,6 +69,7 @@ public class CleanSchedulerTest {
         Photo photo = new Photo();
         photo.setDescription(DESCRIPTION);
         photo.setPhotoId(PHOTO_ID);
+        photo.setCreated(Calendar.getInstance());
         List<Photo> photoIds = Arrays.asList(photo);
         when(photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId)).thenReturn(photoIds);
         when(publishManagerUtils.getId(DESCRIPTION)).thenReturn(ID);

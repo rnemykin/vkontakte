@@ -1,12 +1,19 @@
 package com.abudko.scheduled.vkontakte;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Photo {
+    
+    private static SimpleDateFormat format = new SimpleDateFormat();
     
     private String photoId;
 
     private String description;
     
-    public String userId;
+    private String userId;
+    
+    private Calendar created;    
 
     public String getPhotoId() {
         return photoId;
@@ -32,8 +39,17 @@ public class Photo {
         this.userId = userId;
     }
 
+    public Calendar getCreated() {
+        return created;
+    }
+    
+    public void setCreated(Calendar created) {
+        this.created = created;
+    }
+
     @Override
     public String toString() {
-        return "Photo [photoId=" + photoId + ", description=" + description + ", userId=" + userId + "]";
+        return "Photo [photoId=" + photoId + ", description=" + description + ", userId=" + userId + ", created="
+                + format.format(created.getTime()) + "]";
     }
 }

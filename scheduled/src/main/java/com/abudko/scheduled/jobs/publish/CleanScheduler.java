@@ -1,5 +1,6 @@
 package com.abudko.scheduled.jobs.publish;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -37,9 +38,7 @@ public class CleanScheduler implements Scheduler {
                 Thread.sleep(1000);
                 for (Photo photo : photos) {
                     try {
-                        String id = publishManagerUtils.getId(photo.getDescription());
-
-                        if (!isValid(id)) {
+                        if (!isValid(photo)) {
                             String info = String.format("Photo ['%s'] is not valid", photo.getDescription());
                             log.info(info);
 
@@ -65,7 +64,13 @@ public class CleanScheduler implements Scheduler {
         }
     }
 
-    private boolean isValid(String id) {
+    private boolean isValid(Photo photo) {
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.DATE, -14);
+        if (photo.getCreated().before(now)) {
+            return false;
+        }
+        String id = publishManagerUtils.getId(photo.getDescription());
         boolean valid = true;
         for (ItemValidityRules rule : itemValidityRules) {
             if (!rule.isValid(id)) {

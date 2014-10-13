@@ -2,6 +2,7 @@ package com.abudko.scheduled.vkontakte;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -186,6 +187,12 @@ public class PhotosTemplate implements PhotosOperations {
                 photo.setPhotoId(jsonNode.get("pid").asText());
                 photo.setDescription(jsonNode.get("text").textValue());
                 photo.setUserId(jsonNode.get("user_id").asText());
+                
+                Calendar calendar = Calendar.getInstance();
+                long created = Long.parseLong(jsonNode.get("created").asText());
+                calendar.setTimeInMillis(created * 1000l);
+                photo.setCreated(calendar);
+                
                 photos.add(photo);
             }
         }
