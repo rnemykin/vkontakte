@@ -51,9 +51,9 @@
       			<!-- <ref bean="dayIntervalTrigger"/> -->
       			<ref bean="randomlySelectedTrigger"/>
       			<!-- <ref bean="randomlySelectedTriggerLimit"/> -->
-      			<!-- <ref bean="publishHuutoTrigger"/>
-      			<ref bean="publishHuutoInternalTrigger"/>
-      			<ref bean="publishLekmerTrigger"/> -->
+      			<ref bean="publishHuutoTrigger"/>
+      			<!-- <ref bean="publishHuutoInternalTrigger"/> -->
+      			<ref bean="publishLekmerTrigger"/>
       			<ref bean="cleanTrigger"/>
       			<!-- <ref bean="clean2Trigger"/> -->
       			<ref bean="cleanAllTrigger"/>
