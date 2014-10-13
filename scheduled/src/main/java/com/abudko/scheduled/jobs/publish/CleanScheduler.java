@@ -66,7 +66,7 @@ public class CleanScheduler implements Scheduler {
 
     private boolean isValid(Photo photo) {
         Calendar now = Calendar.getInstance();
-        now.add(Calendar.DATE, -14);
+        now.add(Calendar.DATE, -21);
         if (photo.getCreated().before(now)) {
             return false;
         }
