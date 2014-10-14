@@ -30,7 +30,7 @@ public class CleanScheduler implements Scheduler {
     private List<ItemValidityRules> itemValidityRules;
 
     public void schedule() {
-        log.info("********* Start Clean2Scheduler *******");
+        log.info("********* Start CleanScheduler *******");
         try {
             List<String> albumIds = photoManager.getAlbumIds(AlbumMapper.GROUP_ID);
             for (String albumId : albumIds) {
@@ -56,10 +56,10 @@ public class CleanScheduler implements Scheduler {
                 }
             }
 
-            log.info("********* End Clean2Scheduler *******");
+            log.info("********* End CleanScheduler *******");
 
         } catch (Exception e) {
-            log.error("Exception happened during Clean2Scheduler: ", e);
+            log.error("Exception happened during CleanScheduler: ", e);
             throw new RuntimeException(e);
         }
     }
