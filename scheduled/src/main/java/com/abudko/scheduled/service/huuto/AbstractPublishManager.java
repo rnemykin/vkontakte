@@ -1,6 +1,7 @@
 package com.abudko.scheduled.service.huuto;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -54,30 +55,42 @@ public abstract class AbstractPublishManager implements PublishManager {
             try {
                 log.info(String.format("Publishing query response: %s", queryResponse.toString()));
 
-                PhotoData photoData = convert(category, queryResponse);
-                if (photoData.getAlbumId() == null) {
-                    log.warn(String.format("Unable to extract albumid for '%s' for category '%s'", queryResponse,
-                            category.name()));
-                    continue;
-                }
+                List<PhotoData> photoDatas = convert(category, queryResponse);
+                for (PhotoData photoData : photoDatas) {
+                    if (photoData.getAlbumId() == null) {
+                        log.warn(String.format("Unable to extract albumid for '%s' for category '%s'", queryResponse,
+                                category.name()));
+                        continue;
+                    }
 
-                String id = queryResponse.getItemResponse().getId();
-                if (isPhotoPublished(id, photoData) == false) {
-                    photoManager.publishPhoto(photoData);
-                } else {
-                    log.info(String.format("Photo with id '%s' already published", id));
+                    String id = queryResponse.getItemResponse().getId();
+                    if (isPhotoPublished(id, photoData) == false) {
+                        photoManager.publishPhoto(photoData);
+                    } else {
+                        log.info(String.format("Photo with id '%s' already published", id));
+                    }
                 }
             } catch (Throwable e) {
-                String error = String.format("Error '%s' happened while publishing queryResponse '%s'", e.getMessage(), queryResponse);
+                String error = String.format("Error '%s' happened while publishing queryResponse '%s'", e.getMessage(),
+                        queryResponse);
                 log.error(error, e.getMessage());
                 throw e;
             }
         }
     }
 
-    protected PhotoData convert(Category category, ListResponse listResponse) throws UnsupportedEncodingException {
+    protected List<PhotoData> convert(Category category, ListResponse listResponse) throws UnsupportedEncodingException {
         cropImage(listResponse);
-        return getPhotoData(category, listResponse);
+        
+        List<PhotoData> results = new ArrayList<>();
+        results.add(getPhotoData(category, listResponse));
+        
+        PhotoData photoDataForBrand = getPhotoDataForBrand(category, listResponse);
+        if (photoDataForBrand != null) {
+            results.add(photoDataForBrand);
+        }
+        
+        return results;
     }
 
     protected abstract String getImgUrl(ListResponse listResponse);
@@ -95,6 +108,20 @@ public abstract class AbstractPublishManager implements PublishManager {
         photoData.setDescription(getDescription(category, listResponse));
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
 
+        return photoData;
+    }
+    
+    protected PhotoData getPhotoDataForBrand(Category category, ListResponse listResponse) {
+        String albumIdForBrand = albumMapper.getAlbumIdForBrand(listResponse);
+        if (albumIdForBrand == null) {
+            return null;
+        }
+        PhotoData photoData = new PhotoData();
+        photoData.setGroupId(AlbumMapper.GROUP_ID);
+        photoData.setAlbumId(albumIdForBrand);
+        photoData.setDescription(getDescription(category, listResponse));
+        photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
+        
         return photoData;
     }
 

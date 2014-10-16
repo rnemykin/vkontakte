@@ -28,13 +28,15 @@ public class HuutoUsedPublishManager extends HuutoPublishManager {
             try {
                 log.info(String.format("Publishing query response: %s", queryResponse.toString()));
 
-                PhotoData photoData = convert(category, queryResponse);
-                
-                String id = queryResponse.getItemResponse().getId();
-                if (isPhotoPublished(id, photoData) == false) {
-                    photoManager.publishPhoto(photoData);
-                } else {
-                    log.info(String.format("Photo with id '%s' already published", id));
+                List<PhotoData> photoDatas = convert(category, queryResponse);
+                for (PhotoData photoData : photoDatas) {
+
+                    String id = queryResponse.getItemResponse().getId();
+                    if (isPhotoPublished(id, photoData) == false) {
+                        photoManager.publishPhoto(photoData);
+                    } else {
+                        log.info(String.format("Photo with id '%s' already published", id));
+                    }
                 }
             } catch (Throwable e) {
                 String error = String.format("Error '%s' happened while publishing queryResponse '%s'", e.getMessage(), queryResponse);

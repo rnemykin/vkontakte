@@ -112,4 +112,25 @@ public class AlbumMapperTest {
         
         assertTrue(Arrays.asList(AlbumMapper.TALVI_68_80, AlbumMapper.TALVI_86_98, AlbumMapper.TALVI_104_128, AlbumMapper.TALVI_134_164).contains(albumMapper.getAlbumId(Category.TALVIHOUSUT.name(), testListResponse)));
     }
+    
+    @Test
+    public void testGetAlbumIdForBrandNull() {
+        assertNull(albumMapper.getAlbumIdForBrand(testListResponse));
+    }
+    
+    @Test
+    public void testGetAlbumIdForBrand() {
+        testListResponse.setItemResponse(new ItemResponse());
+        testListResponse.setBrand("Reima");
+        
+        assertEquals(AlbumMapper.REIMA, albumMapper.getAlbumIdForBrand(testListResponse));
+    }
+    
+    @Test
+    public void testGetAlbumIdForBrandInvalid() {
+        testListResponse.setItemResponse(new ItemResponse());
+        testListResponse.setBrand("Invalid");
+        
+        assertNull(albumMapper.getAlbumIdForBrand(testListResponse));
+    }
 }

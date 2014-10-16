@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
+import com.abudko.reseller.huuto.query.enumeration.Brand;
 import com.abudko.reseller.huuto.query.enumeration.Category;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.google.common.collect.Range;
@@ -30,14 +31,20 @@ public class AlbumMapper {
     public static final String TALVIKENGAT_32_37 = "203809455";
     public static final String VILLA_68_92 = "204025638";
     public static final String VILLA_98_128 = "204025679";
+    public static final String REIMA = "204197598";
+    public static final String TICKET = "204197609";
+    public static final String VIKING = "204197626";
 
     private Map<String, RangeMap<Integer, String>> map = new HashMap<String, RangeMap<Integer, String>>();
+    
+    private Map<Brand, String> brandMap = new HashMap<Brand, String>();
 
     @PostConstruct
     public void init() {
         setupTalvi();
         setupTalviKengat();
         setupVillaFleece();
+        setupBrandMap();
     }
     
     private void setupTalvi() {
@@ -65,6 +72,13 @@ public class AlbumMapper {
         rangeMap.put(Range.closed(98, 128), VILLA_98_128);
         map.put(Category.VILLAHAALARI.name(), rangeMap);
     }
+    
+    private void setupBrandMap() {
+        brandMap.put(Brand.REIMA, REIMA);
+        brandMap.put(Brand.REIMATEC, REIMA);
+        brandMap.put(Brand.TICKET, TICKET);
+        brandMap.put(Brand.VIKING, VIKING);
+    }
 
     public String getAlbumId(String category, ListResponse listResponse) {
         Integer size = 1;
@@ -81,6 +95,20 @@ public class AlbumMapper {
             return null;
         }
         return rangeMap.get(size);
+    }
+    
+    public String getAlbumIdForBrand(ListResponse listResponse) {
+        if (listResponse.getBrand() == null) {
+            return null;
+        }
+        
+        try {
+            Brand brand = Brand.valueOf(listResponse.getBrand().toUpperCase());
+            return brandMap.get(brand);
+        }
+        catch (IllegalArgumentException e) {
+            return null;
+        }
     }
 
     public Collection<String> getAlbumIds(String category) {
