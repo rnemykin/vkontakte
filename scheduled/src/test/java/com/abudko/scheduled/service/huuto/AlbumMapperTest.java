@@ -31,26 +31,26 @@ public class AlbumMapperTest {
     public void testLowerBorderTalvi() {
         testListResponse.setSize("68");
         
-        assertEquals(AlbumMapper.TALVI_68_86, albumMapper.getAlbumId(Category.TALVIHAALARI.name(), testListResponse));
+        assertEquals(AlbumMapper.TALVI_68_80, albumMapper.getAlbumId(Category.TALVIHAALARI.name(), testListResponse));
     }
     
     @Test
     public void testInsideTalvi() {
         testListResponse.setSize("75");
         
-        assertEquals(AlbumMapper.TALVI_68_86, albumMapper.getAlbumId(Category.TALVIHAALARI.name(), testListResponse));
+        assertEquals(AlbumMapper.TALVI_68_80, albumMapper.getAlbumId(Category.TALVIHAALARI.name(), testListResponse));
     }
     
     @Test
     public void testUpperBorderTalvi() {
         testListResponse.setSize("98");
         
-        assertFalse(AlbumMapper.TALVI_68_86.equals(albumMapper.getAlbumId(Category.TALVIHAALARI.name(), testListResponse)));
+        assertFalse(AlbumMapper.TALVI_68_80.equals(albumMapper.getAlbumId(Category.TALVIHAALARI.name(), testListResponse)));
     }
     
     @Test
     public void testGetAlbumsTalvi() {
-        assertEquals(3, albumMapper.getAlbumIds(Category.TALVIHAALARI.name()).size());
+        assertEquals(4, albumMapper.getAlbumIds(Category.TALVIHAALARI.name()).size());
     }
     
     @Test
@@ -85,7 +85,7 @@ public class AlbumMapperTest {
     public void testUpperBorderVäli() {
         testListResponse.setSize("98");
         
-        assertFalse(AlbumMapper.TALVI_68_86.equals(albumMapper.getAlbumId(Category.VALIKAUSIHOUSUT.name(), testListResponse)));
+        assertFalse(AlbumMapper.TALVI_68_80.equals(albumMapper.getAlbumId(Category.VALIKAUSIHOUSUT.name(), testListResponse)));
     }
     
     @Test
@@ -110,6 +110,6 @@ public class AlbumMapperTest {
         testListResponse.setItemResponse(new ItemResponse());
         testListResponse.getItemResponse().setSizes(Arrays.asList("74", "104"));
         
-        assertTrue(Arrays.asList(AlbumMapper.TALVI_68_86, AlbumMapper.TALVI_92_128, AlbumMapper.TALVI_134_164).contains(albumMapper.getAlbumId(Category.TALVIHOUSUT.name(), testListResponse)));
+        assertTrue(Arrays.asList(AlbumMapper.TALVI_68_80, AlbumMapper.TALVI_86_98, AlbumMapper.TALVI_104_128, AlbumMapper.TALVI_134_164).contains(albumMapper.getAlbumId(Category.TALVIHOUSUT.name(), testListResponse)));
     }
 }
