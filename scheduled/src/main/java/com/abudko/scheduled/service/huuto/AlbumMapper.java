@@ -24,8 +24,9 @@ public class AlbumMapper {
     public static final String TALVI_68_86 = "203810597";
     public static final String TALVI_92_128 = "203810612";
     public static final String TALVI_134_164 = "203810636";
-    public static final String TALVIKENGAT_20_27 = "203810656";
-    public static final String TALVIKENGAT_28_37 = "203809455";
+    public static final String TALVIKENGAT_20_25 = "203810656";
+    public static final String TALVIKENGAT_26_31 = "204193543";
+    public static final String TALVIKENGAT_32_37 = "203809455";
     public static final String VILLA_68_92 = "204025638";
     public static final String VILLA_98_128 = "204025679";
 
@@ -50,8 +51,9 @@ public class AlbumMapper {
     
     private void setupTalviKengat() {
         RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
-        rangeMap.put(Range.closed(20, 27), TALVIKENGAT_20_27);
-        rangeMap.put(Range.closed(28, 37), TALVIKENGAT_28_37);
+        rangeMap.put(Range.closed(20, 25), TALVIKENGAT_20_25);
+        rangeMap.put(Range.closed(26, 31), TALVIKENGAT_26_31);
+        rangeMap.put(Range.closed(32, 37), TALVIKENGAT_32_37);
         map.put(Category.TALVIKENGAT.name(), rangeMap);
     }
     

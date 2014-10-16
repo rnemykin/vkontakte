@@ -63,6 +63,6 @@ public class LekmerPriceRulesTest {
         when(restTemplate.getForObject(Mockito.any(String.class), eq(RateResponse.class))).thenThrow(new RuntimeException());
         ReflectionTestUtils.setField(rules, "currencyService", currencyServiceReal);
         
-        assertEquals("1325", rules.calculateNew("5.0", new BigDecimal(0)));
+        assertEquals("1375", rules.calculateNew("5.0", new BigDecimal(0)));
     }
 }
