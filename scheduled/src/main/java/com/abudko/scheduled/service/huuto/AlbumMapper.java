@@ -103,7 +103,7 @@ public class AlbumMapper {
         }
         
         try {
-            Brand brand = Brand.valueOf(listResponse.getBrand().toUpperCase());
+            Brand brand = Brand.getBrandFrom(listResponse.getBrand().toUpperCase());
             return brandMap.get(brand);
         }
         catch (IllegalArgumentException e) {

@@ -127,6 +127,14 @@ public class AlbumMapperTest {
     }
     
     @Test
+    public void testGetAlbumIdForBrandNotStrictlyMatches() {
+        testListResponse.setItemResponse(new ItemResponse());
+        testListResponse.setBrand("Ticket To Heaven");
+        
+        assertEquals(AlbumMapper.TICKET, albumMapper.getAlbumIdForBrand(testListResponse));
+    }
+    
+    @Test
     public void testGetAlbumIdForBrandInvalid() {
         testListResponse.setItemResponse(new ItemResponse());
         testListResponse.setBrand("Invalid");
