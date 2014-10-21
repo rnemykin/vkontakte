@@ -7,10 +7,10 @@ import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 @Component
-public class LekmerPublishManager extends AbstractPublishManager {
+public class Lekmer2PublishManager extends AbstractPublishManager {
     
     @Autowired
-    protected AlbumMapper albumMapper;
+    protected AlbumMapper2 albumMapper2;
 
     @Override
     protected String getImgUrl(ListResponse listResponse) {
@@ -20,7 +20,7 @@ public class LekmerPublishManager extends AbstractPublishManager {
 
     @Override
     protected IAlbumMapper getAlbumMapper() {
-        return albumMapper;
+        return albumMapper2;
     }
 }
     

@@ -18,7 +18,7 @@ import com.google.common.collect.RangeMap;
 import com.google.common.collect.TreeRangeMap;
 
 @Component
-public class AlbumMapper2 {
+public class AlbumMapper2 implements IAlbumMapper {
 
     public static final String GROUP_ID = "60966965";
     public static final String USED_ALBUM_ID = "198051037";
@@ -121,5 +121,15 @@ public class AlbumMapper2 {
             return new ArrayList<String>();
         }
         return rangeMap.asMapOfRanges().values();
+    }
+    
+    public String getGroupId() {
+        return GROUP_ID;
+    }
+
+    @Override
+    public String getAlbumIdForBrand(ListResponse listResponse) {
+        // not supported
+        return null;
     }
 }

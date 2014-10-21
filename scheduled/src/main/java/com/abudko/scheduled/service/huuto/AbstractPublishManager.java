@@ -43,9 +43,6 @@ public abstract class AbstractPublishManager implements PublishManager {
     private ImageManipulator imageManipulator;
 
     @Autowired
-    protected AlbumMapper albumMapper;
-
-    @Autowired
     protected PublishManagerUtils publishManagerUtils;
 
     @Override
@@ -103,8 +100,8 @@ public abstract class AbstractPublishManager implements PublishManager {
 
     protected PhotoData getPhotoData(Category category, ListResponse listResponse) {
         PhotoData photoData = new PhotoData();
-        photoData.setGroupId(AlbumMapper.GROUP_ID);
-        photoData.setAlbumId(albumMapper.getAlbumId(category.name(), listResponse));
+        photoData.setGroupId(getAlbumMapper().getGroupId());
+        photoData.setAlbumId(getAlbumMapper().getAlbumId(category.name(), listResponse));
         photoData.setDescription(getDescription(category, listResponse));
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
 
@@ -112,12 +109,12 @@ public abstract class AbstractPublishManager implements PublishManager {
     }
     
     protected PhotoData getPhotoDataForBrand(Category category, ListResponse listResponse) {
-        String albumIdForBrand = albumMapper.getAlbumIdForBrand(listResponse);
+        String albumIdForBrand = getAlbumMapper().getAlbumIdForBrand(listResponse);
         if (albumIdForBrand == null) {
             return null;
         }
         PhotoData photoData = new PhotoData();
-        photoData.setGroupId(AlbumMapper.GROUP_ID);
+        photoData.setGroupId(getAlbumMapper().getGroupId());
         photoData.setAlbumId(albumIdForBrand);
         photoData.setDescription(getDescription(category, listResponse));
         photoData.setFileResource(new FileSystemResource(imageTempFileLocation));
@@ -152,5 +149,6 @@ public abstract class AbstractPublishManager implements PublishManager {
 
         return false;
     }
-
+    
+    protected abstract IAlbumMapper getAlbumMapper();
 }

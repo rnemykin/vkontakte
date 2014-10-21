@@ -29,7 +29,7 @@ public class PublishLekmer2Scheduler implements Scheduler {
     private QueryListService lekmerQueryListService;
 
     @Autowired
-    @Qualifier("lekmerPublishManager")
+    @Qualifier("lekmer2PublishManager")
     private PublishManager lekmerPublishManager;
 
     public void schedule() {
@@ -48,15 +48,14 @@ public class PublishLekmer2Scheduler implements Scheduler {
     private void publishLekmer() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
         publishLekmerInternal("talvihaalari", "TALVIHAALARI", 0);
-//        publishLekmerInternal("välikausihaalari", "VALIKAUSIHAALARI", 0);
         publishLekmerInternal("toppahaalari", "TALVIHAALARI", 0);
         publishLekmerInternal("toppapuku", "TALVIHAALARI", 0);
-        publishLekmerInternal("kaksiosainen+setti+talvi", "TALVIHAALARI", 0);
-        publishLekmerInternal("wind haalari", "VALIKAUSIHAALARI", 0);
-//        publishLekmerInternal("sadeasut", "SADEHAALARI", 85);
-//        publishLekmerInternal("kevät takki", "VALIKAUSITAKKI", 90);
-        publishLekmerInternal("talvitakkeja", "TALVITAKKI", 75);
-        publishLekmerInternal("toppahousut", "TALVIHOUSUT", 65);
+        publishLekmerInternal("kaksiosainen setti talvi", "TALVIHAALARI", 0);
+        publishLekmerInternal("Viking talvisaapaat", "TALVIKENGAT", 0);
+        publishLekmerInternal("Reima talvisaapaat", "TALVIKENGAT", 0);
+        publishLekmerInternal("Superfit talvisaapaat", "TALVIKENGAT", 0);
+//        publishLekmerInternal("talvitakkeja", "TALVITAKKI", 75);
+//        publishLekmerInternal("toppahousut", "TALVIHOUSUT", 65);
     }
 
     private void publishLekmerInternal(String query, String categoryenum, int limit)

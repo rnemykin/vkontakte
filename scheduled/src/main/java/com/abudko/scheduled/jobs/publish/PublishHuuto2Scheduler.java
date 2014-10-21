@@ -48,7 +48,7 @@ public class PublishHuuto2Scheduler implements Scheduler {
     private SearchQueryRules searchQueryRules;
 
     @Autowired
-    @Qualifier("huutoPublishManager")
+    @Qualifier("huuto2PublishManager")
     private PublishManager huutoPublishManager;
 
     public void schedule() {

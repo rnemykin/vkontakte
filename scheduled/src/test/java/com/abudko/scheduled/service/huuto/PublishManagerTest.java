@@ -53,6 +53,7 @@ public class PublishManagerTest {
     public void setup() {
         setField(publishManager, "imageTempFileLocation", "imageTempFileLocation");
         when(albumMapper.getAlbumId(Mockito.anyString(), Mockito.any(ListResponse.class))).thenReturn("23876523");
+        when(albumMapper.getGroupId()).thenReturn(AlbumMapper.GROUP_ID);
     }
 
     @Test

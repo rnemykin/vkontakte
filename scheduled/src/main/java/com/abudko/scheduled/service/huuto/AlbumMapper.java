@@ -19,7 +19,7 @@ import com.google.common.collect.RangeMap;
 import com.google.common.collect.TreeRangeMap;
 
 @Component
-public class AlbumMapper {
+public class AlbumMapper implements IAlbumMapper {
 
     public static final String GROUP_ID = "78393244";
     public static final String TALVI_68_80 = "203810597";
@@ -117,5 +117,9 @@ public class AlbumMapper {
             return new ArrayList<String>();
         }
         return rangeMap.asMapOfRanges().values();
+    }
+    
+    public String getGroupId() {
+        return GROUP_ID;
     }
 }

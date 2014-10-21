@@ -11,7 +11,9 @@ import com.abudko.scheduled.jobs.csv.RandomlySelectedScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedSchedulerLimit;
 import com.abudko.scheduled.jobs.publish.CleanScheduler;
 import com.abudko.scheduled.jobs.publish.PublishHuuto2InternalScheduler;
+import com.abudko.scheduled.jobs.publish.PublishHuuto2Scheduler;
 import com.abudko.scheduled.jobs.publish.PublishHuutoScheduler;
+import com.abudko.scheduled.jobs.publish.PublishLekmer2Scheduler;
 import com.abudko.scheduled.jobs.publish.PublishLekmerScheduler;
 
 public class ScheduledMbean {
@@ -32,10 +34,16 @@ public class ScheduledMbean {
     private PublishHuutoScheduler publishHuutoScheduler;
     
     @Autowired
+    private PublishHuuto2Scheduler publishHuuto2Scheduler;
+
+    @Autowired
     private PublishHuuto2InternalScheduler publishHuuto2InternalScheduler;
     
     @Autowired
     private PublishLekmerScheduler publishLekmerScheduler;
+    
+    @Autowired
+    private PublishLekmer2Scheduler publishLekmer2Scheduler;
     
     @Autowired
     private CleanScheduler cleanScheduler;
@@ -77,6 +85,11 @@ public class ScheduledMbean {
     }
     
     @ManagedOperation
+    public void startPublish2HuutoJob() {
+        publishHuuto2Scheduler.schedule();
+    }
+    
+    @ManagedOperation
     public void startPublishHuuto2InternalJob() {
         publishHuuto2InternalScheduler.schedule();
     }
@@ -84,6 +97,11 @@ public class ScheduledMbean {
     @ManagedOperation
     public void startPublishLekmerJob() {
         publishLekmerScheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startPublish2LekmerJob() {
+        publishLekmer2Scheduler.schedule();
     }
     
     @ManagedOperation
