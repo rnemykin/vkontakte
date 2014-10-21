@@ -52,10 +52,12 @@
       			<ref bean="randomlySelectedTrigger"/>
       			<!-- <ref bean="randomlySelectedTriggerLimit"/> -->
       			<ref bean="publishHuutoTrigger"/>
-      			<!-- <ref bean="publishHuutoInternalTrigger"/> -->
+      			<ref bean="publishHuuto2Trigger"/>
+      			<ref bean="publishHuuto2InternalTrigger"/>
       			<ref bean="publishLekmerTrigger"/>
+      			<ref bean="publishLekmer2Trigger"/>
       			<ref bean="cleanTrigger"/>
-      			<!-- <ref bean="clean2Trigger"/> -->
+      			<ref bean="clean2Trigger"/>
       			<ref bean="cleanAllTrigger"/>
       			<!-- <ref bean="warmTrigger"/> -->
       			<!-- <ref bean="pikalevoTrigger"/> -->
