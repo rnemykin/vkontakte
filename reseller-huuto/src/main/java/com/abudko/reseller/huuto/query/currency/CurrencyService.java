@@ -25,7 +25,7 @@ public class CurrencyService {
     
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    private static final BigDecimal DEFAULT_RATE = new BigDecimal(55);
+    private static final BigDecimal DEFAULT_RATE = new BigDecimal(57);
 
     private static final String URL = "http://rate-exchange.appspot.com/currency?from=EUR&to=RUB";
 
