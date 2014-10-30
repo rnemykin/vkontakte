@@ -12,7 +12,7 @@ import com.abudko.reseller.huuto.query.service.list.ListResponse;
 public class ItemIdExclusionFilter extends AbstractNotEmptyFilter {
 
     private static final List<String> EXCLUSION_LIST = Arrays.asList("LE", "LEJ81899", "LE475521 056",
-            "LE13092862 BRIGHT", "LE13092852 BRIGHT");
+            "LE13092862 BRIGHT", "LE13092852 BRIGHT", "LE13122 DARK PURP");
 
     @Override
     protected String getValue(ListResponse queryListResponse) {
