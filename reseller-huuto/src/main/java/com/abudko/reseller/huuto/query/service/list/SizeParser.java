@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class SizeParser {
 
     public static String getSize(String description) {
+        description = replace(description);
         Matcher matcher = Pattern.compile("koko\\s*(\\d+)").matcher(description);
         if (matcher.find()) {
             return matcher.group(1);
@@ -37,5 +38,15 @@ public class SizeParser {
         }
 
         return false;
+    }
+    
+    private static String replace(String description) {
+        Matcher matcher = Pattern.compile("\\d+,\\d+").matcher(description);
+        if (matcher.find()) {
+            String group = matcher.group(0);
+            return description.replace(group, "");
+        }
+        
+        return description;
     }
 }

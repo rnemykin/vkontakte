@@ -110,4 +110,9 @@ public class SizeParserTest {
     public void testGetSizeEuroa() {
         assertEquals("20", SizeParser.getSize("Viking Gore-Tex talvikengät 20 Uudet! (79 euroa)"));
     }
+    
+    @Test
+    public void testGetSizeComma() {
+        assertEquals("27", SizeParser.getSize("Reima Rusko liila - harmaat talvikengät 27 / 17,7 cm UUDET"));
+    }
 }
