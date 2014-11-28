@@ -29,7 +29,7 @@ public class LekmerItemValidityRules extends AbstractItemValidityRules {
     private QueryListService queryListService;
     
     @Autowired
-    @Qualifier("lekmerHtmlParamBuilder")
+    @Qualifier("simpleHtmlParamBuilder")
     private ParamBuilder paramBuilder;
 
     @Override

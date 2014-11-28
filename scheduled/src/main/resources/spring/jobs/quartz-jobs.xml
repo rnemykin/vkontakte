@@ -22,6 +22,7 @@
     <import resource="publish/quartz-publish-huuto2.xml"/>
     <import resource="publish/quartz-publish-huuto.xml"/>
     <import resource="publish/quartz-publish-huuto-internal2.xml"/>
+    <import resource="publish/quartz-publish-city.xml"/>
     <import resource="publish/quartz-publish-lekmer.xml"/>
     <import resource="publish/quartz-publish-lekmer2.xml"/>
     <import resource="publish/quartz-clean.xml"/>

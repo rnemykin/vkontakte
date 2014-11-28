@@ -51,12 +51,12 @@ public class AtomQueryListServiceIntegrationTest {
 
     @Test
     public void testCurrentPrice() throws Exception {
-        assertEquals("67.00", response.getCurrentPrice());
+        assertEquals("59.00", response.getCurrentPrice());
     }
     
     @Test
     public void testFullPrice() throws Exception {
-        assertEquals("74.00", response.getFullPrice());
+        assertEquals("64.00", response.getFullPrice());
     }
     
     @Test

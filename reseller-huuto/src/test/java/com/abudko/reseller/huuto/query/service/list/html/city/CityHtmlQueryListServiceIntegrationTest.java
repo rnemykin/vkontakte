@@ -1,4 +1,6 @@
-package com.abudko.reseller.huuto.query.service.list.html.lekmer;
+package com.abudko.reseller.huuto.query.service.list.html.city;
+
+import static org.junit.Assert.assertFalse;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -11,20 +13,24 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.abudko.reseller.huuto.query.builder.ParamBuilder;
+import com.abudko.reseller.huuto.query.mapper.ParamMapper;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.abudko.reseller.huuto.query.service.list.QueryListService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public abstract class LekmerHtmlQueryListServiceIntegrationTest {
+public abstract class CityHtmlQueryListServiceIntegrationTest {
+
+    @Autowired
+    private ParamMapper queryParamMapper;
 
     @Autowired
     @Qualifier("simpleHtmlParamBuilder")
     private ParamBuilder paramBuilder;
 
     @Autowired
-    @Qualifier("lekmerHtmlQueryListServiceImpl")
+    @Qualifier("cityHtmlQueryListServiceImpl")
     private QueryListService queryService;
 
     @Test
@@ -33,6 +39,8 @@ public abstract class LekmerHtmlQueryListServiceIntegrationTest {
         String query = getQuery(searchParams);
         
         Collection<ListResponse> results = queryService.search(query, searchParams);
+        
+        assertFalse(results.isEmpty());
     }
 
     private String getQuery(SearchParams searchParams) throws IllegalAccessException, InvocationTargetException,
@@ -42,7 +50,7 @@ public abstract class LekmerHtmlQueryListServiceIntegrationTest {
     
     private SearchParams getSearchParams() {
         SearchParams searchParams = new SearchParams();
-        searchParams.setWords("TALVIHAALARI");
+        searchParams.setWords("viking lasten talvi");
         
         return searchParams;
     }

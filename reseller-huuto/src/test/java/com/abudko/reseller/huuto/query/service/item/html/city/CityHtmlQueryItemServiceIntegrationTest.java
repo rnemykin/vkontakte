@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.item.html.lekmer;
+package com.abudko.reseller.huuto.query.service.item.html.city;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,15 +12,15 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public abstract class LekmerHtmlQueryItemServiceIntegrationTest {
+public abstract class CityHtmlQueryItemServiceIntegrationTest {
     
     @Autowired
-    @Qualifier("lekmerHtmlQueryItemServiceImpl")
+    @Qualifier("cityHtmlQueryItemServiceImpl")
     private QueryItemService service;
 
     @Test
     public void testCall() {
-        ItemResponse itemResponse = service.extractItem("http://lekmer.fi/lastenvaatteet/Ulkovaatteet/haalarit/abeko-haalari-vuorillinen-ja-vedenpitävä-lennon-sininen");
+        ItemResponse itemResponse = service.extractItem("6016299");
         
         System.out.println(itemResponse);
     }

@@ -1,7 +1,6 @@
-package com.abudko.reseller.huuto.query.service.list.html.lekmer;
+package com.abudko.reseller.huuto.query.service.list.html.city;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -16,15 +15,15 @@ import com.abudko.reseller.huuto.query.service.list.HtmlParserTestUtils;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.abudko.reseller.huuto.query.service.list.html.HtmlListParser;
 
-public class LekmerHtmlListParserTest {
-
-    private static HtmlListParser htmlParser = new LekmerHtmlListParser();
+public class CityHtmlListParserTest {
+ 
+    private static HtmlListParser htmlParser = new CityHtmlListParser();
     private static String html;
     private static Collection<ListResponse> responses;
 
     static {
         try {
-            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/lekmer/lekmer-search.html");
+            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/city/city-search.html");
             responses = htmlParser.parse(html);
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,7 +39,7 @@ public class LekmerHtmlListParserTest {
 
     @Test
     public void testResponseSize() {
-        assertEquals(48, responses.size());
+        assertEquals(13, responses.size());
     }
     
     @Test
@@ -52,12 +51,12 @@ public class LekmerHtmlListParserTest {
     public void testImgSrc() {
         ListResponse imgSrcResponse = new ArrayList<ListResponse>(responses).get(5);
         assertTrue("Src: " + imgSrcResponse.getImgBaseSrc(),
-                imgSrcResponse.getImgBaseSrc().contains(LekmerHtmlListParser.IMG_SRC_BIG));
+                imgSrcResponse.getImgBaseSrc().contains("www.citymarket.fi/images/catalog/small/viking-lasten_gore-tex_talvikengat-2052603.jpg"));
     }
     
     @Test
     public void testBrand() {
-        assertNotNull("Brand: " + queryResponse.getBrand(), queryResponse.getBrand());
+        assertEquals("VIKING", queryResponse.getBrand());
     }
     
     @Test
@@ -72,6 +71,6 @@ public class LekmerHtmlListParserTest {
     
     @Test
     public void testItemUrl() {
-        assertTrue("Url: " + queryResponse.getItemUrl(), queryResponse.getItemUrl().contains("http://lekmer.fi/"));
+        assertTrue("Url: " + queryResponse.getItemUrl(), queryResponse.getItemUrl().contains("http://www.citymarket.fi/shop/fi/kcitymarket/viking-windchill-jr-gtx-talvikenka-7204670--malli"));
     }
 }
