@@ -9,6 +9,7 @@ import com.abudko.scheduled.jobs.csv.HourIntervalScheduler;
 import com.abudko.scheduled.jobs.csv.PikalevoScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedScheduler;
 import com.abudko.scheduled.jobs.csv.RandomlySelectedSchedulerLimit;
+import com.abudko.scheduled.jobs.publish.Clean2Scheduler;
 import com.abudko.scheduled.jobs.publish.CleanScheduler;
 import com.abudko.scheduled.jobs.publish.PublishCityScheduler;
 import com.abudko.scheduled.jobs.publish.PublishHuuto2InternalScheduler;
@@ -51,6 +52,9 @@ public class ScheduledMbean {
     
     @Autowired
     private CleanScheduler cleanScheduler;
+    
+    @Autowired
+    private Clean2Scheduler clean2Scheduler;
 
     @Autowired
     private CleanAllScheduler cleanAllScheduler;
@@ -116,6 +120,21 @@ public class ScheduledMbean {
     @ManagedOperation
     public void startCleanJob() {
         cleanScheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startClean2Job() {
+        clean2Scheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startCustomCleanJob(String photoIdTypeStartPrefix, String keyword) {
+        cleanScheduler.clean(photoIdTypeStartPrefix, keyword);
+    }
+    
+    @ManagedOperation
+    public void startCustomClean2Job(String photoIdTypeStartPrefix, String keyword) {
+        clean2Scheduler.clean(photoIdTypeStartPrefix, keyword);
     }
     
     @ManagedOperation
