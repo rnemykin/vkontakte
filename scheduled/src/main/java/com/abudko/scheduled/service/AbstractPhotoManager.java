@@ -74,15 +74,19 @@ public abstract class AbstractPhotoManager implements PhotoManager {
                 continue;
             }
             
-            List<Photo> photos = this.getPhotos(groupId, albumId);
-            
-            for (Photo photo : photos) {
-                if (userId.equals(getOwnerId(photo.getUserId()))) {
-                    this.deletePhotoForce(photo.getPhotoId(), groupId); 
+            try {
+                List<Photo> photos = this.getPhotos(groupId, albumId);
+
+                for (Photo photo : photos) {
+                    if (userId.equals(getOwnerId(photo.getUserId()))) {
+                        this.deletePhotoForce(photo.getPhotoId(), groupId);
+                    }
                 }
+
+                processed.add(groupId + " " + albumId);
+            } catch (Exception e) {
+                log.error(String.format("Can't clean photos in groupid [%s], albumid [%s]", groupId, albumId), e);
             }
-            
-            processed.add(groupId + " " + albumId);
         }
     }
 
