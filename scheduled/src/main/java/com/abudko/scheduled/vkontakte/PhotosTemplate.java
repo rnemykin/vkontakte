@@ -160,11 +160,12 @@ public class PhotosTemplate implements PhotosOperations {
     }
 
     @Override
-    public List<Photo> getPhotos(String ownerId, String albumId) {
+    public List<Photo> getPhotos(String ownerId, String albumId, int offset) {
         Properties props = new Properties();
 
         props.put("owner_id", ownerId);
         props.put("album_id", albumId);
+        props.put("offset", offset);
 
         URI uri = makeOperationURL("photos.get", props);
 

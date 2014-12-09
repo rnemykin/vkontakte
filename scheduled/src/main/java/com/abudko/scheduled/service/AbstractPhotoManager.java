@@ -153,13 +153,29 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
         return null;
     }
-
+    
     @Override
     public List<Photo> getPhotos(String ownerId, String albumId) throws InterruptedException {
+        List<Photo> photos = new ArrayList<>();
+        
+        int n = 4;
+        int max_amount = 1000;
+        int offset = 0;
+        
+        for (int i = 0; i < n; i++) {
+            List<Photo> photosInternal = getPhotosInternal(ownerId, albumId, offset); 
+            photos.addAll(photosInternal);
+            offset += max_amount;
+        }
+        
+        return photos;
+    }
+
+    private List<Photo> getPhotosInternal(String ownerId, String albumId, int offset) throws InterruptedException {
         log.info(String.format("Getting photos: groupid '%s', albumid '%s'", ownerId, albumId));
 
         Thread.sleep(sleepInterval);
-        List<Photo> photos = photosTemplate.getPhotos(getOwnerId(ownerId), albumId);
+        List<Photo> photos = photosTemplate.getPhotos(getOwnerId(ownerId), albumId, offset);
 
         return photos;
     }

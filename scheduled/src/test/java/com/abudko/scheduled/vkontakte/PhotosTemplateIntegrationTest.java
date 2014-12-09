@@ -15,7 +15,7 @@ public class PhotosTemplateIntegrationTest {
 
     @Test(expected = RuntimeException.class)
     public void testGetPhotosNegative() {
-        photosTemplate.getPhotos("ownerId", "albumId");
+        photosTemplate.getPhotos("ownerId", "albumId", 0);
     }
 
 }
