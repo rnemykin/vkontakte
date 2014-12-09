@@ -47,7 +47,6 @@ public abstract class AbstractAlbumCleaner {
                     } catch (Exception e) {
                         log.error(String.format("Exception happened during cleaning photo '%s' in album '%s'", photo,
                                 albumId), e);
-                        throw e;
                     }
                 }
             }
