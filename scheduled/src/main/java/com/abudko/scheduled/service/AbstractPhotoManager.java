@@ -79,7 +79,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
                 for (Photo photo : photos) {
                     if (userId.equals(getOwnerId(photo.getUserId()))) {
-                        this.deletePhotoForce(photo.getPhotoId(), groupId);
+                        this.deletePhoto(photo.getPhotoId(), groupId);
                     }
                 }
 
