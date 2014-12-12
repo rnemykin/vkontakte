@@ -4,12 +4,14 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.abudko.scheduled.rules.ItemValidityRules;
 import com.abudko.scheduled.vkontakte.Photo;
 
 @Component
+@Scope(value = "prototype")
 public class ItemValidityRulesAlbumCleaner extends AbstractAlbumCleaner {
     
     @Autowired

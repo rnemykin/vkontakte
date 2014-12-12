@@ -1,10 +1,12 @@
 package com.abudko.scheduled.service.huuto.clean;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.abudko.scheduled.vkontakte.Photo;
 
 @Component
+@Scope(value = "prototype")
 public class PhotoTypeKeywordAlbumCleaner extends AbstractAlbumCleaner {
     
     private String photoIdTypeStartPrefix;
