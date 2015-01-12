@@ -33,6 +33,14 @@ public class SizeParser {
             return true;
         }
         
+        int i1 = description.indexOf(str) + str.length();
+        if (i1 >= 0 && i1 < description.length()) {  
+            String substring = description.substring(i1, i1 + 1);
+            if (substring.equals("€")) {
+                return true;
+            }
+        }
+        
         if (matcher.find()) {
             return matcher.group(1).equals(str);
         }

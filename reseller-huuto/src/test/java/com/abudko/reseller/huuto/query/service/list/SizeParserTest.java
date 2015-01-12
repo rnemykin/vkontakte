@@ -115,4 +115,9 @@ public class SizeParserTest {
     public void testGetSizeComma() {
         assertEquals("27", SizeParser.getSize("Reima Rusko liila - harmaat talvikengät 27 / 17,7 cm UUDET"));
     }
+    
+    @Test
+    public void testGetSizeSizeRange() {
+        assertEquals("116", SizeParser.getSize("Color Kids talvihaalari 5v 110-116 ovh 95€"));
+    }
 }
