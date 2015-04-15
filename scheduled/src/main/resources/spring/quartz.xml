@@ -52,12 +52,12 @@
       			<!-- <ref bean="dayIntervalTrigger"/> -->
       			<ref bean="randomlySelectedTrigger"/>
       			<!-- <ref bean="randomlySelectedTriggerLimit"/> -->
-      			<!-- <ref bean="publishHuutoTrigger"/>
-      			<ref bean="publishHuuto2Trigger"/> -->
+      			<ref bean="publishHuutoTrigger"/>
+      			<ref bean="publishHuuto2Trigger"/>
       			<!-- <ref bean="publishHuuto2InternalTrigger"/> -->
       			<!-- <ref bean="publishCityTrigger"/> -->
-      			<!-- <ref bean="publishLekmerTrigger"/>
-      			<ref bean="publishLekmer2Trigger"/> -->
+      			<ref bean="publishLekmerTrigger"/>
+      			<ref bean="publishLekmer2Trigger"/>
       			<ref bean="cleanTrigger"/>
       			<ref bean="clean2Trigger"/>
       			<ref bean="cleanAllTrigger"/>
