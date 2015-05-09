@@ -62,7 +62,7 @@
       			<ref bean="clean2Trigger"/>
       			<ref bean="cleanAllTrigger"/>
       			<!-- <ref bean="warmTrigger"/> -->
-      			<!-- <ref bean="pikalevoTrigger"/> -->
+      			<ref bean="pikalevoTrigger"/>
             </list>
         </property>
     </bean>
