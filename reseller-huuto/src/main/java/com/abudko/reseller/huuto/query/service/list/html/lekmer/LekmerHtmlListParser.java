@@ -73,6 +73,11 @@ public class LekmerHtmlListParser implements HtmlListParser {
             itemUrl = attributes.get("href");
         }
         
+        if (StringUtils.isEmpty(itemUrl)) {
+            attributes = product_info.child(2).attributes();
+            itemUrl = attributes.get("href");
+        }
+        
         return itemUrl;
     }
     
@@ -83,6 +88,10 @@ public class LekmerHtmlListParser implements HtmlListParser {
         
         if (StringUtils.isEmpty(description)) {
             description = product_info.child(0).ownText();
+        }
+        
+        if (description.contains("Testivoittaja")) {
+            description = product_info.child(2).ownText();
         }
         
         return description;

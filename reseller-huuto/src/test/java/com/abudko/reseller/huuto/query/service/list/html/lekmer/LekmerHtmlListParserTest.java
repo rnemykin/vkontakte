@@ -40,7 +40,7 @@ public class LekmerHtmlListParserTest {
 
     @Test
     public void testResponseSize() {
-        assertEquals(48, responses.size());
+        assertEquals(1, responses.size());
     }
     
     @Test
@@ -50,7 +50,7 @@ public class LekmerHtmlListParserTest {
     
     @Test
     public void testImgSrc() {
-        ListResponse imgSrcResponse = new ArrayList<ListResponse>(responses).get(5);
+        ListResponse imgSrcResponse = new ArrayList<ListResponse>(responses).get(0);
         assertTrue("Src: " + imgSrcResponse.getImgBaseSrc(),
                 imgSrcResponse.getImgBaseSrc().contains(LekmerHtmlListParser.IMG_SRC_BIG));
     }

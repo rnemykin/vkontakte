@@ -35,12 +35,12 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testId() {
-        assertEquals("LE511103-6980", response.getId());
+        assertEquals("LE158-524-143", response.getId());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("49.50", response.getPrice());
+        assertEquals("59.95", response.getPrice());
     }
     
     @Test
@@ -50,7 +50,7 @@ public class LekmerHtmlItemParserTest {
     
     @Test
     public void testImgSrc() {
-        assertEquals("http://b-lekmer.r.worldssl.net/1091533/productmanMeasurement465x500/reima-untuvatakki-tekoturkissomisteella-abe-laivastonsininen.jpg", response.getImgBaseSrc());
+        assertEquals("http://a-lekmer.r.worldssl.net/1123570/productmanMeasurement465x500/ticket-outdoor-toppahaalari-mini-vedenpitava-snow-baggie-suit.jpg", response.getImgBaseSrc());
     }
     
     @Test

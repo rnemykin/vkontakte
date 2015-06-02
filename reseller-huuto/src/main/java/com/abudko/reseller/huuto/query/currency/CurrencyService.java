@@ -41,7 +41,7 @@ public class CurrencyService {
         try {
             rate = restTemplate.getForObject(URL, RateResponse.class).getRate();
         } catch (Throwable e) {
-            log.error("Unable to extract currency rate, querying CBR", e);
+            log.error("Unable to extract currency rate, let's try querying CBR", e);
             rate = getRateCbr();
         }
         

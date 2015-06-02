@@ -18,7 +18,7 @@
 				<bean
 					class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
 				<bean
-					class="org.springframework.http.converter.StringHttpMessageConverter" />
+					class="com.abudko.reseller.huuto.query.CustomStringHttpMessageConverter" />
 				<bean
 					class="org.springframework.http.converter.ResourceHttpMessageConverter" />
 				<bean class="org.springframework.http.converter.FormHttpMessageConverter" />

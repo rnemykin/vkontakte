@@ -20,6 +20,13 @@ public class BrandTest {
 
         assertEquals(Brand.REIMATEC, Brand.getBrandFrom(testStr));
     }
+    
+    @Test
+    public void testGetBrandFromTicketOutdoor() {
+        String testStr = "Ticket Outdoor";
+
+        assertEquals(Brand.TICKET, Brand.getBrandFrom(testStr));
+    }
 
     @Test
     public void testGetBrandFromLowerCase() {
