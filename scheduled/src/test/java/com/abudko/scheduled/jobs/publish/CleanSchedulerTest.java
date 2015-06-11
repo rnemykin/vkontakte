@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
@@ -22,6 +23,7 @@ import com.abudko.scheduled.rules.ItemValidityRules;
 import com.abudko.scheduled.service.PhotoManager;
 import com.abudko.scheduled.service.huuto.AlbumMapper;
 import com.abudko.scheduled.service.huuto.PublishManagerUtils;
+import com.abudko.scheduled.service.huuto.clean.ItemValidityRulesAlbumCleaner;
 import com.abudko.scheduled.vkontakte.Photo;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -50,6 +52,9 @@ public class CleanSchedulerTest {
     private ItemValidityRules rule2;
     
     @InjectMocks
+    private ItemValidityRulesAlbumCleaner itemValidityRulesAlbumCleaner = new ItemValidityRulesAlbumCleaner();
+    
+    @InjectMocks
     public CleanScheduler cleanScheduler = new CleanScheduler();
     
     @Before
@@ -58,7 +63,8 @@ public class CleanSchedulerTest {
         rules.add(rule1);
         rules.add(rule2);
         
-        ReflectionTestUtils.setField(cleanScheduler, "itemValidityRules", rules);
+        ReflectionTestUtils.setField(cleanScheduler, "itemValidityRulesAlbumCleaner", itemValidityRulesAlbumCleaner);
+        ReflectionTestUtils.setField(itemValidityRulesAlbumCleaner, "itemValidityRules", rules);
         setupAlbums();
     }
     

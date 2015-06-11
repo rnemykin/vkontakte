@@ -1,4 +1,4 @@
-biddernro,sellernro,category,classification,addtime,closingtime,price_min,price_max,location,words,seller_type,sellstyle,status,zipcode,categoryenum
+biddernro,seller,category,classification,addtime,closingtime,price_min,price_max,area,words,seller_type,sellstyle,status,zipcode,categoryenum
 ,,159,,-3600,,,1150,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,Risport,,,,,
 ,,159,,-3600,,,1150,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,Riedell,,,,,
 ,,159,,-3600,,,1150,Espoo%20OR%20Helsinki%20OR%20Vantaa%20OR%20Kauniainen,Edea,,,,,

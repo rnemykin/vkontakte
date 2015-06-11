@@ -42,12 +42,12 @@ public class AtomParamBuilder implements ParamBuilder {
         result.put("condition", params.getClassification());
         result.put("type", params.getSellstyle());
         result.put("status", params.getStatus());
-        result.put("location", params.getLocation());
+        result.put("location", params.getArea());
         result.put("bidder", params.getBiddernro());
         result.put("closingTime", params.getClosingtime());
         result.put("publishingTime", params.getAddtime());
         result.put("sellerType", params.getSeller_type());
-        result.put("seller", params.getSellernro());
+        result.put("seller", params.getSeller());
 
         String categoryName = params.getWords();
         if (StringUtils.hasLength(categoryName)) {

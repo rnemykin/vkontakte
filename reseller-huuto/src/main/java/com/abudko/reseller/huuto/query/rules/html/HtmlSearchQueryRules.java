@@ -10,7 +10,7 @@ public class HtmlSearchQueryRules implements SearchQueryRules {
 
     @Override
     public void apply(SearchParams searchParams) {
-        searchParams.setLocation("Helsinki%20OR%20Espoo%20OR%20Vantaa%20OR%20Kauniainen");
+        searchParams.setArea("Helsinki%20OR%20Espoo%20OR%20Vantaa%20OR%20Kauniainen");
         searchParams.setClassification("new");
 //        searchParams.setSellstyle("buy-now");
     }

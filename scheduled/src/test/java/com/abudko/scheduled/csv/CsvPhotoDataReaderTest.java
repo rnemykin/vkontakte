@@ -33,7 +33,7 @@ public class CsvPhotoDataReaderTest {
     
     @Test
     public void testReadFile() throws IOException {
-        assertEquals("1.jpg", reader.read(FILE_LOCATION).get(0).getFileResource().getFile().getName());
+        assertEquals("2.jpg", reader.read(FILE_LOCATION).get(0).getFileResource().getFile().getName());
     }
     
     @Test

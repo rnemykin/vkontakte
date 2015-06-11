@@ -42,7 +42,7 @@ public class HuutoHtmlListParserTest {
 
     @Before
     public void setup() throws IOException {
-        queryResponse = responses.iterator().next();
+        queryResponse = new ArrayList<ListResponse>(responses).get(3);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class HuutoHtmlListParserTest {
 
     @Test
     public void testResponseSize() {
-        assertEquals(33, responses.size());
+        assertEquals(52, responses.size());
     }
 
     @Test
@@ -111,7 +111,7 @@ public class HuutoHtmlListParserTest {
 
     @Test
     public void testFullPriceBiggerThanCurrentPrice() {
-        ListResponse fullPriceQueryResponse = new ArrayList<ListResponse>(responses).get(5);
+        ListResponse fullPriceQueryResponse = new ArrayList<ListResponse>(responses).get(4);
         String currentPrice = fullPriceQueryResponse.getCurrentPrice();
         String fullPrice = fullPriceQueryResponse.getFullPrice();
 

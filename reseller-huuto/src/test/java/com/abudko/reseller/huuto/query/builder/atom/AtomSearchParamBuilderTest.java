@@ -44,7 +44,7 @@ public class AtomSearchParamBuilderTest {
     @Test
     public void testLocation() throws Exception {
         String location = "location";
-        searchParams.setLocation(location);
+        searchParams.setArea(location);
 
         String query = builder.buildQuery(searchParams);
 
@@ -82,13 +82,13 @@ public class AtomSearchParamBuilderTest {
     }
 
     @Test
-    public void testSellernro() throws Exception {
-        String sellernro = "sellernro";
-        searchParams.setSellernro(sellernro);
+    public void testSeller() throws Exception {
+        String seller = "seller";
+        searchParams.setSeller(seller);
 
         String query = builder.buildQuery(searchParams);
 
-        assertEquals("?seller=" + sellernro, query);
+        assertEquals("?seller=" + seller, query);
     }
 
     @Test
@@ -188,7 +188,7 @@ public class AtomSearchParamBuilderTest {
         String priceMin = "22";
         searchParams.setPrice_min(priceMin);
         String location = "location";
-        searchParams.setLocation(location);
+        searchParams.setArea(location);
         String zipcode = "00000";
         searchParams.setZipcode(zipcode);
         String status = "status";
@@ -197,8 +197,8 @@ public class AtomSearchParamBuilderTest {
         searchParams.setClassification(classification);
         String biddernro = "87528723";
         searchParams.setBiddernro(biddernro);
-        String sellernro = "sellernro";
-        searchParams.setSellernro(sellernro);
+        String seller = "seller";
+        searchParams.setSeller(seller);
         String sellerType = "sellerType";
         searchParams.setSeller_type(sellerType);
         Category words = Category.TALVIKENGAT;
@@ -216,7 +216,7 @@ public class AtomSearchParamBuilderTest {
 
         assertEquals("?condition=" + classification + "&type=" + sellstyle + "&status=" + status
                 + "&location=" + location + "&bidder=" + biddernro + "&closingTime="
-                + closingtime + "&publishingTime=" + addtime + "&sellerType=" + sellerType + "&seller=" + sellernro
+                + closingtime + "&publishingTime=" + addtime + "&sellerType=" + sellerType + "&seller=" + seller
                 + "&q=" + words.getValueAtom() + "&category=728&category=736", query);
     }
 }

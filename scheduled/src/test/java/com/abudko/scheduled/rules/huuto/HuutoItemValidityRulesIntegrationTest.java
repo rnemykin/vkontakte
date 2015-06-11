@@ -67,7 +67,7 @@ public class HuutoItemValidityRulesIntegrationTest {
     private SearchParams getSearchParams() {
         SearchParams searchParams = new SearchParams();
         searchParams.setWords("TALVIHAALARI");
-        searchParams.setLocation("ESPOO");
+        searchParams.setArea("ESPOO");
         return searchParams;
     }
 

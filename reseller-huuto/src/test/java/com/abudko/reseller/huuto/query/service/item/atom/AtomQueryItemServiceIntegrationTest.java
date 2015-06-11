@@ -20,8 +20,8 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
 public class AtomQueryItemServiceIntegrationTest {
 
-    private static final String ITEM_URL = "ticket-to-heaven-toppahaalari-koko-80-uusi/327072985";
-    private static final String ITEM_URL_NO_OSTA_HETI = "reimatec-talvihousut-110cm/325784667";
+    private static final String ITEM_URL = "uusi-poikien-talvihaalari-everest-koko-104/365596671";
+    private static final String ITEM_URL_NO_OSTA_HETI = "beige-talvihaalari-110/365322988";
 
     @Autowired
     @Qualifier("atomQueryItemServiceImpl")
@@ -36,7 +36,7 @@ public class AtomQueryItemServiceIntegrationTest {
 
     @Test
     public void testItemResponseSeller() {
-        assertEquals("Pauliina000", response.getSeller());
+        assertEquals("gabca123", response.getSeller());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class AtomQueryItemServiceIntegrationTest {
 
     @Test
     public void testItemResponsePrice() {
-        assertEquals("95.00", response.getPrice());
+        assertEquals("69.00", response.getPrice());
     }
     
     @Test
@@ -62,28 +62,28 @@ public class AtomQueryItemServiceIntegrationTest {
     @Test
     public void testItemResponsePriceNoOstaHeti() {
         response = atomQueryItemService.extractItem(ITEM_URL_NO_OSTA_HETI);
-        assertEquals("41.00", response.getPrice());
+        assertEquals("3.00", response.getPrice());
     }
     
     @Test
     public void testItemResponsePriceNoOstaHetiCurrentPriceSet() {
         response = atomQueryItemService.extractItem(ITEM_URL_NO_OSTA_HETI);
-        assertEquals("41.00", response.getCurrentPrice());
+        assertEquals("3.00", response.getCurrentPrice());
     }
 
     @Test
     public void testItemResponseImgSrc() {
-        assertEquals("http://kuvat2.huuto.net/9/72/7df2e8e94252fd23ac509067571fc", response.getImgBaseSrc());
+        assertEquals("http://kuvat2.huuto.net/b/a6/78914488563e04d8a9dc9aa1a0816", response.getImgBaseSrc());
     }
     
     @Test
     public void testItemResponseID() {
-        assertEquals("327072985", response.getId());
+        assertEquals(ITEM_URL.substring(ITEM_URL.lastIndexOf("/") + 1, ITEM_URL.length()), response.getId());
     }
 
     @Test
     public void testItemResponseItemStatus() {
-        assertEquals(ItemStatus.OPENED, response.getItemStatus());
+        assertEquals(ItemStatus.CLOSED, response.getItemStatus());
     }
 
     @Test

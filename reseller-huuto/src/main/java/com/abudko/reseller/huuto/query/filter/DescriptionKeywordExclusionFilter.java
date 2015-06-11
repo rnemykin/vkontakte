@@ -11,7 +11,7 @@ import com.abudko.reseller.huuto.query.service.list.ListResponse;
 public class DescriptionKeywordExclusionFilter extends AbstractNotEmptyFilter {
 
     private static final List<String> EXCLUSION_LIST = Arrays.asList("vakosamettihousut", "tunika", "leggingsit",
-            "shortsit", "toppi", "mekko", "hame", "t-paita", "TILAUSTUOTE");
+            "shortsit", "toppi", "mekko", "hame", "t-paita", "sukkahousut", "uimapuku", "TILAUSTUOTE");
 
     @Override
     protected String getValue(ListResponse queryListResponse) {

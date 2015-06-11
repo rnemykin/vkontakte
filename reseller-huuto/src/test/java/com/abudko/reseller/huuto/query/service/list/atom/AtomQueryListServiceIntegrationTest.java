@@ -46,17 +46,17 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testDescription() throws Exception {
-        assertEquals("Uusi poikien toppahaalari Everest, koko 86", response.getDescription());
+        assertEquals("Uusi poikien talvihaalari Everest, koko 104", response.getDescription());
     }
 
     @Test
     public void testCurrentPrice() throws Exception {
-        assertEquals("59.00", response.getCurrentPrice());
+        assertEquals("63.00", response.getCurrentPrice());
     }
     
     @Test
     public void testFullPrice() throws Exception {
-        assertEquals("64.00", response.getFullPrice());
+        assertEquals("69.00", response.getFullPrice());
     }
     
     @Test
@@ -66,7 +66,7 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testSize() throws Exception {
-        assertEquals("86", response.getSize());
+        assertEquals("104", response.getSize());
     }
     
     @Test
@@ -81,7 +81,7 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testImgBaseSrc() throws Exception {
-        assertEquals("http://kuvat2.huuto.net/e/2e/454490c8fcf8ace4052230f7ef56f", response.getImgBaseSrc());
+        assertEquals("http://kuvat2.huuto.net/b/a6/78914488563e04d8a9dc9aa1a0816", response.getImgBaseSrc());
     }
     
     @Test
@@ -92,7 +92,7 @@ public class AtomQueryListServiceIntegrationTest {
     private SearchParams getSearchParams() {
         SearchParams searchParams = new SearchParams();
         searchParams.setWords("TALVIHAALARI");
-        searchParams.setLocation("ESPOO");
+        searchParams.setArea("ESPOO");
         searchParams.setClassification("new");
         searchParams.setBrand("EVEREST");
         return searchParams;

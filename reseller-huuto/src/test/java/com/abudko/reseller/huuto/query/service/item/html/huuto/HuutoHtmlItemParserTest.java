@@ -37,6 +37,7 @@ public class HuutoHtmlItemParserTest {
     public void setup() throws IOException {
         HtmlItemParser htmlParser = new HuutoHtmlItemParser();
         response = htmlParser.parse(html);
+        System.out.println(response);
     }
 
     @Test
@@ -46,17 +47,17 @@ public class HuutoHtmlItemParserTest {
 
     @Test
     public void testCondition() {
-        assertEquals("Hyvä", response.getCondition());
+        assertEquals("Uusi", response.getCondition());
     }
 
     @Test
     public void testLocation() {
-        assertEquals("01370 Vantaa", response.getLocation());
+        assertEquals("05830 Hyvinkää   ", response.getLocation());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("5.00", response.getPrice());
+        assertEquals("88.00", response.getPrice());
     }
 
     @Test
@@ -71,6 +72,6 @@ public class HuutoHtmlItemParserTest {
     
     @Test
     public void testSeller() {
-        assertEquals("make0713", response.getSeller());
+        assertEquals("Chili82", response.getSeller());
     }
 }

@@ -4,7 +4,7 @@ public enum Headers {
 	
 	biddernro,
 	
-	sellernro,
+	seller,
 	
 	category,
 	
@@ -18,7 +18,7 @@ public enum Headers {
 	
 	price_max,
 	
-	location,
+	area,
 	
 	words,
 	

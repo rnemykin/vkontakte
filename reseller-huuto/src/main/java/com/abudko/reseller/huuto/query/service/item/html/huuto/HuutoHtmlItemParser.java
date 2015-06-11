@@ -16,13 +16,13 @@ public class HuutoHtmlItemParser implements HtmlItemParser {
 
     private static final String HTML_HV = "Hintavaraus";
 
-    private static final String HTML_CONDITION = "Kuntoluokitus";
+    private static final String HTML_CONDITION = "Kunto";
 
     private static final String HTML_LOCATION = "Tuotteen sijainti";
 
-    private static final String HTML_FULL_PRICE_ELEMENT_ID = "buyForm";
+    private static final String HTML_FULL_PRICE_ELEMENT_ID = "price";
 
-    private static final String HTML_SELLER = "username";
+    private static final String HTML_SELLER = "seller";
 
     private static final String IMG_SUFFIX = "-m.jpg";
 
@@ -77,6 +77,9 @@ public class HuutoHtmlItemParser implements HtmlItemParser {
         if (parents.size() > 0) {
             Element parent = parents.get(0);
             String location = parent.parent().child(1).ownText();
+            if (location != null) {
+                return location.trim();
+            }
             return location;
         }
         return "";
@@ -84,11 +87,17 @@ public class HuutoHtmlItemParser implements HtmlItemParser {
 
     private String parsePrice(Document document) {
         String fullPrice = "";
-        Element element = document.getElementById(HTML_FULL_PRICE_ELEMENT_ID);
-        if (element != null) {
-            Element parent = element.parent();
-            TextNode node = (TextNode) parent.childNodes().get(2);
-            fullPrice = node.text().replace(HtmlParserConstants.EURO_CHAR, "").trim();
+        Elements elementsByClass = document.getElementsByClass(HTML_FULL_PRICE_ELEMENT_ID);
+        if (elementsByClass != null) {
+            Element element = elementsByClass.get(0);
+            if (elementsByClass.size() > 1) {
+                Element element2 = elementsByClass.get(1);
+                String text2 = element2.text();
+                String fullPrice2 = text2.replace(HtmlParserConstants.EURO_CHAR, "").trim();
+                return fullPrice2.replace(",", ".");
+            }
+            String text = element.text();
+            fullPrice = text.replace(HtmlParserConstants.EURO_CHAR, "").trim();
         }
         return fullPrice.replace(",", ".");
     }
@@ -120,7 +129,7 @@ public class HuutoHtmlItemParser implements HtmlItemParser {
 
     private String formatSeller(String seller) {
         int index = seller.indexOf(" ");
-        return seller.substring(0, index);
+        return index < 0 ? seller : seller.substring(0, index);
     }
 
 }

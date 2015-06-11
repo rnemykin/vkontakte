@@ -44,11 +44,11 @@ public class HuutoHtmlParamBuilderTest {
     @Test
     public void testLocation() throws Exception {
         String location = "location";
-        searchParams.setLocation(location);
+        searchParams.setArea(location);
 
         String query = builder.buildQuery(searchParams);
 
-        assertEquals("/location/" + location, query);
+        assertEquals("/area/" + location, query);
     }
 
     @Test
@@ -92,13 +92,13 @@ public class HuutoHtmlParamBuilderTest {
     }
 
     @Test
-    public void testSellernro() throws Exception {
-        String sellernro = "sellernro";
-        searchParams.setSellernro(sellernro);
+    public void testSeller() throws Exception {
+        String seller = "seller";
+        searchParams.setSeller(seller);
 
         String query = builder.buildQuery(searchParams);
 
-        assertEquals("/sellernro/" + sellernro, query);
+        assertEquals("/seller/" + seller, query);
     }
 
     @Test
@@ -198,7 +198,7 @@ public class HuutoHtmlParamBuilderTest {
         String priceMin = "22";
         searchParams.setPrice_min(priceMin);
         String location = "location";
-        searchParams.setLocation(location);
+        searchParams.setArea(location);
         String zipcode = "00000";
         searchParams.setZipcode(zipcode);
         String status = "status";
@@ -207,8 +207,8 @@ public class HuutoHtmlParamBuilderTest {
         searchParams.setClassification(classification);
         String biddernro = "87528723";
         searchParams.setBiddernro(biddernro);
-        String sellernro = "sellernro";
-        searchParams.setSellernro(sellernro);
+        String seller = "seller";
+        searchParams.setSeller(seller);
         String sellerType = "sellerType";
         searchParams.setSeller_type(sellerType);
         Category words = Category.TALVIKENGAT;
@@ -225,8 +225,8 @@ public class HuutoHtmlParamBuilderTest {
         String query = builder.buildQuery(searchParams);
 
         assertEquals("/classification/" + classification + "/sellstyle/" + sellstyle + "/status/" + status
-                + "/location/" + location + "/biddernro/" + biddernro + "/zipcode/" + zipcode + "/closingtime/"
-                + closingtime + "/addtime/" + addtime + "/seller_type/" + sellerType + "/sellernro/" + sellernro
+                + "/area/" + location + "/biddernro/" + biddernro + "/zipcode/" + zipcode + "/closingtime/"
+                + closingtime + "/addtime/" + addtime + "/seller_type/" + sellerType + "/seller/" + seller
                 + "/words/" + words.getValueHtml() + "/category/728-736", query);
     }
 }

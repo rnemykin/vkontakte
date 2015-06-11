@@ -25,13 +25,13 @@ public class CsvParamBuilder implements ParamBuilder {
         result.put("classification", params.getClassification());
         result.put("sellstyle", params.getSellstyle());
         result.put("status", params.getStatus());
-        result.put("location", params.getLocation());
+        result.put("area", params.getArea());
         result.put("biddernro", params.getBiddernro());
         result.put("zipcode", params.getZipcode());
         result.put("closingtime", params.getClosingtime());
         result.put("addtime", params.getAddtime());
         result.put("seller_type", params.getSeller_type());
-        result.put("sellernro", params.getSellernro());
+        result.put("seller", params.getSeller());
 //        result.put("price_min", params.getPrice_min());
 //        result.put("price_max", params.getPrice_max());
         result.put("words", params.getWords());

@@ -34,7 +34,7 @@ public class SearchParams implements Serializable {
      */
     private String words;
 
-    private String location;
+    private String area;
 
     @Pattern(regexp = ValidationConstants.NUMBER_MASK)
     private String price_max;
@@ -48,7 +48,7 @@ public class SearchParams implements Serializable {
     @Pattern(regexp = ValidationConstants.NUMBER_MASK)
     private String sizeMax;
 
-    private String sellernro;
+    private String seller;
 
     /**
      * S - kauppat, P - yksityiset
@@ -125,12 +125,12 @@ public class SearchParams implements Serializable {
         this.words = words;
     }
 
-    public String getLocation() {
-        return location;
+    public String getArea() {
+        return area;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public String getPrice_max() {
@@ -149,12 +149,12 @@ public class SearchParams implements Serializable {
         this.price_min = price_min;
     }
 
-    public String getSellernro() {
-        return sellernro;
+    public String getSeller() {
+        return seller;
     }
 
-    public void setSellernro(String sellernro) {
-        this.sellernro = sellernro;
+    public void setSeller(String seller) {
+        this.seller = seller;
     }
 
     public String getSeller_type() {
@@ -217,8 +217,8 @@ public class SearchParams implements Serializable {
     public String toString() {
         return "SearchParams [biddernro=" + biddernro + ", category=" + category + ", categoryenum=" + categoryenum
                 + ", classification=" + classification + ", closingtime=" + closingtime + ", addtime=" + addtime
-                + ", words=" + words + ", location=" + location + ", price_max=" + price_max + ", price_min="
-                + price_min + ", sizeMin=" + sizeMin + ", sizeMax=" + sizeMax + ", sellernro=" + sellernro
+                + ", words=" + words + ", location=" + area + ", price_max=" + price_max + ", price_min="
+                + price_min + ", sizeMin=" + sizeMin + ", sizeMax=" + sizeMax + ", seller=" + seller
                 + ", seller_type=" + seller_type + ", sellstyle=" + sellstyle + ", status=" + status + ", zipcode="
                 + zipcode + ", brand=" + brand + "]";
     }

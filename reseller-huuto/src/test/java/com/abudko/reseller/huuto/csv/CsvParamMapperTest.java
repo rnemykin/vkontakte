@@ -33,14 +33,14 @@ public class CsvParamMapperTest {
     public void testGetSearchParamsSellerId() throws IOException {
         SearchParams queryParams = queryParamMapper.getSearchParams().get(0);
 
-        assertEquals("SellerId", queryParams.getSellernro());
+        assertEquals("SellerId", queryParams.getSeller());
     }
 
     @Test
     public void testGetSearchParamsLocation() throws IOException {
         SearchParams queryParams = queryParamMapper.getSearchParams().get(0);
 
-        assertEquals("Location", queryParams.getLocation());
+        assertEquals("Location", queryParams.getArea());
     }
 
     @Test

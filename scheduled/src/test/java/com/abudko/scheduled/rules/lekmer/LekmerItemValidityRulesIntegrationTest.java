@@ -27,7 +27,7 @@ public class LekmerItemValidityRulesIntegrationTest {
     
     @Test
     public void testLekmerIdValid() {
-        assertTrue(rules.isValid("LE521274-6541"));
+        assertTrue(rules.isValid("LE521370-2710"));
     }
     
     @Test
@@ -42,7 +42,7 @@ public class LekmerItemValidityRulesIntegrationTest {
     
     @Test
     public void testLekmerIdWithSpacesValid() {
-        assertTrue(rules.isValid("LEHW 13103 VIOLET"));
+        assertTrue(rules.isValid("LE13103264 DARK B"));
     }
     
     @Test

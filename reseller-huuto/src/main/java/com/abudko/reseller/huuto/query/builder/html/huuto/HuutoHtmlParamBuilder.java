@@ -29,13 +29,13 @@ public class HuutoHtmlParamBuilder implements ParamBuilder {
         result.put("classification", params.getClassification());
         result.put("sellstyle", params.getSellstyle());
         result.put("status", params.getStatus());
-        result.put("location", params.getLocation());
+        result.put("area", params.getArea());
         result.put("biddernro", params.getBiddernro());
         result.put("zipcode", params.getZipcode());
         result.put("closingtime", params.getClosingtime());
         result.put("addtime", params.getAddtime());
         result.put("seller_type", params.getSeller_type());
-        result.put("sellernro", params.getSellernro());
+        result.put("seller", params.getSeller());
 
         String categoryName = params.getWords();
         if (StringUtils.hasLength(categoryName)) {
