@@ -38,6 +38,9 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         String id = parseId(document);
         response.setId(id);
         
+        String brand = parseBrand(document);
+        response.getItemInfo().setBrand(brand);
+        
         return response;
     }
 
@@ -118,5 +121,19 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         }
         
         return id;
+    }
+    
+    private String parseBrand(Document document) {
+        Elements elements = document.getElementsByClass(HTML_PRODUCT_ID);
+        if (elements.size() > 0) {
+            Element element = elements.get(0);
+            Element child = element.child(0);
+            if (child.children().size() > 0) {
+                Element childChild = child.child(0);
+                return childChild.ownText();
+            }
+        }
+        
+        return null;
     }
 }

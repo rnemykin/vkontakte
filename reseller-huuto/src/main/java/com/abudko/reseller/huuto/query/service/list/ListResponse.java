@@ -106,7 +106,15 @@ public class ListResponse implements Comparable<ListResponse> {
     }
 
     public String getBrand() {
-        return brand;
+        if (brand != null) {
+            return brand;
+        }
+        
+        if (itemResponse != null) {
+            return itemResponse.getItemInfo().getBrand();
+        }
+        
+        return null;
     }
 
     public void setBrand(String brand) {

@@ -90,7 +90,7 @@ public class LekmerHtmlListParser implements HtmlListParser {
             description = product_info.child(0).ownText();
         }
         
-        if (description.contains("Testivoittaja")) {
+        if (description.contains("Testivoittaja") || description.contains("Kesäale")) {
             description = product_info.child(2).ownText();
         }
         

@@ -35,22 +35,27 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testId() {
-        assertEquals("LE158-524-143", response.getId());
+        assertEquals("LE3-84300-7702", response.getId());
+    }
+    
+    @Test
+    public void testBrand() {
+        assertEquals("Viking", response.getItemInfo().getBrand());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("59.95", response.getPrice());
+        assertEquals("42.45", response.getPrice());
     }
     
     @Test
     public void testSizes() {
-        assertEquals(Arrays.asList("80"), response.getSizes());
+        assertEquals(Arrays.asList("24"), response.getSizes());
     }
     
     @Test
     public void testImgSrc() {
-        assertEquals("http://a-lekmer.r.worldssl.net/1123570/productmanMeasurement465x500/ticket-outdoor-toppahaalari-mini-vedenpitava-snow-baggie-suit.jpg", response.getImgBaseSrc());
+        assertEquals("http://b-lekmer-363630.c.cdn77.org/1135889/productmanMeasurement465x500/viking-talvisaappaat-goretex-fonn.jpg", response.getImgBaseSrc());
     }
     
     @Test

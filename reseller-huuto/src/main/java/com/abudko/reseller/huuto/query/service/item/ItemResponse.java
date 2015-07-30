@@ -25,7 +25,7 @@ public class ItemResponse {
 
     private String seller;
     
-    private ItemInfo itemInfo;
+    private ItemInfo itemInfo = new ItemInfo();
 
     private ItemStatus itemStatus;
     
