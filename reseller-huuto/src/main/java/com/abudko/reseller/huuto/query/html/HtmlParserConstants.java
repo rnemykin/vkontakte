@@ -12,5 +12,4 @@ public class HtmlParserConstants {
 
     public static final String LEKMER_ID_PREFIX = "LE";
 
-    public static final String CITY_ID_PREFIX = "CI";
 }

@@ -20,7 +20,6 @@
    				<entry key="publishHuutoScheduler" value-ref="publishHuutoScheduler" />
    				<entry key="publishHuuto2Scheduler" value-ref="publishHuuto2Scheduler" />
    				<entry key="publishHuuto2InternalScheduler" value-ref="publishHuuto2InternalScheduler" />
-   				<entry key="publishCityScheduler" value-ref="publishCityScheduler" />
    				<entry key="publishLekmerScheduler" value-ref="publishLekmerScheduler" />
    				<entry key="publishLekmer2Scheduler" value-ref="publishLekmer2Scheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
@@ -55,7 +54,6 @@
       			<ref bean="publishHuutoTrigger"/>
       			<ref bean="publishHuuto2Trigger"/>
       			<!-- <ref bean="publishHuuto2InternalTrigger"/> -->
-      			<!-- <ref bean="publishCityTrigger"/> -->
       			<ref bean="publishLekmerTrigger"/>
       			<ref bean="publishLekmer2Trigger"/>
       			<ref bean="cleanTrigger"/>
