@@ -46,6 +46,20 @@ public class Photo {
     public void setCreated(Calendar created) {
         this.created = created;
     }
+    
+    public boolean wasPhotoCreatedAfter(int amountOfDaysBefore) {
+    	if (this.getCreated() == null) {
+    		return true;
+    	}
+    	
+    	Calendar now = Calendar.getInstance();
+        now.add(Calendar.DATE, -amountOfDaysBefore);
+        if (this.getCreated().before(now)) {
+            return false;
+        }
+        
+        return true;
+    }
 
     @Override
     public String toString() {

@@ -150,6 +150,34 @@ public class PhotosTemplate implements PhotosOperations {
 
         return response.asInt();
     }
+    
+    @Override
+    public Calendar getCreated(String photoId, String ownerId) {
+        Properties props = new Properties();
+
+        props.put("owner_id", ownerId);
+        props.put("photo_ids", photoId);
+
+        URI uri = makeOperationURL("photos.get", props);
+    	
+    	JsonNode response = restTemplate.getForObject(uri, JsonNode.class);
+    	
+    	log.info(String.format("photos.get, response '%s'", response));
+    	
+    	response = response.get("response");
+    	
+    	if (response == null) {
+    		return null;
+    	}
+    	
+    	JsonNode jsonNode = response.get(0);
+    	
+    	Calendar calendar = Calendar.getInstance();
+        long created = Long.parseLong(jsonNode.get("created").asText());
+        calendar.setTimeInMillis(created * 1000l);
+
+        return calendar;
+    }
 
     public String getToken() {
         return token;

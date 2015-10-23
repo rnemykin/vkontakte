@@ -1,6 +1,7 @@
 package com.abudko.scheduled.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,10 +104,15 @@ public abstract class AbstractPhotoManager implements PhotoManager {
     public void deletePhoto(String photoId, String groupId) throws InterruptedException {
         String ownerId = getOwnerId(groupId);
         int comments = photosTemplate.getCommentsCount(photoId, ownerId);
+        
+        Calendar created = photosTemplate.getCreated(photoId, ownerId);
 
-        log.info(String.format("Deleting a photo id['%s'],  group['%s'], comments '%d'", photoId, groupId, comments));
+        log.info(String.format("Deleting a photo id['%s'],  group['%s'], comments '%d' , created '%s'", photoId, groupId, comments, created));
 
-        if (comments == 0) {
+        Photo photo = new Photo();
+        photo.setCreated(created);
+        
+        if (comments == 0 || !photo.wasPhotoCreatedAfter(100)) {
             Thread.sleep(sleepInterval);
             photosTemplate.deletePhoto(photoId, ownerId);
         } else {

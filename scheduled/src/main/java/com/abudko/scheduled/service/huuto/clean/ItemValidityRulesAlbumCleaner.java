@@ -18,9 +18,7 @@ public class ItemValidityRulesAlbumCleaner extends AbstractAlbumCleaner {
     private List<ItemValidityRules> itemValidityRules;
 
     protected boolean isValid(Photo photo) {
-        Calendar now = Calendar.getInstance();
-        now.add(Calendar.DATE, -21);
-        if (photo.getCreated().before(now)) {
+        if (!photo.wasPhotoCreatedAfter(21)) {
             return false;
         }
         String id = publishManagerUtils.getId(photo.getDescription());
