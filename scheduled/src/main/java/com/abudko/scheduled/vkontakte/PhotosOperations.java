@@ -17,7 +17,7 @@ public interface PhotosOperations {
     
     int getCommentsCount(String photoId, String ownerId);
     
-    Calendar getCreated(String photoId, String ownerId);
+    Calendar getCreated(String photoId, String ownerId, String albumId);
     
     List<Photo> getPhotos(String ownerId, String albumId, int offset);
     

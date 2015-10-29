@@ -152,11 +152,12 @@ public class PhotosTemplate implements PhotosOperations {
     }
     
     @Override
-    public Calendar getCreated(String photoId, String ownerId) {
+    public Calendar getCreated(String photoId, String ownerId, String albumId) {
         Properties props = new Properties();
 
         props.put("owner_id", ownerId);
         props.put("photo_ids", photoId);
+        props.put("album_id", albumId);
 
         URI uri = makeOperationURL("photos.get", props);
     	

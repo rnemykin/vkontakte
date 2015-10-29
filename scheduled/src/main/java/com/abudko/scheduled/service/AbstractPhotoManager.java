@@ -80,7 +80,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
                 for (Photo photo : photos) {
                     if (userId.equals(getOwnerId(photo.getUserId()))) {
-                        this.deletePhoto(photo.getPhotoId(), groupId);
+                        this.deletePhoto(photo.getPhotoId(), groupId, albumId);
                     }
                 }
 
@@ -96,23 +96,26 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         Set<Entry<String, String>> entrySet = map.entrySet();
 
         for (Entry<String, String> entry : entrySet) {
-            deletePhoto(entry.getKey(), entry.getValue());
+            deletePhoto(entry.getKey(), entry.getValue(), null);
         }
     }
 
     @Override
-    public void deletePhoto(String photoId, String groupId) throws InterruptedException {
+    public void deletePhoto(String photoId, String groupId, String albumId) throws InterruptedException {
         String ownerId = getOwnerId(groupId);
         int comments = photosTemplate.getCommentsCount(photoId, ownerId);
         
-        Calendar created = photosTemplate.getCreated(photoId, ownerId);
+        Calendar created = null;
+        if (albumId != null) {
+            created = photosTemplate.getCreated(photoId, ownerId, albumId);
+        }
 
-        log.info(String.format("Deleting a photo id['%s'],  group['%s'], comments '%d' , created '%s'", photoId, groupId, comments, created));
+        log.info(String.format("Deleting a photo id['%s'],  group['%s'], comments '%d' , created '%s', albumId '%s'", photoId, groupId, comments, created, albumId));
 
         Photo photo = new Photo();
         photo.setCreated(created);
         
-        if (comments == 0 || !photo.wasPhotoCreatedAfter(100)) {
+        if (comments == 0 || (albumId != null && !photo.wasPhotoCreatedAfter(100))) {
             Thread.sleep(sleepInterval);
             photosTemplate.deletePhoto(photoId, ownerId);
         } else {
