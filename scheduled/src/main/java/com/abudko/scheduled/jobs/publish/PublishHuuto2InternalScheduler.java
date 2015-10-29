@@ -38,8 +38,8 @@ public class PublishHuuto2InternalScheduler implements Scheduler {
     private QueryListService huutoQueryListService;
 
     @Autowired
-    @Qualifier("atomQueryItemServiceImpl")
-    private QueryItemService atomQueryItemService;
+    @Qualifier("jsonQueryItemServiceImpl")
+    private QueryItemService jsonQueryItemService;
 
     @Autowired
     @Qualifier("huutoUsedPublishManager")
@@ -77,7 +77,7 @@ public class PublishHuuto2InternalScheduler implements Scheduler {
     
     private void extractHuutoItemResponse(Collection<ListResponse> queryListResponses) {
         for (ListResponse queryListResponse : queryListResponses) {
-            ItemResponse itemResponse = atomQueryItemService.extractItem(queryListResponse.getItemUrl());
+            ItemResponse itemResponse = jsonQueryItemService.extractItem(queryListResponse.getItemUrl());
             queryListResponse.setItemResponse(itemResponse);
         }
     }

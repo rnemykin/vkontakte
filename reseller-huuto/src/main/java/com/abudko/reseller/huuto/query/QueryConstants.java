@@ -7,4 +7,6 @@ public class QueryConstants {
     public static final String LEKMER_HTML_SEARCH_URL = "http://lekmer.fi/search/?mode=filter&pagesize=200&q=";
     
     public static final String ATOM_QUERY_URL = "http://api.huuto.net/somt/0.9/items";
+    
+    public static final String JSON_QUERY_URL = "http://api.huuto.net/1.0/items";
 }

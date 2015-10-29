@@ -24,7 +24,7 @@ public class HuutoHtmlQueryListServiceImpl extends AbstractQueryListService {
     private static final String PAGE_PARAM = "/page/";
     
     @Autowired
-    @Qualifier("atomQueryItemServiceImpl")
+    @Qualifier("jsonQueryItemServiceImpl")
     private QueryItemService queryItemService;
 
     @Autowired

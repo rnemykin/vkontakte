@@ -11,7 +11,7 @@ import com.abudko.scheduled.rules.AbstractItemValidityRules;
 public class HuutoItemValidityRules extends AbstractItemValidityRules {
     
     @Autowired
-    @Qualifier("atomQueryItemServiceImpl")
+    @Qualifier("jsonQueryItemServiceImpl")
     private QueryItemService queryItemService;
 
     @Override
