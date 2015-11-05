@@ -62,6 +62,7 @@ public abstract class AbstractPublishManager implements PublishManager {
 
                     String id = queryResponse.getItemResponse().getId();
                     if (isPhotoPublished(id, photoData) == false) {
+                        log.info(String.format("Photo with id '%s' is not published", id));
                         photoManager.publishPhoto(photoData);
                     } else {
                         log.info(String.format("Photo with id '%s' already published", id));
