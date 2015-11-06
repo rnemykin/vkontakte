@@ -15,7 +15,7 @@ public class ItemIdExclusionFilter extends AbstractNotEmptyFilter {
 			"LE13092862 BRIGHT", "LE13092852 BRIGHT", "LE13122 DARK PURP", "LE13112 DARK PURP", "LE100078",
 			"LE5-74200-203-21", "LE5-74200-1648-21", "LE5-74200-1709-21", "LE5-74200-1709-22", "LE5-74200-2205-25",
 			"LE5-74200-2205-26", "LE5-74200-2205-29", "LE5-74200-1648-39", "LE5-74200-1709-31", "LE5-74200-2205-21",
-			"LE5-74200-203-22");
+			"LE5-74200-203-22", "LE5-74200-1648-22");
 
 	@Override
 	protected String getValue(ListResponse queryListResponse) {
