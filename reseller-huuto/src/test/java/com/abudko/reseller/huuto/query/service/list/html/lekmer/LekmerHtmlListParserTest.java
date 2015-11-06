@@ -40,7 +40,7 @@ public class LekmerHtmlListParserTest {
 
     @Test
     public void testResponseSize() {
-        assertEquals(1, responses.size());
+        assertEquals(48, responses.size());
     }
     
     @Test
@@ -57,7 +57,14 @@ public class LekmerHtmlListParserTest {
     
     @Test
     public void testBrand() {
-        assertNotNull("Brand: " + queryResponse.getBrand(), queryResponse.getBrand());
+    	ListResponse brandResponse = new ArrayList<ListResponse>(responses).get(0);
+        assertNotNull("Brand: " + brandResponse.getBrand(), brandResponse.getBrand());
+    }
+    
+    @Test
+    public void testDiscount() {
+    	ListResponse discountResponse = new ArrayList<ListResponse>(responses).get(0);
+    	assertEquals("-50%", discountResponse.getDiscount());
     }
     
     @Test

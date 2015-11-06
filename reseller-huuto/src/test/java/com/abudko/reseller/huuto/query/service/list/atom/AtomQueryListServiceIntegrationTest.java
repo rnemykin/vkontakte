@@ -46,17 +46,17 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testDescription() throws Exception {
-        assertEquals("Uusi poikien talvihaalari Everest, koko 104", response.getDescription());
+        assertEquals("Uusi tyttöjen toppahaalari Everest, koko 92", response.getDescription());
     }
 
     @Test
     public void testCurrentPrice() throws Exception {
-        assertEquals("63.00", response.getCurrentPrice());
+        assertEquals("49.00", response.getCurrentPrice());
     }
     
     @Test
     public void testFullPrice() throws Exception {
-        assertEquals("69.00", response.getFullPrice());
+        assertEquals("54.00", response.getFullPrice());
     }
     
     @Test
@@ -66,7 +66,7 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testSize() throws Exception {
-        assertEquals("104", response.getSize());
+        assertEquals("92", response.getSize());
     }
     
     @Test
@@ -81,7 +81,7 @@ public class AtomQueryListServiceIntegrationTest {
     
     @Test
     public void testImgBaseSrc() throws Exception {
-        assertEquals("http://kuvat2.huuto.net/b/a6/78914488563e04d8a9dc9aa1a0816", response.getImgBaseSrc());
+        assertEquals("http://kuvat.huuto.net/9/04/fe0222d7a4aef300a2d90e57c3bb7", response.getImgBaseSrc());
     }
     
     @Test

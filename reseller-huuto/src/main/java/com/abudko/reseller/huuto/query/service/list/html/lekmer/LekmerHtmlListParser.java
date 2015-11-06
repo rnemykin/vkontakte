@@ -28,6 +28,7 @@ public class LekmerHtmlListParser implements HtmlListParser {
     private static final String HTML_PRICE_SALE_CLASS = "price sale";
     private static final String HTML_PRICE_CLASS = "price";
     private static final String HTML_IMAGE_CLASS = "image_holder";
+    private static final String DISCOUNT_CLASS = "price sale percentage";
 
     @Override
     public Collection<ListResponse> parse(String htmlResponse) {
@@ -55,6 +56,9 @@ public class LekmerHtmlListParser implements HtmlListParser {
                 
                 String brand = parseBrand(description);
                 queryResponse.setBrand(brand);
+                
+                String discount = parseDiscount(product);
+                queryResponse.setDiscount(discount);
                 
                 responses.add(queryResponse);
             }
@@ -103,6 +107,17 @@ public class LekmerHtmlListParser implements HtmlListParser {
             return brand.getFullName();
         }
         return null;
+    }
+    
+    private String parseDiscount(Element element) {
+    	Element product_info = element.getElementsByClass(HTML_PRODUCT_INFO_CLASS).get(0);
+    	Elements elementsByClass = product_info.getElementsByAttributeValueContaining("class", DISCOUNT_CLASS);
+        
+        if (elementsByClass == null || elementsByClass.isEmpty()) {
+            return null;
+        }
+        
+        return elementsByClass.text();
     }
     
     private String parseImgSrc(Element element) {

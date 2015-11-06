@@ -64,6 +64,7 @@ public class PublishLekmer2Scheduler implements Scheduler {
         List<ListResponse> list = new ArrayList<ListResponse>();
         SearchParams searchParams = new SearchParams();
         searchParams.setCategoryenum(categoryenum);
+        searchParams.setDiscount(30);
 
         log.info(String.format("Quering search: %s", query));
 

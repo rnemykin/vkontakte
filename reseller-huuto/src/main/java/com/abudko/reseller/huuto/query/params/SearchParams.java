@@ -68,8 +68,10 @@ public class SearchParams implements Serializable {
     private String zipcode;
 
     private String brand;
+    
+    private Integer discount;
 
-    public String getBiddernro() {
+	public String getBiddernro() {
         return biddernro;
     }
 
@@ -212,14 +214,22 @@ public class SearchParams implements Serializable {
     public void setBrand(String brand) {
         this.brand = brand;
     }
+    
+    public Integer getDiscount() {
+		return discount;
+	}
 
-    @Override
-    public String toString() {
-        return "SearchParams [biddernro=" + biddernro + ", category=" + category + ", categoryenum=" + categoryenum
-                + ", classification=" + classification + ", closingtime=" + closingtime + ", addtime=" + addtime
-                + ", words=" + words + ", location=" + area + ", price_max=" + price_max + ", price_min="
-                + price_min + ", sizeMin=" + sizeMin + ", sizeMax=" + sizeMax + ", seller=" + seller
-                + ", seller_type=" + seller_type + ", sellstyle=" + sellstyle + ", status=" + status + ", zipcode="
-                + zipcode + ", brand=" + brand + "]";
-    }
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+
+	@Override
+	public String toString() {
+		return "SearchParams [biddernro=" + biddernro + ", category=" + category + ", categoryenum=" + categoryenum
+				+ ", classification=" + classification + ", closingtime=" + closingtime + ", addtime=" + addtime
+				+ ", words=" + words + ", area=" + area + ", price_max=" + price_max + ", price_min=" + price_min
+				+ ", sizeMin=" + sizeMin + ", sizeMax=" + sizeMax + ", seller=" + seller + ", seller_type="
+				+ seller_type + ", sellstyle=" + sellstyle + ", status=" + status + ", zipcode=" + zipcode + ", brand="
+				+ brand + ", discount=" + discount + "]";
+	}
 }

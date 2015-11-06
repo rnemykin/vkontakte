@@ -19,7 +19,8 @@ public class ListResponse implements Comparable<ListResponse> {
     private String last;
     private String currentPrice;
     private String fullPrice;
-    private String newPrice;
+    private String discount;
+	private String newPrice;
     private String condition;
     private String size;
     private String brand;
@@ -136,6 +137,14 @@ public class ListResponse implements Comparable<ListResponse> {
     public boolean hasManySizes() {
         return getItemResponse() != null && StringUtils.isEmpty(getSize()) && !getItemResponse().getSizes().isEmpty();
     }
+    
+    public String getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
 
     public String dump() {
         StringBuilder sb = new StringBuilder();
@@ -161,6 +170,10 @@ public class ListResponse implements Comparable<ListResponse> {
 
         sb.append("last: ");
         sb.append(this.last);
+        sb.append("\n");
+        
+        sb.append("discount: ");
+        sb.append(this.discount);
         sb.append("\n");
 
         sb.append("Condition: ");
@@ -216,11 +229,11 @@ public class ListResponse implements Comparable<ListResponse> {
         return priceThis > priceThat ? 1 : priceThis < priceThat ? -1 : 0;
     }
 
-    @Override
-    public String toString() {
-        return "ListResponse [description=" + description + ", currentPrice=" + currentPrice + ", itemUrl=" + itemUrl
-                + ", imgBaseSrc=" + imgBaseSrc + ", bids=" + bids + ", last=" + last + ", fullPrice=" + fullPrice
-                + ", newPrice=" + newPrice + ", condition=" + condition + ", size=" + size + ", brand=" + brand
-                + ", itemResponse=" + itemResponse + "]";
-    }
+	@Override
+	public String toString() {
+		return "ListResponse [log=" + log + ", description=" + description + ", itemUrl=" + itemUrl + ", imgBaseSrc="
+				+ imgBaseSrc + ", bids=" + bids + ", last=" + last + ", currentPrice=" + currentPrice + ", fullPrice="
+				+ fullPrice + ", discount=" + discount + ", newPrice=" + newPrice + ", condition=" + condition
+				+ ", size=" + size + ", brand=" + brand + ", itemResponse=" + itemResponse + "]";
+	}
 }
