@@ -38,7 +38,7 @@ public abstract class AbstractAlbumCleaner {
                             String info = String.format("Photo ['%s'] is not valid", photo.getDescription());
                             log.info(info);
 
-                            photoManager.deletePhotoForce(photo.getPhotoId(), groupId);
+                            photoManager.deletePhoto(photo.getPhotoId(), groupId, albumId);
                             Thread.sleep(1000);
                         } else {
                             String info = String.format("Photo is VALID: '%s'", photo.getDescription());
