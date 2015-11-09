@@ -173,11 +173,15 @@ public class PhotosTemplate implements PhotosOperations {
     	
     	JsonNode jsonNode = response.get(0);
     	
-    	Calendar calendar = Calendar.getInstance();
-        long created = Long.parseLong(jsonNode.get("created").asText());
-        calendar.setTimeInMillis(created * 1000l);
+    	JsonNode createdNode = jsonNode.get("created");
+    	if (createdNode != null && createdNode.asText() != null) {
+    	    Calendar calendar = Calendar.getInstance();
+    	    long created = Long.parseLong(createdNode.asText());
+    	    calendar.setTimeInMillis(created * 1000l);
+    	    return calendar;
+    	}
 
-        return calendar;
+    	return null;
     }
 
     public String getToken() {
