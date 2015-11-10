@@ -2,6 +2,8 @@ package com.abudko.reseller.huuto.query.filter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Component;
 
@@ -11,14 +13,9 @@ import com.abudko.reseller.huuto.query.service.list.ListResponse;
 @Component
 public class ItemIdExclusionFilter extends AbstractNotEmptyFilter {
 
-	private static final List<String> EXCLUSION_LIST = Arrays.asList("LE", "LEJ81899", "LE475521 056",
+	private static final List<String> EXCLUSION_REGEXP_LIST = Arrays.asList("LEJ81899", "LE475521 056",
 			"LE13092862 BRIGHT", "LE13092852 BRIGHT", "LE13122 DARK PURP", "LE13112 DARK PURP", "LE100078",
-			"LE5-74200-203-21", "LE5-74200-1648-21", "LE5-74200-1709-21", "LE5-74200-1709-22", "LE5-74200-2205-25",
-			"LE5-74200-2205-26", "LE5-74200-2205-29", "LE5-74200-1648-39", "LE5-74200-1709-31", "LE5-74200-2205-21",
-			"LE5-74200-203-22", "LE5-74200-1648-22", "LE5-74200-1709-25", "LE5-74200-2205-28", "LE5-74200-1709-26",
-			"LE5-74200-2205-30", "LE5-74200-1648-26", "LE5-74200-1648-24", "LE5-74200-2205-22", "LE5-74200-203-23",
-			"LE5-74200-2205-24", "LE5-74200-1648-25", "LE5-74200-2205-23", "LE245501161", "LE245910031", "LE277152475",
-			"LE277152225");
+			"LE5-74200-\\w+", "LE245501161", "LE245910031", "LE277152475", "LE277152225");
 
 	@Override
 	protected String getValue(ListResponse queryListResponse) {
@@ -34,6 +31,19 @@ public class ItemIdExclusionFilter extends AbstractNotEmptyFilter {
 	}
 
 	private boolean shouldInclude(ItemResponse itemResponse) {
-		return !EXCLUSION_LIST.contains(itemResponse.getId());
+		String id = itemResponse.getId();
+		
+		if ("LE".equalsIgnoreCase(id)) {
+			return false;
+		}
+		
+		for (String exp : EXCLUSION_REGEXP_LIST) {
+			Matcher matcher = Pattern.compile(exp).matcher(id);
+			if (matcher.find()) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }
