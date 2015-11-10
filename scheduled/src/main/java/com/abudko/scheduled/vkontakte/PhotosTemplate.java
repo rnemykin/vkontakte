@@ -156,7 +156,6 @@ public class PhotosTemplate implements PhotosOperations {
         Properties props = new Properties();
 
         props.put("owner_id", ownerId);
-        props.put("photo_ids", photoId);
         props.put("album_id", albumId);
 
         URI uri = makeOperationURL("photos.get", props);
@@ -167,7 +166,7 @@ public class PhotosTemplate implements PhotosOperations {
     	
     	response = response.get("response");
     	
-    	if (response == null) {
+    	if (response == null || response.size() == 0) {
     		return null;
     	}
     	

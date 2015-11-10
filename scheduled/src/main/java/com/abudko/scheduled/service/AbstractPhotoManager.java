@@ -80,7 +80,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
 
                 for (Photo photo : photos) {
                     if (userId.equals(getOwnerId(photo.getUserId()))) {
-                        this.deletePhoto(photo.getPhotoId(), groupId, albumId);
+                        this.deletePhoto(photo, groupId, albumId);
                     }
                 }
 
@@ -96,25 +96,21 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         Set<Entry<String, String>> entrySet = map.entrySet();
 
         for (Entry<String, String> entry : entrySet) {
-            deletePhoto(entry.getKey(), entry.getValue(), null);
+        	Photo photo = new Photo();
+        	String photoId = entry.getKey();
+        	photo.setPhotoId(photoId);
+            deletePhoto(photo, entry.getValue(), null);
         }
     }
 
     @Override
-    public void deletePhoto(String photoId, String groupId, String albumId) throws InterruptedException {
+    public void deletePhoto(Photo photo, String groupId, String albumId) throws InterruptedException {
+    	String photoId = photo.getPhotoId();
         String ownerId = getOwnerId(groupId);
         int comments = photosTemplate.getCommentsCount(photoId, ownerId);
         
-        Calendar created = null;
-        if (albumId != null) {
-            created = photosTemplate.getCreated(photoId, ownerId, albumId);
-        }
+        log.info(String.format("Deleting a photo ['%s'],  group['%s'], comments '%d', albumId '%s'", photo, groupId, comments, albumId));
 
-        log.info(String.format("Deleting a photo id['%s'],  group['%s'], comments '%d' , created '%s', albumId '%s'", photoId, groupId, comments, created, albumId));
-
-        Photo photo = new Photo();
-        photo.setCreated(created);
-        
         if (comments == 0 || (albumId != null && !photo.wasPhotoCreatedAfter(100))) {
             Thread.sleep(sleepInterval);
             photosTemplate.deletePhoto(photoId, ownerId);
@@ -198,7 +194,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
         return albumIds;
     }
 
-    protected String getOwnerId(String id) {
+    String getOwnerId(String id) {
         if (id.startsWith("user-")) {
             return id.substring(5);
         }
