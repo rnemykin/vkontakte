@@ -63,7 +63,8 @@ public class Photo {
 
     @Override
     public String toString() {
+    	String createdStr = created == null ? null : format.format(created.getTime());
         return "Photo [photoId=" + photoId + ", description=" + description + ", userId=" + userId + ", created="
-                + format.format(created.getTime()) + "]";
+                + createdStr + "]";
     }
 }
