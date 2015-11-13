@@ -47,7 +47,7 @@ public class PublishReima2Scheduler implements Scheduler {
 
     private void publishReima() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
-        publishReimaInternal("haalari", "TALVIHAALARI", 0);
+        publishReimaInternal("Lasten-haalarit--ALE/c/o11?q=:relevance:season:Talvi&text=#", "TALVIHAALARI", 0);
     }
 
     private void publishReimaInternal(String query, String categoryenum, int limit)
