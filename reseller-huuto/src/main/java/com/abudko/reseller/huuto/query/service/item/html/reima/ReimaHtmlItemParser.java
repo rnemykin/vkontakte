@@ -74,10 +74,17 @@ public class ReimaHtmlItemParser implements HtmlItemParser {
             Element child = element.child(0);
             Elements elementsByAttribute = child.getElementsByAttribute("src");
             String imgSrc = elementsByAttribute.get(0).attr("src");
-            return imgSrc;
+            return formatImgSrc(imgSrc);
         }
         return "";
     }
+    
+	private String formatImgSrc(String s) {
+		StringBuilder sb = new StringBuilder(HtmlParserConstants.REIMA_FI);
+		sb.append(s);
+
+		return sb.toString();
+	}
     
     private String parsePrice(Document document) {
     	Elements elements = document.getElementsByClass(HTML_PRODUCT_ID);

@@ -52,7 +52,7 @@ public class ReimaHtmlListParserTest {
     @Test
     public void testImgSrc() {
         ListResponse imgSrcResponse = new ArrayList<ListResponse>(responses).get(0);
-        assertEquals("http://reimashop.fi//medias/sys_master/images/8856058920990.png", imgSrcResponse.getImgBaseSrc());
+        assertEquals("http://reimashop.fi/medias/sys_master/images/8856058920990.png", imgSrcResponse.getImgBaseSrc());
     }
     
     @Test

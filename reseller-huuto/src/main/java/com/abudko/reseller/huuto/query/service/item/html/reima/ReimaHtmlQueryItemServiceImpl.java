@@ -69,6 +69,7 @@ public class ReimaHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
     private String constructFullItemUrl(String itemUrl) {
         StringBuilder sb = new StringBuilder(HtmlParserConstants.REIMA_FI);
+        sb.append("/");
         if (!itemUrl.contains("/")) {
         	sb.append("p/");
         }

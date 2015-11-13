@@ -55,7 +55,7 @@ public class ReimaHtmlItemParserTest {
     
     @Test
     public void testImgSrc() {
-        assertEquals("/medias/sys_master/images/8856059052062.png", response.getImgBaseSrc());
+        assertEquals("http://reimashop.fi/medias/sys_master/images/8856059052062.png", response.getImgBaseSrc());
     }
     
     @Test

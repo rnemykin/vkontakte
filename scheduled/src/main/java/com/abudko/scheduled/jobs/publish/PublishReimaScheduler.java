@@ -25,7 +25,7 @@ public class PublishReimaScheduler implements Scheduler {
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    @Qualifier("lekmerHtmlQueryListServiceImpl")
+    @Qualifier("reimaHtmlQueryListServiceImpl")
     private QueryListService lekmerQueryListService;
 
     @Autowired
