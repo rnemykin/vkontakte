@@ -26,13 +26,13 @@ public class PublishReimaScheduler implements Scheduler {
 
     @Autowired
     @Qualifier("reimaHtmlQueryListServiceImpl")
-    private QueryListService lekmerQueryListService;
+    private QueryListService reimaQueryListService;
 
     @Autowired
     @Qualifier("groupPublishManager")
     private PublishManager publishManager;
 
-    public void schedule() {
+	public void schedule() {
         log.info("********* Start Publish Lekmer Scheduler *******");
         try {
             publishLekmer();
@@ -47,10 +47,15 @@ public class PublishReimaScheduler implements Scheduler {
 
     private void publishLekmer() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
-    	publishLekmerInternal("Lasten-haalarit--ALE/c/o11?q=:relevance:season:Talvi&text=#", "TALVIHAALARI", 0);
+    	final String talvi = "?q=:relevance:season:Talvi&text=#";
+        publishReimaInternal("Lasten-haalarit--ALE/c/o11" + talvi, "TALVIHAALARI", 0);
+        publishReimaInternal("Lasten-kengät---Ale/Lasten-kengät--ALE/c/o41", "TALVIKENGAT", 0);
+        publishReimaInternal("Lasten-puvut-ja-setit--ALE/c/o12" + talvi, "TALVIHAALARI", 0);
+        publishReimaInternal("Lasten-housut--ALE/Reimatec®-housut--ALE/c/o1402" + talvi, "TALVIHAALARI", 0);
+        publishReimaInternal("Lasten-takit--ALE/c/o13" + talvi, "TALVIHAALARI", 0);
     }
 
-    private void publishLekmerInternal(String query, String categoryenum, int limit)
+    private void publishReimaInternal(String query, String categoryenum, int limit)
             throws UnsupportedEncodingException, IllegalAccessException, InvocationTargetException,
             NoSuchMethodException, URISyntaxException, InterruptedException {
         List<ListResponse> list = new ArrayList<ListResponse>();
@@ -60,7 +65,7 @@ public class PublishReimaScheduler implements Scheduler {
 
         log.info(String.format("Quering search: %s", query));
 
-        Collection<ListResponse> queryListResponses = lekmerQueryListService.search(query, searchParams);
+        Collection<ListResponse> queryListResponses = reimaQueryListService.search(query, searchParams);
 
         if (limit == 0) {
             list.addAll(queryListResponses);
@@ -77,9 +82,13 @@ public class PublishReimaScheduler implements Scheduler {
 
         Category category = Category.valueOf(categoryenum);
         if (category != null) {
-            publishManager.publishResults(category, list);
+        	getPublishManager().publishResults(category, list);
         } else {
             log.warn(String.format("Can't find category for '%s'", categoryenum));
         }
     }
+    
+    protected PublishManager getPublishManager() {
+		return publishManager;
+	}
 }

@@ -85,7 +85,8 @@ public abstract class AbstractPublishManager implements PublishManager {
         
         PhotoData photoDataForBrand = getPhotoDataForBrand(category, listResponse);
         if (photoDataForBrand != null) {
-            results.add(photoDataForBrand);
+        	// no need to duplicate
+            // results.add(photoDataForBrand);
         }
         
         return results;
