@@ -1,4 +1,4 @@
-package com.abudko.scheduled.rules.lekmer;
+package com.abudko.scheduled.rules.reima;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -14,10 +14,10 @@ import com.abudko.scheduled.rules.ItemValidityRules;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class LekmerItemValidityRulesIntegrationTest {
+public class ReimaItemValidityRulesIntegrationTest {
     
     @Autowired
-    @Qualifier("lekmerItemValidityRules")
+    @Qualifier("reimaItemValidityRules")
     private ItemValidityRules rules;
     
     @Test
@@ -26,33 +26,18 @@ public class LekmerItemValidityRulesIntegrationTest {
     }
     
     @Test
-    public void testIdReimaValid() {
-        assertTrue(rules.isValid("RE45264242"));;
-    }
-    
-    @Test
     public void testLekmerIdValid() {
         assertTrue(rules.isValid("LE521370-2710"));
     }
     
     @Test
-    public void testLekmerIdShort() {
-        assertTrue(rules.isValid("LE106"));
+    public void testIdReimaInvalid() {
+        assertFalse(rules.isValid("REsds"));
     }
     
     @Test
-    public void testLekmerIdValidLongId() {
-        assertTrue(rules.isValid("LE3171214311"));
-    }
-    
-    @Test
-    public void testLekmerIdWithSpacesValid() {
-        assertTrue(rules.isValid("LE13103264 DARK B"));
-    }
-    
-    @Test
-    public void testIdLekmerInvalid() {
-        assertFalse(rules.isValid("LEsds"));
+    public void testIdReimaValid() {
+    	assertTrue(rules.isValid("RE510144-4620"));
     }
     
     @Test

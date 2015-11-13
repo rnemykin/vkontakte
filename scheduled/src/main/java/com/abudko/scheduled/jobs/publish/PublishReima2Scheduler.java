@@ -20,45 +20,37 @@ import com.abudko.reseller.huuto.query.service.list.QueryListService;
 import com.abudko.scheduled.jobs.Scheduler;
 import com.abudko.scheduled.service.huuto.PublishManager;
 
-public class PublishLekmerScheduler implements Scheduler {
+public class PublishReima2Scheduler implements Scheduler {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    @Qualifier("lekmerHtmlQueryListServiceImpl")
-    private QueryListService lekmerQueryListService;
+    @Qualifier("reimaHtmlQueryListServiceImpl")
+    private QueryListService reimaQueryListService;
 
     @Autowired
-    @Qualifier("groupPublishManager")
+    @Qualifier("group2PublishManager")
     private PublishManager publishManager;
 
     public void schedule() {
-        log.info("********* Start Publish Lekmer Scheduler *******");
+        log.info("********* Start Publish Reima Scheduler *******");
         try {
-            publishLekmer();
+            publishReima();
 
-            log.info("********* End Publish Lekmer Scheduler *******");
+            log.info("********* End Publish Reima Scheduler *******");
 
         } catch (Exception e) {
-            log.error("Exception happened during Publish Lekmer Scheduler: ", e);
+            log.error("Exception happened during Publish Reima Scheduler: ", e);
             throw new RuntimeException(e);
         }
     }
 
-    private void publishLekmer() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
+    private void publishReima() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
-    	publishLekmerInternal("haalari", "TALVIHAALARI", 0);
-//      publishLekmerInternal("toppahaalari", "TALVIHAALARI", 0);
-//      publishLekmerInternal("toppapuku", "TALVIHAALARI", 0);
-//      publishLekmerInternal("kaksiosainen setti talvi", "TALVIHAALARI", 0);
-      publishLekmerInternal("Viking kengät", "TALVIKENGAT", 0);
-      publishLekmerInternal("Reimatec bootsit", "TALVIKENGAT", 0);
-      publishLekmerInternal("Superfit saappaat", "TALVIKENGAT", 0);
-//      publishLekmerInternal("talvitakkeja", "TALVITAKKI", 75);
-//      publishLekmerInternal("toppahousut", "TALVIHOUSUT", 65);
+        publishReimaInternal("haalari", "TALVIHAALARI", 0);
     }
 
-    private void publishLekmerInternal(String query, String categoryenum, int limit)
+    private void publishReimaInternal(String query, String categoryenum, int limit)
             throws UnsupportedEncodingException, IllegalAccessException, InvocationTargetException,
             NoSuchMethodException, URISyntaxException, InterruptedException {
         List<ListResponse> list = new ArrayList<ListResponse>();
@@ -68,7 +60,7 @@ public class PublishLekmerScheduler implements Scheduler {
 
         log.info(String.format("Quering search: %s", query));
 
-        Collection<ListResponse> queryListResponses = lekmerQueryListService.search(query, searchParams);
+        Collection<ListResponse> queryListResponses = reimaQueryListService.search(query, searchParams);
 
         if (limit == 0) {
             list.addAll(queryListResponses);

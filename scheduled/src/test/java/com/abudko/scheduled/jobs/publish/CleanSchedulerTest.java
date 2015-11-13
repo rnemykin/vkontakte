@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
@@ -32,6 +31,8 @@ public class CleanSchedulerTest {
     private static final String DESCRIPTION = "description";
     private static final String ID = "id";
     private static final String PHOTO_ID = "photoId";
+    private static final String ALBUM_ID = "albumid";
+    
     
     @Mock
     private AlbumMapper albumMapper;
@@ -57,6 +58,8 @@ public class CleanSchedulerTest {
     @InjectMocks
     public CleanScheduler cleanScheduler = new CleanScheduler();
     
+    private Photo photo;
+    
     @Before
     public void setup() throws InterruptedException {
         List<ItemValidityRules> rules = new ArrayList<ItemValidityRules>();
@@ -72,7 +75,7 @@ public class CleanSchedulerTest {
         final String albumId = "albumid"; 
         List<String> albumIds = Arrays.asList(albumId);
         when(photoManager.getAlbumIds(AlbumMapper.GROUP_ID)).thenReturn(albumIds);
-        Photo photo = new Photo();
+        photo = new Photo();
         photo.setDescription(DESCRIPTION);
         photo.setPhotoId(PHOTO_ID);
         photo.setCreated(Calendar.getInstance());
@@ -88,7 +91,7 @@ public class CleanSchedulerTest {
         
         cleanScheduler.schedule();
         
-        verify(photoManager, never()).deletePhotoForce(PHOTO_ID, AlbumMapper.GROUP_ID);
+        verify(photoManager, never()).deletePhoto(photo, AlbumMapper.GROUP_ID, ALBUM_ID);
     }
     
     @Test
@@ -98,7 +101,7 @@ public class CleanSchedulerTest {
         
         cleanScheduler.schedule();
         
-        verify(photoManager).deletePhotoForce(PHOTO_ID, AlbumMapper.GROUP_ID);
+        verify(photoManager).deletePhoto(photo, AlbumMapper.GROUP_ID, ALBUM_ID);
     }
     
     @Test
@@ -108,6 +111,6 @@ public class CleanSchedulerTest {
         
         cleanScheduler.schedule();
         
-        verify(photoManager).deletePhotoForce(PHOTO_ID, AlbumMapper.GROUP_ID);
+        verify(photoManager).deletePhoto(photo, AlbumMapper.GROUP_ID, ALBUM_ID);
     }
 }

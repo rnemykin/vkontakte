@@ -20,7 +20,8 @@ public abstract class AbstractPriceRules {
 
     public String calculateNew(String price, BigDecimal add) {
         if (StringUtils.hasLength(price)) {
-            BigDecimal newPrice = new BigDecimal(price).add(getAddInEuro()).add(add);
+        	BigDecimal priceBefore = new BigDecimal(price);
+            BigDecimal newPrice = priceBefore.add(getAddInEuro()).add(add);
             BigDecimal priceInRub = newPrice.multiply(currencyService.getRate());
 
             return priceFormat.format(priceInRub);

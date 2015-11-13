@@ -60,8 +60,13 @@ public class HuutoItemValidityRulesIntegrationTest {
     }
     
     @Test
-    public void testIdNotHuuto() {
+    public void testIdLekmer() {
         assertTrue(rules.isValid("LEishchi"));;
+    }
+    
+    @Test
+    public void testIdreima() {
+    	assertTrue(rules.isValid("REishchi"));;
     }
     
     private SearchParams getSearchParams() {

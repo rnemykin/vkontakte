@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.abudko</groupId>
 	<artifactId>scheduled</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>scheduled</name>
 
@@ -16,7 +16,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<build.version>${project.version}-r${buildNumber}-${timestamp}</build.version>
-		<reseller-huuto.version>0.0.4-SNAPSHOT</reseller-huuto.version>
+		<reseller-huuto.version>0.0.5-SNAPSHOT</reseller-huuto.version>
 		<spring.framework.version>4.1.2.RELEASE</spring.framework.version>
 		<spring-social.version>1.0.3.RELEASE</spring-social.version>
 		<spring-social-vkontakte.version>1.1.1.RELEASE</spring-social-vkontakte.version>
@@ -320,6 +320,13 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>

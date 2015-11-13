@@ -16,6 +16,8 @@ import com.abudko.scheduled.jobs.publish.PublishHuuto2Scheduler;
 import com.abudko.scheduled.jobs.publish.PublishHuutoScheduler;
 import com.abudko.scheduled.jobs.publish.PublishLekmer2Scheduler;
 import com.abudko.scheduled.jobs.publish.PublishLekmerScheduler;
+import com.abudko.scheduled.jobs.publish.PublishReima2Scheduler;
+import com.abudko.scheduled.jobs.publish.PublishReimaScheduler;
 
 public class ScheduledMbean {
 
@@ -45,6 +47,12 @@ public class ScheduledMbean {
     
     @Autowired
     private PublishLekmer2Scheduler publishLekmer2Scheduler;
+    
+    @Autowired
+    private PublishReimaScheduler publishReimaScheduler;
+    
+    @Autowired
+    private PublishReima2Scheduler publishReima2Scheduler;
     
     @Autowired
     private CleanScheduler cleanScheduler;
@@ -106,6 +114,16 @@ public class ScheduledMbean {
     @ManagedOperation
     public void startPublish2LekmerJob() {
         publishLekmer2Scheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startPublishReimaJob() {
+    	publishReimaScheduler.schedule();
+    }
+    
+    @ManagedOperation
+    public void startPublish2ReimaJob() {
+    	publishReima2Scheduler.schedule();
     }
     
     @ManagedOperation

@@ -45,6 +45,11 @@ public class PublishManagerUtilsTest {
     }
     
     @Test
+    public void testGetIdReimaManySizes() {
+    	assertEquals("RE510097-6982", utils.getId("Зим. комбинезоны: Reima (размер 74, 80) цена 2440 руб. [RE510097-6982]"));
+    }
+    
+    @Test
     public void testGetIdDigits() {
         final String descriptionId = "82372082372038972309782902790273237";
         assertEquals(descriptionId, utils.getId(String.format("[%s]", descriptionId)));

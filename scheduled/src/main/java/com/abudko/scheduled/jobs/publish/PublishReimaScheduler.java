@@ -20,7 +20,7 @@ import com.abudko.reseller.huuto.query.service.list.QueryListService;
 import com.abudko.scheduled.jobs.Scheduler;
 import com.abudko.scheduled.service.huuto.PublishManager;
 
-public class PublishLekmerScheduler implements Scheduler {
+public class PublishReimaScheduler implements Scheduler {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 

@@ -7,7 +7,7 @@ import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 @Component
-public class LekmerPublishManager extends AbstractPublishManager {
+public class GroupPublishManager extends AbstractPublishManager {
     
     @Autowired
     protected AlbumMapper albumMapper;

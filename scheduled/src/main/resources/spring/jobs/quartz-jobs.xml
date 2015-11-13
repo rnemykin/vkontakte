@@ -24,6 +24,8 @@
     <import resource="publish/quartz-publish-huuto-internal2.xml"/>
     <import resource="publish/quartz-publish-lekmer.xml"/>
     <import resource="publish/quartz-publish-lekmer2.xml"/>
+    <import resource="publish/quartz-publish-reima.xml"/>
+    <import resource="publish/quartz-publish-reima2.xml"/>
     <import resource="publish/quartz-clean.xml"/>
     <import resource="publish/quartz-clean2.xml"/>
     <import resource="warm/quartz-warm.xml"/>

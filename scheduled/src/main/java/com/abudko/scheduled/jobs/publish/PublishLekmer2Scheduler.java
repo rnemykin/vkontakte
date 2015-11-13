@@ -29,8 +29,8 @@ public class PublishLekmer2Scheduler implements Scheduler {
     private QueryListService lekmerQueryListService;
 
     @Autowired
-    @Qualifier("lekmer2PublishManager")
-    private PublishManager lekmerPublishManager;
+    @Qualifier("group2PublishManager")
+    private PublishManager publishManager;
 
     public void schedule() {
         log.info("********* Start Publish Lekmer Scheduler *******");
@@ -85,7 +85,7 @@ public class PublishLekmer2Scheduler implements Scheduler {
 
         Category category = Category.valueOf(categoryenum);
         if (category != null) {
-            lekmerPublishManager.publishResults(category, list);
+            publishManager.publishResults(category, list);
         } else {
             log.warn(String.format("Can't find category for '%s'", categoryenum));
         }
