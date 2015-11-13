@@ -51,6 +51,11 @@ public class HuutoPriceRulesTest {
     public void testRoundDown() {
         assertEquals("25", rules.calculateNew("5.49", new BigDecimal(0)));
     }
+    
+    @Test
+    public void testRoundDown2() {
+    	assertEquals("2990", rules.calculateNew("2555.49", new BigDecimal(200)));
+    }
 
     @Test
     public void testZero() {
