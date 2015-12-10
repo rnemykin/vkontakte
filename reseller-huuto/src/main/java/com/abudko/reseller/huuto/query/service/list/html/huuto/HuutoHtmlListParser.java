@@ -21,17 +21,16 @@ public class HuutoHtmlListParser implements HtmlListParser {
 
     private static final String IMG_SUFFIX = "-s.jpg";
 
-    private static final String HTML_RESULT_LIST_CLASS = "row-fluid item ";
-    private static final String HTML_ELEMENT_PRICE_WRAPPER = "pull-right";
-    private static final String HTML_ELEMENT_PRICE = "row-fluid";
-    private static final String HTML_ELEMENT_DESCRIPTION = "spandesc";
-    private static final String HTML_ELEMENT_IMAGE = "spanimage";
+    private static final String HTML_RESULT_LIST_CLASS = "search-grid-element-container";
+    private static final String HTML_ELEMENT_PRICE_WRAPPER = "search-grid-element-price-container";
+    private static final String HTML_ELEMENT_PRICE_OSTAHETI = "price-buyNow";
+    private static final String HTML_ELEMENT_PRICE_HUUTO = "price-auction";
+    private static final String HTML_ELEMENT_DESCRIPTION = "search-grid-element-title";
+    private static final String HTML_ELEMENT_IMAGE = "search-grid-element-picture";
     private static final String HTML_ELEMENT_CLOSING_TIME = "closingtime";
 
     @Override
-    public Collection<ListResponse> parse(String htmlResponse) {
-        String html = truncateUnused(htmlResponse);
-
+    public Collection<ListResponse> parse(String html) {
         Collection<ListResponse> responses = new LinkedHashSet<ListResponse>();
         Document document = Jsoup.parse(html);
 
@@ -54,8 +53,8 @@ public class HuutoHtmlListParser implements HtmlListParser {
             String imgBaseSrc = parseImgSrc(element);
             queryResponse.setImgBaseSrc(imgBaseSrc);
 
-            String bids = parseBids(element);
-            queryResponse.setBids(bids);
+//            String bids = parseBids(element);
+//            queryResponse.setBids(bids);
 
             String last = parseLast(element);
             queryResponse.setLast(last);
@@ -72,44 +71,21 @@ public class HuutoHtmlListParser implements HtmlListParser {
         return responses;
     }
 
-    private String truncateUnused(String htmlResponse) {
-        String str = String.format("<div class=\"%s\"", HTML_RESULT_LIST_CLASS);
-        int indexOfResultList = htmlResponse.indexOf(str);
-        if (indexOfResultList < 0) {
-            return htmlResponse;
-        }
-        String truncatedHtml = htmlResponse.substring(indexOfResultList);
-        return truncatedHtml;
-    }
-
     private String parseCurrentPrice(Element element) {
         Element priceWrapper = element.getElementsByClass(HTML_ELEMENT_PRICE_WRAPPER).get(0);
-        Element pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).get(0);
-        Element currentPriceElement = pricesElement.child(0).child(1);
-        if (currentPriceElement.children().isEmpty() == false) {
-            return formatPrice(currentPriceElement.child(0).ownText());
-        } else {
-            return formatPrice(currentPriceElement.ownText());
+        Elements elements = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE_OSTAHETI);
+        Element pricesElement = null;
+        if (elements == null || elements.isEmpty()) {
+        	pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE_HUUTO).get(0);
         }
+        else {
+        	pricesElement = elements.get(0);
+        }
+        return formatPrice(pricesElement.ownText());
     }
 
     private String parseFullPrice(Element element) {
-        Element priceWrapper = element.getElementsByClass(HTML_ELEMENT_PRICE_WRAPPER).get(0);
-        Element pricesElement = null;
-        if (priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).size() > 1) {
-            pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).get(1);
-        } else {
-            pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).get(0);
-        }
-        if (pricesElement.child(0).childNodes().size() == 1) {
-            pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).get(0);
-        }
-        Element currentPriceElement = pricesElement.child(0).child(1);
-        if (currentPriceElement.children().isEmpty() == false) {
-            return formatPrice(currentPriceElement.child(0).ownText());
-        } else {
-            return formatPrice(currentPriceElement.ownText());
-        }
+        return parseCurrentPrice(element);
     }
 
     private String formatPrice(String price) {
@@ -120,15 +96,12 @@ public class HuutoHtmlListParser implements HtmlListParser {
 
     private String parseDescription(Element element) {
         Element descriptionElement = element.getElementsByClass(HTML_ELEMENT_DESCRIPTION).get(0);
-        Element child = descriptionElement.child(0);
-        String description = child.ownText();
-        return description;
+        return descriptionElement.text();
     }
 
     private String parseItemUrl(Element element) {
-        Element descriptionElement = element.getElementsByClass(HTML_ELEMENT_DESCRIPTION).get(0);
-        Attributes attributes = descriptionElement.child(0).attributes();
-        String itemUrl = attributes.get("href");
+    	Elements elementsByAttribute = element.getElementsByAttribute("href");
+    	String itemUrl = elementsByAttribute.get(0).attr("href");
         return formatItemUrl(itemUrl);
     }
 
@@ -137,12 +110,12 @@ public class HuutoHtmlListParser implements HtmlListParser {
         return formattedItemUrl;
     }
 
-    private String parseBids(Element element) {
-        Element priceWrapper = element.getElementsByClass(HTML_ELEMENT_PRICE_WRAPPER).get(0);
-        Element pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).get(0);
-        Element currentPriceElement = pricesElement.child(0).child(0);
-        return currentPriceElement.ownText();
-    }
+//    private String parseBids(Element element) {
+//        Element priceWrapper = element.getElementsByClass(HTML_ELEMENT_PRICE_WRAPPER).get(0);
+//        Element pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).get(0);
+//        Element currentPriceElement = pricesElement.child(0).child(0);
+//        return currentPriceElement.ownText();
+//    }
 
     private String parseLast(Element element) {
         Element lastElement = element.getElementsByClass(HTML_ELEMENT_CLOSING_TIME).get(0);
@@ -151,9 +124,9 @@ public class HuutoHtmlListParser implements HtmlListParser {
     }
 
     private String parseImgSrc(Element element) {
-        Element descriptionElement = element.getElementsByClass(HTML_ELEMENT_IMAGE).get(0);
-        Element child = descriptionElement.child(0);
-        String imgSrc = child.child(0).attr("src");
+        Element imageElement = element.getElementsByClass(HTML_ELEMENT_IMAGE).get(0);
+        Element child = imageElement.child(0);
+        String imgSrc = child.attr("src");
         return formatImgSrc(imgSrc);
     }
 

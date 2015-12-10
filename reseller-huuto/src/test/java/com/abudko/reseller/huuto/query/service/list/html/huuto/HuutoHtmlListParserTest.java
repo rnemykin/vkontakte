@@ -62,7 +62,7 @@ public class HuutoHtmlListParserTest {
 
     @Test
     public void testResponseSize() {
-        assertEquals(52, responses.size());
+        assertEquals(15, responses.size());
     }
 
     @Test
@@ -77,11 +77,11 @@ public class HuutoHtmlListParserTest {
         assertTrue("Url: " + queryResponse.getItemUrl(), queryResponse.getItemUrl().contains("/"));
     }
 
-    @Test
-    public void testBids() {
-        queryResponse = new ArrayList<ListResponse>(responses).get(5);
-        assertEquals("Bids: " + queryResponse.getBids(), "Ei huutajia", queryResponse.getBids());
-    }
+//    @Test
+//    public void testBids() {
+//        queryResponse = new ArrayList<ListResponse>(responses).get(5);
+//        assertEquals("Bids: " + queryResponse.getBids(), "Ei huutajia", queryResponse.getBids());
+//    }
 
     @Test
     public void testLast() {
@@ -89,13 +89,35 @@ public class HuutoHtmlListParserTest {
     }
 
     @Test
-    public void testCurrentPrice() {
+    public void testCurrentPriceOstaHeti() {
         String currentPrice = queryResponse.getCurrentPrice();
         try {
             Double.parseDouble(currentPrice);
         } catch (Exception e) {
             fail("Unable to parse current price " + currentPrice);
         }
+    }
+    
+    @Test
+    public void testCurrentPriceHuuto() {
+    	queryResponse = new ArrayList<ListResponse>(responses).get(1);
+    	String currentPrice = queryResponse.getCurrentPrice();
+    	try {
+    		Double.parseDouble(currentPrice);
+    	} catch (Exception e) {
+    		fail("Unable to parse current price " + currentPrice);
+    	}
+    }
+    
+    @Test
+    public void testCurrentPriceHuutajaExists() {
+    	queryResponse = new ArrayList<ListResponse>(responses).get(5);
+    	String currentPrice = queryResponse.getCurrentPrice();
+    	try {
+    		Double.parseDouble(currentPrice);
+    	} catch (Exception e) {
+    		fail("Unable to parse current price " + currentPrice);
+    	}
     }
 
     @Test
@@ -110,7 +132,7 @@ public class HuutoHtmlListParserTest {
     }
 
     @Test
-    public void testFullPriceBiggerThanCurrentPrice() {
+    public void testCompareFullPriceCurrentPrice() {
         ListResponse fullPriceQueryResponse = new ArrayList<ListResponse>(responses).get(4);
         String currentPrice = fullPriceQueryResponse.getCurrentPrice();
         String fullPrice = fullPriceQueryResponse.getFullPrice();
@@ -129,7 +151,7 @@ public class HuutoHtmlListParserTest {
             fail("Unable to parse full price " + fullPrice);
         }
 
-        assertTrue(full > current);
+        assertTrue(full == current);
     }
 
     @Test
@@ -144,7 +166,7 @@ public class HuutoHtmlListParserTest {
     public void testImgSrc() {
         ListResponse imgSrcResponse = new ArrayList<ListResponse>(responses).get(5);
         assertTrue("Src: " + imgSrcResponse.getImgBaseSrc(),
-                imgSrcResponse.getImgBaseSrc().contains("http://kuvat2.huuto.net/"));
+                imgSrcResponse.getImgBaseSrc().contains("http://kuvat.huuto.net/"));
     }
 
     @Test
