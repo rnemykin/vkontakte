@@ -59,6 +59,13 @@ public class LekmerHtmlItemParserTest {
     }
     
     @Test
+    public void testFormatImgSrc() {
+    	String imgSrc = "/1135889/productmanMeasurement465x500/viking-talvisaappaat-goretex-fonn.jpg";
+    	String imgSrcLekmer = "http://lekmer.fi/1135889/productmanMeasurement465x500/viking-talvisaappaat-goretex-fonn.jpg";
+    	assertEquals(imgSrcLekmer, htmlParser.formatImgSrc(imgSrc));
+    }
+    
+    @Test
     public void testGetValidId() throws Exception {
         final String id = "1234567890123456789";
         assertEquals("123456789", htmlParser.getValidId(id));

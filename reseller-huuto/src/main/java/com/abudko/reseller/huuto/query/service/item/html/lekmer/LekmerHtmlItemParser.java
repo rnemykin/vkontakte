@@ -76,9 +76,17 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
             if (imgSrc.startsWith("http://lekmer.fihttp")) {
                 imgSrc = imgSrc.replace("http://lekmer.fihttp", "http");
             }
-            return imgSrc;
+            return formatImgSrc(imgSrc);
         }
         return "";
+    }
+    
+    String formatImgSrc(String imgSrc) {
+    	if (!imgSrc.contains("http://")) {
+    		return "http://lekmer.fi" + imgSrc;
+    	}
+    	
+    	return imgSrc;
     }
     
     private String parsePrice(Document document) {
