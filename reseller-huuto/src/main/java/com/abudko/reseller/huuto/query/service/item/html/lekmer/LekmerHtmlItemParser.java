@@ -65,6 +65,9 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
                 sizes.add(text.substring(0, 2).trim());
             }
         }
+        
+        sizes.remove("Bab");
+        
         return sizes;
     }
 

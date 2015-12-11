@@ -35,27 +35,27 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testId() {
-        assertEquals("LE3-84300-7702", response.getId());
+        assertEquals("LE219152223", response.getId());
     }
     
     @Test
     public void testBrand() {
-        assertEquals("Viking", response.getItemInfo().getBrand());
+        assertEquals("Geggamoja", response.getItemInfo().getBrand());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("42.45", response.getPrice());
+        assertEquals("45.43", response.getPrice());
     }
     
     @Test
     public void testSizes() {
-        assertEquals(Arrays.asList("24"), response.getSizes());
+        assertEquals(Arrays.asList("74", "80", "86", "92"), response.getSizes());
     }
     
     @Test
     public void testImgSrc() {
-        assertEquals("http://b-lekmer-363630.c.cdn77.org/1135889/productmanMeasurement465x500/viking-talvisaappaat-goretex-fonn.jpg", response.getImgBaseSrc());
+        assertEquals("http://lekmer.fi/mediaarchive/1163811/productmanMeasurement465x500/geggamoja-tuulenpitava-haalari-vauvan-cerise.jpg", response.getImgBaseSrc());
     }
     
     @Test
