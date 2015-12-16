@@ -36,8 +36,8 @@ public class PublishManagerUtils {
     public String encodeBase64(ListResponse listResponse) {
     	ItemResponse itemResponse = listResponse.getItemResponse();
     	String itemUrl = itemResponse.getItemUrl() != null ? itemResponse.getItemUrl() : listResponse.getItemUrl();
-    	if (itemUrl == null) {
-    		return null;
+    	if (itemUrl == null || itemUrl.contains("huuto.net")) {
+    		return "";
     	}
     	String base64String = Base64.encodeBase64String(itemUrl.getBytes());
     	return base64String;

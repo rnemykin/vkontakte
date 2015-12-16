@@ -2,8 +2,13 @@ package com.abudko.scheduled.service.huuto;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import com.abudko.reseller.huuto.query.service.item.ItemResponse;
+import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 public class PublishManagerUtilsTest {
     
@@ -58,5 +63,15 @@ public class PublishManagerUtilsTest {
     @Test
     public void testGetHash() {
     	assertEquals("lindberg-overall-vermont-green-navy", utils.getDecodedURL("Зим. комбинезоны: Reima (размер 74, 80) цена 2440 руб. [RE510097-6982]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
+    }
+    
+    @Test
+    public void testEncodeHashHuuto() {
+    	ListResponse listResponse = new ListResponse();
+    	ItemResponse itemResponse = new ItemResponse();
+    	listResponse.setItemResponse(itemResponse);
+    	listResponse.setItemUrl("http://api.huuto.net/1.0/items/387773498");
+    	
+    	assertTrue(utils.encodeBase64(listResponse).isEmpty());
     }
 }
