@@ -11,6 +11,8 @@ import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 @Component
 public class PublishManagerUtils {
+	
+	private static final String KEY = "changeit";
 
     public String getId(String description) {
         Pattern pattern = Pattern.compile("\\[(.+)\\]");
@@ -39,12 +41,29 @@ public class PublishManagerUtils {
     	if (itemUrl == null || itemUrl.contains("huuto.net")) {
     		return "";
     	}
-    	String base64String = Base64.encodeBase64String(itemUrl.getBytes());
+    	
+    	String output = xorWithKey(itemUrl, KEY);
+    	
+    	String base64String = Base64.encodeBase64String(output.getBytes());
     	return base64String;
     }
     
-    private String decodeBase64(String encodeURL) {
+    private String xorWithKey(final String s, final String key) {
+    	String output = "";
+    	for (int i = 0, len = s.length(); i < len; i++) {
+    		char c = s.charAt(i);
+    		char cKey = key.charAt(i % key.length());
+    		char xor = (char)(c ^ cKey);
+    		output += xor;
+    	}
+    	
+    	return output;
+    }
+    
+    public String decodeBase64(String encodeURL) {
     	byte[] decodeBase64 = Base64.decodeBase64(encodeURL);
-    	return new String(decodeBase64);
+    	String s = new String(decodeBase64);
+    	
+    	return xorWithKey(s, KEY);
     }
 }

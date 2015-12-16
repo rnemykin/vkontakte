@@ -61,17 +61,30 @@ public class PublishManagerUtilsTest {
     }
     
     @Test
-    public void testGetHash() {
-    	assertEquals("lindberg-overall-vermont-green-navy", utils.getDecodedURL("Зим. комбинезоны: Reima (размер 74, 80) цена 2440 руб. [RE510097-6982]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
+    public void testGetDecodedURL() {
+    	assertEquals("lindberg-overall-vermont-green-navy", utils.getDecodedURL("Зим. комбинезоны: Reima (размер 74, 80) цена 2440 руб. [RE510097-6982]|DwEPCgUAGxNOBxcLFQQFGE4eBBwKCgcATg8TCwILRBoCHhg=|"));
     }
     
     @Test
-    public void testEncodeHashHuuto() {
+    public void testEncodeURLHuuto() {
     	ListResponse listResponse = new ListResponse();
     	ItemResponse itemResponse = new ItemResponse();
     	listResponse.setItemResponse(itemResponse);
     	listResponse.setItemUrl("http://api.huuto.net/1.0/items/387773498");
     	
     	assertTrue(utils.encodeBase64(listResponse).isEmpty());
+    }
+    
+    @Test
+    public void testEncodeDecodeURL() {
+    	ListResponse listResponse = new ListResponse();
+    	ItemResponse itemResponse = new ItemResponse();
+    	listResponse.setItemResponse(itemResponse);
+    	final String url = "lindberg-overall-vermont-green-navy";
+    	listResponse.setItemUrl(url);
+    	
+    	String base64 = utils.encodeBase64(listResponse);
+    	
+    	assertEquals(url, utils.decodeBase64(base64));
     }
 }
