@@ -51,6 +51,16 @@ public class LekmerItemValidityRulesIntegrationTest {
     }
     
     @Test
+    public void testLekmerURlKeywordValid() {
+    	assertTrue(rules.isValid("LElindberg-overall-vermont-green-navy"));
+    }
+    
+    @Test
+    public void testLekmerURlKeywordInvalid() {
+    	assertFalse(rules.isValid("LElindberg-overall-vermont-green-nav"));
+    }
+    
+    @Test
     public void testIdLekmerInvalid() {
         assertFalse(rules.isValid("LEsds"));
     }

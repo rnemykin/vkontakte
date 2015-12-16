@@ -7,14 +7,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
-public class ItemIdExclusionFilterTest {
+// no need to exclude anymore because encoded url is stored
+public abstract class ItemIdExclusionFilterTest {
 
 	private static final List<String> EXCLUSION_LIST = Arrays.asList("LE", "LEJ81899", "LE475521 056",
 			"LE13092862 BRIGHT", "LE13092852 BRIGHT", "LE13122 DARK PURP", "LE13112 DARK PURP", "LE100078",

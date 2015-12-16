@@ -11,17 +11,17 @@ public class PublishManagerUtilsTest {
 
     @Test
     public void testGetId() {
-        assertEquals("999", utils.getId("2-dspik  sxs2323 332323 [999]"));
+        assertEquals("999", utils.getId("2-dspik  sxs2323 332323 [999]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
     }
     
     @Test
     public void testGetIdDash() {
-        assertEquals("522123-9990", utils.getId("2-dspik  sxs2323 332323 [522123-9990]"));
+        assertEquals("522123-9990", utils.getId("2-dspik  sxs2323 332323 [522123-9990]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
     }
     
     @Test
     public void testGetIdDashWord() {
-        assertEquals("522123-RED", utils.getId("2-dspik  sxs2323 332323 [522123-RED]"));
+        assertEquals("522123-RED", utils.getId("2-dspik  sxs2323 332323 [522123-RED]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
     }
     
     @Test
@@ -31,27 +31,32 @@ public class PublishManagerUtilsTest {
     
     @Test
     public void testGetIdWords() {
-        assertEquals("skdjhbk9", utils.getId("2-dspik  sxs2323 332323 [skdjhbk9]"));
+        assertEquals("skdjhbk9", utils.getId("2-dspik  sxs2323 332323 [skdjhbk9]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
     }
     
     @Test
     public void testGetIdLekmer() {
-        assertEquals("LE102-405-133 NAV", utils.getId("2-dspik  sxs2323 332323 [LE102-405-133 NAV]"));
+        assertEquals("LE102-405-133 NAV", utils.getId("2-dspik  sxs2323 332323 [LE102-405-133 NAV]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
     }
     
     @Test
     public void testGetIdLekmerManySizes() {
-        assertEquals("LE510097-6982", utils.getId("Зим. комбинезоны: Reima (размер 74, 80) цена 2440 руб. [LE510097-6982]"));
+        assertEquals("LE510097-6982", utils.getId("Зим. комбинезоны: Reima (размер 74, 80) цена 2440 руб. [LE510097-6982]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
     }
     
     @Test
     public void testGetIdReimaManySizes() {
-    	assertEquals("RE510097-6982", utils.getId("Зим. комбинезоны: Reima (размер 74, 80) цена 2440 руб. [RE510097-6982]"));
+    	assertEquals("RE510097-6982", utils.getId("Зим. комбинезоны: Reima (размер 74, 80) цена 2440 руб. [RE510097-6982]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
     }
     
     @Test
     public void testGetIdDigits() {
         final String descriptionId = "82372082372038972309782902790273237";
         assertEquals(descriptionId, utils.getId(String.format("[%s]", descriptionId)));
+    }
+    
+    @Test
+    public void testGetHash() {
+    	assertEquals("lindberg-overall-vermont-green-navy", utils.getDecodedURL("Зим. комбинезоны: Reima (размер 74, 80) цена 2440 руб. [RE510097-6982]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|"));
     }
 }

@@ -18,6 +18,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.abudko.reseller.huuto.query.service.item.QueryItemService;
+import com.abudko.scheduled.rules.AbstractItemValidityRules;
 import com.abudko.scheduled.rules.ItemValidityRules;
 import com.abudko.scheduled.service.PhotoManager;
 import com.abudko.scheduled.service.huuto.AlbumMapper;
@@ -30,9 +31,9 @@ public class CleanSchedulerTest {
     
     private static final String DESCRIPTION = "description";
     private static final String ID = "id";
+    private static final String ENCODED_URL = "ENCODED_URL";
     private static final String PHOTO_ID = "photoId";
     private static final String ALBUM_ID = "albumid";
-    
     
     @Mock
     private AlbumMapper albumMapper;
@@ -47,10 +48,10 @@ public class CleanSchedulerTest {
     private QueryItemService atomQueryItemService;
     
     @Mock
-    private ItemValidityRules rule1;
+    private AbstractItemValidityRules rule1;
     
     @Mock
-    private ItemValidityRules rule2;
+    private AbstractItemValidityRules rule2;
     
     @InjectMocks
     private ItemValidityRulesAlbumCleaner itemValidityRulesAlbumCleaner = new ItemValidityRulesAlbumCleaner();
@@ -82,6 +83,9 @@ public class CleanSchedulerTest {
         List<Photo> photoIds = Arrays.asList(photo);
         when(photoManager.getPhotos(AlbumMapper.GROUP_ID, albumId)).thenReturn(photoIds);
         when(publishManagerUtils.getId(DESCRIPTION)).thenReturn(ID);
+        when(publishManagerUtils.getDecodedURL(DESCRIPTION)).thenReturn(ENCODED_URL);
+        when(rule1.getIdPrefix()).thenReturn("LE");
+        when(rule2.getIdPrefix()).thenReturn("RE");
     }
 
     @Test
@@ -102,6 +106,17 @@ public class CleanSchedulerTest {
         cleanScheduler.schedule();
         
         verify(photoManager).deletePhoto(photo, AlbumMapper.GROUP_ID, ALBUM_ID);
+    }
+    
+    @Test
+    public void testPhotoIdInvalidForOneRuleButEncodedUrlIsValid() throws InterruptedException {
+    	when(rule1.isValid(ID)).thenReturn(false);
+    	when(rule1.isValid("LE" + ENCODED_URL)).thenReturn(true);
+        when(rule2.isValid(ID)).thenReturn(true);
+            	
+    	cleanScheduler.schedule();
+    	
+    	verify(photoManager, never()).deletePhoto(photo, AlbumMapper.GROUP_ID, ALBUM_ID);
     }
     
     @Test

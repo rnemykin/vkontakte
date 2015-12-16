@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import com.abudko.scheduled.vkontakte.Photo;
 
 public abstract class AbstractPublishManager implements PublishManager {
 
-    protected static final String COMMENT_KEY = "huuto.comment";
+    protected static final String COMMENT_KEY = "photo.description";
     protected static final String GROUP_URL = "vk.com/kombezi.finland";
 
     protected Logger log = LoggerFactory.getLogger(getClass());
@@ -132,8 +133,9 @@ public abstract class AbstractPublishManager implements PublishManager {
                 .replaceAll("\\[|\\]", "") : listResponse.getSize();
         String brand = listResponse.getBrand();
         String title = category.getCommonLabel();
+        String base64 = publishManagerUtils.encodeBase64(listResponse);
 
-        String description = context.getMessage(COMMENT_KEY, new Object[] { title, brand, size, newPrice, id },
+        String description = context.getMessage(COMMENT_KEY, new Object[] { title, brand, size, newPrice, id, base64 },
                 Locale.getDefault());
 
         return description;

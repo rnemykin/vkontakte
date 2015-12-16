@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.abudko.scheduled.rules.AbstractItemValidityRules;
 import com.abudko.scheduled.rules.ItemValidityRules;
 import com.abudko.scheduled.vkontakte.Photo;
 
@@ -20,14 +21,24 @@ public class ItemValidityRulesAlbumCleaner extends AbstractAlbumCleaner {
         if (!photo.wasPhotoCreatedAfter(21)) {
             return false;
         }
-        String id = publishManagerUtils.getId(photo.getDescription());
+        
+        String description = photo.getDescription();
+        String id = publishManagerUtils.getId(description);
+        String urlKeyword = publishManagerUtils.getDecodedURL(description);
         boolean valid = true;
         for (ItemValidityRules rule : itemValidityRules) {
             if (!rule.isValid(id)) {
-                valid = false;
+            	String idPrefix = ((AbstractItemValidityRules) rule).getIdPrefix();
+            	if (idPrefix != null) {
+            		urlKeyword = idPrefix + urlKeyword;	
+            	}
+            	
+            	if (!rule.isValid(urlKeyword)) {
+            		valid = false;
+            	}
             }
         }
-
+        
         return valid;
     }
 }

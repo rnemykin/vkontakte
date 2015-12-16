@@ -79,8 +79,9 @@ public class HuutoUsedPublishManager extends HuutoPublishManager {
                 .replaceAll("\\[|\\]", "") : listResponse.getSize();
         String brand = listResponse.getBrand();
         String title = "USED";
+        String base64 = publishManagerUtils.encodeBase64(listResponse);
 
-        String description = context.getMessage(COMMENT_KEY, new Object[] { title, brand, size, newPrice, id },
+        String description = context.getMessage(COMMENT_KEY, new Object[] { title, brand, size, newPrice, id, base64 },
                 Locale.getDefault());
 
         return description;

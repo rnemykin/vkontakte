@@ -45,6 +45,9 @@ public class PublishManagerTest {
 
     @Mock
     private AlbumMapper albumMapper;
+    
+    @Mock
+    private PublishManagerUtils publishManagerUtils;
 
     @InjectMocks
     private PublishManager publishManager = new HuutoPublishManager();
