@@ -33,19 +33,19 @@ public class PublishReimaScheduler implements Scheduler {
     private PublishManager publishManager;
 
 	public void schedule() {
-        log.info("********* Start Publish Lekmer Scheduler *******");
+        log.info("********* Start Publish Reima Scheduler *******");
         try {
-            publishLekmer();
+            publishReima();
 
-            log.info("********* End Publish Lekmer Scheduler *******");
+            log.info("********* End Publish Reima Scheduler *******");
 
         } catch (Exception e) {
-            log.error("Exception happened during Publish Lekmer Scheduler: ", e);
+            log.error("Exception happened during Publish Reima Scheduler: ", e);
             throw new RuntimeException(e);
         }
     }
 
-    private void publishLekmer() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
+    private void publishReima() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
     	final String talvi = "?q=:relevance:season:Talvi&text=#";
         publishReimaInternal("Lasten-haalarit--ALE/c/o11" + talvi, "TALVIHAALARI", 0);
@@ -58,7 +58,7 @@ public class PublishReimaScheduler implements Scheduler {
     private void publishReimaInternal(String query, String categoryenum, int limit)
             throws UnsupportedEncodingException, IllegalAccessException, InvocationTargetException,
             NoSuchMethodException, URISyntaxException, InterruptedException {
-        List<ListResponse> list = new ArrayList<ListResponse>();
+        List<ListResponse> list = new ArrayList<>();
         SearchParams searchParams = new SearchParams();
         searchParams.setCategoryenum(categoryenum);
         searchParams.setDiscount(30);

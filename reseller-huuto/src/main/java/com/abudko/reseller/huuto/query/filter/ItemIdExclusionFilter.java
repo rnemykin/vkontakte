@@ -1,6 +1,6 @@
 package com.abudko.reseller.huuto.query.filter;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,7 +13,7 @@ import com.abudko.reseller.huuto.query.service.list.ListResponse;
 @Component
 public class ItemIdExclusionFilter extends AbstractNotEmptyFilter {
 
-	private static final List<String> EXCLUSION_REGEXP_LIST = Arrays.asList("");
+	private static final List<String> EXCLUSION_REGEXP_LIST = new ArrayList<>();
 
 	@Override
 	protected String getValue(ListResponse queryListResponse) {

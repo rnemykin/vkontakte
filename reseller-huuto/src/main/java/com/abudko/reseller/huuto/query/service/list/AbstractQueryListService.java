@@ -43,8 +43,14 @@ public abstract class AbstractQueryListService implements QueryListService {
         validate(queryResponses);
 
         applySearchParamsTo(queryResponses, searchParams);
+        
+        boolean resultsBeforeFiltering = !queryResponses.isEmpty();
 
         Collection<ListResponse> filteredResponses = applyFilters(queryResponses, searchParams);
+        
+        if (resultsBeforeFiltering && filteredResponses.isEmpty()) {
+            log.warn("Results were filtered to 0 for query: " + query);
+        }
 
         return filteredResponses;
     }
