@@ -21,12 +21,12 @@ public class HuutoHtmlListParser implements HtmlListParser {
 
     private static final String IMG_SUFFIX = "-s.jpg";
 
-    private static final String HTML_RESULT_LIST_CLASS = "search-grid-element-container";
-    private static final String HTML_ELEMENT_PRICE_WRAPPER = "search-grid-element-price-container";
+    private static final String HTML_RESULT_LIST_CLASS = "grid-element-container";
+    private static final String HTML_ELEMENT_PRICE_WRAPPER = "grid-element-price-container";
     private static final String HTML_ELEMENT_PRICE_OSTAHETI = "price-buyNow";
     private static final String HTML_ELEMENT_PRICE_HUUTO = "price-auction";
-    private static final String HTML_ELEMENT_DESCRIPTION = "search-grid-element-title";
-    private static final String HTML_ELEMENT_IMAGE = "search-grid-element-picture";
+    private static final String HTML_ELEMENT_DESCRIPTION = "grid-element-title";
+    private static final String HTML_ELEMENT_IMAGE = "grid-element-picture";
     private static final String HTML_ELEMENT_CLOSING_TIME = "closingtime";
 
     @Override
