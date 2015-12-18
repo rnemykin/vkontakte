@@ -19,8 +19,8 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
 public class JsonQueryItemServiceIntegrationTest {
 	
-    private static final String ITEM_URL = "382102643";
-    private static final String ITEM_URL_NO_OSTA_HETI = "382159724";
+    private static final String ITEM_URL = "387912182";
+    private static final String ITEM_URL_NO_OSTA_HETI = "387737751";
 
     @Autowired
     @Qualifier("jsonQueryItemServiceImpl")
@@ -49,30 +49,30 @@ public class JsonQueryItemServiceIntegrationTest {
     }
 
     @Test
-    public void testItemResponseCurrectPrice() {
-    	assertEquals("54", response.getCurrentPrice());
+    public void testItemResponseCurrentPrice() {
+    	assertEquals("49", response.getCurrentPrice());
     }
     
     @Test
     public void testItemResponsePrice() {
-        assertEquals("59", response.getPrice());
+        assertEquals("49", response.getPrice());
     }
     
     @Test
     public void testItemResponsePriceNoOstaHeti() {
         response = jsonQueryItemService.extractItem(ITEM_URL_NO_OSTA_HETI);
-        assertEquals("0", response.getPrice());
+        assertNull(response.getPrice());
     }
     
     @Test
     public void testItemResponsePriceNoOstaHetiCurrentPriceSet() {
         response = jsonQueryItemService.extractItem(ITEM_URL_NO_OSTA_HETI);
-        assertEquals("77", response.getCurrentPrice());
+        assertEquals("109", response.getCurrentPrice());
     }
 
     @Test
     public void testItemResponseImgSrc() {
-        assertEquals("http://kuvat.huuto.net/b/a6/78914488563e04d8a9dc9aa1a0816", response.getImgBaseSrc());
+        assertEquals("http://kuvat.huuto.net/6/5c/363c598c65acd89131a03c1637f33", response.getImgBaseSrc());
     }
     
     @Test
@@ -82,7 +82,7 @@ public class JsonQueryItemServiceIntegrationTest {
 
     @Test
     public void testItemResponseItemStatus() {
-        assertEquals(ItemStatus.CLOSED, response.getItemStatus());
+        assertEquals(ItemStatus.OPENED, response.getItemStatus());
     }
 
     @Test
