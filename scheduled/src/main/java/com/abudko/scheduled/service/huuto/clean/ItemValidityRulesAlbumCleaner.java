@@ -25,6 +25,10 @@ public class ItemValidityRulesAlbumCleaner extends AbstractAlbumCleaner {
         String description = photo.getDescription();
         String id = publishManagerUtils.getId(description);
         String urlKeyword = publishManagerUtils.getDecodedURL(description);
+        if (urlKeyword.contains("/")) {
+        	int lastIndexOf = urlKeyword.lastIndexOf("/");
+        	urlKeyword = urlKeyword.substring(lastIndexOf+1, urlKeyword.length());
+        }
         boolean valid = true;
         for (ItemValidityRules rule : itemValidityRules) {
             if (!rule.isValid(id)) {
