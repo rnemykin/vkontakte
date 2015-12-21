@@ -37,7 +37,7 @@ public class ReimaItemValidityRulesIntegrationTest {
     
     @Test
     public void testIdReimaValid() {
-    	assertTrue(rules.isValid("RE510144-4620"));
+    	assertTrue(rules.isValid("RE510195C-4621"));
     }
     
     @Test

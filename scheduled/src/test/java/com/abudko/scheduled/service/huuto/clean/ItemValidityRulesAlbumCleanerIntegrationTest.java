@@ -29,7 +29,7 @@ public class ItemValidityRulesAlbumCleanerIntegrationTest {
 	@Test
 	public void testCleanLekmerEncodedURL() {
 		Photo photo = new Photo();
-		photo.setDescription("bla bla [LE24591003080]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|");
+		photo.setDescription("bla bla [LE521346-9440]|bGluZGJlcmctb3ZlcmFsbC12ZXJtb250LWdyZWVuLW5hdnk=|");
 		assertTrue(cleaner.isValid(photo));
 	}
 	

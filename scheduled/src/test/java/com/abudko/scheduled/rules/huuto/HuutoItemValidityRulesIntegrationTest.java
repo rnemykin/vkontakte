@@ -30,11 +30,11 @@ public class HuutoItemValidityRulesIntegrationTest {
     private ItemValidityRules rules;
     
     @Autowired
-    @Qualifier("atomParamBuilder")
+    @Qualifier("huutoHtmlParamBuilder")
     private ParamBuilder paramBuilder;
 
     @Autowired
-    @Qualifier("atomQueryListServiceImpl")
+    @Qualifier("jsonQueryListServiceImpl")
     private QueryListService queryService;
 
     @Test

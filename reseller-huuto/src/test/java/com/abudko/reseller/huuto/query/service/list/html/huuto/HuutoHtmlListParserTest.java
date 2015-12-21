@@ -77,12 +77,6 @@ public class HuutoHtmlListParserTest {
         assertTrue("Url: " + queryResponse.getItemUrl(), queryResponse.getItemUrl().contains("/"));
     }
 
-//    @Test
-//    public void testBids() {
-//        queryResponse = new ArrayList<ListResponse>(responses).get(5);
-//        assertEquals("Bids: " + queryResponse.getBids(), "Ei huutajia", queryResponse.getBids());
-//    }
-
     @Test
     public void testLast() {
         assertTrue("Last: " + queryResponse.getLast(), queryResponse.getLast().length() > 0);

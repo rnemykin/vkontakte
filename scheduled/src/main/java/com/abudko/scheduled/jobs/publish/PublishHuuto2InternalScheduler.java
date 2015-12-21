@@ -34,7 +34,7 @@ public class PublishHuuto2InternalScheduler implements Scheduler {
     private ParamBuilder huutoParamBuilder;
 
     @Autowired
-    @Qualifier("huutoHtmlQueryListServiceImpl")
+    @Qualifier("jsonQueryListServiceImpl")
     private QueryListService huutoQueryListService;
 
     @Autowired

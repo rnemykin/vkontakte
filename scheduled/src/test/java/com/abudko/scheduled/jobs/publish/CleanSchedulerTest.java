@@ -45,7 +45,7 @@ public class CleanSchedulerTest {
     private PublishManagerUtils publishManagerUtils;
 
     @Mock
-    private QueryItemService atomQueryItemService;
+    private QueryItemService queryItemService;
     
     @Mock
     private AbstractItemValidityRules rule1;

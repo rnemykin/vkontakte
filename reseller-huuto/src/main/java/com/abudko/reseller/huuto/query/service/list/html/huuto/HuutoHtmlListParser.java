@@ -52,10 +52,7 @@ public class HuutoHtmlListParser implements HtmlListParser {
 
             String imgBaseSrc = parseImgSrc(element);
             queryResponse.setImgBaseSrc(imgBaseSrc);
-
-//            String bids = parseBids(element);
-//            queryResponse.setBids(bids);
-
+            
             String last = parseLast(element);
             queryResponse.setLast(last);
 
@@ -109,13 +106,6 @@ public class HuutoHtmlListParser implements HtmlListParser {
         String formattedItemUrl = itemUrl.replace(HtmlParserConstants.ITEM_URL_CONTEXT, "");
         return formattedItemUrl;
     }
-
-//    private String parseBids(Element element) {
-//        Element priceWrapper = element.getElementsByClass(HTML_ELEMENT_PRICE_WRAPPER).get(0);
-//        Element pricesElement = priceWrapper.getElementsByClass(HTML_ELEMENT_PRICE).get(0);
-//        Element currentPriceElement = pricesElement.child(0).child(0);
-//        return currentPriceElement.ownText();
-//    }
 
     private String parseLast(Element element) {
         Element lastElement = element.getElementsByClass(HTML_ELEMENT_CLOSING_TIME).get(0);

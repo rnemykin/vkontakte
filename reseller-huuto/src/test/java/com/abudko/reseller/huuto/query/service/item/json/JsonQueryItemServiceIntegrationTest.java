@@ -82,7 +82,7 @@ public class JsonQueryItemServiceIntegrationTest {
 
     @Test
     public void testItemResponseItemStatus() {
-        assertEquals(ItemStatus.OPENED, response.getItemStatus());
+        assertEquals(ItemStatus.CLOSED, response.getItemStatus());
     }
 
     @Test
