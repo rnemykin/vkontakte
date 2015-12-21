@@ -89,6 +89,13 @@ public class AlbumMapperTest {
     }
     
     @Test
+    public void testUpperBorderTalvikengät() {
+        testListResponse.setSize("40");
+        
+        assertTrue(AlbumMapper.TALVIKENGAT_32_40.equals(albumMapper.getAlbumId(Category.TALVIKENGAT.name(), testListResponse)));
+    }
+    
+    @Test
     public void testGetAlbumsVäli() {
         assertEquals(0, albumMapper.getAlbumIds(Category.VALIKAUSIHOUSUT.name()).size());
     }

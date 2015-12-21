@@ -28,7 +28,7 @@ public class AlbumMapper implements IAlbumMapper {
     public static final String TALVI_134_164 = "203810636";
     public static final String TALVIKENGAT_20_25 = "203810656";
     public static final String TALVIKENGAT_26_31 = "204193543";
-    public static final String TALVIKENGAT_32_37 = "203809455";
+    public static final String TALVIKENGAT_32_40 = "203809455";
     public static final String VILLA_68_92 = "204025638";
     public static final String VILLA_98_128 = "204025679";
     public static final String REIMA = "204197598";
@@ -62,7 +62,7 @@ public class AlbumMapper implements IAlbumMapper {
         RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
         rangeMap.put(Range.closed(20, 25), TALVIKENGAT_20_25);
         rangeMap.put(Range.closed(26, 31), TALVIKENGAT_26_31);
-        rangeMap.put(Range.closed(32, 37), TALVIKENGAT_32_37);
+        rangeMap.put(Range.closed(32, 40), TALVIKENGAT_32_40);
         map.put(Category.TALVIKENGAT.name(), rangeMap);
     }
     

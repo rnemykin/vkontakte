@@ -29,7 +29,7 @@ public class AlbumMapper2 implements IAlbumMapper {
     public static final String VALI_92_128 = "182341579";
     public static final String VALI_134_164 = "182341609";
     public static final String TALVIKENGAT_20_27 = "183417603";
-    public static final String TALVIKENGAT_28_37 = "183417638";
+    public static final String TALVIKENGAT_28_40 = "183417638";
     public static final String VALILENKKARIT_20_27 = "183417888";
     public static final String VALILENKKARIT_28_37 = "183417910";
     public static final String VILLA_68_92 = "183428281";
@@ -72,7 +72,7 @@ public class AlbumMapper2 implements IAlbumMapper {
     private void setupTalviKengat() {
         RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
         rangeMap.put(Range.closed(20, 27), TALVIKENGAT_20_27);
-        rangeMap.put(Range.closed(28, 37), TALVIKENGAT_28_37);
+        rangeMap.put(Range.closed(28, 40), TALVIKENGAT_28_40);
         map.put(Category.TALVIKENGAT.name(), rangeMap);
     }
     
