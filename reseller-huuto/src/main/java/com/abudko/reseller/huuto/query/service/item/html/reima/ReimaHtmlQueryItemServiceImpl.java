@@ -58,7 +58,7 @@ public class ReimaHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 		}
 		
         ItemResponse itemResponse = parseResponseFromHtml(html);
-        itemResponse.setItemUrl(itemUrl);
+        itemResponse.setItemUrl(decode);
         
         if (itemResponse.getId() != null && !itemResponse.getSizes().isEmpty()) {
         	itemResponse.setItemStatus(ItemStatus.OPENED);

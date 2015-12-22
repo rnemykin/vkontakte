@@ -18,6 +18,7 @@ import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.rometools.rome.feed.atom.Feed;
 
 @Component
+@Deprecated
 public class AtomQueryListServiceImpl extends AbstractQueryListService {
     
     private static final int MAX_ITEMS_ON_PAGE = 20;

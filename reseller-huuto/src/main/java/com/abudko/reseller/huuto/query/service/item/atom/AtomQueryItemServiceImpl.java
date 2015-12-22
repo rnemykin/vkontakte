@@ -11,6 +11,7 @@ import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.rometools.rome.feed.atom.Feed;
 
 @Component
+@Deprecated
 public class AtomQueryItemServiceImpl extends AbstractQueryItemService {
 
     @Autowired

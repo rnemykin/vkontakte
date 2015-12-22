@@ -56,6 +56,11 @@ public class LekmerItemValidityRulesIntegrationTest {
     }
     
     @Test
+    public void testLekmerURlKeywordValidUFT8() {
+    	assertTrue(rules.isValid("LEgeggamoja-tuulenpitävä-haalari-vauvan-cerise"));
+    }
+    
+    @Test
     public void testLekmerURlKeywordInvalid() {
     	assertFalse(rules.isValid("LElindberg-overall-vermont-green-nav"));
     }

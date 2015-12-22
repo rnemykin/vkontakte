@@ -48,6 +48,20 @@ public class ItemValidityRulesAlbumCleanerIntegrationTest {
 	}
 	
 	@Test
+	public void testCleanLekmer0EncodedURL() {
+		Photo photo = new Photo();
+		photo.setDescription("bla bla [LE219152222]|CxwVHl1KRhgGAwwLFUsPHUwEAB0TAAcCAgkVGgIAHVs2BAoBEQQIABcNBBpIEQgYFQEVDwwODB4CRwYLAAIIGQwCAEMTEBwYBgYRBxNACkdGCVUYQgZaUQJcTAYGBAUVEQFMGAYQHxUNRQILFQwaEQ==|");
+		assertTrue(cleaner.isValid(photo));
+	}
+	
+	@Test
+	public void testCleanLekmer1EncodedURL() {
+		Photo photo = new Photo();
+		photo.setDescription("bla bla [LE3-84380-1739 FU]|CxwVHl1KRhgGAwwLFUsPHUwEAB0TAAcCAgkVGgIAHVsPCRIaAgtEHgIECgcJAAwATB4AHBUABRgKGwQaSg4MGgQJFUMNBEQHAgkRHgYEHVsVAQoHCQJEBwIJER4GBB1ZBAcTCxMAEVkHBwwHCQpY|");
+		assertTrue(cleaner.isValid(photo));
+	}
+	
+	@Test
 	public void testCleanLekmer2EncodedURL() {
 		Photo photo = new Photo();
 		photo.setDescription("Зимняя одежда: Tenson (размер 98, 122, 128, 104, 86, 92, 110, 116) цена 6490 руб. [LE476243903]|CxwVHl1KRhgGAwwLFUsPHUwEAB0TAAcCAgkVGgIAHVs2BAoBEQQIABcNBBpIDQgVDwkTBxNKHRENGw4ASg0IFQ8JEwdKCAAGEQdMHAIB|");

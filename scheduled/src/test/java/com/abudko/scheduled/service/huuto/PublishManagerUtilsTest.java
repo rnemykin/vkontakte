@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
@@ -86,5 +85,19 @@ public class PublishManagerUtilsTest {
     	String base64 = utils.encodeBase64(listResponse);
     	
     	assertEquals(url, utils.decodeBase64(base64));
+    }
+    
+    @Test
+    public void testEncodeDecodeURL_UTF8() {
+    	ListResponse listResponse = new ListResponse();
+    	ItemResponse itemResponse = new ItemResponse();
+    	listResponse.setItemResponse(itemResponse);
+    	final String url = "geggamoja-tuulenpitävä-haalari-vauvan-cerise";
+    	listResponse.setItemUrl(url);
+    	
+    	String base64 = utils.encodeBase64(listResponse);
+    	
+    	String decodeBase64 = utils.decodeBase64(base64);
+    	assertEquals(url, decodeBase64);
     }
 }

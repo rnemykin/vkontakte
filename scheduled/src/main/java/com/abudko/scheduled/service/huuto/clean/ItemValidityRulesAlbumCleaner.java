@@ -37,8 +37,13 @@ public class ItemValidityRulesAlbumCleaner extends AbstractAlbumCleaner {
             		urlKeyword = idPrefix + urlKeyword;	
             	}
             	
-            	if (!rule.isValid(urlKeyword)) {
-            		valid = false;
+            	if (urlKeyword != null && !urlKeyword.isEmpty()) {
+            		if (!rule.isValid(urlKeyword)) {
+            			String substring = urlKeyword.substring(0, urlKeyword.length() - 1);
+            			if (!rule.isValid(substring)) {	
+            				valid = false;
+            			}
+            		}
             	}
             }
         }

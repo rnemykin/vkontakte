@@ -6,6 +6,7 @@ import com.abudko.reseller.huuto.query.params.SearchParams;
 import com.abudko.reseller.huuto.query.rules.SearchQueryRules;
 
 @Component
+@Deprecated
 public class AtomSearchQueryRules implements SearchQueryRules {
 
     public void apply(SearchParams searchParams) {

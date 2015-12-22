@@ -18,7 +18,7 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class AtomQueryItemServiceIntegrationTest {
+public abstract class AtomQueryItemServiceIntegrationTest {
 
     private static final String ITEM_URL = "uusi-poikien-talvihaalari-everest-koko-104/365596671";
     private static final String ITEM_URL_NO_OSTA_HETI = "beige-talvihaalari-110/365322988";

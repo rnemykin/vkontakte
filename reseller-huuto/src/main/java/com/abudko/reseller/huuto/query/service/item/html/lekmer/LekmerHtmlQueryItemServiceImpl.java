@@ -45,7 +45,7 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
         String html = restTemplate.getForObject(decode, String.class);
         ItemResponse itemResponse = parseResponseFromHtml(html);
-        itemResponse.setItemUrl(itemUrl);
+        itemResponse.setItemUrl(decode);
 
         return itemResponse;
     }
