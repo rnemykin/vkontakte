@@ -17,6 +17,7 @@ public class CleanSchedulerIntegrationTest {
     private CleanScheduler cleanScheduler;
 
     @Test
+    @Ignore
     public void testClean() throws IOException {
         cleanScheduler.schedule();
     }
