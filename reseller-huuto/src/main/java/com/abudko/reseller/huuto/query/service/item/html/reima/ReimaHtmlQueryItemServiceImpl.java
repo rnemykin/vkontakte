@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
 import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
-import com.abudko.reseller.huuto.query.rules.LekmerPriceRules;
+import com.abudko.reseller.huuto.query.rules.ReimaPriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.ItemStatus;
@@ -26,7 +26,7 @@ public class ReimaHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     private Logger log = LoggerFactory.getLogger(getClass());
     
     @Resource
-    protected LekmerPriceRules lekmerPriceRules;
+    protected ReimaPriceRules priceRules;
 
     @Autowired
     private ReimaHtmlItemParser htmlItemParser;
@@ -88,6 +88,6 @@ public class ReimaHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     }
     
     protected AbstractPriceRules getPriceRules() {
-        return lekmerPriceRules;
+        return priceRules;
     }
 }

@@ -39,7 +39,7 @@ public class HuutoItemValidityRulesIntegrationTest {
 
     @Test
     public void testIdInvalid() {
-        assertFalse(rules.isValid("309385953"));
+        assertFalse(rules.isValid("388462817"));
     }
     
     @Test

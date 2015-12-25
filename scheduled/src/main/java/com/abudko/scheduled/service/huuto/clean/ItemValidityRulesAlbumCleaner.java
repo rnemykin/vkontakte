@@ -36,12 +36,15 @@ public class ItemValidityRulesAlbumCleaner extends AbstractAlbumCleaner {
             	if (idPrefix != null) {
             		urlKeyword = idPrefix + urlKeyword;	
             	}
+            	else {
+            		return false;
+            	}
             	
             	if (urlKeyword != null && !urlKeyword.isEmpty()) {
             		if (!rule.isValid(urlKeyword)) {
             			String substring = urlKeyword.substring(0, urlKeyword.length() - 1);
             			if (!rule.isValid(substring)) {	
-            				valid = false;
+            				return false;
             			}
             		}
             	}

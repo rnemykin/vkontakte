@@ -7,6 +7,8 @@ public class QueryConstants {
     public static final String LEKMER_HTML_SEARCH_URL = "http://lekmer.fi/search/?mode=filter&pagesize=200&q=";
     
     public static final String REIMA_HTML_SEARCH_URL = "http://www.reimashop.fi/Kategoriat/Lastenvaate-ALE/Lasten-ulkovaatteet---ALE/";
+
+    public static final String XXL_HTML_SEARCH_URL = "https://www.xxl.fi/search?text=";
     
     public static final String ATOM_QUERY_URL = "http://api.huuto.net/somt/0.9/items";
     

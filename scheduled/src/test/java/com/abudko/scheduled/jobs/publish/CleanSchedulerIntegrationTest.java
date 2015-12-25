@@ -15,12 +15,8 @@ public class CleanSchedulerIntegrationTest {
 
     @Autowired
     private CleanScheduler cleanScheduler;
-    
-    @Autowired
-    private Clean2Scheduler clean2Scheduler;
-    
+
     @Test
-    @Ignore
     public void testClean() throws IOException {
         cleanScheduler.schedule();
     }

@@ -67,5 +67,19 @@ public class ItemValidityRulesAlbumCleanerIntegrationTest {
 		photo.setDescription("Зимняя одежда: Tenson (размер 98, 122, 128, 104, 86, 92, 110, 116) цена 6490 руб. [LE476243903]|CxwVHl1KRhgGAwwLFUsPHUwEAB0TAAcCAgkVGgIAHVs2BAoBEQQIABcNBBpIDQgVDwkTBxNKHRENGw4ASg0IFQ8JEwdKCAAGEQdMHAIB|");
 		assertTrue(cleaner.isValid(photo));
 	}
+	
+	@Test
+	public void testCleanLekmer3EncodedURL() {
+		Photo photo = new Photo();
+		photo.setDescription("bla bla [LE245910030]|CxwVHl1KRhgGAwwLFUsPHUwEAB0TAAcCAgkVGgIAHVs2BAoBEQQIABcNBBpIDQgVDwkTBxNKBR0NDAMLFQJEGxUNEw8LCUQCBhoMAQkRRBMRDQQASgsIAho=|");
+		assertTrue(cleaner.isValid(photo));
+	}
+	
+	@Test
+	public void testCleanLekmer4EncodedURL() {
+		Photo photo = new Photo();
+		photo.setDescription("[387737751]||");
+		assertFalse(cleaner.isValid(photo));
+	}
 
 }
