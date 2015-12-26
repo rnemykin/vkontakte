@@ -1,8 +1,5 @@
 package com.abudko.reseller.huuto.query.service.item.html.reima;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
 import javax.annotation.Resource;
 
 import org.eclipse.jetty.http.HttpStatus;
@@ -40,12 +37,7 @@ public class ReimaHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
         log.info(String.format("Quering item: %s", itemUrl));
         
-        String decode = null;
-        try {
-            decode = URLDecoder.decode(itemUrl, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            log.error("", e);
-        }
+        String decode = decodeUrl(itemUrl);
 
 		String html = "";
 

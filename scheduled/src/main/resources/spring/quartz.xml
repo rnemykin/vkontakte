@@ -24,6 +24,8 @@
    				<entry key="publishLekmer2Scheduler" value-ref="publishLekmer2Scheduler" />
    				<entry key="publishReimaScheduler" value-ref="publishReimaScheduler" />
    				<entry key="publishReima2Scheduler" value-ref="publishReima2Scheduler" />
+   				<entry key="publishXxlScheduler" value-ref="publishXxlScheduler" />
+   				<entry key="publishXxl2Scheduler" value-ref="publishXxl2Scheduler" />
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
    				<entry key="clean2Scheduler" value-ref="clean2Scheduler" />
    				<entry key="cleanAllScheduler" value-ref="cleanAllScheduler" />
@@ -60,6 +62,8 @@
       			<ref bean="publishLekmer2Trigger"/>
       			<ref bean="publishReimaTrigger"/>
       			<ref bean="publishReima2Trigger"/>
+      			<ref bean="publishXxlTrigger"/>
+      			<ref bean="publishXxl2Trigger"/>
       			<ref bean="cleanTrigger"/>
       			<ref bean="clean2Trigger"/>
       			<ref bean="cleanAllTrigger"/>

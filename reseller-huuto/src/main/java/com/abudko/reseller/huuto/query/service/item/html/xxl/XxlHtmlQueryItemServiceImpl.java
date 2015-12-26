@@ -1,16 +1,11 @@
 package com.abudko.reseller.huuto.query.service.item.html.xxl;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
 import javax.annotation.Resource;
 
-import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
@@ -40,12 +35,7 @@ public class XxlHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
 		log.info(String.format("Quering item: %s", itemUrl));
 
-		String decode = null;
-		try {
-			decode = URLDecoder.decode(itemUrl, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			log.error("", e);
-		}
+		String decode = decodeUrl(itemUrl);
 
 		String html = restTemplate.getForObject(decode, String.class);
 
@@ -61,10 +51,6 @@ public class XxlHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
 	private String constructFullItemUrl(String itemUrl) {
 		StringBuilder sb = new StringBuilder(HtmlParserConstants.XXL_FI);
-		sb.append("/");
-		if (!itemUrl.contains("/")) {
-			sb.append("p/");
-		}
 		sb.append(itemUrl);
 
 		return sb.toString();

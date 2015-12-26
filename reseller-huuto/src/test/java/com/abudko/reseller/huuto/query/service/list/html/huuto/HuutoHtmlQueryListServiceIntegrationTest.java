@@ -17,7 +17,7 @@ import com.abudko.reseller.huuto.query.service.list.QueryListService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class HuutoHtmlQueryListServiceIntegrationTest {
+public abstract class HuutoHtmlQueryListServiceIntegrationTest {
 
     @Autowired
     private ParamMapper queryParamMapper;

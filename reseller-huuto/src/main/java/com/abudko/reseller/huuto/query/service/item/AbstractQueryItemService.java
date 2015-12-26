@@ -1,5 +1,8 @@
 package com.abudko.reseller.huuto.query.service.item;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -34,6 +37,17 @@ public abstract class AbstractQueryItemService implements QueryItemService {
         if (id != null) {
             itemResponse.setId(id);
         }
+    }
+    
+    protected String decodeUrl(String itemUrl) {
+    	String decode = null;
+		try {
+			decode = URLDecoder.decode(itemUrl, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			log.error("", e);
+		}
+		
+		return decode;
     }
     
     protected abstract String extractIdFromUrl(String urlSuffix);

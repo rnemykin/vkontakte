@@ -1,8 +1,5 @@
 package com.abudko.reseller.huuto.query.service.item.html.lekmer;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -36,13 +33,8 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
         log.info(String.format("Quering item: %s", itemUrl));
         
-        String decode = null;
-        try {
-            decode = URLDecoder.decode(itemUrl, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            log.error("", e);
-        }
-
+        String decode = decodeUrl(itemUrl);
+        
         String html = restTemplate.getForObject(decode, String.class);
         ItemResponse itemResponse = parseResponseFromHtml(html);
         itemResponse.setItemUrl(decode);
