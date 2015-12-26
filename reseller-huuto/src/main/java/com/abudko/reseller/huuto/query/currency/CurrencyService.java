@@ -27,7 +27,7 @@ public class CurrencyService {
 
     private static final BigDecimal DEFAULT_RATE = new BigDecimal(85);
 
-    private static final String URL = "http://rate-exchange.appspot.com/currency?from=EUR&to=RUB";
+    private static final String URL = "http://api.fixer.io/latest?symbols=EUR,RUB";
 
     @Autowired
     private RestTemplate restTemplate;
@@ -39,7 +39,9 @@ public class CurrencyService {
         BigDecimal rate = DEFAULT_RATE;
 
         try {
-            rate = restTemplate.getForObject(URL, RateResponse.class).getRate();
+        	RateResponse response = restTemplate.getForObject(URL, RateResponse.class);
+        	Double value = response.getRates().get("RUB");
+            rate = new BigDecimal(value);
         } catch (Throwable e) {
             log.error("Unable to extract currency rate, let's try querying CBR", e);
             rate = getRateCbr();

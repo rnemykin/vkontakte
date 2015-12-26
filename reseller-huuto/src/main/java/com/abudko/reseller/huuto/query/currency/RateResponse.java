@@ -1,36 +1,36 @@
 package com.abudko.reseller.huuto.query.currency;
 
-import java.math.BigDecimal;
+import java.util.Map;
 
 public class RateResponse {
 
-    private BigDecimal rate;
+    private String base;
 
-    private String from;
+    private String date;
     
-    private String to;
+    private Map<String, Double> rates;
 
-    public BigDecimal getRate() {
-        return rate;
-    }
+	public String getBase() {
+		return base;
+	}
 
-    public String getFrom() {
-        return from;
-    }
+	public void setBase(String base) {
+		this.base = base;
+	}
 
-    public void setFrom(String from) {
-        this.from = from;
-    }
+	public String getDate() {
+		return date;
+	}
 
-    public String getTo() {
-        return to;
-    }
+	public void setDate(String date) {
+		this.date = date;
+	}
 
-    public void setTo(String to) {
-        this.to = to;
-    }
+	public Map<String, Double> getRates() {
+		return rates;
+	}
 
-    public void setRate(BigDecimal rate) {
-        this.rate = rate;
-    }
+	public void setRates(Map rates) {
+		this.rates = rates;
+	}
 }

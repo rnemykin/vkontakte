@@ -79,6 +79,9 @@ public class XxlHtmlItemParser implements HtmlItemParser {
     
     private String parsePrice(Document document) {
     	Elements elements = document.getElementsByClass("bigPrice");
+    	if (elements.isEmpty()) {
+    		return null;
+    	}
     	Element element = elements.get(0);
     	String price = element.text();
     	return price.replace(HtmlParserConstants.EURO_CHAR, "").trim().replace(",", ".");
@@ -86,6 +89,9 @@ public class XxlHtmlItemParser implements HtmlItemParser {
     
     private String parseId(Document document) {
         Elements elements = document.getElementsByClass("productDetailPageWrapper");
+        if (elements.isEmpty()) {
+        	return null;
+        }
         String attr = elements.get(0).child(0).attr("data-id");
         int i = attr.lastIndexOf("_");
         if (i >= 0) {
@@ -96,6 +102,9 @@ public class XxlHtmlItemParser implements HtmlItemParser {
     
     private String parseBrand(Document document) {
     	 Elements elements = document.getElementsByClass("productDetailPageWrapper");
+    	 if (elements.isEmpty()) {
+    		 return null;
+    	 }
          String brandAttr = elements.get(0).child(0).attr("data-brand");
          Brand brand = Brand.getBrandFrom(brandAttr);
          if (brand != null) {

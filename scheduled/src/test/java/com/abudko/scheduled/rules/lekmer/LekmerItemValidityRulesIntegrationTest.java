@@ -36,6 +36,11 @@ public class LekmerItemValidityRulesIntegrationTest {
     }
     
     @Test
+    public void testIdXXLValid() {
+    	assertTrue(rules.isValid("XXsdfdfsd"));
+    }
+    
+    @Test
     public void testLekmerIdShort() {
         assertTrue(rules.isValid("LE106"));
     }

@@ -1,7 +1,6 @@
-package com.abudko.scheduled.rules.reima;
+package com.abudko.scheduled.rules.xxl;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,10 +13,10 @@ import com.abudko.scheduled.rules.ItemValidityRules;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class ReimaItemValidityRulesIntegrationTest {
-    
-    @Autowired
-    @Qualifier("reimaItemValidityRules")
+public class XxlItemValidityRulesIntegrationTest {
+
+	@Autowired
+    @Qualifier("xxlItemValidityRules")
     private ItemValidityRules rules;
     
     @Test
@@ -31,18 +30,18 @@ public class ReimaItemValidityRulesIntegrationTest {
     }
     
     @Test
-    public void testIdXXLValid() {
-    	assertTrue(rules.isValid("XXsdfdfsd"));
-    }
-    
-    @Test
-    public void testIdReimaInvalid() {
-        assertFalse(rules.isValid("REsds"));
-    }
-    
-    @Test
     public void testIdReimaValid() {
-    	assertTrue(rules.isValid("RE510195C-4621"));
+        assertTrue(rules.isValid("REsds"));
+    }
+    
+    @Test
+    public void testIdXXLInvalid() {
+    	assertFalse(rules.isValid("XXyrsddr"));
+    }
+    
+    @Test
+    public void testIdXXLValid() {
+    	assertTrue(rules.isValid("XX1098856_4"));
     }
     
     @Test

@@ -26,6 +26,11 @@ public class XxlHtmlListParser implements HtmlListParser {
         Collection<ListResponse> responses = new LinkedHashSet<ListResponse>();
 
         Document document = Jsoup.parse(htmlResponse);
+        
+        Elements elements = document.getElementsByClass("notMakeSense");
+        if (!elements.isEmpty()) {
+        	return responses;
+        }
 
         Elements productList = document.getElementsByAttributeValueContaining("class", HTML_PRODUCT_LIST_CLASS);
         if (productList != null && !productList.isEmpty()) {
