@@ -121,6 +121,24 @@ public class AlbumMapperTest {
     }
     
     @Test
+    public void testGetAlbumIdDash() {
+        testListResponse.setItemResponse(new ItemResponse());
+        testListResponse.setSize("32-33");
+        
+        assertTrue(Arrays.asList(AlbumMapper.TALVIKENGAT_32_40).contains(albumMapper.getAlbumId(Category.TALVIKENGAT.name(), testListResponse)));
+        assertFalse(Arrays.asList(AlbumMapper.TALVIKENGAT_26_31).contains(albumMapper.getAlbumId(Category.TALVIKENGAT.name(), testListResponse)));
+    }
+    
+    @Test
+    public void testGetAlbumIdDashes() {
+        testListResponse.setItemResponse(new ItemResponse());
+        testListResponse.getItemResponse().setSizes(Arrays.asList("32-33"));
+        
+        assertTrue(Arrays.asList(AlbumMapper.TALVIKENGAT_32_40).contains(albumMapper.getAlbumId(Category.TALVIKENGAT.name(), testListResponse)));
+        assertFalse(Arrays.asList(AlbumMapper.TALVIKENGAT_26_31).contains(albumMapper.getAlbumId(Category.TALVIKENGAT.name(), testListResponse)));
+    }
+    
+    @Test
     public void testGetAlbumIdForBrandNull() {
         assertNull(albumMapper.getAlbumIdForBrand(testListResponse));
     }

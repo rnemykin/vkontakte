@@ -15,7 +15,4 @@ public class PublishXxl2Scheduler extends PublishXxlScheduler {
 	protected PublishManager getPublishManager() {
 		return publishManager;
 	}
-    
-    
-
 }

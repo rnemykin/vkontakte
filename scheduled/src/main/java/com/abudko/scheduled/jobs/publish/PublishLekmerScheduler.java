@@ -52,8 +52,12 @@ public class PublishLekmerScheduler implements Scheduler {
 //      publishLekmerInternal("toppapuku", "TALVIHAALARI", 0);
 //      publishLekmerInternal("kaksiosainen setti talvi", "TALVIHAALARI", 0);
       publishLekmerInternal("Viking kengät", "TALVIKENGAT", 0);
-      publishLekmerInternal("Reimatec bootsit", "TALVIKENGAT", 0);
+      publishLekmerInternal("Reima bootsit", "TALVIKENGAT", 0);
       publishLekmerInternal("Superfit saappaat", "TALVIKENGAT", 0);
+      publishLekmerInternal("Timberland talvisaappaat", "TALVIKENGAT", 0);
+      publishLekmerInternal("Reima talvisaappaat", "TALVIKENGAT", 0);
+      publishLekmerInternal("Columbia talvisaappaat", "TALVIKENGAT", 0);
+      publishLekmerInternal("Sorel kengät", "TALVIKENGAT", 0);
 //      publishLekmerInternal("talvitakkeja", "TALVITAKKI", 75);
 //      publishLekmerInternal("toppahousut", "TALVIHOUSUT", 65);
     }

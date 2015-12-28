@@ -48,6 +48,14 @@ public class PublishXxlScheduler implements Scheduler {
     private void publish() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
         publishInternal("talvihaalari", "TALVIHAALARI", 0);
+        publishInternal("didriksons+toppahaalari", "TALVIHAALARI", 0);
+        publishInternal("viking+lasten+talvikengät", "TALVIKENGAT", 0);
+        publishInternal("clarks+lasten+talvikengät", "TALVIKENGAT", 0);
+        publishInternal("kamik+lasten+talvikengät", "TALVIKENGAT", 0);
+        publishInternal("sorel+lasten+talvikengät", "TALVIKENGAT", 0);
+        publishInternal("timberland+lasten+talvikengät", "TALVIKENGAT", 0);
+        publishInternal("columbia+lasten+talvikengät", "TALVIKENGAT", 0);
+        publishInternal("superfit+lasten+talvikengät", "TALVIKENGAT", 0);
     }
 
     private void publishInternal(String query, String categoryenum, int limit)

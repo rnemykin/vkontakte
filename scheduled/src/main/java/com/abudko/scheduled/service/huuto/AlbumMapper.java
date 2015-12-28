@@ -85,16 +85,26 @@ public class AlbumMapper implements IAlbumMapper {
         if (listResponse.hasManySizes()) {
             List<String> sizes = listResponse.getItemResponse().getSizes();
             Collections.shuffle(sizes);
-            size = Integer.valueOf(sizes.get(0));
+            String s = extractSize(sizes.get(0));
+            size = Integer.valueOf(s);
         }
         else {
-            size = Integer.valueOf(listResponse.getSize());
+            String s = extractSize(listResponse.getSize());
+            size = Integer.valueOf(s);
         }
         RangeMap<Integer, String> rangeMap = map.get(category);
         if (rangeMap == null) {
             return null;
         }
         return rangeMap.get(size);
+    }
+    
+    private String extractSize(String sizeStr) {
+        if (sizeStr != null && sizeStr.contains("-")) {
+            return sizeStr.substring(0, sizeStr.indexOf("-"));
+        }
+        
+        return sizeStr;
     }
     
     public String getAlbumIdForBrand(ListResponse listResponse) {
