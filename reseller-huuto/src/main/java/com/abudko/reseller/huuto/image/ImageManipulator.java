@@ -17,14 +17,28 @@ import org.springframework.stereotype.Component;
 public class ImageManipulator {
 
     private Logger log = LoggerFactory.getLogger(getClass());
-
+    
+    public void storeImage(String imageUrlStr, String outputFile) {
+    	this.storeImage(imageUrlStr, outputFile, null, true);
+    }
+    
     public void storeImage(String imageUrlStr, String outputFile, String addText) {
+    	this.storeImage(imageUrlStr, outputFile, addText, true);
+    }
+
+    public void storeImage(String imageUrlStr, String outputFile, String addText, boolean crop) {
         log.info(String.format("Croping image from %s and storing in %s", imageUrlStr, outputFile));
 
         try {
             URL url = new URL(imageUrlStr);
-            BufferedImage image = ImageIO.read(url);
-            BufferedImage subimage = cropImage(image);
+            BufferedImage subimage = null;
+            if (crop) {
+            	BufferedImage image = ImageIO.read(url);
+            	subimage = cropImage(image);
+            }
+            else {
+            	subimage = ImageIO.read(url);
+            }
             addTextToImage(subimage, addText);
             URL output = new URL(outputFile);
             File outputfile = new File(output.getFile());

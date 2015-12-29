@@ -98,10 +98,8 @@ public abstract class AbstractPublishManager implements PublishManager {
     private void cropImage(ListResponse listResponse) {
         String url = getImgUrl(listResponse);
         
-        if (url != null && url.contains("huuto.net")) {
-        	// no need to add advert.
-        	imageManipulator.storeImage(url, "file:" + imageTempFileLocation, null);
-        }
+        boolean crop = url != null && url.contains("huuto.net");
+       	imageManipulator.storeImage(url, "file:" + imageTempFileLocation, null, crop);
     }
 
     protected PhotoData getPhotoData(Category category, ListResponse listResponse) {

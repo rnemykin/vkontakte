@@ -4,7 +4,6 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -92,7 +91,7 @@ public class PublishManagerTest {
 
         publishManager.publishResults(Category.TALVIHAALARI, list);
 
-        verify(imageManipulator).storeImage(Mockito.eq(imgBaseSrc + "-orig.jpg"), Mockito.eq("file:" + location), Mockito.anyString());
+        verify(imageManipulator).storeImage(Mockito.eq(imgBaseSrc + "-orig.jpg"), Mockito.eq("file:" + location), Mockito.anyString(), Mockito.eq(true));
     }
     
     @Test
@@ -109,7 +108,7 @@ public class PublishManagerTest {
     	
     	publishManager.publishResults(Category.TALVIHAALARI, list);
     	
-    	verify(imageManipulator, never()).storeImage(Mockito.eq(imgBaseSrc + "-orig.jpg"), Mockito.eq("file:" + location), Mockito.anyString());
+    	verify(imageManipulator).storeImage(Mockito.eq(imgBaseSrc + "-orig.jpg"), Mockito.eq("file:" + location), Mockito.anyString(), Mockito.eq(false));
     }
 
     @Test
