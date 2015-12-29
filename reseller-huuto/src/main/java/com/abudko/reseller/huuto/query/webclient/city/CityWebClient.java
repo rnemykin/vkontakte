@@ -34,6 +34,9 @@ public class CityWebClient {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        finally {
+            webClient.closeAllWindows();
+        }
         
         return html;
     }
