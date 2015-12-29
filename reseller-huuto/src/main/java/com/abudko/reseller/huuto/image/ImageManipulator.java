@@ -43,7 +43,7 @@ public class ImageManipulator {
             URL output = new URL(outputFile);
             File outputfile = new File(output.getFile());
             ImageIO.write(subimage, "jpg", outputfile);
-        } catch (IOException e) {
+        } catch (Exception e) {
             String error = String.format("Exception while cropping image from url %s", imageUrlStr);
             log.error(error);
             throw new RuntimeException(error, e);
