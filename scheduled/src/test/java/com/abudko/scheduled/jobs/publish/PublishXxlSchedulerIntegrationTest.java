@@ -17,6 +17,7 @@ public class PublishXxlSchedulerIntegrationTest {
     private PublishXxlScheduler publishXxlScheduler;
     
     @Test
+    @Ignore
     public void testPublish() throws IOException {
         publishXxlScheduler.schedule();
     }

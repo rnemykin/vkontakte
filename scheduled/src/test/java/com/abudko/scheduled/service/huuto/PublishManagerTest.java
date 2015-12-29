@@ -4,6 +4,7 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -78,11 +79,11 @@ public class PublishManagerTest {
     }
 
     @Test
-    public void testCropImage() throws Exception {
+    public void testCropImageHuuto() throws Exception {
         ListResponse listResponse = new ListResponse();
         listResponse.setSize("90");
         ItemResponse item = new ItemResponse();
-        final String imgBaseSrc = "imgBaseSrc";
+        final String imgBaseSrc = "huuto.net/imgBaseSrc";
         item.setImgBaseSrc(imgBaseSrc);
         listResponse.setItemResponse(item);
         List<ListResponse> list = Arrays.asList(listResponse);
@@ -92,6 +93,23 @@ public class PublishManagerTest {
         publishManager.publishResults(Category.TALVIHAALARI, list);
 
         verify(imageManipulator).storeImage(Mockito.eq(imgBaseSrc + "-orig.jpg"), Mockito.eq("file:" + location), Mockito.anyString());
+    }
+    
+    @Test
+    public void testCropImageOthers() throws Exception {
+    	ListResponse listResponse = new ListResponse();
+    	listResponse.setSize("90");
+    	ItemResponse item = new ItemResponse();
+    	final String imgBaseSrc = "imgBaseSrc";
+    	item.setImgBaseSrc(imgBaseSrc);
+    	listResponse.setItemResponse(item);
+    	List<ListResponse> list = Arrays.asList(listResponse);
+    	final String location = "gjyug";
+    	setField(publishManager, "imageTempFileLocation", location);
+    	
+    	publishManager.publishResults(Category.TALVIHAALARI, list);
+    	
+    	verify(imageManipulator, never()).storeImage(Mockito.eq(imgBaseSrc + "-orig.jpg"), Mockito.eq("file:" + location), Mockito.anyString());
     }
 
     @Test
