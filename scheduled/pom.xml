@@ -27,7 +27,6 @@
 		<logback.version>1.0.11</logback.version>
 		<quartz.version>2.1.6</quartz.version>
 		<javacsv.version>2.0</javacsv.version>
-		<httpclient.version>4.3.2</httpclient.version>
 		<jstl.version>1.2</jstl.version>
 		<guava.version>14.0.1</guava.version>
 		<ehcache.version>2.7.4</ehcache.version>
@@ -240,12 +239,6 @@
 			<version>${guava.version}</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>

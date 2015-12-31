@@ -4,7 +4,7 @@ import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
-import org.eclipse.jetty.http.HttpStatus;
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -46,7 +46,7 @@ public class ReimaHtmlQueryListServiceImpl extends AbstractQueryListService {
         	responseList = restTemplate.getForObject(pagedURI, String.class);
         }
         catch (HttpClientErrorException e) {
-        	if (HttpStatus.NOT_FOUND_404 != e.getStatusCode().value()) {
+        	if (HttpStatus.SC_NOT_FOUND != e.getStatusCode().value()) {
         		log.info("Exeption during calling reima list : " + e);	
         	}
         }

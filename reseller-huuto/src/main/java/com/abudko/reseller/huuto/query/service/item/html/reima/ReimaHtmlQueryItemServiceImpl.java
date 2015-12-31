@@ -2,7 +2,7 @@ package com.abudko.reseller.huuto.query.service.item.html.reima;
 
 import javax.annotation.Resource;
 
-import org.eclipse.jetty.http.HttpStatus;
+import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class ReimaHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 		try {
 			html = restTemplate.getForObject(decode, String.class);
 		} catch (HttpClientErrorException e) {
-			if (HttpStatus.NOT_FOUND_404 != e.getStatusCode().value()) {
+			if (HttpStatus.SC_NOT_FOUND != e.getStatusCode().value()) {
 				log.info("Exeption during calling reima list : " + e);
 			}
 		}

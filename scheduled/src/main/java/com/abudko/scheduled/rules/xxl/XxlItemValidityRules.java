@@ -44,6 +44,8 @@ public class XxlItemValidityRules extends AbstractItemValidityRules {
 
     @Override
     protected boolean isValidInternal(String id) {
+        if (true)
+            return true;
         Collection<ListResponse> responses = null;
         SearchParams searchParams = getSearchParams(id);
         String query = null;

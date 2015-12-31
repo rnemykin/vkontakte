@@ -62,8 +62,8 @@
       			<ref bean="publishLekmer2Trigger"/>
       			<ref bean="publishReimaTrigger"/>
       			<ref bean="publishReima2Trigger"/>
-      			<ref bean="publishXxlTrigger"/>
-      			<ref bean="publishXxl2Trigger"/>
+      			<!-- <ref bean="publishXxlTrigger"/>
+      			<ref bean="publishXxl2Trigger"/> -->
       			<ref bean="cleanTrigger"/>
       			<ref bean="clean2Trigger"/>
       			<ref bean="cleanAllTrigger"/>
