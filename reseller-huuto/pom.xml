@@ -24,10 +24,10 @@
 		<javacsv.version>2.0</javacsv.version>
 		<beanutils.version>1.8.3</beanutils.version>
 		<mockito.version>1.8.4</mockito.version>
-		<httpclient.version>4.5.1</httpclient.version>
+		<httpclient.version>4.3.2</httpclient.version>
 		<jackson.version>2.2.4</jackson.version>
 		<rome.version>1.5.0</rome.version>
-		<htmlunit.version>2.19</htmlunit.version>
+		<htmlunit.version>2.15</htmlunit.version>
 	</properties>
 
 	<build>

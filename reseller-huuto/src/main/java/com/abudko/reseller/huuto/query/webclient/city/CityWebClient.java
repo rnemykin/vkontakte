@@ -55,7 +55,7 @@ public class CityWebClient {
                 ww.getJobManager().removeAllJobs();
                 ww.getJobManager().shutdown();
             }
-            webClient.close();
+            webClient.closeAllWindows();
             System.gc();
         } catch (Exception e) {
             log.warn("Closing webclient: " + e);
