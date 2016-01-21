@@ -27,6 +27,10 @@ public abstract class AbstractQueryListService implements QueryListService {
 
     @Autowired
     private List<SearchResultFilter> searchResultFilters;
+    
+    @Autowired
+    @Qualifier("descriptionKeywordExclusionFilter") 
+    private SearchResultFilter descriptionKeywordExclusionFilter;
 
     @Autowired
     @Qualifier("huutoPriceRules")
@@ -39,6 +43,8 @@ public abstract class AbstractQueryListService implements QueryListService {
         Collection<ListResponse> queryResponses = callAndParse(query);
 
         setNewPrice(queryResponses);
+        
+        queryResponses = applyDescriptionKeywordExclusionFilter(queryResponses, searchParams);
 
         validate(queryResponses);
 
@@ -60,6 +66,10 @@ public abstract class AbstractQueryListService implements QueryListService {
     protected abstract QueryItemService getQueryItemService();
 
     protected abstract AbstractPriceRules getPriceRules();
+    
+    private Collection<ListResponse> applyDescriptionKeywordExclusionFilter(Collection<ListResponse> queryResponses, SearchParams searchParams) {
+        return descriptionKeywordExclusionFilter.apply(queryResponses, searchParams);
+    }
 
     private Collection<ListResponse> applyFilters(Collection<ListResponse> queryResponses, SearchParams searchParams) {
         for (SearchResultFilter filter : searchResultFilters) {

@@ -35,27 +35,27 @@ public class LekmerHtmlItemParserTest {
 
     @Test
     public void testId() {
-        assertEquals("LE219152223", response.getId());
+        assertEquals("LENG20004", response.getId());
     }
     
     @Test
     public void testBrand() {
-        assertEquals("Geggamoja", response.getItemInfo().getBrand());
+        assertEquals("Levi's", response.getItemInfo().getBrand());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("45.43", response.getPrice());
+        assertEquals("46.32", response.getPrice());
     }
     
     @Test
     public void testSizes() {
-        assertEquals(Arrays.asList("74", "80", "86", "92"), response.getSizes());
+        assertEquals(Arrays.asList("67", "70", "74", "80"), response.getSizes());
     }
     
     @Test
     public void testImgSrc() {
-        assertEquals("http://lekmer.fi/mediaarchive/1163811/productmanMeasurement465x500/geggamoja-tuulenpitava-haalari-vauvan-cerise.jpg", response.getImgBaseSrc());
+        assertEquals("http://b-lekmer-363630.c.cdn77.org/1161015/productmanMeasurement465x500/levis-lappuhaalarit-vauva-samy-indigo.jpg", response.getImgBaseSrc());
     }
     
     @Test

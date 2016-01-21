@@ -27,6 +27,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.abudko.reseller.huuto.query.QueryConstants;
+import com.abudko.reseller.huuto.query.filter.DescriptionKeywordExclusionFilter;
 import com.abudko.reseller.huuto.query.filter.SearchResultFilter;
 import com.abudko.reseller.huuto.query.params.SearchParams;
 import com.abudko.reseller.huuto.query.rules.HuutoPriceRules;
@@ -52,6 +53,9 @@ public class HuutoHtmlQueryListServiceTest {
 
     @Mock
     private SearchResultFilter filter;
+    
+    @Mock
+    private DescriptionKeywordExclusionFilter descriptionKeywordExclusionFilter;
 
     @Mock
     private HuutoPriceRules priceRules;
@@ -148,6 +152,7 @@ public class HuutoHtmlQueryListServiceTest {
         verify(restTemplate).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class);
         verify(htmlListParser).parse(responseList);
         verify(queryItemService).extractItem(Mockito.anyString());
+        verify(descriptionKeywordExclusionFilter).apply(Mockito.any(Collection.class), Mockito.any(SearchParams.class));
     }
     
     @Test
