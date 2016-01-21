@@ -9,6 +9,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
@@ -19,6 +21,8 @@ import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
 public class LekmerHtmlItemParser implements HtmlItemParser {
     
     private static final String HTML_PRODUCT_ID = "product_band";
+    
+    private Logger log = LoggerFactory.getLogger(getClass());
     
     @Override
     public ItemResponse parse(String html) {
@@ -54,11 +58,18 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
                     sizes.add(text.substring(0, 3).trim());
                 }
                 else {
-                    int length = text.trim().length();
-                    int slashindex = text.indexOf("/");
-                    int spaceindex = text.indexOf(" ");
-                    sizes.add(text.substring(0, slashindex).trim());
-                    sizes.add(text.substring(slashindex + 1, spaceindex < 0 ? length : spaceindex).trim());
+                    try {
+                        int length = text.trim().length();
+                        int slashindex = text.indexOf("/");
+                        int spaceindex = text.indexOf(" ");
+                        String s1 = text.substring(0, slashindex).trim();
+                        String s2 = text.substring(slashindex + 1, spaceindex < 0 ? length : spaceindex).trim();
+                        sizes.add(s1);
+                        sizes.add(s2);
+                    }
+                    catch (Exception e) {
+                        log.error("Unable to parse size: " + text);
+                    }
                 }
             }
             else {
