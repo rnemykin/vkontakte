@@ -1,6 +1,7 @@
 package com.abudko.reseller.huuto.query.service.list.html.huuto;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -14,6 +15,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -109,18 +111,21 @@ public class HuutoHtmlQueryListServiceTest {
         response.setItemUrl("itemUrl");
         response.setDescription("description");
         response.setSize("size");
-        List<ListResponse> queryResponses = new ArrayList<ListResponse>();
+        List<ListResponse> queryResponses = new ArrayList<>();
         queryResponses.add(response);
         when(htmlListParser.parse(responseList)).thenReturn(queryResponses);
         String itemImgBaseSrc = "itemImgBaseSrc";
         ItemResponse itemResponse = new ItemResponse();
         itemResponse.setImgBaseSrc(itemImgBaseSrc);
         when(queryItemService.extractItem(response.getItemUrl())).thenReturn(itemResponse);
-        when(filter.apply(new LinkedHashSet<ListResponse>(queryResponses), params)).thenReturn(queryResponses);
+        when(filter.apply(Mockito.any(Collection.class), Mockito.eq(params))).thenReturn(queryResponses);
+        when(descriptionKeywordExclusionFilter.apply(Mockito.any(Collection.class), Mockito.any(SearchParams.class))).thenReturn(queryResponses);
 
         Collection<ListResponse> responses = service.search(query, params);
+        assertFalse(responses.isEmpty());
+        ListResponse[] responsesArray = responses.toArray(new ListResponse[100]);
 
-        assertEquals(itemImgBaseSrc, responses.toArray(new ListResponse[100])[0].getImgBaseSrc());
+        assertEquals(itemImgBaseSrc, responsesArray[0].getImgBaseSrc());
         verify(restTemplate).getForObject(new URI(QueryConstants.HUUTO_HTML_SEARCH_URL + query + "/page/1"), String.class);
         verify(htmlListParser).parse(responseList);
         verify(queryItemService).extractItem(Mockito.anyString());
@@ -145,7 +150,9 @@ public class HuutoHtmlQueryListServiceTest {
         ItemResponse itemResponse = new ItemResponse();
         itemResponse.setSizes(Arrays.asList(size));
         when(queryItemService.extractItem(response.getItemUrl())).thenReturn(itemResponse);
-        when(filter.apply(new LinkedHashSet<ListResponse>(queryResponses), params)).thenReturn(queryResponses);
+        when(filter.apply(Mockito.any(Collection.class), Mockito.eq(params))).thenReturn(queryResponses);
+        when(descriptionKeywordExclusionFilter.apply(Mockito.any(Collection.class), Mockito.any(SearchParams.class))).thenReturn(queryResponses);
+
         
         service.search(query, params);
         

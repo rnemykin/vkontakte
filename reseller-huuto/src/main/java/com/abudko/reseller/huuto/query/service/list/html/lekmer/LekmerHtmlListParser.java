@@ -1,7 +1,9 @@
 package com.abudko.reseller.huuto.query.service.list.html.lekmer;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attributes;
@@ -18,6 +20,8 @@ import com.abudko.reseller.huuto.query.service.list.html.HtmlListParser;
 
 @Component
 public class LekmerHtmlListParser implements HtmlListParser {
+    
+    private static final List<String> RED_LABELS = Arrays.asList("Testivoittaja", "Kesäale", "Ale", "Ilmainen toimitus", "Outlet", " mm", "VARASTONTYHJENNYS");
 
     public static final String IMG_SRC_SMALL = "thumbnail168x169";
     public static final String IMG_SRC_BIG = "productmanMeasurement465x500";
@@ -94,17 +98,25 @@ public class LekmerHtmlListParser implements HtmlListParser {
             description = product_info.child(0).ownText();
         }
 
-        if (description.contains("Testivoittaja") || description.contains("Kesäale") || description.contains("Ale") || description.contains("Ilmainen toimitus")
-                || description.contains("Outlet") || description.contains(" mm")) {
+        if (hasDescriptionRedLabels(description)) {
             description = product_info.child(2).ownText();
             
-            if (description.contains("Testivoittaja") || description.contains("Kesäale") || description.contains("Ale") || description.contains("Ilmainen toimitus")
-                    || description.contains("Outlet") || description.contains(" mm")) {
+            if (hasDescriptionRedLabels(description)) {
                 description = product_info.child(3).ownText();
             }
         }
 
         return description;
+    }
+    
+    private boolean hasDescriptionRedLabels(String description) {
+        for (String label : RED_LABELS) {
+            if (description.contains(label)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     private String parseBrand(String description) {
