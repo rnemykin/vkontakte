@@ -33,15 +33,15 @@ public class PublishHuuto2Scheduler implements Scheduler {
 
     @Autowired
     @Qualifier("csvParamBuilder")
-    private ParamBuilder huutoParamBuilder;
+    private ParamBuilder paramBuilder;
 
     @Autowired
     @Qualifier("jsonQueryListServiceImpl")
-    private QueryListService huutoQueryListService;
+    private QueryListService queryListService;
 
     @Autowired
     @Qualifier("jsonQueryItemServiceImpl")
-    private QueryItemService jsonQueryItemService;
+    private QueryItemService queryItemService;
 
     @Autowired
     @Qualifier("htmlSearchQueryRules")
@@ -49,14 +49,14 @@ public class PublishHuuto2Scheduler implements Scheduler {
 
     @Autowired
     @Qualifier("huuto2PublishManager")
-    private PublishManager huutoPublishManager;
+    private PublishManager publishManager;
 
     public void schedule() {
         log.info("********* Start Publish Huuto Scheduler *******");
         try {
             List<SearchParams> searchParamsList = searchParamMapper.getSearchParams();
 
-            publishHuuto(searchParamsList);
+            publish(searchParamsList);
 
             log.info("********* End Publish Huuto Scheduler *******");
 
@@ -66,22 +66,22 @@ public class PublishHuuto2Scheduler implements Scheduler {
         }
     }
 
-    private void publishHuuto(List<SearchParams> searchParamsList) throws IllegalAccessException,
+    private void publish(List<SearchParams> searchParamsList) throws IllegalAccessException,
             InvocationTargetException, NoSuchMethodException, UnsupportedEncodingException, URISyntaxException,
             InterruptedException {
         for (SearchParams searchParams : searchParamsList) {
             applyHuutoSearchParamsRules(searchParams);
 
-            String query = huutoParamBuilder.buildQuery(searchParams);
+            String query = paramBuilder.buildQuery(searchParams);
 
             log.info(String.format("Quering search: %s", query));
 
-            Collection<ListResponse> queryListResponses = huutoQueryListService.search(query, searchParams);
+            Collection<ListResponse> queryListResponses = queryListService.search(query, searchParams);
             extractHuutoItemResponse(queryListResponses);
 
             Category category = Category.valueOf(searchParams.getCategoryenum());
             if (category != null) {
-                huutoPublishManager.publishResults(category, queryListResponses);
+                publishManager.publishResults(category, queryListResponses);
             } else {
                 log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
             }
@@ -95,7 +95,7 @@ public class PublishHuuto2Scheduler implements Scheduler {
     
     private void extractHuutoItemResponse(Collection<ListResponse> queryListResponses) {
         for (ListResponse queryListResponse : queryListResponses) {
-            ItemResponse itemResponse = jsonQueryItemService.extractItem(queryListResponse.getItemUrl());
+            ItemResponse itemResponse = queryItemService.extractItem(queryListResponse.getItemUrl());
             queryListResponse.setItemResponse(itemResponse);
         }
     }

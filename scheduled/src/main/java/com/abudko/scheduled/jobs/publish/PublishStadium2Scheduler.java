@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.abudko.scheduled.service.huuto.PublishManager;
 
-public class PublishReima2Scheduler extends PublishReimaScheduler {
+public class PublishStadium2Scheduler extends PublishStadiumScheduler {
 
     @Autowired
     @Qualifier("group2PublishManager")

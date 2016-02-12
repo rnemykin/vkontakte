@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.list.html.reima;
+package com.abudko.reseller.huuto.query.service.list.html.stadium;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,17 +15,16 @@ import org.junit.Test;
 import com.abudko.reseller.huuto.query.service.list.HtmlParserTestUtils;
 import com.abudko.reseller.huuto.query.service.list.ListResponse;
 import com.abudko.reseller.huuto.query.service.list.html.HtmlListParser;
-import com.abudko.reseller.huuto.query.service.list.html.reima.ReimaHtmlListParser;
 
-public class ReimaHtmlListParserTest {
+public class StadiumHtmlListParserTest {
 
-    private static HtmlListParser htmlParser = new ReimaHtmlListParser();
+    private static HtmlListParser htmlParser = new StadiumHtmlListParser();
     private static String html;
     private static Collection<ListResponse> responses;
 
     static {
         try {
-            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/reima/reima-search.html");
+            html = HtmlParserTestUtils.readHtmlFromFile("./src/test/resources/html/stadium/stadium-search.html");
             responses = htmlParser.parse(html);
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,7 +40,7 @@ public class ReimaHtmlListParserTest {
 
     @Test
     public void testResponseSize() {
-        assertEquals(9, responses.size());
+        assertEquals(24, responses.size());
     }
     
     @Test
@@ -52,7 +51,8 @@ public class ReimaHtmlListParserTest {
     @Test
     public void testImgSrc() {
         ListResponse imgSrcResponse = new ArrayList<ListResponse>(responses).get(0);
-        assertEquals("http://reimashop.fi/medias/sys_master/images/8856058920990.png", imgSrcResponse.getImgBaseSrc());
+        assertTrue("Src: " + imgSrcResponse.getImgBaseSrc(),
+                imgSrcResponse.getImgBaseSrc().contains(StadiumHtmlListParser.IMG_SRC_BIG));
     }
     
     @Test
@@ -64,7 +64,7 @@ public class ReimaHtmlListParserTest {
     @Test
     public void testDiscount() {
     	ListResponse discountResponse = new ArrayList<ListResponse>(responses).get(0);
-    	assertEquals("62", discountResponse.getDiscount());
+    	assertEquals("43", discountResponse.getDiscount());
     }
     
     @Test
@@ -79,6 +79,6 @@ public class ReimaHtmlListParserTest {
     
     @Test
     public void testItemUrl() {
-        assertTrue("Url: " + queryResponse.getItemUrl(), queryResponse.getItemUrl().contains("/Kategoriat/Lastenvaate-ALE/Lasten-ulkovaatteet---ALE/Lasten-haalarit--ALE/Lasten-haalarit--ALE/Lasten-untuvahaalari-Amber/p/510144-4620"));
+        assertTrue("Url: " + queryResponse.getItemUrl(), queryResponse.getItemUrl().contains("http://www.stadium.fi/"));
     }
 }

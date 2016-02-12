@@ -1,4 +1,4 @@
-package com.abudko.reseller.huuto.query.service.item.html.lekmer;
+package com.abudko.reseller.huuto.query.service.item.html.stadium;
 
 import javax.annotation.Resource;
 
@@ -9,20 +9,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
-import com.abudko.reseller.huuto.query.rules.LekmerPriceRules;
+import com.abudko.reseller.huuto.query.rules.ReimaPriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 
 @Component
-public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
+public class StadiumHtmlQueryItemServiceImpl extends AbstractQueryItemService {
 
     private Logger log = LoggerFactory.getLogger(getClass());
     
     @Resource
-    protected LekmerPriceRules priceRules;
+    protected ReimaPriceRules priceRules;
 
     @Autowired
-    private LekmerHtmlItemParser htmlItemParser;
+    private StadiumHtmlItemParser htmlItemParser;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -52,7 +52,10 @@ public class LekmerHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     }
     
     protected String extractIdFromUrl(String urlSuffix) {
-        return null;
+    	int lastIndex = urlSuffix.lastIndexOf("/");
+    	urlSuffix = urlSuffix.substring(0, lastIndex);
+    	int lastIndex2 = urlSuffix.lastIndexOf("/");
+        return urlSuffix.substring(lastIndex2 + 1, urlSuffix.length());
     }
     
     protected AbstractPriceRules getPriceRules() {

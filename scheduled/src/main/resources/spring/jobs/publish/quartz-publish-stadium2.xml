@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<bean id="publishStadium2Scheduler" class="com.abudko.scheduled.jobs.publish.PublishStadium2Scheduler"/>
+
+	<bean name="publishStadium2Job" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="name" value="publishStadium2Job"/>
+        <property name="jobClass" value="com.abudko.scheduled.jobs.publish.PublishStadium2Job"/>
+    </bean>
+
+	<bean id="publishStadium2Trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="publishStadium2Job"/>
+        <property name="cronExpression" value="0 0 0/4 * * ?"/>
+    </bean>
+    
+</beans>

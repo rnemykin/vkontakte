@@ -1,5 +1,6 @@
-package com.abudko.reseller.huuto.query.service.item.html.reima;
+package com.abudko.reseller.huuto.query.service.item.html.stadium;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Assert;
@@ -15,17 +16,23 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class ReimaHtmlQueryItemServiceIntegrationTest {
+public class StadiumHtmlQueryItemServiceIntegrationTest {
     
     @Autowired
-    @Qualifier("reimaHtmlQueryItemServiceImpl")
+    @Qualifier("stadiumHtmlQueryItemServiceImpl")
     private QueryItemService service;
 
     @Test
     public void testCall() {
-        ItemResponse itemResponse = service.extractItem("http://www.reimashop.fi/Kategoriat/Lastenvaate-ALE/Lasten-ulkovaatteet---ALE/Lasten-haalarit--ALE/Lasten-haalarit--ALE/Lasten-untuvahaalari-Amber/p/510144-4620");
+        ItemResponse itemResponse = service.extractItem("http://www.stadium.fi/vaatteet/haalarit/219873103/didriksons.k-migisi-coverall.black");
         
         assertNotNull(itemResponse);
+    }
+    
+    @Test
+    public void testExtractId() {
+    	String id = new StadiumHtmlQueryItemServiceImpl().extractIdFromUrl("http://www.stadium.fi/vaatteet/haalarit/219873103/didriksons.k-migisi-coverall.black");
+    	assertEquals("219873103", id);
     }
 
 }

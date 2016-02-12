@@ -1,4 +1,4 @@
-package com.abudko.scheduled.rules.reima;
+package com.abudko.scheduled.rules.stadium;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -14,10 +14,10 @@ import com.abudko.scheduled.rules.ItemValidityRules;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class ReimaItemValidityRulesIntegrationTest {
+public class StadiumItemValidityRulesIntegrationTest {
     
     @Autowired
-    @Qualifier("reimaItemValidityRules")
+    @Qualifier("stadiumItemValidityRules")
     private ItemValidityRules rules;
     
     @Test
@@ -26,13 +26,18 @@ public class ReimaItemValidityRulesIntegrationTest {
     }
     
     @Test
+    public void testIdReimaValid() {
+        assertTrue(rules.isValid("RE45264242"));;
+    }
+    
+    @Test
     public void testStadiumIdValid() {
         assertTrue(rules.isValid("ST219873101"));
     }
     
     @Test
-    public void testLekmerIdValid() {
-        assertTrue(rules.isValid("LE521370-2710"));
+    public void testStadiumIdInvalid() {
+    	assertFalse(rules.isValid("STpihspis"));
     }
     
     @Test
@@ -41,13 +46,8 @@ public class ReimaItemValidityRulesIntegrationTest {
     }
     
     @Test
-    public void testIdReimaInvalid() {
-        assertFalse(rules.isValid("REsds"));
-    }
-    
-    @Test
-    public void testIdReimaValid() {
-    	assertTrue(rules.isValid("RE510195C-4621"));
+    public void testLekmerIdValid() {
+        assertTrue(rules.isValid("LE520164A-4710"));
     }
     
     @Test

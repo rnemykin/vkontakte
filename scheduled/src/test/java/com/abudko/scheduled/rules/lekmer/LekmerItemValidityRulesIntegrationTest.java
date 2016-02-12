@@ -26,6 +26,11 @@ public class LekmerItemValidityRulesIntegrationTest {
     }
     
     @Test
+    public void testStadiumIdValid() {
+        assertTrue(rules.isValid("ST219873101"));
+    }
+    
+    @Test
     public void testIdReimaValid() {
         assertTrue(rules.isValid("RE45264242"));;
     }

@@ -69,6 +69,11 @@ public class HuutoItemValidityRulesIntegrationTest {
     	assertTrue(rules.isValid("REishchi"));;
     }
     
+    @Test
+    public void testStadiumIdValid() {
+        assertTrue(rules.isValid("ST219873101"));
+    }
+    
     private SearchParams getSearchParams() {
         SearchParams searchParams = new SearchParams();
         searchParams.setWords("TALVIHAALARI");

@@ -26,7 +26,7 @@ public class PublishLekmerScheduler implements Scheduler {
 
     @Autowired
     @Qualifier("lekmerHtmlQueryListServiceImpl")
-    private QueryListService lekmerQueryListService;
+    private QueryListService queryListService;
 
     @Autowired
     @Qualifier("groupPublishManager")
@@ -35,7 +35,7 @@ public class PublishLekmerScheduler implements Scheduler {
     public void schedule() {
         log.info("********* Start Publish Lekmer Scheduler *******");
         try {
-            publishLekmer();
+            publish();
 
             log.info("********* End Publish Lekmer Scheduler *******");
 
@@ -45,24 +45,24 @@ public class PublishLekmerScheduler implements Scheduler {
         }
     }
 
-    private void publishLekmer() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
+    private void publish() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
-    	publishLekmerInternal("haalari", "TALVIHAALARI", 0);
+    	publishInternal("haalari", "TALVIHAALARI", 0);
 //      publishLekmerInternal("toppahaalari", "TALVIHAALARI", 0);
 //      publishLekmerInternal("toppapuku", "TALVIHAALARI", 0);
 //      publishLekmerInternal("kaksiosainen setti talvi", "TALVIHAALARI", 0);
-      publishLekmerInternal("Viking kengät", "TALVIKENGAT", 0);
-      publishLekmerInternal("Reima bootsit", "TALVIKENGAT", 0);
-      publishLekmerInternal("Superfit saappaat", "TALVIKENGAT", 0);
-      publishLekmerInternal("Timberland talvisaappaat", "TALVIKENGAT", 0);
-      publishLekmerInternal("Reima talvisaappaat", "TALVIKENGAT", 0);
-      publishLekmerInternal("Columbia talvisaappaat", "TALVIKENGAT", 0);
-      publishLekmerInternal("Sorel kengät", "TALVIKENGAT", 0);
+      publishInternal("Viking kengät", "TALVIKENGAT", 0);
+      publishInternal("Reima bootsit", "TALVIKENGAT", 0);
+      publishInternal("Superfit saappaat", "TALVIKENGAT", 0);
+      publishInternal("Timberland talvisaappaat", "TALVIKENGAT", 0);
+      publishInternal("Reima talvisaappaat", "TALVIKENGAT", 0);
+      publishInternal("Columbia talvisaappaat", "TALVIKENGAT", 0);
+      publishInternal("Sorel kengät", "TALVIKENGAT", 0);
 //      publishLekmerInternal("talvitakkeja", "TALVITAKKI", 75);
 //      publishLekmerInternal("toppahousut", "TALVIHOUSUT", 65);
     }
 
-    private void publishLekmerInternal(String query, String categoryenum, int limit)
+    private void publishInternal(String query, String categoryenum, int limit)
             throws UnsupportedEncodingException, IllegalAccessException, InvocationTargetException,
             NoSuchMethodException, URISyntaxException, InterruptedException {
         List<ListResponse> list = new ArrayList<ListResponse>();
@@ -72,7 +72,7 @@ public class PublishLekmerScheduler implements Scheduler {
 
         log.info(String.format("Quering search: %s", query));
 
-        Collection<ListResponse> queryListResponses = lekmerQueryListService.search(query, searchParams);
+        Collection<ListResponse> queryListResponses = queryListService.search(query, searchParams);
 
         if (limit == 0) {
             list.addAll(queryListResponses);

@@ -26,6 +26,8 @@
     <import resource="publish/quartz-publish-lekmer2.xml"/>
     <import resource="publish/quartz-publish-reima.xml"/>
     <import resource="publish/quartz-publish-reima2.xml"/>
+    <import resource="publish/quartz-publish-stadium.xml"/>
+    <import resource="publish/quartz-publish-stadium2.xml"/>
     <import resource="publish/quartz-publish-xxl.xml"/>
     <import resource="publish/quartz-publish-xxl2.xml"/>
     <import resource="publish/quartz-clean.xml"/>

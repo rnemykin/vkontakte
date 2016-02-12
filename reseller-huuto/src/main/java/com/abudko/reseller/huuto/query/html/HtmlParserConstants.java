@@ -12,11 +12,15 @@ public class HtmlParserConstants {
     
     public static final String REIMA_FI = "http://reimashop.fi";
 
+    public static final String STADIUM_FI = "http://stadium.fi";
+
     public static final String XXL_FI = "http://xxl.fi";
 
     public static final String LEKMER_ID_PREFIX = "LE";
     
     public static final String REIMA_ID_PREFIX = "RE";
+    
+    public static final String STADIUM_ID_PREFIX = "ST";
 
     public static final String XXL_ID_PREFIX = "XX";
 

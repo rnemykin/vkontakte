@@ -1,5 +1,7 @@
 package com.abudko.reseller.huuto.query.service.list.html.lekmer;
 
+import static org.junit.Assert.assertFalse;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
@@ -17,7 +19,7 @@ import com.abudko.reseller.huuto.query.service.list.QueryListService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public abstract class LekmerHtmlQueryListServiceIntegrationTest {
+public class LekmerHtmlQueryListServiceIntegrationTest {
 
     @Autowired
     @Qualifier("simpleHtmlParamBuilder")
@@ -33,6 +35,7 @@ public abstract class LekmerHtmlQueryListServiceIntegrationTest {
         String query = getQuery(searchParams);
         
         Collection<ListResponse> results = queryService.search(query, searchParams);
+        assertFalse(results.isEmpty());
     }
 
     private String getQuery(SearchParams searchParams) throws IllegalAccessException, InvocationTargetException,
@@ -42,7 +45,7 @@ public abstract class LekmerHtmlQueryListServiceIntegrationTest {
     
     private SearchParams getSearchParams() {
         SearchParams searchParams = new SearchParams();
-        searchParams.setWords("TALVIHAALARI");
+        searchParams.setWords("toppahaalari");
         
         return searchParams;
     }

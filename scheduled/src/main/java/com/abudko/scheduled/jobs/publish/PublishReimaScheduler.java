@@ -26,7 +26,7 @@ public class PublishReimaScheduler implements Scheduler {
 
     @Autowired
     @Qualifier("reimaHtmlQueryListServiceImpl")
-    private QueryListService reimaQueryListService;
+    private QueryListService queryListService;
 
     @Autowired
     @Qualifier("groupPublishManager")
@@ -35,7 +35,7 @@ public class PublishReimaScheduler implements Scheduler {
 	public void schedule() {
         log.info("********* Start Publish Reima Scheduler *******");
         try {
-            publishReima();
+            publish();
 
             log.info("********* End Publish Reima Scheduler *******");
 
@@ -45,17 +45,17 @@ public class PublishReimaScheduler implements Scheduler {
         }
     }
 
-    private void publishReima() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
+    private void publish() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
     	final String talvi = "?q=:relevance:season:Talvi&text=#";
-        publishReimaInternal("Lasten-haalarit--ALE/c/o11" + talvi, "TALVIHAALARI", 0);
-        publishReimaInternal("Lasten-kengät---Ale/Lasten-kengät--ALE/c/o41", "TALVIKENGAT", 0);
-        publishReimaInternal("Lasten-puvut-ja-setit--ALE/c/o12" + talvi, "TALVIHAALARI", 0);
-        publishReimaInternal("Lasten-housut--ALE/Reimatec®-housut--ALE/c/o1402" + talvi, "TALVIHAALARI", 0);
-        publishReimaInternal("Lasten-takit--ALE/c/o13" + talvi, "TALVIHAALARI", 0);
+        publishInternal("Lasten-haalarit--ALE/c/o11" + talvi, "TALVIHAALARI", 0);
+        publishInternal("Lasten-kengät---Ale/Lasten-kengät--ALE/c/o41", "TALVIKENGAT", 0);
+        publishInternal("Lasten-puvut-ja-setit--ALE/c/o12" + talvi, "TALVIHAALARI", 0);
+        publishInternal("Lasten-housut--ALE/Reimatec®-housut--ALE/c/o1402" + talvi, "TALVIHAALARI", 0);
+        publishInternal("Lasten-takit--ALE/c/o13" + talvi, "TALVIHAALARI", 0);
     }
 
-    private void publishReimaInternal(String query, String categoryenum, int limit)
+    private void publishInternal(String query, String categoryenum, int limit)
             throws UnsupportedEncodingException, IllegalAccessException, InvocationTargetException,
             NoSuchMethodException, URISyntaxException, InterruptedException {
         List<ListResponse> list = new ArrayList<>();
@@ -65,7 +65,7 @@ public class PublishReimaScheduler implements Scheduler {
 
         log.info(String.format("Quering search: %s", query));
 
-        Collection<ListResponse> queryListResponses = reimaQueryListService.search(query, searchParams);
+        Collection<ListResponse> queryListResponses = queryListService.search(query, searchParams);
 
         if (limit == 0) {
             list.addAll(queryListResponses);

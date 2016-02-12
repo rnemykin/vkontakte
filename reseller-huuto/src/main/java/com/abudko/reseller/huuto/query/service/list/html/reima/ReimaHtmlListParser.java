@@ -101,6 +101,8 @@ public class ReimaHtmlListParser implements HtmlListParser {
 		discount /= normal;
 
 		discount *= 100;
+		
+		discount = 100 - discount;
 
 		BigDecimal bd = new BigDecimal(discount);
 		bd = bd.setScale(0, RoundingMode.HALF_UP);

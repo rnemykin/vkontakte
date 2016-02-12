@@ -1,5 +1,8 @@
 package com.abudko.reseller.huuto.query.service.item.html.lekmer;
 
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,7 @@ import com.abudko.reseller.huuto.query.service.item.QueryItemService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public abstract class LekmerHtmlQueryItemServiceIntegrationTest {
+public class LekmerHtmlQueryItemServiceIntegrationTest {
     
     @Autowired
     @Qualifier("lekmerHtmlQueryItemServiceImpl")
@@ -22,7 +25,7 @@ public abstract class LekmerHtmlQueryItemServiceIntegrationTest {
     public void testCall() {
         ItemResponse itemResponse = service.extractItem("http://lekmer.fi/lastenvaatteet/Ulkovaatteet/haalarit/abeko-haalari-vuorillinen-ja-vedenpitävä-lennon-sininen");
         
-        System.out.println(itemResponse);
+        assertNotNull(itemResponse);
     }
 
 }
