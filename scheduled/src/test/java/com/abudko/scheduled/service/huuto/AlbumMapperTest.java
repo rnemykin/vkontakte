@@ -117,7 +117,7 @@ public class AlbumMapperTest {
         testListResponse.setItemResponse(new ItemResponse());
         testListResponse.getItemResponse().setSizes(Arrays.asList("74", "104"));
         
-        assertTrue(Arrays.asList(AlbumMapper.TALVI_68_80, AlbumMapper.TALVI_86_98, AlbumMapper.TALVI_104_128, AlbumMapper.TALVI_134_164).contains(albumMapper.getAlbumId(Category.TALVIHOUSUT.name(), testListResponse)));
+        assertTrue(Arrays.asList(AlbumMapper.TALVI_68_80, AlbumMapper.TALVI_86_98, AlbumMapper.TALVI_100_128, AlbumMapper.TALVI_130_164).contains(albumMapper.getAlbumId(Category.TALVIHOUSUT.name(), testListResponse)));
     }
     
     @Test

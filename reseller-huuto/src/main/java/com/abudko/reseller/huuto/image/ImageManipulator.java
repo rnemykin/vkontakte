@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -42,7 +41,7 @@ public class ImageManipulator {
             addTextToImage(subimage, addText);
             URL output = new URL(outputFile);
             File outputfile = new File(output.getFile());
-            ImageIO.write(subimage, "jpg", outputfile);
+            ImageIO.write(subimage, imageUrlStr.contains("stadium.fi") ? "png" : "jpg", outputfile);
         } catch (Exception e) {
             String error = String.format("Exception while cropping image from url %s", imageUrlStr);
             log.error(error);

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
 import com.abudko.reseller.huuto.query.rules.AbstractPriceRules;
 import com.abudko.reseller.huuto.query.rules.ReimaPriceRules;
 import com.abudko.reseller.huuto.query.service.item.AbstractQueryItemService;
@@ -55,7 +56,9 @@ public class StadiumHtmlQueryItemServiceImpl extends AbstractQueryItemService {
     	int lastIndex = urlSuffix.lastIndexOf("/");
     	urlSuffix = urlSuffix.substring(0, lastIndex);
     	int lastIndex2 = urlSuffix.lastIndexOf("/");
-        return urlSuffix.substring(lastIndex2 + 1, urlSuffix.length());
+        String id = urlSuffix.substring(lastIndex2 + 1, urlSuffix.length());
+        
+        return HtmlParserConstants.STADIUM_ID_PREFIX + id;
     }
     
     protected AbstractPriceRules getPriceRules() {
