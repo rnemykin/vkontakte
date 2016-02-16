@@ -2,8 +2,6 @@ package com.abudko.reseller.huuto.query.service.item.html.stadium;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,7 +9,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
-import com.abudko.reseller.huuto.query.enumeration.Brand;
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
 import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
@@ -60,7 +57,13 @@ public class StadiumHtmlItemParser implements HtmlItemParser {
     	Elements available = element.getElementsByClass("available");
     	for (Element el: available) {
     		String size = el.text();
-    		sizes.add(size);
+    		Elements sizeEU = el.getElementsByClass("size-eu");
+    		if (sizeEU != null && sizeEU.size() > 0) {
+    		    size = sizeEU.get(0).text();
+    		}
+    		if (size != null && !size.contains("Year") && !size.contains("US")) {
+    		    sizes.add(size);
+    		}
     	}
 
         return sizes;

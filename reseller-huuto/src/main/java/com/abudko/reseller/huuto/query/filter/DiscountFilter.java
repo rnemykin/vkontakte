@@ -18,13 +18,28 @@ public class DiscountFilter implements SearchResultFilter {
         if (discount == null || discount == 0) {
             return queryResponses;
         }
-        Collection<ListResponse> filtered = new ArrayList<ListResponse>();
+        Collection<ListResponse> filtered = new ArrayList<>();
         for (ListResponse queryListResponse : queryResponses) {
-            if (StringUtils.hasLength(queryListResponse.getDiscount())) {
+            if (shouldBeIncluded(queryListResponse, discount)) {
             	filtered.add(queryListResponse);
             }
         }
         return filtered;
+    }
+    
+    private boolean shouldBeIncluded(ListResponse queryListResponse, Integer discount) {
+        String responseDiscount = queryListResponse.getDiscount();
+        
+        if (!StringUtils.hasLength(responseDiscount)) {
+            return false;
+        }
+        
+        responseDiscount = responseDiscount.replace("%", "");
+        responseDiscount = responseDiscount.replace("-", "");
+
+        boolean result = Integer.valueOf(responseDiscount) >= discount;
+        
+        return result;
     }
 
 }

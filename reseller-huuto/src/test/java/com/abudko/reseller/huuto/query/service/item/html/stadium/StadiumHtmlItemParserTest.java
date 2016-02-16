@@ -41,21 +41,21 @@ public class StadiumHtmlItemParserTest {
     
     @Test
     public void testBrand() {
-        assertEquals("DIDRIKSONS", response.getItemInfo().getBrand());
+        assertEquals("TIMBERLAND", response.getItemInfo().getBrand());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("79.90", response.getPrice());
+        assertEquals("59.90", response.getPrice());
     }
     
     @Test
     public void testSizes() {
-        assertEquals(Arrays.asList("80"), response.getSizes());
+        assertEquals(Arrays.asList("28", "30", "32"), response.getSizes());
     }
     
     @Test
     public void testImgSrc() {
-        assertEquals("http://stadium.fi/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/Stadium/fi_FI/Detail/219873_103_DIDRIKSONS_K%20MIGISI%20COVERALL.png", response.getImgBaseSrc());
+        assertEquals("http://stadium.fi/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/Stadium/fi_FI/Detail/208333_103_TIMBERLAND_JIMINY%20GTX%20BOOT.png", response.getImgBaseSrc());
     }
 }

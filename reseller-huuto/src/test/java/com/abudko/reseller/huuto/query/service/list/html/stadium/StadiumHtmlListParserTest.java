@@ -40,7 +40,7 @@ public class StadiumHtmlListParserTest {
 
     @Test
     public void testResponseSize() {
-        assertEquals(24, responses.size());
+        assertEquals(22, responses.size());
     }
     
     @Test

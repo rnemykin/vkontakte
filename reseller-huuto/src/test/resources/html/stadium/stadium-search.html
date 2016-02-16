@@ -9,8 +9,6 @@
 <title>Finland B2C</title><meta name="description" content="Finland B2C" /><meta name="keywords" content="Finland B2C" /><meta name="robots" content="index,follow" />
 <link rel="canonical" href="http://www.stadium.fi/search?SearchTerm=haalari&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1" 
 title="Nykyinen sivu"
-/><link rel="next" href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-OfferPaging?PageNumber=1&PageSize=24&SearchTerm=haalari&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1" 
-title="seuraavalle sivulle" 
 />
 <link rel="shortcut icon" href="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/img/favicon/favicon.ico" />
 <link rel="icon" sizes="16x16" href="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/img/favicon/favicon-16x16.png" />
@@ -40,7 +38,7 @@ title="seuraavalle sivulle"
 Define custom fonts here
 *************************/
 </style>
-<link href="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/css/compressed/combined.compressed.css?lastModified=1454932813000" rel="stylesheet" type="text/css" /><link href="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/css/compressed/combined.compressed2.css?lastModified=1454932814000" rel="stylesheet" type="text/css" /><link href="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/css/compressed/combined.compressed3.css?lastModified=1454932815000" rel="stylesheet" type="text/css" />
+<link href="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/css/compressed/combined.compressed.css?lastModified=1455611572000" rel="stylesheet" type="text/css" /><link href="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/css/compressed/combined.compressed2.css?lastModified=1455611573000" rel="stylesheet" type="text/css" /><link href="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/css/compressed/combined.compressed3.css?lastModified=1455611573000" rel="stylesheet" type="text/css" />
 <!--[if IE 9]>
 <link rel="stylesheet" type="text/css" href="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/css/ie/cc_ie9.css" />
 <![endif]-->
@@ -310,7 +308,8 @@ var _localizedMessages = {
 "cc.sayt.found.no.products": 'Tuotteita ei löytynyt',
 "cc.sayt.show.all": 'Näytä kaikki',
 "cc.sayt.amount.of.hits": '{0} osumaa',
-"cc.sayt.other": 'Muut'
+"cc.sayt.other": 'Muut',
+"cc.sayt.found.amount.of.products": 'Löytyi {0} tuotetta'
 },
 get = function (key) {
 return _localizedMessages[key] || key;
@@ -342,7 +341,7 @@ Spinner: {
 filterSpinnerColor: "#ff9d00"
 }
 };
-</script><script src="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/js/combinedHead.compressed.js?lastModified=1454932815000" type="text/javascript"></script><!-- refreshed Thu Feb 11 11:09:15 CET 2016 --><script src="//media.richrelevance.com/rrserver/js/1.0/p13n.js"></script>
+</script><script src="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/js/combinedHead.compressed.js?lastModified=1455611573000" type="text/javascript"></script><!-- refreshed Tue Feb 16 09:51:14 CET 2016 --><script src="//media.richrelevance.com/rrserver/js/1.0/p13n.js"></script>
 <!-- This function will consume the JSON response object, place after p13n.js -->
 <script type="text/javascript">
 /**
@@ -441,7 +440,7 @@ RRCommon.init();
 </script>
 
 
-<!-- GoogleWebmasterToolsSiteVerificationID = rNTpWq_3YJBGy4W4ThhaabjhdRFIJKi0OLyPxwPN1PA --><meta name="google-site-verification" content="rNTpWq_3YJBGy4W4ThhaabjhdRFIJKi0OLyPxwPN1PA"></head><body id="mosaic" class="non-touch-device active-for-all-devices"><!-- refreshed Thu Feb 11 11:09:15 CET 2016 -->
+<!-- GoogleWebmasterToolsSiteVerificationID = rNTpWq_3YJBGy4W4ThhaabjhdRFIJKi0OLyPxwPN1PA --><meta name="google-site-verification" content="rNTpWq_3YJBGy4W4ThhaabjhdRFIJKi0OLyPxwPN1PA"></head><body id="mosaic" class="non-touch-device active-for-all-devices"><!-- refreshed Tue Feb 16 09:51:14 CET 2016 -->
 <div id="container" class="off-canvas-wrap row" data-offcanvas>
 <header>
 <div id="cookie-bar" class="hide large-12 medium-12 small-12 columns">
@@ -529,70 +528,109 @@ RRCommon.init();
 	{{#if total_count}}
 
 		<a class="sayt-view-all-link" href="{{search_url}}">
-			<span>{{isTextReplace 'cc.sayt.amount.of.hits' '{0}' total_count}}. {{isText 'cc.sayt.show.all'}}</span>
+			<span>{{isTextReplace 'cc.sayt.amount.of.hits' '{0}' total_count}}. N&auml;yt&auml; kaikki</span>
 		</a>
 		
 	{{else}}
-		<span>{{isText 'cc.sayt.links.nohits'}}</span>
+		<span>Ei osumia</span>
 	{{/if}}
 
 </script></div><div class="sayt-wrapper">
 <div class="large-12 medium-12 small-12 columns sayt-search-result">
 <div class="large-10 medium-10 small-12 sayt-links-result">
-<div class="row">
-<ul class="sayt-links-wrapper column large-2 medium-4 large-offset-1">
-<li class="title">
-<h2>Samankaltaiset haut</h2>
-</li>
-<li>
-<ul class="sayt-sub-links-wrapper sayt-keywords-links"></ul>
-</li>
-</ul>
-<ul class="sayt-links-wrapper column large-2 medium-4">
-<li class="title">
-<h2>Kategoriat</h2>
-</li>
-<li>
-<ul class="sayt-sub-links-wrapper sayt-categories-links"></ul>
-</li>
-</ul>
-<ul class="sayt-links-wrapper column large-2 medium-4">
-<li class="title">
-<h2>Tuotemerkit</h2>
-</li>
-<li>
-<ul class="sayt-sub-links-wrapper sayt-brands-links"></ul>
-</li>
-</ul>
-<ul class="sayt-links-wrapper column large-2 large-offset-0 medium-4">
-<li class="title">
-<h2 id="pagelets-count"><script class="handlebars-template" data-name="cc-hbs-sayt-pagelets-count" type="text/x-handlebars-template">
-{{isText "cc.sayt.other"}}
-{{#ifCond pagelet_count '>' 3}}
-({{pagelet_count}})
+<div class="row sayt-results"><script class="handlebars-template" data-name="cc-hbs-sayt-results" type="text/x-handlebars-template">
+
+	<ul class="sayt-links-wrapper column large-2 medium-4 large-offset-1">
+		<li class="title">
+			<h2>Samankaltaiset haut</h2>
+		</li>
+		<li>
+			<ul class="sayt-sub-links-wrapper sayt-keywords-links">
+				{{> cc-hbs-sayt-links keywords}}
+			</ul>
+		</li>
+	</ul>
+
+	<ul class="sayt-links-wrapper column large-2 medium-4">
+		<li class="title">
+			<h2>
+				{{#if categories}}
+					<a href="{{search_url}}&expandedFilter=true">Kategoriat {{> cc-hbs-sayt-results-count categories_count}}</a>
+				{{else}}
+					Kategoriat
+				{{/if}}
+			</h2>
+		</li>
+		<li>
+			<ul class="sayt-sub-links-wrapper sayt-categories-links">
+				{{> cc-hbs-sayt-links categories}}
+			</ul>
+		</li>
+	</ul>
+
+	<ul class="sayt-links-wrapper column large-2 medium-4">
+		<li class="title">
+			<h2>
+				{{#if brands}}
+					<a href="{{search_url}}&expandedFilter=true">Tuotemerkit {{> cc-hbs-sayt-results-count brands_count}} </a>
+				{{else}}
+					Tuotemerkit
+				{{/if}}
+			</h2>
+		</li>
+		<li>
+			<ul class="sayt-sub-links-wrapper sayt-brands-links">
+				{{> cc-hbs-sayt-links brands}}
+			</ul>
+		</li>
+	</ul>
+
+	<ul class="sayt-links-wrapper column large-2 large-offset-0 medium-4">
+		<li class="title">
+			<h2 id="pagelets-count">
+				{{#if pagelets}}
+					<a href="{{search_url}}&tab=articles">Muut {{> cc-hbs-sayt-results-count pagelet_count}}</a>
+				{{else}}
+					Muut
+				{{/if}}
+			</h2>
+		</li>
+		<li>
+			<ul class="sayt-sub-links-wrapper sayt-pagelets-links">
+				{{> cc-hbs-sayt-links pagelets}}
+			</ul>
+		</li>
+	</ul>
+
+	<ul class="sayt-links-wrapper column large-2 medium-4 end">
+		<li class="title">
+			<h2>
+				{{#if stores}}
+					<a href="{{search_url}}&tab=stores">Varastot {{> cc-hbs-sayt-results-count store_count}}</a>
+				{{else}}
+					Varastot
+				{{/if}}
+			</h2>
+		</li>
+		<li>
+			<ul class="sayt-sub-links-wrapper sayt-stores-links">
+				{{> cc-hbs-sayt-links stores}}
+			</ul>
+		</li>
+	</ul>
+
+</script><script class="handlebars-partial" data-name="cc-hbs-sayt-results-count" type="text/x-handlebars-template">
+{{#ifCond this '>' 4}}
+({{this}})
 {{/ifCond}}
-</script></h2>
-</li>
-<li>
-<ul class="sayt-sub-links-wrapper sayt-pagelets-links"></ul>
-</li>
-</ul>
-<ul class="sayt-links-wrapper column large-2 medium-4 end">
-<li class="title">
-<h2>Varastot</h2>
-</li>
-<li>
-<ul class="sayt-sub-links-wrapper sayt-stores-links"></ul>
-</li>
-</ul>
-</div>
+</script></div>
 </div>
 <div class="sayt-view-all"><script class="handlebars-template" data-name="cc-hbs-sayt-view-all" type="text/x-handlebars-template">
 	
 	{{#if product_count}}
-		<span>Hittade <strong>{{product_count}} produkter</strong></span> <a class="sayt-view-all-link" href="{{search_url}}">Se alla</a>
+		<span><strong>{{isTextReplace 'cc.sayt.found.amount.of.products' '{0}' product_count}}</strong></span> <a class="sayt-view-all-link" href="{{search_url}}">N&auml;yt&auml; kaikki</a>
 	{{else}}
-		<span>Hittade inga produkter</span>
+		<span>Tuotteita ei l&ouml;ytynyt</span>
 	{{/if}}
 
 </script></div>
@@ -633,7 +671,7 @@ RRCommon.init();
 				
 		{{#ifAll bluePrice blackPrice redPrice}}
 
-			<span class="member">{{bluePrice}}<span class="member-offer">{{isText "cc.product.member.text"}}</span></span>
+			<span class="member">{{bluePrice}}<span class="member-offer">J&auml;senhinta</span></span>
 			<span class="reduced">{{redPrice}}</span>
 			<span class="regular stroke">{{blackPrice}}</span>
 
@@ -644,9 +682,9 @@ RRCommon.init();
 				<span class="member">{{bluePrice}}</span>
 
 				<div class="regular-price-wrapper">
-					<span class="member-offer">{{isText "cc.product.member.text"}}</span>
+					<span class="member-offer">J&auml;senhinta</span>
 					<div>
-						<span class="discount-regular">{{isText "cc.product.discount.regular.text"}}</span>
+						<span class="discount-regular">norm.hinta</span>
 						<span class="regular">{{blackPrice}}</span>
 					</div>
 				</div>
@@ -658,7 +696,7 @@ RRCommon.init();
 					<span class="reduced">{{redPrice}}</span>
 				
 					<div class="regular-price-wrapper">
-						<span class="discount-regular">{{isText "cc.product.discount.regular.text"}}</span>
+						<span class="discount-regular">norm.hinta</span>
 						<span class="regular stroke">{{blackPrice}}</span>
 					</div>
 
@@ -676,7 +714,7 @@ RRCommon.init();
 
 	</div>
 
-</script><script class="handlebars-template" data-name="cc-hbs-sayt-links" type="text/x-handlebars-template">
+</script><script class="handlebars-partial" data-name="cc-hbs-sayt-links" type="text/x-handlebars-template">
 
 	{{#if this}}
 
@@ -685,9 +723,7 @@ RRCommon.init();
 		{{/each}}
 
 	{{else}}
-
-		<li><span>{{isText 'cc.sayt.links.nohits'}}</span></li>
-
+		<li><span>Ei osumia</span></li>
 	{{/if}}
 
 </script></div>
@@ -2571,14 +2607,14 @@ style="background-image: url('&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-Finl
 
 ">
 <li class="filter-list">
-<ul><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26SizeCategoryFilter%3DLasten&PageSize=24&SSortingAttribute=&SearchTerm=haalari">Lasten</a></li></ul>
+<ul><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26SizeCategoryFilter%3DLasten&PageSize=24&SortingAttribute=&SearchTerm=haalari">Lasten</a></li></ul>
 </li>
 </ul></div><div class="dropdown-list-wrapper open-filter left ">
 <a href="#" class="button dropdown-button ">Valinta ja lajittelu<span class="triangle-wrapper">
 <span class="triangle"></span>
 </span>
 </a>
-</div><span class="filter-total-count right" data-total-count="25 tuotetta">25 tuotetta</span>
+</div><span class="filter-total-count right" data-total-count="22 tuotetta">22 tuotetta</span>
 </div>
 </div>
 <div class="filter-dropdown text-link-list "><div class="filter-group filter-type-group-section">
@@ -2690,7 +2726,7 @@ generic-filter
 hasMoreFilters
 ">
 <li class="filter-list">
-<ul><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D80&PageSize=24&SortingAttribute=&SearchTerm=haalari">80</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D92&PageSize=24&SortingAttribute=&SearchTerm=haalari">92</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D86&PageSize=24&SortingAttribute=&SearchTerm=haalari">86</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D74&PageSize=24&SortingAttribute=&SearchTerm=haalari">74</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D80-86&PageSize=24&SortingAttribute=&SearchTerm=haalari">80-86</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D98&PageSize=24&SortingAttribute=&SearchTerm=haalari">98</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D104&PageSize=24&SortingAttribute=&SearchTerm=haalari">104</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D100&PageSize=24&SortingAttribute=&SearchTerm=haalari">100</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D68-74&PageSize=24&SortingAttribute=&SearchTerm=haalari">68-74</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D74-80&PageSize=24&SortingAttribute=&SearchTerm=haalari">74-80</a></li><li class="filter-show-more">
+<ul><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D80&PageSize=24&SortingAttribute=&SearchTerm=haalari">80</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D92&PageSize=24&SortingAttribute=&SearchTerm=haalari">92</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D86&PageSize=24&SortingAttribute=&SearchTerm=haalari">86</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D74&PageSize=24&SortingAttribute=&SearchTerm=haalari">74</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D80-86&PageSize=24&SortingAttribute=&SearchTerm=haalari">80-86</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D98&PageSize=24&SortingAttribute=&SearchTerm=haalari">98</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D104&PageSize=24&SortingAttribute=&SearchTerm=haalari">104</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D68-74&PageSize=24&SortingAttribute=&SearchTerm=haalari">68-74</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D74-80&PageSize=24&SortingAttribute=&SearchTerm=haalari">74-80</a></li><li class=" filter-text"><a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26Size%3D86-92&PageSize=24&SortingAttribute=&SearchTerm=haalari">86-92</a></li><li class="filter-show-more">
 <a href="http://www.stadium.fi/INTERSHOP/web/WFS/Stadium-FinlandB2C-Site/fi_FI/-/EUR/ViewParametricSearch-Browse?CatalogCategoryID=&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1%26%40GroupSize.Size%3D0&PageSize=24&SortingAttribute=&SearchTerm=haalari">+</a>
 </li></ul>
 </li>
@@ -2734,42 +2770,6 @@ hasMoreFilters
 
  
 
-<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="219873103101">
-<a class="trigger-product-card" 
-
-href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;haalarit&#47;219873103&#47;didriksons.k-migisi-coverall.black" 
-
->
-<div class="exist-in-cart-splash hide">
-<span class="mini-cart-icon"></span>
-<span class="text">Ostoskorissasi</span>
-</div>
-<div class="product-wrapper no-flickering"><div class="image-wrapper">
-<div class="center-verticle"><img
-src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;219873_103_DIDRIKSONS_K%20MIGISI%20COVERALL.png" 
-
-data-test="true"
- data-type="Small1x1" data-view-value="Standard" title="219873103101 DIDRIKSONS  K MIGISI COVERALL" alt="219873103101 DIDRIKSONS K MIGISI COVERALL Small1x1 Standard Small1x1"
-/></div>
-</div>
-
-
-<div class="content-wrapper ">
-
-
-
-
-
-
-<div class="price"><span class="reduced">79,90</span> <!-- red -->
-<div class="regular-price-wrapper">
-<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
-<span class="regular stroke">139,-</span> <!-- black, stroke -->
-</div></div><p class="product-name ellipsis" title="K MIGISI COVERALL">K MIGISI COVERALL</p>
-<p class="product-brand ellipsis" title="DIDRIKSONS">DIDRIKSONS</p>
-</div></div></a>
-</div> 
-
 <div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="219873101103">
 <a class="trigger-product-card" 
 
@@ -2806,10 +2806,10 @@ data-test="true"
 </div></div></a>
 </div> 
 
-<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="219873104103">
+<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="219873103101">
 <a class="trigger-product-card" 
 
-href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;haalarit&#47;219873104&#47;didriksons.k-migisi-coverall.flag-red" 
+href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;haalarit&#47;219873103&#47;didriksons.k-migisi-coverall.black" 
 
 >
 <div class="exist-in-cart-splash hide">
@@ -2818,10 +2818,10 @@ href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;haalarit&#47;219873104&#47;
 </div>
 <div class="product-wrapper no-flickering"><div class="image-wrapper">
 <div class="center-verticle"><img
-src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;219873_104_DIDRIKSONS_K%20MIGISI%20COVERALL.png" 
+src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;219873_103_DIDRIKSONS_K%20MIGISI%20COVERALL.png" 
 
 data-test="true"
- data-type="Small1x1" data-view-value="Standard" title="219873104103 DIDRIKSONS  K MIGISI COVERALL" alt="219873104103 DIDRIKSONS K MIGISI COVERALL Small1x1 Standard Small1x1"
+ data-type="Small1x1" data-view-value="Standard" title="219873103101 DIDRIKSONS  K MIGISI COVERALL" alt="219873103101 DIDRIKSONS K MIGISI COVERALL Small1x1 Standard Small1x1"
 /></div>
 </div>
 
@@ -2841,129 +2841,6 @@ data-test="true"
 <p class="product-brand ellipsis" title="DIDRIKSONS">DIDRIKSONS</p>
 </div></div></a>
 </div> 
-
-<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="221530102106">
-<a class="trigger-product-card" 
-
-href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;221530102&#47;color-kids.k-selby-coverall.grape" 
-
->
-<div class="exist-in-cart-splash hide">
-<span class="mini-cart-icon"></span>
-<span class="text">Ostoskorissasi</span>
-</div>
-<div class="product-wrapper no-flickering"><div class="image-wrapper">
-<div class="center-verticle"><img
-src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;221530_102_COLOR%20KIDS_K%20SELBY%20COVERALL.png" 
-
-data-test="true"
- data-type="Small1x1" data-view-value="Standard" title="221530102106 COLOR KIDS  K SELBY COVERALL" alt="221530102106 COLOR KIDS K SELBY COVERALL Small1x1 Standard Small1x1"
-/></div>
-</div>
-
-
-<div class="content-wrapper ">
-
-
-
-
-
-
-<div class="price"><span class="reduced">39,90</span> <!-- red -->
-<div class="regular-price-wrapper">
-<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
-<span class="regular stroke">79,90</span> <!-- black, stroke -->
-</div></div><p class="product-name ellipsis" title="K SELBY COVERALL">K SELBY COVERALL</p>
-<p class="product-brand ellipsis" title="COLOR KIDS">COLOR KIDS</p>
-</div></div></a>
-</div> 
-
-<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="221530101107">
-<a class="trigger-product-card" 
-
-href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;221530101&#47;color-kids.k-selby-coverall.estate-blue" 
-
->
-<div class="exist-in-cart-splash hide">
-<span class="mini-cart-icon"></span>
-<span class="text">Ostoskorissasi</span>
-</div>
-<div class="product-wrapper no-flickering"><div class="image-wrapper">
-<div class="center-verticle"><img
-src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;221530_101_COLOR%20KIDS_K%20SELBY%20COVERALL.png" 
-
-data-test="true"
- data-type="Small1x1" data-view-value="Standard" title="221530101107 COLOR KIDS  K SELBY COVERALL" alt="221530101107 COLOR KIDS K SELBY COVERALL Small1x1 Standard Small1x1"
-/></div>
-</div>
-
-
-<div class="content-wrapper ">
-
-
-
-
-
-
-<div class="price"><span class="reduced">39,90</span> <!-- red -->
-<div class="regular-price-wrapper">
-<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
-<span class="regular stroke">79,90</span> <!-- black, stroke -->
-</div></div><p class="product-name ellipsis" title="K SELBY COVERALL">K SELBY COVERALL</p>
-<p class="product-brand ellipsis" title="COLOR KIDS">COLOR KIDS</p>
-</div></div></a>
-</div> 
-
-<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="221533102101">
-<a class="trigger-product-card" 
-
-href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;221533102&#47;color-kids.saxo-coverall-jr.grape" 
-
->
-<div class="exist-in-cart-splash hide">
-<span class="mini-cart-icon"></span>
-<span class="text">Ostoskorissasi</span>
-</div>
-<div class="product-wrapper no-flickering"><div class="image-wrapper">
-<div class="center-verticle"><img
-src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;221533_102_COLOR%20KIDS_SAXO%20COVERALL%20JR.png" 
-
-data-test="true"
- data-type="Small1x1" data-view-value="Standard" title="221533102101 COLOR KIDS  SAXO COVERALL JR" alt="221533102101 COLOR KIDS SAXO COVERALL JR Small1x1 Standard Small1x1"
-/></div>
-</div>
-
-
-<div class="content-wrapper ">
-
-
-
-
-
-
-<div class="price"><span class="reduced">24,90</span> <!-- red -->
-<div class="regular-price-wrapper">
-<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
-<span class="regular stroke">49,90</span> <!-- black, stroke -->
-</div></div><p class="product-name ellipsis" title="SAXO COVERALL JR">SAXO COVERALL JR</p>
-<p class="product-brand ellipsis" title="COLOR KIDS">COLOR KIDS</p>
-</div></div></a>
-</div><div class="infinite-cms-item">
-<div class="component-product-carousell-wrapper rich-relevance component-rich-relevance-wrapper small-12 medium-6 large-6 grid-2x1 columns"> 
-<div class="carousel-top">
-<div class="dots"></div>
-<h2 class="title ellipsis"></h2>
-</div>
-<div id="rich-relevance-search_page_res_1" class="rich-relevance-content component-product-carousell rich-relevance" data-HeightSize="1" data-sliderSettings='{
-"infinite": true,"cssEase": "linear","slidesToShow": 2,"slidesToScroll": 2
-}' data-gridClasses="small-6 medium-3 large-3 grid-1x1 columns">
-</div>
-</div>
-<script type="text/javascript">
-if(typeof(RR) != "undefined"){
-R3_COMMON.addPlacementType("search_page.res_1");
-}
-</script></div> 
 
 <div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="222460101101">
 <a class="trigger-product-card" 
@@ -3037,6 +2914,42 @@ data-test="true"
 </div></div></a>
 </div> 
 
+<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="222464101101">
+<a class="trigger-product-card" 
+
+href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;222464101&#47;reima.k-koru-overall.purple" 
+
+>
+<div class="exist-in-cart-splash hide">
+<span class="mini-cart-icon"></span>
+<span class="text">Ostoskorissasi</span>
+</div>
+<div class="product-wrapper no-flickering"><div class="image-wrapper">
+<div class="center-verticle"><img
+src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;222464_101_REIMA_K%20KORU%20OVERALL.png" 
+
+data-test="true"
+ data-type="Small1x1" data-view-value="Standard" title="222464101101 REIMA  K KORU OVERALL" alt="222464101101 REIMA K KORU OVERALL Small1x1 Standard Small1x1"
+/></div>
+</div>
+
+
+<div class="content-wrapper ">
+
+
+
+
+
+
+<div class="price"><span class="reduced">69,90</span> <!-- red -->
+<div class="regular-price-wrapper">
+<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
+<span class="regular stroke">129,-</span> <!-- black, stroke -->
+</div></div><p class="product-name ellipsis" title="K KORU OVERALL">K KORU OVERALL</p>
+<p class="product-brand ellipsis" title="REIMA">REIMA</p>
+</div></div></a>
+</div> 
+
 <div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="222463101101">
 <a class="trigger-product-card" 
 
@@ -3071,7 +2984,22 @@ data-test="true"
 </div></div><p class="product-name ellipsis" title="K SCENIC OVERALL">K SCENIC OVERALL</p>
 <p class="product-brand ellipsis" title="REIMA">REIMA</p>
 </div></div></a>
-</div> 
+</div><div class="infinite-cms-item">
+<div class="component-product-carousell-wrapper rich-relevance component-rich-relevance-wrapper small-12 medium-6 large-6 grid-2x1 columns"> 
+<div class="carousel-top">
+<div class="dots"></div>
+<h2 class="title ellipsis"></h2>
+</div>
+<div id="rich-relevance-search_page_res_1" class="rich-relevance-content component-product-carousell rich-relevance" data-HeightSize="1" data-sliderSettings='{
+"infinite": true,"cssEase": "linear","slidesToShow": 2,"slidesToScroll": 2
+}' data-gridClasses="small-6 medium-3 large-3 grid-1x1 columns">
+</div>
+</div>
+<script type="text/javascript">
+if(typeof(RR) != "undefined"){
+R3_COMMON.addPlacementType("search_page.res_1");
+}
+</script></div> 
 
 <div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="222462101102">
 <a class="trigger-product-card" 
@@ -3105,42 +3033,6 @@ data-test="true"
 <span class="discount-regular">norm.hinta</span> <!-- reg. price -->
 <span class="regular stroke">119,-</span> <!-- black, stroke -->
 </div></div><p class="product-name ellipsis" title="K FOX OVERALL">K FOX OVERALL</p>
-<p class="product-brand ellipsis" title="REIMA">REIMA</p>
-</div></div></a>
-</div> 
-
-<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="222464101101">
-<a class="trigger-product-card" 
-
-href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;222464101&#47;reima.k-koru-overall.purple" 
-
->
-<div class="exist-in-cart-splash hide">
-<span class="mini-cart-icon"></span>
-<span class="text">Ostoskorissasi</span>
-</div>
-<div class="product-wrapper no-flickering"><div class="image-wrapper">
-<div class="center-verticle"><img
-src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;222464_101_REIMA_K%20KORU%20OVERALL.png" 
-
-data-test="true"
- data-type="Small1x1" data-view-value="Standard" title="222464101101 REIMA  K KORU OVERALL" alt="222464101101 REIMA K KORU OVERALL Small1x1 Standard Small1x1"
-/></div>
-</div>
-
-
-<div class="content-wrapper ">
-
-
-
-
-
-
-<div class="price"><span class="reduced">69,90</span> <!-- red -->
-<div class="regular-price-wrapper">
-<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
-<span class="regular stroke">129,-</span> <!-- black, stroke -->
-</div></div><p class="product-name ellipsis" title="K KORU OVERALL">K KORU OVERALL</p>
 <p class="product-brand ellipsis" title="REIMA">REIMA</p>
 </div></div></a>
 </div> 
@@ -3217,6 +3109,42 @@ data-test="true"
 </div></div></a>
 </div> 
 
+<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="224173101105">
+<a class="trigger-product-card" 
+
+href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;224173101&#47;color-kids.k-new-karel-coverall.scuba-blue" 
+
+>
+<div class="exist-in-cart-splash hide">
+<span class="mini-cart-icon"></span>
+<span class="text">Ostoskorissasi</span>
+</div>
+<div class="product-wrapper no-flickering"><div class="image-wrapper">
+<div class="center-verticle"><img
+src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;224173_101_COLOR%20KIDS_K%20NEW%20KAREL%20COVERALL.png" 
+
+data-test="true"
+ data-type="Small1x1" data-view-value="Standard" title="224173101105 COLOR KIDS  K NEW KAREL COVERALL" alt="224173101105 COLOR KIDS K NEW KAREL COVERALL Small1x1 Standard Small1x1"
+/></div>
+</div>
+
+
+<div class="content-wrapper ">
+
+
+
+
+
+
+<div class="price"><span class="reduced">29,90</span> <!-- red -->
+<div class="regular-price-wrapper">
+<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
+<span class="regular stroke">59,90</span> <!-- black, stroke -->
+</div></div><p class="product-name ellipsis" title="K NEW KAREL COVERALL">K NEW KAREL COVERALL</p>
+<p class="product-brand ellipsis" title="COLOR KIDS">COLOR KIDS</p>
+</div></div></a>
+</div> 
+
 <div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="224173102105">
 <a class="trigger-product-card" 
 
@@ -3253,10 +3181,10 @@ data-test="true"
 </div></div></a>
 </div> 
 
-<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="224173101105">
+<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="221530101107">
 <a class="trigger-product-card" 
 
-href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;224173101&#47;color-kids.k-new-karel-coverall.scuba-blue" 
+href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;221530101&#47;color-kids.k-selby-coverall.estate-blue" 
 
 >
 <div class="exist-in-cart-splash hide">
@@ -3265,10 +3193,10 @@ href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;224173101&#47;col
 </div>
 <div class="product-wrapper no-flickering"><div class="image-wrapper">
 <div class="center-verticle"><img
-src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;224173_101_COLOR%20KIDS_K%20NEW%20KAREL%20COVERALL.png" 
+src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;221530_101_COLOR%20KIDS_K%20SELBY%20COVERALL.png" 
 
 data-test="true"
- data-type="Small1x1" data-view-value="Standard" title="224173101105 COLOR KIDS  K NEW KAREL COVERALL" alt="224173101105 COLOR KIDS K NEW KAREL COVERALL Small1x1 Standard Small1x1"
+ data-type="Small1x1" data-view-value="Standard" title="221530101107 COLOR KIDS  K SELBY COVERALL" alt="221530101107 COLOR KIDS K SELBY COVERALL Small1x1 Standard Small1x1"
 /></div>
 </div>
 
@@ -3280,11 +3208,47 @@ data-test="true"
 
 
 
-<div class="price"><span class="reduced">29,90</span> <!-- red -->
+<div class="price"><span class="reduced">39,90</span> <!-- red -->
 <div class="regular-price-wrapper">
 <span class="discount-regular">norm.hinta</span> <!-- reg. price -->
-<span class="regular stroke">59,90</span> <!-- black, stroke -->
-</div></div><p class="product-name ellipsis" title="K NEW KAREL COVERALL">K NEW KAREL COVERALL</p>
+<span class="regular stroke">79,90</span> <!-- black, stroke -->
+</div></div><p class="product-name ellipsis" title="K SELBY COVERALL">K SELBY COVERALL</p>
+<p class="product-brand ellipsis" title="COLOR KIDS">COLOR KIDS</p>
+</div></div></a>
+</div> 
+
+<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="221530102106">
+<a class="trigger-product-card" 
+
+href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;takit&#47;221530102&#47;color-kids.k-selby-coverall.grape" 
+
+>
+<div class="exist-in-cart-splash hide">
+<span class="mini-cart-icon"></span>
+<span class="text">Ostoskorissasi</span>
+</div>
+<div class="product-wrapper no-flickering"><div class="image-wrapper">
+<div class="center-verticle"><img
+src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;221530_102_COLOR%20KIDS_K%20SELBY%20COVERALL.png" 
+
+data-test="true"
+ data-type="Small1x1" data-view-value="Standard" title="221530102106 COLOR KIDS  K SELBY COVERALL" alt="221530102106 COLOR KIDS K SELBY COVERALL Small1x1 Standard Small1x1"
+/></div>
+</div>
+
+
+<div class="content-wrapper ">
+
+
+
+
+
+
+<div class="price"><span class="reduced">39,90</span> <!-- red -->
+<div class="regular-price-wrapper">
+<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
+<span class="regular stroke">79,90</span> <!-- black, stroke -->
+</div></div><p class="product-name ellipsis" title="K SELBY COVERALL">K SELBY COVERALL</p>
 <p class="product-brand ellipsis" title="COLOR KIDS">COLOR KIDS</p>
 </div></div></a>
 </div> 
@@ -3425,78 +3389,6 @@ data-test="true"
 </div></div></a>
 </div> 
 
-<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="220071101103">
-<a class="trigger-product-card" 
-
-href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;haalarit&#47;220071101&#47;everest.k-mfn-sh-overall.red" 
-
->
-<div class="exist-in-cart-splash hide">
-<span class="mini-cart-icon"></span>
-<span class="text">Ostoskorissasi</span>
-</div>
-<div class="product-wrapper no-flickering"><div class="image-wrapper">
-<div class="center-verticle"><img
-src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;220071_101_EVEREST_K%20MFN%20SH%20OVERALL.png" 
-
-data-test="true"
- data-type="Small1x1" data-view-value="Standard" title="220071101103 EVEREST  K MFN SH OVERALL" alt="220071101103 EVEREST K MFN SH OVERALL Small1x1 Standard Small1x1"
-/></div>
-</div>
-
-
-<div class="content-wrapper ">
-
-
-
-
-
-
-<div class="price"><span class="reduced">29,90</span> <!-- red -->
-<div class="regular-price-wrapper">
-<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
-<span class="regular stroke">59,90</span> <!-- black, stroke -->
-</div></div><p class="product-name ellipsis" title="K MFN SH OVERALL">K MFN SH OVERALL</p>
-<p class="product-brand ellipsis" title="EVEREST">EVEREST</p>
-</div></div></a>
-</div> 
-
-<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="220071102104">
-<a class="trigger-product-card" 
-
-href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;haalarit&#47;220071102&#47;everest.k-mfn-sh-overall.black" 
-
->
-<div class="exist-in-cart-splash hide">
-<span class="mini-cart-icon"></span>
-<span class="text">Ostoskorissasi</span>
-</div>
-<div class="product-wrapper no-flickering"><div class="image-wrapper">
-<div class="center-verticle"><img
-src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;220071_102_EVEREST_K%20MFN%20SH%20OVERALL.png" 
-
-data-test="true"
- data-type="Small1x1" data-view-value="Standard" title="220071102104 EVEREST  K MFN SH OVERALL" alt="220071102104 EVEREST K MFN SH OVERALL Small1x1 Standard Small1x1"
-/></div>
-</div>
-
-
-<div class="content-wrapper ">
-
-
-
-
-
-
-<div class="price"><span class="reduced">29,90</span> <!-- red -->
-<div class="regular-price-wrapper">
-<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
-<span class="regular stroke">59,90</span> <!-- black, stroke -->
-</div></div><p class="product-name ellipsis" title="K MFN SH OVERALL">K MFN SH OVERALL</p>
-<p class="product-brand ellipsis" title="EVEREST">EVEREST</p>
-</div></div></a>
-</div> 
-
 <div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="222467102102">
 <a class="trigger-product-card" 
 
@@ -3569,6 +3461,78 @@ data-test="true"
 </div></div></a>
 </div> 
 
+<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="220071101103">
+<a class="trigger-product-card" 
+
+href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;haalarit&#47;220071101&#47;everest.k-mfn-sh-overall.red" 
+
+>
+<div class="exist-in-cart-splash hide">
+<span class="mini-cart-icon"></span>
+<span class="text">Ostoskorissasi</span>
+</div>
+<div class="product-wrapper no-flickering"><div class="image-wrapper">
+<div class="center-verticle"><img
+src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;220071_101_EVEREST_K%20MFN%20SH%20OVERALL.png" 
+
+data-test="true"
+ data-type="Small1x1" data-view-value="Standard" title="220071101103 EVEREST  K MFN SH OVERALL" alt="220071101103 EVEREST K MFN SH OVERALL Small1x1 Standard Small1x1"
+/></div>
+</div>
+
+
+<div class="content-wrapper ">
+
+
+
+
+
+
+<div class="price"><span class="reduced">29,90</span> <!-- red -->
+<div class="regular-price-wrapper">
+<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
+<span class="regular stroke">59,90</span> <!-- black, stroke -->
+</div></div><p class="product-name ellipsis" title="K MFN SH OVERALL">K MFN SH OVERALL</p>
+<p class="product-brand ellipsis" title="EVEREST">EVEREST</p>
+</div></div></a>
+</div> 
+
+<div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="224064102101">
+<a class="trigger-product-card" 
+
+href="http:&#47;&#47;www.stadium.fi&#47;vaatteet&#47;ylaosat&#47;224064102&#47;warp.t-tiverton.grey-melange" 
+
+>
+<div class="exist-in-cart-splash hide">
+<span class="mini-cart-icon"></span>
+<span class="text">Ostoskorissasi</span>
+</div>
+<div class="product-wrapper no-flickering"><div class="image-wrapper">
+<div class="center-verticle"><img
+src="&#47;INTERSHOP&#47;static&#47;WFS&#47;Stadium-FinlandB2C-Site&#47;-&#47;Stadium&#47;fi_FI&#47;Small1x1&#47;224064_102_WARP_T%20TIVERTON.png" 
+
+data-test="true"
+ data-type="Small1x1" data-view-value="Standard" title="224064102101 WARP  T TIVERTON" alt="224064102101 WARP T TIVERTON Small1x1 Standard Small1x1"
+/></div>
+</div>
+
+
+<div class="content-wrapper ">
+
+
+
+
+
+
+<div class="price"><span class="reduced">29,90</span> <!-- red -->
+<div class="regular-price-wrapper">
+<span class="discount-regular">norm.hinta</span> <!-- reg. price -->
+<span class="regular stroke">49,90</span> <!-- black, stroke -->
+</div></div><p class="product-name ellipsis" title="T TIVERTON">T TIVERTON</p>
+<p class="product-brand ellipsis" title="WARP">WARP</p>
+</div></div></a>
+</div> 
+
 <div class="product no-flickering infinite-product-item small-6 medium-3 large-3 grid-1x1 columns" data-sku="212532102102">
 <a class="trigger-product-card" 
 
@@ -3604,16 +3568,10 @@ data-test="true"
 <p class="product-brand ellipsis" title="EVEREST">EVEREST</p>
 </div></div></a>
 </div><div id="pagination"><div class="ish-pagination-total">
-<span class="ish-pagination-total-value">25 Items</span>
+<span class="ish-pagination-total-value">22 Items</span>
 </div><div class="ish-pagination-sites">
 <span class="ish-pagination-label">Sivu</span>
-<ul class="ish-pagination-site-list"><li class="ish-pagination-sites-list-item ish-pagination-site-list-previous">&#171;</li><li class="ish-pagination-sites-list-item ish-pagination-site-active">1</li><li class="ish-pagination-sites-list-item"><a href="http://www.stadium.fi/search/paging?PageNumber=1&PageSize=24&SearchTerm=haalari&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1"
-title="to page 2">
-<span class="ish-pagination-hide">sivulle field</span>2<span class="ish-pagination-hide">&#47;2</span>
-</a></li><li class="ish-pagination-sites-list-item ish-pagination-list-next">
-<a href="http://www.stadium.fi/search/paging?PageNumber=1&PageSize=24&SearchTerm=haalari&SearchParameter=%26%40QueryTerm%3Dhaalari%26OnlineFlag%3D1"
-title="seuraavalle sivulle">&#187;</a>
-</li></ul>
+<ul class="ish-pagination-site-list"><li class="ish-pagination-sites-list-item ish-pagination-site-list-previous">&#171;</li><li class="ish-pagination-sites-list-item ish-pagination-site-active">1</li><li class="ish-pagination-sites-list-item ish-pagination-list-next">&#187;</li></ul>
 </div></div>
 <div class="infinite-loader-icon after grid-1x1 large-3 medium-3 small-6 columns"></div>
 </div></div>
@@ -3623,35 +3581,31 @@ if(typeof(RR) != "undefined"){
 var R3_SEARCH = new r3_search();
 R3_SEARCH.setTerms('haalari');
 
-R3_SEARCH.addItemId('219873103101');
-
 R3_SEARCH.addItemId('219873101103');
 
-R3_SEARCH.addItemId('219873104103');
-
-R3_SEARCH.addItemId('221530102106');
-
-R3_SEARCH.addItemId('221530101107');
-
-R3_SEARCH.addItemId('221533102101');
+R3_SEARCH.addItemId('219873103101');
 
 R3_SEARCH.addItemId('222460101101');
 
 R3_SEARCH.addItemId('222461102101');
 
+R3_SEARCH.addItemId('222464101101');
+
 R3_SEARCH.addItemId('222463101101');
 
 R3_SEARCH.addItemId('222462101102');
-
-R3_SEARCH.addItemId('222464101101');
 
 R3_SEARCH.addItemId('222466101102');
 
 R3_SEARCH.addItemId('222543101101');
 
+R3_SEARCH.addItemId('224173101105');
+
 R3_SEARCH.addItemId('224173102105');
 
-R3_SEARCH.addItemId('224173101105');
+R3_SEARCH.addItemId('221530101107');
+
+R3_SEARCH.addItemId('221530102106');
 
 R3_SEARCH.addItemId('224963102101');
 
@@ -3661,13 +3615,13 @@ R3_SEARCH.addItemId('226606101101');
 
 R3_SEARCH.addItemId('226606102102');
 
-R3_SEARCH.addItemId('220071101103');
-
-R3_SEARCH.addItemId('220071102104');
-
 R3_SEARCH.addItemId('222467102102');
 
 R3_SEARCH.addItemId('222467101102');
+
+R3_SEARCH.addItemId('220071101103');
+
+R3_SEARCH.addItemId('224064102101');
 
 R3_SEARCH.addItemId('212532102102');
 
@@ -3677,7 +3631,7 @@ r3();
 </script>
 <script type="text/javascript"> 
 digitalData.search_term = "haalari";
-digitalData.search_results="products;25,stores;0,content;0";
+digitalData.search_results="products;22,stores;0,content;0";
 </script>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -3874,7 +3828,7 @@ href="http:&#47;&#47;www.stadium.fi&#47;cms&#47;article.about.cookies"
 <div class="custom-select-menu"></div>
 </div>
 <div id="zoom-image-placeholder"></div>
-<script src="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/js/combined.compressed.js?lastModified=1454932832000" type="text/javascript"></script><script type="text/javascript">
+<script src="/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/-/fi_FI/js/combined.compressed.js?lastModified=1455611576000" type="text/javascript"></script><script type="text/javascript">
 $(window).on("popstate", function (e) {
 var History = Stadium.History,
 Http = Stadium.HTTP,
