@@ -31,7 +31,7 @@ public class StadiumHtmlQueryItemServiceIntegrationTest {
     @Test
     public void testExtractId() {
     	String id = new StadiumHtmlQueryItemServiceImpl().extractIdFromUrl("http://www.stadium.fi/vaatteet/haalarit/219873103/didriksons.k-migisi-coverall.black");
-    	assertEquals("219873103", id);
+    	assertEquals("ST219873103", id);
     }
 
 }

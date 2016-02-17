@@ -3,7 +3,6 @@ package com.abudko.reseller.huuto.query.service.item.html.stadium;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -11,18 +10,13 @@ import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
 import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
+import com.abudko.reseller.huuto.query.service.item.html.AbstractHtmlItemParser;
 import com.abudko.reseller.huuto.query.service.list.html.stadium.StadiumHtmlListParser;
 
 @Component
-public class StadiumHtmlItemParser implements HtmlItemParser {
+public class StadiumHtmlItemParser extends AbstractHtmlItemParser {
     
-    @Override
-    public ItemResponse parse(String html) {
-        ItemResponse response = new ItemResponse();
-        
-        Document document = Jsoup.parse(html);
-
+    public void parseInternal(Document document, ItemResponse response) {
         List<String> sizes = parseSizes(document);
         response.setSizes(sizes);
 
@@ -37,8 +31,6 @@ public class StadiumHtmlItemParser implements HtmlItemParser {
         
         String brand = parseBrand(document);
         response.getItemInfo().setBrand(brand);
-        
-        return response;
     }
 
     private List<String> parseSizes(Document document) {
