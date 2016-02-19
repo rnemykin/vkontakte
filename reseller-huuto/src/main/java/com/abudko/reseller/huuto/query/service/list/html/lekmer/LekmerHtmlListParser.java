@@ -16,7 +16,7 @@ import com.abudko.reseller.huuto.query.service.list.html.AbstractHtmlListParser;
 @Component
 public class LekmerHtmlListParser extends AbstractHtmlListParser {
     
-    private static final List<String> RED_LABELS = Arrays.asList("Testivoittaja", "Kesäale", "Ale", "Ilmainen toimitus", "Outlet", " mm", "VARASTONTYHJENNYS");
+    private static final List<String> RED_LABELS = Arrays.asList("Testivoittaja", "Kesäale", "Ale", "Ilmainen toimitus", "Outlet", " mm", "VARASTONTYHJENNYS", "15EXTRA");
 
     public static final String IMG_SRC_SMALL = "thumbnail168x169";
     public static final String IMG_SRC_BIG = "productmanMeasurement465x500";
