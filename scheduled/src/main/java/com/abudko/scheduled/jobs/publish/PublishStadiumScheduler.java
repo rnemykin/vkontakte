@@ -47,8 +47,9 @@ public class PublishStadiumScheduler implements Scheduler {
 
     private void publish() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException,
             UnsupportedEncodingException, URISyntaxException, InterruptedException {
-        publishInternal("haalari", "TALVIHAALARI", 0);
-        publishInternal("talvikengät", "TALVIKENGAT", 0);
+        publishInternal("overall", "TALVIHAALARI", 0);
+        publishInternal("coverall", "TALVIHAALARI", 0);
+        publishInternal("talvikenkä", "TALVIKENGAT", 0);
     }
 
     private void publishInternal(String query, String categoryenum, int limit)

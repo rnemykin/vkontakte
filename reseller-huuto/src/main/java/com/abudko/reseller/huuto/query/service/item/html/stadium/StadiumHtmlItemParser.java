@@ -17,18 +17,18 @@ import com.abudko.reseller.huuto.query.service.list.html.stadium.StadiumHtmlList
 public class StadiumHtmlItemParser extends AbstractHtmlItemParser {
     
     public void parseInternal(Document document, ItemResponse response) {
+        String id = parseId(document);
+        response.setId(id);
+        
+        String imgSrc = parseImgSrc(document);
+        response.setImgBaseSrc(imgSrc);
+        
         List<String> sizes = parseSizes(document);
         response.setSizes(sizes);
 
         String price = parsePrice(document);
         response.setPrice(price);
 
-        String imgSrc = parseImgSrc(document);
-        response.setImgBaseSrc(imgSrc);
-
-        String id = parseId(document);
-        response.setId(id);
-        
         String brand = parseBrand(document);
         response.getItemInfo().setBrand(brand);
     }
@@ -81,10 +81,16 @@ public class StadiumHtmlItemParser extends AbstractHtmlItemParser {
     	Elements reduced = document.getElementsByClass("reduced");
     	Element price = null;
     	if (reduced != null && !reduced.isEmpty()) {
-    		price = document.getElementsByClass("reduced").get(0);
+    		price = reduced.get(0);
     	}
     	else {
-    		price = document.getElementsByClass("regular").get(0);
+    	    Elements regular = document.getElementsByClass("regular");
+    	    if (regular != null && !regular.isEmpty()) {
+    	        price = regular.get(0);
+    	    }
+    	    else {
+    	        return "";
+    	    }
     	}
         String text = price.text();
         String formatPrice = formatPrice(text);

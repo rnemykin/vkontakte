@@ -41,21 +41,21 @@ public class StadiumHtmlItemParserTest {
     
     @Test
     public void testBrand() {
-        assertEquals("TIMBERLAND", response.getItemInfo().getBrand());
+        assertEquals("NIKE", response.getItemInfo().getBrand());
     }
 
     @Test
     public void testPrice() {
-        assertEquals("59.90", response.getPrice());
+        assertEquals("", response.getPrice());
     }
     
     @Test
     public void testSizes() {
-        assertEquals(Arrays.asList("28", "30", "32"), response.getSizes());
+        assertEquals(Arrays.asList("23,5", "25", "26", "27"), response.getSizes());
     }
     
     @Test
     public void testImgSrc() {
-        assertEquals("http://stadium.fi/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/Stadium/fi_FI/Detail/208333_103_TIMBERLAND_JIMINY%20GTX%20BOOT.png", response.getImgBaseSrc());
+        assertEquals("http://stadium.fi/INTERSHOP/static/WFS/Stadium-FinlandB2C-Site/-/Stadium/fi_FI/Detail/224488_102_NIKE_PRIORITY%20MID%20WT%20JR.png", response.getImgBaseSrc());
     }
 }
