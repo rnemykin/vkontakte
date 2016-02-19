@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -14,41 +13,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
-import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
+import com.abudko.reseller.huuto.query.service.item.html.AbstractHtmlItemParser;
 
 @Component
-public class LekmerHtmlItemParser implements HtmlItemParser {
+public class LekmerHtmlItemParser extends AbstractHtmlItemParser {
     
     private static final String HTML_PRODUCT_ID = "product_band";
     
     private Logger log = LoggerFactory.getLogger(getClass());
     
     @Override
-    public ItemResponse parse(String html) {
-        ItemResponse response = new ItemResponse();
-        
-        Document document = Jsoup.parse(html);
-
-        List<String> sizes = parseSizes(document);
-        response.setSizes(sizes);
-
-        String price = parsePrice(document);
-        response.setPrice(price);
-
-        String imgSrc = parseImgSrc(document);
-        response.setImgBaseSrc(imgSrc);
-
-        String id = parseId(document);
-        response.setId(id);
-        
-        String brand = parseBrand(document);
-        response.getItemInfo().setBrand(brand);
-        
-        return response;
-    }
-
-    private List<String> parseSizes(Document document) {
+    protected List<String> parseSizes(Document document) {
         List<String> sizes = new ArrayList<>();
         Elements elements = document.getElementsByAttributeValueMatching("class", Pattern.compile("[^0]erpseparator\\w+"));
         for (Element element : elements) {
@@ -82,7 +57,8 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         return sizes;
     }
 
-    private String parseImgSrc(Document document) {
+    @Override
+    protected String parseImgSrc(Document document) {
         Elements elements = document.getElementsByAttributeValue("rel", "image_src");
         if (elements.size() > 0) {
             Element element = elements.get(0);
@@ -103,7 +79,8 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
     	return imgSrc;
     }
     
-    private String parsePrice(Document document) {
+    @Override
+    protected String parsePrice(Document document) {
         Elements elements = document.getElementsByAttributeValue("class", "campaignprice-value");
         if (elements.size() == 0) {
             elements = document.getElementsByAttributeValue("class", "price-value");
@@ -116,7 +93,8 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         return "";
     }
     
-    private String parseId(Document document) {
+    @Override
+    protected String parseId(Document document) {
         Elements elements = document.getElementsByClass(HTML_PRODUCT_ID);
         if (elements.size() > 0) {
             Element element = elements.get(0);
@@ -145,7 +123,8 @@ public class LekmerHtmlItemParser implements HtmlItemParser {
         return id;
     }
     
-    private String parseBrand(Document document) {
+    @Override
+    protected String parseBrand(Document document) {
         Elements elements = document.getElementsByClass(HTML_PRODUCT_ID);
         if (elements.size() > 0) {
             Element element = elements.get(0);

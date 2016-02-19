@@ -45,7 +45,7 @@ public class StadiumHtmlQueryListServiceIntegrationTest {
     
     private SearchParams getSearchParams() {
         SearchParams searchParams = new SearchParams();
-        searchParams.setWords("haalari");
+        searchParams.setWords("overall");
         
         return searchParams;
     }

@@ -6,6 +6,6 @@ import com.abudko.reseller.huuto.query.service.list.ListResponse;
 
 public interface HtmlListParser {
 
-    public abstract Collection<ListResponse> parse(String htmlResponse);
+    Collection<ListResponse> parse(String htmlResponse);
 
 }

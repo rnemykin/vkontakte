@@ -1,11 +1,8 @@
 package com.abudko.reseller.huuto.query.service.list.html.lekmer;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,13 +10,11 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.abudko.reseller.huuto.query.enumeration.Brand;
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
-import com.abudko.reseller.huuto.query.service.list.ListResponse;
-import com.abudko.reseller.huuto.query.service.list.html.HtmlListParser;
+import com.abudko.reseller.huuto.query.service.list.html.AbstractHtmlListParser;
 
 @Component
-public class LekmerHtmlListParser implements HtmlListParser {
+public class LekmerHtmlListParser extends AbstractHtmlListParser {
     
     private static final List<String> RED_LABELS = Arrays.asList("Testivoittaja", "Kesäale", "Ale", "Ilmainen toimitus", "Outlet", " mm", "VARASTONTYHJENNYS");
 
@@ -33,45 +28,19 @@ public class LekmerHtmlListParser implements HtmlListParser {
     private static final String HTML_PRICE_CLASS = "price";
     private static final String HTML_IMAGE_CLASS = "image_holder";
     private static final String DISCOUNT_CLASS = "price sale percentage";
+    
+    @Override
+	protected Elements getProductList(Document document) {
+    	Elements productList = document.getElementsByAttributeValueContaining("class", HTML_PRODUCT_LIST_CLASS);
+    	if (productList != null && !productList.isEmpty()) {
+    		Elements products = productList.get(0).getElementsByAttributeValueContaining("class", HTML_PRODUCT_CLASS);
+    		return products;
+    	}
+		return null;
+	}
 
     @Override
-    public Collection<ListResponse> parse(String htmlResponse) {
-        Collection<ListResponse> responses = new LinkedHashSet<ListResponse>();
-
-        Document document = Jsoup.parse(htmlResponse);
-
-        Elements productList = document.getElementsByAttributeValueContaining("class", HTML_PRODUCT_LIST_CLASS);
-        if (productList != null && !productList.isEmpty()) {
-            Elements products = productList.get(0).getElementsByAttributeValueContaining("class", HTML_PRODUCT_CLASS);
-            for (Element product : products) {
-                ListResponse queryResponse = new ListResponse();
-
-                String itemUrl = parseItemUrl(product);
-                queryResponse.setItemUrl(itemUrl);
-
-                String description = parseDescription(product);
-                queryResponse.setDescription(description);
-
-                String imgBaseSrc = parseImgSrc(product);
-                queryResponse.setImgBaseSrc(imgBaseSrc);
-
-                String currentPrice = parseCurrentPrice(product);
-                queryResponse.setCurrentPrice(currentPrice);
-
-                String brand = parseBrand(description);
-                queryResponse.setBrand(brand);
-
-                String discount = parseDiscount(product);
-                queryResponse.setDiscount(discount);
-
-                responses.add(queryResponse);
-            }
-        }
-
-        return responses;
-    }
-
-    private String parseItemUrl(Element element) {
+    protected String parseItemUrl(Element element) {
         Element product_info = element.getElementsByClass(HTML_PRODUCT_INFO_CLASS).get(0);
         Attributes attributes = product_info.child(1).attributes();
         String itemUrl = attributes.get("href");
@@ -89,7 +58,8 @@ public class LekmerHtmlListParser implements HtmlListParser {
         return itemUrl;
     }
 
-    private String parseDescription(Element element) {
+    @Override
+    protected String parseDescription(Element element) {
         Element product_info = element.getElementsByClass(HTML_PRODUCT_INFO_CLASS).get(0);
         Element child = product_info.child(1);
         String description = child.ownText();
@@ -119,15 +89,13 @@ public class LekmerHtmlListParser implements HtmlListParser {
         return false;
     }
 
-    private String parseBrand(String description) {
-        Brand brand = Brand.getBrandFrom(description);
-        if (brand != null) {
-            return brand.getFullName();
-        }
-        return null;
+    @Override
+    protected String parseBrand(String description) {
+        return parseBrandDefault(description);
     }
 
-    private String parseDiscount(Element element) {
+    @Override
+    protected String parseDiscount(Element element) {
         Element product_info = element.getElementsByClass(HTML_PRODUCT_INFO_CLASS).get(0);
         Elements elementsByClass = product_info.getElementsByAttributeValueContaining("class", DISCOUNT_CLASS);
 
@@ -138,7 +106,8 @@ public class LekmerHtmlListParser implements HtmlListParser {
         return elementsByClass.text();
     }
 
-    private String parseImgSrc(Element element) {
+    @Override
+    protected String parseImgSrc(Element element) {
         Element image = element.getElementsByClass(HTML_IMAGE_CLASS).get(0);
         Element child = image.child(0).child(0);
         String imgSrc = child.attr("src");
@@ -153,7 +122,8 @@ public class LekmerHtmlListParser implements HtmlListParser {
         return sb.toString();
     }
 
-    private String parseCurrentPrice(Element element) {
+    @Override
+    protected String parseCurrentPrice(Element element) {
         Element product_info = element.getElementsByClass(HTML_PRODUCT_INFO_CLASS).get(0);
         Elements elementsByClass = product_info.getElementsByAttributeValueContaining("class", HTML_PRICE_SALE_CLASS);
 

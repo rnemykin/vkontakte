@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
@@ -15,41 +14,17 @@ import org.springframework.util.StringUtils;
 
 import com.abudko.reseller.huuto.query.enumeration.Brand;
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
-import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
+import com.abudko.reseller.huuto.query.service.item.html.AbstractHtmlItemParser;
 
 @Component
-public class ReimaHtmlItemParser implements HtmlItemParser {
+public class ReimaHtmlItemParser extends AbstractHtmlItemParser {
     
     private static final String HTML_PRODUCT_ID = "prod";
     private static final String HTML_PRODUCT_IMAGE = "prod_image_main";
     private static final String HTML_PRODUCT_SIZE = "size-choice";
     
     @Override
-    public ItemResponse parse(String html) {
-        ItemResponse response = new ItemResponse();
-        
-        Document document = Jsoup.parse(html);
-
-        List<String> sizes = parseSizes(document);
-        response.setSizes(sizes);
-
-        String price = parsePrice(document);
-        response.setPrice(price);
-
-        String imgSrc = parseImgSrc(document);
-        response.setImgBaseSrc(imgSrc);
-
-        String id = parseId(document);
-        response.setId(id);
-        
-        String brand = parseBrand(document);
-        response.getItemInfo().setBrand(brand);
-        
-        return response;
-    }
-
-    private List<String> parseSizes(Document document) {
+    protected List<String> parseSizes(Document document) {
     	List<String> sizes = new ArrayList<>();
     	Elements elements = document.getElementsByClass(HTML_PRODUCT_SIZE);
     	if (elements.isEmpty()) {
@@ -67,7 +42,8 @@ public class ReimaHtmlItemParser implements HtmlItemParser {
         return sizes;
     }
 
-    private String parseImgSrc(Document document) {
+    @Override
+    protected String parseImgSrc(Document document) {
     	Elements elements = document.getElementsByClass(HTML_PRODUCT_IMAGE);
         if (elements.size() > 0) {
             Element element = elements.get(0);
@@ -86,7 +62,8 @@ public class ReimaHtmlItemParser implements HtmlItemParser {
 		return sb.toString();
 	}
     
-    private String parsePrice(Document document) {
+	@Override
+	protected String parsePrice(Document document) {
     	Elements elements = document.getElementsByClass(HTML_PRODUCT_ID);
     	if (elements.size() > 1) {
             Element element = elements.get(1);
@@ -105,7 +82,8 @@ public class ReimaHtmlItemParser implements HtmlItemParser {
     	return "";
     }
     
-    private String parseId(Document document) {
+	@Override
+	protected String parseId(Document document) {
         Elements elements = document.getElementsByClass(HTML_PRODUCT_ID);
         if (elements.size() > 1) {
             Element element = elements.get(1);
@@ -131,7 +109,8 @@ public class ReimaHtmlItemParser implements HtmlItemParser {
         return id;
     }
     
-    private String parseBrand(Document document) {
+    @Override
+    protected String parseBrand(Document document) {
     	Elements elements = document.getElementsByClass(HTML_PRODUCT_ID);
         if (elements.size() > 1) {
             Element element = elements.get(1);

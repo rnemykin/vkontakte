@@ -3,7 +3,6 @@ package com.abudko.reseller.huuto.query.service.item.html.xxl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -12,37 +11,13 @@ import org.springframework.util.StringUtils;
 
 import com.abudko.reseller.huuto.query.enumeration.Brand;
 import com.abudko.reseller.huuto.query.html.HtmlParserConstants;
-import com.abudko.reseller.huuto.query.service.item.ItemResponse;
-import com.abudko.reseller.huuto.query.service.item.html.HtmlItemParser;
+import com.abudko.reseller.huuto.query.service.item.html.AbstractHtmlItemParser;
 
 @Component
-public class XxlHtmlItemParser implements HtmlItemParser {
-    
+public class XxlHtmlItemParser extends AbstractHtmlItemParser {
+
     @Override
-    public ItemResponse parse(String html) {
-        ItemResponse response = new ItemResponse();
-        
-        Document document = Jsoup.parse(html);
-
-        List<String> sizes = parseSizes(document);
-        response.setSizes(sizes);
-
-        String price = parsePrice(document);
-        response.setPrice(price);
-
-        String imgSrc = parseImgSrc(document);
-        response.setImgBaseSrc(imgSrc);
-
-        String id = parseId(document);
-        response.setId(id);
-        
-        String brand = parseBrand(document);
-        response.getItemInfo().setBrand(brand);
-        
-        return response;
-    }
-
-    private List<String> parseSizes(Document document) {
+    protected List<String> parseSizes(Document document) {
     	List<String> sizes = new ArrayList<>();
     	Elements elements = document.getElementsByClass("sizeItem");
     	if (elements.isEmpty()) {
@@ -58,7 +33,8 @@ public class XxlHtmlItemParser implements HtmlItemParser {
         return sizes;
     }
 
-    private String parseImgSrc(Document document) {
+    @Override
+    protected String parseImgSrc(Document document) {
     	Elements elements = document.getElementsByClass("product-image-large");
         if (elements.size() > 0) {
             Element element = elements.get(0);
@@ -77,7 +53,8 @@ public class XxlHtmlItemParser implements HtmlItemParser {
 		return sb.toString();
 	}
     
-    private String parsePrice(Document document) {
+	@Override
+	protected String parsePrice(Document document) {
     	Elements elements = document.getElementsByClass("bigPrice");
     	if (elements.isEmpty()) {
     		return null;
@@ -87,7 +64,8 @@ public class XxlHtmlItemParser implements HtmlItemParser {
     	return price.replace(HtmlParserConstants.EURO_CHAR, "").trim().replace(",", ".");
     }
     
-    private String parseId(Document document) {
+	@Override
+	protected String parseId(Document document) {
         Elements elements = document.getElementsByClass("productDetailPageWrapper");
         if (elements.isEmpty()) {
         	return null;
@@ -100,7 +78,8 @@ public class XxlHtmlItemParser implements HtmlItemParser {
         return HtmlParserConstants.XXL_ID_PREFIX + attr;
     }
     
-    private String parseBrand(Document document) {
+	@Override
+    protected String parseBrand(Document document) {
     	 Elements elements = document.getElementsByClass("productDetailPageWrapper");
     	 if (elements.isEmpty()) {
     		 return null;

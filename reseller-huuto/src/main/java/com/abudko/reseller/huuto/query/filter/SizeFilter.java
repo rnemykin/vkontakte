@@ -29,7 +29,7 @@ public class SizeFilter extends RangeFilter {
 
     private Collection<ListResponse> filterInternal(Collection<ListResponse> queryResponses, double sizeMin,
             double sizeMax) {
-        Collection<ListResponse> filtered = new ArrayList<ListResponse>();
+        Collection<ListResponse> filtered = new ArrayList<>();
         for (ListResponse queryListResponse : queryResponses) {
             if (queryListResponse.hasManySizes()) {
                 List<String> sizes = queryListResponse.getItemResponse().getSizes();
