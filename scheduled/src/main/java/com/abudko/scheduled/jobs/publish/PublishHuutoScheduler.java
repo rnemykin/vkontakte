@@ -81,11 +81,15 @@ public class PublishHuutoScheduler implements Scheduler {
 
             Category category = Category.valueOf(searchParams.getCategoryenum());
             if (category != null) {
-                publishManager.publishResults(category, queryListResponses);
+                getPublishManager().publishResults(category, queryListResponses);
             } else {
                 log.warn(String.format("Can't find category for '%s'", searchParams.getCategoryenum()));
             }
         }
+    }
+    
+    protected PublishManager getPublishManager() {
+    	return publishManager;
     }
     
     private void applyHuutoSearchParamsRules(SearchParams searchParams) {

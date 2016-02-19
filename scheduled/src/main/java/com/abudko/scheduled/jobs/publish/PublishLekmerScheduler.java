@@ -89,9 +89,13 @@ public class PublishLekmerScheduler implements Scheduler {
 
         Category category = Category.valueOf(categoryenum);
         if (category != null) {
-            publishManager.publishResults(category, list);
+            getPublishManager().publishResults(category, list);
         } else {
             log.warn(String.format("Can't find category for '%s'", categoryenum));
         }
+    }
+    
+    protected PublishManager getPublishManager() {
+    	return publishManager;
     }
 }
