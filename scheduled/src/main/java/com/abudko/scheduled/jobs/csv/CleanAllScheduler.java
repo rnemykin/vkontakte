@@ -38,7 +38,7 @@ public class CleanAllScheduler implements Scheduler {
             
             photoManager.cleanAll(csvResourcePathHour, userid);
             photoManager.cleanAll(csvResourcePathRandomly, userid);
-//            photoManager.cleanAll(csvResourcePathRandomlyLimit, userid);
+            photoManager.cleanAll(csvResourcePathRandomlyLimit, userid);
             photoManager.cleanAll(csvResourcePathPikalevo, userid);
 
             log.info("********* End CleanAllScheduler *******");
