@@ -17,7 +17,7 @@
    				<entry key="dayIntervalScheduler" value-ref="dayIntervalScheduler" />
    				<entry key="randomlySelectedScheduler" value-ref="randomlySelectedScheduler" />
    				<entry key="randomlySelectedSchedulerLimit" value-ref="randomlySelectedSchedulerLimit" />
-   				<entry key="publishHuutoScheduler" value-ref="publishHuutoScheduler" />
+   			<!-- 	<entry key="publishHuutoScheduler" value-ref="publishHuutoScheduler" />
    				<entry key="publishHuuto2Scheduler" value-ref="publishHuuto2Scheduler" />
    				<entry key="publishHuuto2InternalScheduler" value-ref="publishHuuto2InternalScheduler" />
    				<entry key="publishLekmerScheduler" value-ref="publishLekmerScheduler" />
@@ -27,11 +27,11 @@
    				<entry key="publishStadiumScheduler" value-ref="publishStadiumScheduler" />
    				<entry key="publishStadium2Scheduler" value-ref="publishStadium2Scheduler" />
    				<entry key="publishXxlScheduler" value-ref="publishXxlScheduler" />
-   				<entry key="publishXxl2Scheduler" value-ref="publishXxl2Scheduler" />
+   				<entry key="publishXxl2Scheduler" value-ref="publishXxl2Scheduler" /> -->
    				<entry key="cleanScheduler" value-ref="cleanScheduler" />
    				<entry key="clean2Scheduler" value-ref="clean2Scheduler" />
    				<entry key="cleanAllScheduler" value-ref="cleanAllScheduler" />
-   				<entry key="warmScheduler" value-ref="warmScheduler" />
+   				<!-- <entry key="warmScheduler" value-ref="warmScheduler" /> -->
    				<entry key="pikalevoScheduler" value-ref="pikalevoScheduler" />
    			</map>
    		</property>
