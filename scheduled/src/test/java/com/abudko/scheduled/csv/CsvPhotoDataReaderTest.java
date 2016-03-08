@@ -61,8 +61,17 @@ public class CsvPhotoDataReaderTest {
     }
     
     @Test
+    public void testCommentsAreNotRead() {
+    	List<PhotoData> photoDataList = reader.read(FILE_LOCATION);
+    	
+    	for (PhotoData photoData : photoDataList) {
+    		assertFalse(photoData.toString(), photoData.getGroupId().contains("CommentedLine")); 
+    	}
+    }
+    
+    @Test
     public void testReadDataAfterComments() {
-        assertEquals(9, reader.read(FILE_LOCATION).size());
+        assertEquals(7, reader.read(FILE_LOCATION).size());
     }
     
     @Test

@@ -83,13 +83,13 @@ public class CsvPhotoDataReader implements PhotoDataReader {
     }
 
     private boolean shouldSkipRow(CsvReader csvReader) throws IOException {
-        String albumId = csvReader.get("albumId");
-        if (albumId == null || albumId.contains("//") || csvReader.get("description").contains("//")
-                || albumId.contains("\\") || csvReader.get("description").contains("\\")) {
-            return true;
-        }
+    	String[] values = csvReader.getValues();
 
-        return false;
+        return shouldSkipRow(values[0]) || shouldSkipRow(values[values.length - 1]);
+    }
+    
+    private boolean shouldSkipRow(String value) throws IOException {
+    	return value == null || value.contains("//") || value.contains("\\"); 
     }
     
     String getDefaultGroupId(String row) {
