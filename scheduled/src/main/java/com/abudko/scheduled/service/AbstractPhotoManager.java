@@ -1,7 +1,6 @@
 package com.abudko.scheduled.service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +63,7 @@ public abstract class AbstractPhotoManager implements PhotoManager {
     }
     
     public void cleanAll(String csvResourcePath, String userId) throws InterruptedException {
-        List<String> processed = new ArrayList<String>(); 
+        List<String> processed = new ArrayList<>(); 
         
         List<PhotoData> photoDataList = photoDataReader.read(csvResourcePath);
         for (PhotoData photoData : photoDataList) {

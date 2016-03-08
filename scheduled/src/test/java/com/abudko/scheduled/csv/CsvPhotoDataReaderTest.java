@@ -23,12 +23,14 @@ public class CsvPhotoDataReaderTest {
 
     @Test
     public void testReadGroupId() {
-        assertEquals("1", reader.read(FILE_LOCATION).get(0).getGroupId());
+        assertEquals("6", reader.read(FILE_LOCATION).get(0).getGroupId());
+        assertEquals("6", reader.read(FILE_LOCATION).get(2).getGroupId());
     }
     
     @Test
     public void testReadAlbumId() {
-        assertEquals("166279845", reader.read(FILE_LOCATION).get(0).getAlbumId());
+    	assertEquals("100000001", reader.read(FILE_LOCATION).get(0).getAlbumId());
+        assertEquals("100000003", reader.read(FILE_LOCATION).get(2).getAlbumId());
     }
     
     @Test
@@ -57,6 +59,16 @@ public class CsvPhotoDataReaderTest {
     
     @Test
     public void testReadDataAfterComments() {
-        assertEquals(6, reader.read(FILE_LOCATION).size());
+        assertEquals(9, reader.read(FILE_LOCATION).size());
+    }
+    
+    @Test
+    public void testGetDefaultGroupId() {
+    	assertEquals("2727877", reader.getDefaultGroupId("(2727877|169942310)"));
+    }
+    
+    @Test
+    public void testGetDefaultAlbumId() {
+    	assertEquals("169942310", reader.getDefaultAlbumId("(2727877|169942310)"));
     }
 }
