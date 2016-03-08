@@ -66,8 +66,6 @@ public class CsvPhotoDataReader implements PhotoDataReader {
                 photoData.setDescription(csvReader.get("description"));
 
                 photoDataList.add(photoData);
-                
-                validate(photoData);
             }
         } catch (FileNotFoundException fe) {
             log.error("Error in parsing csv", fe);
@@ -78,6 +76,8 @@ public class CsvPhotoDataReader implements PhotoDataReader {
                 csvReader.close();
             }
         }
+        
+       	validate(photoDataList);
         
         return photoDataList;
     }
@@ -119,18 +119,23 @@ public class CsvPhotoDataReader implements PhotoDataReader {
     	return validator;
     }
     
-    void validate(PhotoData photoData) {
-    	Set<ConstraintViolation<PhotoData>> errors = getValidator().validate(photoData);
-    	if (errors.isEmpty() == false) {
-    		StringBuilder sb = new StringBuilder("Validation error ");
-    		for (ConstraintViolation<PhotoData> constraintViolation : errors) {
-    			sb.append(String.format("'%s'", constraintViolation.getPropertyPath()));
-    			sb.append(" ");
-    			sb.append(constraintViolation.getMessage());
-    			sb.append(", ");
-    		}
-    		
-    		throw new RuntimeException(sb.toString());
-    	}
-    }
+	void validate(List<PhotoData> photoDataList) {
+		for (PhotoData photoData : photoDataList) {
+			Set<ConstraintViolation<PhotoData>> errors = getValidator().validate(photoData);
+			if (errors.isEmpty() == false) {
+				StringBuilder sb = new StringBuilder("Validation error ");
+				for (ConstraintViolation<PhotoData> constraintViolation : errors) {
+					sb.append(String.format("'%s'", constraintViolation.getPropertyPath()));
+					sb.append(" ");
+					sb.append(constraintViolation.getMessage());
+					sb.append(", ");
+				}
+				
+				sb.append(" Whole list ");
+				sb.append(photoDataList);
+
+				throw new RuntimeException(sb.toString());
+			}
+		}
+	}
 }

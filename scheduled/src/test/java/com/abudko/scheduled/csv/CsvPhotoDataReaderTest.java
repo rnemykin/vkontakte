@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -81,12 +82,14 @@ public class CsvPhotoDataReaderTest {
     	photoData.setAlbumId("22652");
     	
     	try {
-    		reader.validate(photoData);
+    		List<PhotoData> list = new ArrayList<>();
+    		list.add(photoData);
+    		reader.validate(list);
     		fail("Should throw before");
     	}
     	catch (RuntimeException e) {
-    		assertTrue(e.getMessage(), e.getMessage().contains("groupId"));
-    		assertFalse(e.getMessage(), e.getMessage().contains("albumId"));
+    		assertTrue(e.getMessage(), e.getMessage().contains("'groupId'"));
+    		assertFalse(e.getMessage(), e.getMessage().contains("'albumId'"));
     	}
     }
     
@@ -97,12 +100,14 @@ public class CsvPhotoDataReaderTest {
     	photoData.setAlbumId(null);
     	
     	try {
-    		reader.validate(photoData);
+    		List<PhotoData> list = new ArrayList<>();
+    		list.add(photoData);
+    		reader.validate(list);
     		fail("Should throw before");
     	}
     	catch (RuntimeException e) {
-    		assertFalse(e.getMessage(), e.getMessage().contains("groupId"));
-    		assertTrue(e.getMessage(), e.getMessage().contains("albumId"));
+    		assertFalse(e.getMessage(), e.getMessage().contains("'groupId'"));
+    		assertTrue(e.getMessage(), e.getMessage().contains("'albumId'"));
     	}
     }
     
@@ -113,12 +118,14 @@ public class CsvPhotoDataReaderTest {
     	photoData.setAlbumId("2323223");
     	
     	try {
-    		reader.validate(photoData);
+    		List<PhotoData> list = new ArrayList<>();
+    		list.add(photoData);
+    		reader.validate(list);
     		fail("Should throw before");
     	}
     	catch (RuntimeException e) {
-    		assertTrue(e.getMessage(), e.getMessage().contains("groupId"));
-    		assertFalse(e.getMessage(), e.getMessage().contains("albumId"));
+    		assertTrue(e.getMessage(), e.getMessage().contains("'groupId'"));
+    		assertFalse(e.getMessage(), e.getMessage().contains("'albumId'"));
     	}
     }
     
@@ -129,12 +136,14 @@ public class CsvPhotoDataReaderTest {
     	photoData.setAlbumId("");
     	
     	try {
-    		reader.validate(photoData);
+    		List<PhotoData> list = new ArrayList<>();
+    		list.add(photoData);
+    		reader.validate(list);
     		fail("Should throw before");
     	}
     	catch (RuntimeException e) {
-    		assertFalse(e.getMessage(), e.getMessage().contains("groupId"));
-    		assertTrue(e.getMessage(), e.getMessage().contains("albumId"));
+    		assertFalse(e.getMessage(), e.getMessage().contains("'groupId'"));
+    		assertTrue(e.getMessage(), e.getMessage().contains("'albumId'"));
     	}
     }
     
@@ -145,12 +154,14 @@ public class CsvPhotoDataReaderTest {
     	photoData.setAlbumId("23223");
     	
     	try {
-    		reader.validate(photoData);
+    		List<PhotoData> list = new ArrayList<>();
+    		list.add(photoData);
+    		reader.validate(list);
     		fail("Should throw before");
     	}
     	catch (RuntimeException e) {
-    		assertTrue(e.getMessage(), e.getMessage().contains("groupId"));
-    		assertFalse(e.getMessage(), e.getMessage().contains("albumId"));
+    		assertTrue(e.getMessage(), e.getMessage().contains("'groupId'"));
+    		assertFalse(e.getMessage(), e.getMessage().contains("'albumId'"));
     	}
     }
     
@@ -161,12 +172,14 @@ public class CsvPhotoDataReaderTest {
     	photoData.setAlbumId("dwdww");
     	
     	try {
-    		reader.validate(photoData);
+    		List<PhotoData> list = new ArrayList<>();
+    		list.add(photoData);
+    		reader.validate(list);
     		fail("Should throw before");
     	}
     	catch (RuntimeException e) {
-    		assertFalse(e.getMessage(), e.getMessage().contains("groupId"));
-    		assertTrue(e.getMessage(), e.getMessage().contains("albumId"));
+    		assertFalse(e.getMessage(), e.getMessage().contains("'groupId'"));
+    		assertTrue(e.getMessage(), e.getMessage().contains("'albumId'"));
     	}
     }
 }
