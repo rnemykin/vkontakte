@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.abudko.scheduled.csv.PhotoData;
@@ -64,7 +66,12 @@ public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager {
 
         @Override
         public String apply(PhotoData photoData) {
+        	if (photoData.getGroupId() == null) {
+        		log.error("Groupid is null" + photoData);        		
+        	}
             return photoData.getGroupId();
         }
+        
+        protected Logger log = LoggerFactory.getLogger(getClass());
     }
 }
