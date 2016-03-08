@@ -5,8 +5,14 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +30,8 @@ public class CsvPhotoDataReader implements PhotoDataReader {
     private static final char SEPARATOR = '\'';
 
     private Logger log = LoggerFactory.getLogger(getClass());
+    
+    private Validator validator;
 
     @Override
     public List<PhotoData> read(String csvResourcePath) {
@@ -58,6 +66,8 @@ public class CsvPhotoDataReader implements PhotoDataReader {
                 photoData.setDescription(csvReader.get("description"));
 
                 photoDataList.add(photoData);
+                
+                validate(photoData);
             }
         } catch (FileNotFoundException fe) {
             log.error("Error in parsing csv", fe);
@@ -68,7 +78,7 @@ public class CsvPhotoDataReader implements PhotoDataReader {
                 csvReader.close();
             }
         }
-
+        
         return photoDataList;
     }
 
@@ -99,5 +109,28 @@ public class CsvPhotoDataReader implements PhotoDataReader {
     	
     	return null;
     }
-
+    
+    private Validator getValidator() {
+    	if (validator == null) {
+    		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    		validator = factory.getValidator();
+    	}
+    	
+    	return validator;
+    }
+    
+    void validate(PhotoData photoData) {
+    	Set<ConstraintViolation<PhotoData>> errors = getValidator().validate(photoData);
+    	if (errors.isEmpty() == false) {
+    		StringBuilder sb = new StringBuilder("Validation error ");
+    		for (ConstraintViolation<PhotoData> constraintViolation : errors) {
+    			sb.append(String.format("'%s'", constraintViolation.getPropertyPath()));
+    			sb.append(" ");
+    			sb.append(constraintViolation.getMessage());
+    			sb.append(", ");
+    		}
+    		
+    		throw new RuntimeException(sb.toString());
+    	}
+    }
 }

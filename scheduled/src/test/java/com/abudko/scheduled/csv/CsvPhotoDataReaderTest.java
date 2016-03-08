@@ -3,10 +3,12 @@ package com.abudko.scheduled.csv;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -70,5 +72,101 @@ public class CsvPhotoDataReaderTest {
     @Test
     public void testGetDefaultAlbumId() {
     	assertEquals("169942310", reader.getDefaultAlbumId("(2727877|169942310)"));
+    }
+    
+    @Test
+    public void testValidateGroupIdNull() {
+    	PhotoData photoData = new PhotoData();
+    	photoData.setGroupId(null);
+    	photoData.setAlbumId("22652");
+    	
+    	try {
+    		reader.validate(photoData);
+    		fail("Should throw before");
+    	}
+    	catch (RuntimeException e) {
+    		assertTrue(e.getMessage(), e.getMessage().contains("groupId"));
+    		assertFalse(e.getMessage(), e.getMessage().contains("albumId"));
+    	}
+    }
+    
+    @Test
+    public void testValidateAlbumIdNull() {
+    	PhotoData photoData = new PhotoData();
+    	photoData.setGroupId("2224242");
+    	photoData.setAlbumId(null);
+    	
+    	try {
+    		reader.validate(photoData);
+    		fail("Should throw before");
+    	}
+    	catch (RuntimeException e) {
+    		assertFalse(e.getMessage(), e.getMessage().contains("groupId"));
+    		assertTrue(e.getMessage(), e.getMessage().contains("albumId"));
+    	}
+    }
+    
+    @Test
+    public void testValidateGroupIdEmpty() {
+    	PhotoData photoData = new PhotoData();
+    	photoData.setGroupId("");
+    	photoData.setAlbumId("2323223");
+    	
+    	try {
+    		reader.validate(photoData);
+    		fail("Should throw before");
+    	}
+    	catch (RuntimeException e) {
+    		assertTrue(e.getMessage(), e.getMessage().contains("groupId"));
+    		assertFalse(e.getMessage(), e.getMessage().contains("albumId"));
+    	}
+    }
+    
+    @Test
+    public void testValidateAlbumIdEmpty() {
+    	PhotoData photoData = new PhotoData();
+    	photoData.setGroupId("22323");
+    	photoData.setAlbumId("");
+    	
+    	try {
+    		reader.validate(photoData);
+    		fail("Should throw before");
+    	}
+    	catch (RuntimeException e) {
+    		assertFalse(e.getMessage(), e.getMessage().contains("groupId"));
+    		assertTrue(e.getMessage(), e.getMessage().contains("albumId"));
+    	}
+    }
+    
+    @Test
+    public void testValidateGroupIdNotdigit() {
+    	PhotoData photoData = new PhotoData();
+    	photoData.setGroupId("sssds");
+    	photoData.setAlbumId("23223");
+    	
+    	try {
+    		reader.validate(photoData);
+    		fail("Should throw before");
+    	}
+    	catch (RuntimeException e) {
+    		assertTrue(e.getMessage(), e.getMessage().contains("groupId"));
+    		assertFalse(e.getMessage(), e.getMessage().contains("albumId"));
+    	}
+    }
+    
+    @Test
+    public void testValidateAlbumIdNotdigit() {
+    	PhotoData photoData = new PhotoData();
+    	photoData.setGroupId("2224242");
+    	photoData.setAlbumId("dwdww");
+    	
+    	try {
+    		reader.validate(photoData);
+    		fail("Should throw before");
+    	}
+    	catch (RuntimeException e) {
+    		assertFalse(e.getMessage(), e.getMessage().contains("groupId"));
+    		assertTrue(e.getMessage(), e.getMessage().contains("albumId"));
+    	}
     }
 }

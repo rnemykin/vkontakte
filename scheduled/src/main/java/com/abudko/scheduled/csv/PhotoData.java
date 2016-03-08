@@ -1,11 +1,19 @@
 package com.abudko.scheduled.csv;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import org.springframework.core.io.Resource;
 
 public class PhotoData {
 
+	@Pattern(regexp = "\\d+")
+	@NotNull
     private String groupId;
 
+	@Pattern(regexp = "\\d+")
+	@NotNull
     private String albumId;
 
     private Resource fileLocationResource;
