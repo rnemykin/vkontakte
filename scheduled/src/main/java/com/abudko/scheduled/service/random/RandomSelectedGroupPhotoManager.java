@@ -66,12 +66,7 @@ public class RandomSelectedGroupPhotoManager extends AbstractPhotoManager {
 
         @Override
         public String apply(PhotoData photoData) {
-        	if (photoData.getGroupId() == null) {
-        		log.error("Groupid is null" + photoData);        		
-        	}
             return photoData.getGroupId();
         }
-        
-        protected Logger log = LoggerFactory.getLogger(getClass());
     }
 }
