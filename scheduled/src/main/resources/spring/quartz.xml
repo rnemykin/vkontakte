@@ -53,10 +53,10 @@
         <property name="triggers">
             <list>
             	<!-- <ref bean="minuteIntervalTrigger"/> -->
-      			<!-- <ref bean="hourIntervalTrigger"/> -->
+      			<ref bean="hourIntervalTrigger"/>
       			<!-- <ref bean="dayIntervalTrigger"/> -->
-      			<!-- <ref bean="randomlySelectedTrigger"/>
-      			<ref bean="randomlySelectedTriggerLimit"/>
+      			<ref bean="randomlySelectedTrigger"/>
+      			<!-- <ref bean="randomlySelectedTriggerLimit"/>
       			<ref bean="publishHuutoTrigger"/>
       			<ref bean="publishHuuto2Trigger"/>
       			<ref bean="publishHuuto2InternalTrigger"/>
@@ -68,9 +68,9 @@
       			<ref bean="publishStadium2Trigger"/>
       			<ref bean="publishXxlTrigger"/>
       			<ref bean="publishXxl2Trigger"/> -->
-      			<ref bean="cleanTrigger"/>
-      			<ref bean="clean2Trigger"/>
-      			<!-- <ref bean="cleanAllTrigger"/> -->
+      			<!-- <ref bean="cleanTrigger"/>
+      			<ref bean="clean2Trigger"/> -->
+      			<ref bean="cleanAllTrigger"/>
       			<!-- <ref bean="warmTrigger"/> -->
       			<!-- <ref bean="pikalevoTrigger"/> -->
             </list>
