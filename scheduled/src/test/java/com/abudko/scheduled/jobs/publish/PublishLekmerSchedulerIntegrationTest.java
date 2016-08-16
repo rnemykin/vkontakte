@@ -18,6 +18,7 @@ public class PublishLekmerSchedulerIntegrationTest {
     
     @Test
     @Ignore
+    // testing
     public void testPublish() throws IOException {
         publishLekmerScheduler.schedule();
     }
