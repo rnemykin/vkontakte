@@ -20,6 +20,7 @@ import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
 @Component
+// test1
 public class CsvPhotoDataLogger implements PhotoDataLogger {
 
     private static final String PHOTO_ID = "photoId";
