@@ -13,7 +13,7 @@ import com.abudko.scheduled.rules.ItemValidityRules;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class XxlItemValidityRulesIntegrationTest {
+public abstract class XxlItemValidityRulesIntegrationTest {
 
 	@Autowired
     @Qualifier("xxlItemValidityRules")

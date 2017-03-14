@@ -14,7 +14,7 @@ import com.abudko.scheduled.rules.ItemValidityRules;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class ReimaItemValidityRulesIntegrationTest {
+public abstract class ReimaItemValidityRulesIntegrationTest {
     
     @Autowired
     @Qualifier("reimaItemValidityRules")

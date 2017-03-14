@@ -14,7 +14,7 @@ import com.abudko.scheduled.vkontakte.Photo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring/test-app-config.xml" })
-public class ItemValidityRulesAlbumCleanerIntegrationTest {
+public abstract class ItemValidityRulesAlbumCleanerIntegrationTest {
 	
 	@Autowired
 	private ItemValidityRulesAlbumCleaner cleaner;
