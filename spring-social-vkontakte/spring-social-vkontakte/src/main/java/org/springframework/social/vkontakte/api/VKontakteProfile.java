@@ -24,7 +24,7 @@ public class VKontakteProfile {
 
     private final static String PROFILE_URL_EXTESTION = "http://vk.com/";
 
-    private final String uid;
+    private final String id;
     private final String screenName;
     private final String profileURL;
     private final String firstName;
@@ -37,9 +37,9 @@ public class VKontakteProfile {
     private final String gender;
     private final VKontakteDate birthDate;
 
-    public VKontakteProfile(String uid, String screeName, String firstName, String lastName, String photo, String photoMedium, String photoBig,
-            String homePhone, String mobilePhone, VKontakteDate birthDate, String gender) {
-        this.uid = uid;
+    public VKontakteProfile(String id, String screeName, String firstName, String lastName, String photo, String photoMedium, String photoBig,
+                            String homePhone, String mobilePhone, VKontakteDate birthDate, String gender) {
+        this.id = id;
         this.screenName = screeName;
         this.profileURL = PROFILE_URL_EXTESTION + screeName;
         this.firstName = firstName;
@@ -58,8 +58,8 @@ public class VKontakteProfile {
      * 
      * @return The user's VKontakte ID
      */
-    public String getUid() {
-        return uid;
+    public String getId() {
+        return id;
     }
 
     public String getScreenName() {

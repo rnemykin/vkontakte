@@ -40,9 +40,9 @@ public class VKontakteAdapter implements ApiAdapter<VKontakte> {
 
 	public void setConnectionValues(VKontakte vkontakte, ConnectionValues values) {
 		VKontakteProfile profile = vkontakte.usersOperations().getProfile();
-		values.setProviderUserId(profile.getUid());
+		values.setProviderUserId(profile.getId());
 		values.setDisplayName(profile.getFirstName() + " " + profile.getLastName());
-		values.setProfileUrl("http://vk.com/id" + profile.getUid());
+		values.setProfileUrl("http://vk.com/id" + profile.getId());
 		values.setImageUrl(profile.getPhoto());
 	}
 

@@ -7,7 +7,7 @@
 <p>Hello, <c:out value="${profile.firstName}"/>!</p>
 <dl>
 	<dt>VKontakte ID:</dt>
-	<dd><c:out value="${profile.uid}"/></dd>
+	<dd><c:out value="${profile.id}"/></dd>
 	<dt>Name:</dt>
 	<dd><c:out value="${profile.screenName}"/></dd>
 </dl>

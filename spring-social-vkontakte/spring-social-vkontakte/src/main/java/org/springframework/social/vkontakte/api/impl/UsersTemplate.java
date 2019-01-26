@@ -54,7 +54,7 @@ class UsersTemplate extends AbstractVKontakteOperations implements UsersOperatio
         }
 
         props.put("uids", userIds == null ? uid : uids.toString());
-        props.put("fields", "uid,first_name,last_name,photo,photo_medium,photo_big,contacts,bdate,sex,screen_name");
+        props.put("fields", "id,first_name,last_name,photo,photo_medium,photo_big,contacts,bdate,sex,screen_name");
         URI uri = makeOperationURL("getProfiles", props);
 
         VKontakteProfiles profiles = restTemplate.getForObject(uri, VKontakteProfiles.class);
