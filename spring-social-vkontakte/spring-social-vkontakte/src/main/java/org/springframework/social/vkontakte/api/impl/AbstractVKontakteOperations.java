@@ -38,6 +38,7 @@ import java.util.Properties;
  * @author vkolodrevskiy
  */
 class AbstractVKontakteOperations {
+    private final static String API_VERSION = "5.0";
     private final static String VK_REST_URL = "https://api.vk.com/method/";
 
     private final boolean isAuthorized;
@@ -58,6 +59,7 @@ class AbstractVKontakteOperations {
 
     protected URI makeOperationURL(String method, Properties params) {
         URIBuilder uri = URIBuilder.fromUri(VK_REST_URL + method);
+        uri.queryParam("v", API_VERSION);
         uri.queryParam("access_token", accessToken);
         for (Map.Entry<Object, Object> objectObjectEntry : params.entrySet()) {
             uri.queryParam(objectObjectEntry.getKey().toString(), objectObjectEntry.getValue().toString());
